@@ -1,4 +1,4 @@
-import { Container, Tags, Tag } from '@vallista/core'
+import { Container, Tags, Tag } from '@heli-os/vallista-core'
 import { useState, VFC } from 'react'
 
 const TogglePlayground: VFC = () => {

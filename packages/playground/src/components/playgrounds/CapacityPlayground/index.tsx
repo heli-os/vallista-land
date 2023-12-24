@@ -1,4 +1,4 @@
-import { Container, Capacity } from '@vallista/core'
+import { Container, Capacity } from '@heli-os/vallista-core'
 import { VFC } from 'react'
 
 const CapacityPlayground: VFC = () => {

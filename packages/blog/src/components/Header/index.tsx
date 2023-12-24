@@ -1,4 +1,4 @@
-import { Modal, Spacer, Text, Toggle } from '@vallista/core'
+import { Modal, Spacer, Text, Toggle } from '@heli-os/vallista-core'
 import { VFC } from 'react'
 
 import * as Styled from './Header.style'

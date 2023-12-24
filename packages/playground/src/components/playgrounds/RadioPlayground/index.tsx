@@ -1,4 +1,4 @@
-import { Container, Radio } from '@vallista/core'
+import { Container, Radio } from '@heli-os/vallista-core'
 import { VFC } from 'react'
 
 const RadioPlayground: VFC = () => {

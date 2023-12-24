@@ -1,4 +1,4 @@
-import { Container, Badge } from '@vallista/core'
+import { Container, Badge } from '@heli-os/vallista-core'
 import { VFC } from 'react'
 
 const BadgePlayground: VFC = () => {

@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.3.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "@vallista/core": "0.5.4",
+    "@heli-os/vallista-core": "0.0.1",
     "gatsby": "^4.4.0",
     "gatsby-plugin-emotion": "^7.4.0",
     "gatsby-plugin-mdx": "^3.4.0",

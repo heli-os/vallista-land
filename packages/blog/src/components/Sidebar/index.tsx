@@ -1,4 +1,4 @@
-import { Colors, Container, Text, SearchInput } from '@vallista/core'
+import { Colors, Container, Text, SearchInput } from '@heli-os/vallista-core'
 import { useEffect, useMemo, useRef, useState, VFC } from 'react'
 
 import { SidebarPost } from '../../types/type'

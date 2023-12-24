@@ -1,4 +1,4 @@
-import { Button, Container } from '@vallista/core'
+import { Button, Container } from '@heli-os/vallista-core'
 import { VFC } from 'react'
 
 const ButtonPlayground: VFC = () => {

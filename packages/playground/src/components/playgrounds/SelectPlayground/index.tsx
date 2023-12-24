@@ -1,4 +1,4 @@
-import { Container, Select, Icon } from '@vallista/core'
+import { Container, Select, Icon } from '@heli-os/vallista-core'
 import { useEffect, useState, VFC } from 'react'
 
 const SelectPlayground: VFC = () => {

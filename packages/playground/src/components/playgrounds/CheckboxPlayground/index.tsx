@@ -1,4 +1,4 @@
-import { Checkbox, Container } from '@vallista/core'
+import { Checkbox, Container } from '@heli-os/vallista-core'
 import { useState, VFC } from 'react'
 
 const CheckboxPlayground: VFC = () => {

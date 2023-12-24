@@ -1,6 +1,6 @@
 {
-  "name": "@vallista/core",
-  "version": "0.5.4",
+  "name": "@heli-os/vallista-core",
+  "version": "0.0.1",
   "private": false,
   "repository": {
     "type": "git",

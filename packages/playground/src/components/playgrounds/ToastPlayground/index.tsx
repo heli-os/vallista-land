@@ -1,4 +1,4 @@
-import { Button, Container, useToasts } from '@vallista/core'
+import { Button, Container, useToasts } from '@heli-os/vallista-core'
 import { VFC } from 'react'
 
 const TogglePlayground: VFC = () => {

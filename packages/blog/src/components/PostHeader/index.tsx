@@ -1,5 +1,5 @@
 import { useLocation } from '@reach/router'
-import { Text, Badge, Container, Spacer, Tooltip, copy, useToasts } from '@vallista/core'
+import { Text, Badge, Container, Spacer, Tooltip, copy, useToasts } from '@heli-os/vallista-core'
 import { Link } from 'gatsby'
 import { FC } from 'react'
 
