@@ -237,7 +237,7 @@
           {
             "name": "코로나19 개인 안심번호",
             "descriptions": ["MAU 4,000만 돌파 프로젝트"],
-            "startDate": "2023.12",
+            "startDate": "2020.12",
             "endDate": "2021.02",
             "which": [
               { "title": "개인 안심번호 생성 시스템 설계 및 개발" },
