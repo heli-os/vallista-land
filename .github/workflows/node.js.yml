@@ -41,8 +41,8 @@ jobs:
         run: git config --global user.email "sun@dataportal.kr"
       - name: git config 이름 변경
         run: git config --global user.name "Taeyang Jin (Theo)"
-      # vallista-blog 들어가서 deploy 스크립트에 TOKEN 주입해 실행
-      - name: 디랙토리 이동 및 heli-os.github.io/vallista-land 배포
+      # packages/blog 들어가서 deploy 스크립트에 TOKEN 주입해 실행
+      - name: 디랙토리 이동 및 heli-os.github.io 배포
         run: |
           yarn directory:blog
           yarn deploy:blog-ex ${{ secrets.TOKEN }}
