@@ -368,10 +368,10 @@
     ]
   },
   "lectures": {
-    "description": "강연",
+    "description": "강의/강연",
     "list": [
       {
-        "title": "제로베이스 백엔드 스쿨 기술 멘토",
+        "title": "제로베이스 백엔드 스쿨 Java/SpringBoot 기반 프로젝트 강의",
         "url": "https://zero-base.co.kr"
       },
       {

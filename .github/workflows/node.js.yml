@@ -29,6 +29,8 @@ jobs:
           cache: 'npm'
       - name: yarn 설치
         run: npm install -g yarn
+      - name: lerna 설치
+        run: npm install -g lerna
       - name: yarn workspaces 옵션 활성화
         run: yarn config set workspaces-experimental true
       - name: node.js 패키지 installation

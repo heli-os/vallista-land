@@ -5,5 +5,5 @@ tags:
 image: ./assets/resume.jpg
 date: 2023-12-24 17:53:27
 series: 테스트-시리즈
-draft: true
+draft: false
 ---
