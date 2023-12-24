@@ -1,4 +1,5 @@
 const profile = require('./config/profile.json')
+const defaultOpenGraphImage = '/open-graph.jpeg'
 
 module.exports = {
   flags: {
@@ -11,7 +12,7 @@ module.exports = {
     description: profile.description,
     author: profile.author,
     url: profile.siteUrl,
-    image: profile.placeholder,
+    image: defaultOpenGraphImage,
     twitterUsername: ''
   },
   plugins: [
