@@ -224,6 +224,43 @@
             ]
           }
         ]
+      },
+      {
+        "name": "코드포코리아",
+        "department": "개발팀",
+        "position": "Maintainer & Organizer",
+        "startDate": "2020.03",
+        "endDate": null,
+        "fold": true,
+        "descriptions": [],
+        "projects": [
+          {
+            "name": "코로나19 개인 안심번호",
+            "descriptions": ["MAU 4,000만 돌파 프로젝트"],
+            "startDate": "2023.12",
+            "endDate": "2021.02",
+            "which": [
+              { "title": "개인 안심번호 생성 시스템 설계 및 개발" },
+              { "title": "실제 적용 방법 가이드 작성 & 데모 시스템 개발" },
+              { "title": "네이버, 카카오, PASS 시스템에 도입" },
+              { "title": "코로나19 수기출입명부를 통한 개인정보 유출 사례 감소" }
+            ]
+          },
+          {
+            "name": "코로나19 공공데이터 공동대응 및 애플리케이션 개발",
+            "descriptions": ["API 서비스 첫날 총 9천만회 API 호출, 시간당 최대 7백만회 호출"],
+            "startDate": "2020.02",
+            "endDate": "2020.04",
+            "which": [
+              { "title": "코로나19 관련 공공데이터 현황 분석" },
+              { "title": "코로나19 관련 공공데이터 개방 요청" },
+              { "title": "코로나19 공적마스크 재고 API 개발 기여(with 정부/네이버/KT)" },
+              { "title": "코로나19 공적마스크 재고 현황 애플리케이션 개발" },
+              { "title": "코로나19 공적마스크 재고 API & 서비스 시작" },
+              { "title": "공적 마스크 매진율 증가", "items": ["AS-IS: 67.9%", "TO-BE: 86.4%(1주일 후)"] }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -330,6 +367,46 @@
   "activities": {
     "description": "활동",
     "list": [
+      {
+        "title": "오픈소스 기여: specmock PR#7",
+        "url": "https://github.com/specmock/specmock/pull/7"
+      },
+      {
+        "title": "오픈소스 기여: mongo-java-driver PR#996",
+        "url": "https://github.com/mongodb/mongo-java-driver/pull/996"
+      },
+      {
+        "title": "오픈소스 기여: mongo-java-driver PR#997",
+        "url": "https://github.com/mongodb/mongo-java-driver/pull/997"
+      },
+      {
+        "title": "오픈소스 기여: mongo-java-driver ISSUE#4719",
+        "url": "https://jira.mongodb.org/browse/JAVA-4719"
+      },
+      {
+        "title": "오픈소스 기여: mongo-java-driver PR#999",
+        "url": "https://github.com/mongodb/mongo-java-driver/pull/999"
+      },
+      {
+        "title": "오픈소스 기여: google/ksp PR#1088",
+        "url": "https://github.com/google/ksp/pull/1088"
+      },
+      {
+        "title": "오픈소스 기여: line/kotlin-jdsl PR#68",
+        "url": "https://github.com/line/kotlin-jdsl/pull/68"
+      },
+      {
+        "title": "오픈소스 기여: JetBrains/Exposed PR#1582",
+        "url": "https://github.com/JetBrains/Exposed/pull/1582"
+      },
+      {
+        "title": "위클리 아카데미: 800명 규모 기술 경험 공유 네트워크 개설/운영",
+        "url": "https://weekly.ac"
+      },
+      {
+        "title": "코드포코리아: 오픈소스 기반 기술 비영리 단체 설립/운영",
+        "url": "https://codefor.kr"
+      },
       {
         "title": "2023.02 ~ 2023.03 경북대학교 해커톤 멘토 활동",
         "url": null
