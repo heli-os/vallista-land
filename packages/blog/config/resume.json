@@ -4,8 +4,7 @@
     "role": "Software Engineer",
     "bio": [
       "볼타코퍼레이션 <string>공동창업자 겸 CTO</string>",
-      "전자세금계산서 프로덕트 <string>전반 아키텍쳐 설계 및 서비스 개발</string>",
-      "(작성중....임시 버전)"
+      "전자세금계산서 프로덕트 <string>전반 아키텍쳐 설계 및 서비스 개발</string>"
     ],
     "github": "https://github.com/heli-os",
     "email": "sun@dataportal.kr"
@@ -39,7 +38,7 @@
             "endDate": null,
             "which": [
               { "title": "제품 전략을 제안하고 적기에 출시하여 비즈니스 기회 확장" },
-              { "title": "Seed, Pre-A 투자 유치" },
+              { "title": "투자 유치" },
               { "title": "TIPS 프로그램 선정" }
             ]
           },
