@@ -23,10 +23,12 @@ export const Footer: VFC = () => {
             </FooterLink>
           </FooterGroup>
           <FooterGroup title='관련 사이트'>
-            <FooterLink href='https://dataportal.kr'>다른 블로그</FooterLink>
+            <FooterLink href='https://jinssssun.tistory.com'>다른 블로그</FooterLink>
             <FooterLink href='https://weekly.ac'>위클리 아카데미</FooterLink>
-            <FooterLink href='https://careers.bolta.io'>볼타 채용</FooterLink>
-            <FooterLink href='https://bolta.io'>볼타 홈페이지</FooterLink>
+          </FooterGroup>
+          <FooterGroup title='볼타'>
+            <FooterLink href='https://careers.bolta.io'>채용</FooterLink>
+            <FooterLink href='https://bolta.io'>홈페이지</FooterLink>
           </FooterGroup>
         </FooterWrapper>
       </Styled._FooterBox>
