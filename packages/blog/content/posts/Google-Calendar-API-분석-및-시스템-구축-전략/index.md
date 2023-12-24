@@ -4,7 +4,7 @@ image: ./assets/1.png
 tags:
 - 시스템 설계
 date: 2022-11-20 05:14:27
-draft: true
+draft: false
 ---
 
 ![logo](assets/1.png)
