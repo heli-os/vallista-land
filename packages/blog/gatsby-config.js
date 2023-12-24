@@ -33,7 +33,7 @@ module.exports = {
         // Any additional optional fields
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: 'heli-os.github.io'
+        cookieDomain: 'dataportal.kr'
       }
     },
     'gatsby-plugin-emotion',

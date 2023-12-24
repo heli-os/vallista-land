@@ -32,11 +32,11 @@ export const Footer: VFC = () => {
       </Styled._FooterBox>
       <Styled._FooterAllRightReserve>
         <Text size={12}>
-          Copyright ⓒ {nowYear} <Link to='https://heli-os.githu.io'>TheoJin</Link> All rights reserved.
+          Copyright ⓒ {nowYear} <Link to='https://dataportal.kr'>TheoJin</Link> All rights reserved.
         </Text>
         <Spacer y={0.1} />
         <Text size={12}>
-          Created by <Link to='https://heli-os.githu.io'>@TheoJin</Link>. Powered By{' '}
+          Created by <Link to='https://dataportal.kr'>@TheoJin</Link>. Powered By{' '}
           <a href='https://github.com/Vallista/vallista-land'>@Vallista-land</a>
         </Text>
         <Spacer y={0.5} />
