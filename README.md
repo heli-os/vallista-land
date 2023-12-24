@@ -63,7 +63,8 @@ $ npx kill-port 3000
 ### 빌드 안될 때
 
 ```shell
-$ yarn clean:template
+$ yarn clean:core
+$ yarn clean:blog
 $ yarn clean:playground
 $ lerna clean
 ```
