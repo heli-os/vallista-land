@@ -335,12 +335,16 @@ const ResumePage: VFC = () => {
                     <Text size={16}>
                       <a onClick={() => openNewPage(it.url!)}>{it.title}</a>
                     </Text>
-                    <Text size={16}>{it.description}</Text>
+                    <SubTitleText>
+                      <Text size={14}>{it.description}</Text>
+                    </SubTitleText>
                   </li>
                 ) : (
                   <li key={idx}>
                     <Text size={16}>{it.title}</Text>
-                    <Text size={16}>{it.description}</Text>
+                    <SubTitleText>
+                      <Text size={14}>{it.description}</Text>
+                    </SubTitleText>
                   </li>
                 )
               )}
