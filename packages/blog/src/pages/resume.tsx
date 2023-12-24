@@ -11,7 +11,7 @@ const ResumePage: VFC = () => {
 
   return (
     <Container>
-      <Seo name='이력서' image='/resume.jpg' />
+      <Seo name='이력서' image='/open-graph.jpeg' />
       <Header>
         <Wrapper>
           <Container>
