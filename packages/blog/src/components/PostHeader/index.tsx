@@ -52,7 +52,7 @@ export const PostHeader: FC<PostHeaderProps> = (props) => {
             </Styled._TextContainer>
             <Styled._IconContainer>
               <Tooltip text='페이스북 공유' position='top'>
-                <Styled._Icon onClick={facebookShare}>
+                <Styled._Icon onClick={facebookShare} style={{ marginLeft: '-0.5rem' }}>
                   <svg
                     viewBox='0 0 24 24'
                     width='16'
