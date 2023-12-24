@@ -246,6 +246,31 @@ const ResumePage: VFC = () => {
           </Container>
         </Contents>
       </Box>
+      <Box id='opensources'>
+        <Contents>
+          <Container>
+            <Text size={40} weight={800}>
+              {resume.opensources.description}
+            </Text>
+            <Spacer y={1.5} />
+            <ul>
+              {resume.opensources.list.map((it, idx) =>
+                it.url !== null ? (
+                  <li key={idx}>
+                    <Text size={16}>
+                      <a onClick={() => openNewPage(it.url!)}>{it.title}</a>
+                    </Text>
+                  </li>
+                ) : (
+                  <li key={idx}>
+                    <Text size={16}>{it.title}</Text>
+                  </li>
+                )
+              )}
+            </ul>
+          </Container>
+        </Contents>
+      </Box>
       <Box id='activities'>
         <Contents>
           <Container>

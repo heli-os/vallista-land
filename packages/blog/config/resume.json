@@ -329,7 +329,7 @@
     "list": [
       {
         "title": "블로깅",
-        "url": "/blog",
+        "url": "/posts",
         "descriptions": [
           "개발을 좋아해서 틈틈히 공부를 하고 글을 작성하여 블로그에 투고합니다.",
           "위의 제목을 누르면 제 블로그를 가실 수 있어요!",
@@ -363,39 +363,39 @@
       }
     ]
   },
-  "activities": {
-    "description": "활동",
+  "opensources": {
+    "description": "오픈소스 기여",
     "list": [
       {
-        "title": "오픈소스 기여: specmock PR#7",
+        "title": "[specmock] PR#7",
         "url": "https://github.com/specmock/specmock/pull/7"
       },
       {
-        "title": "오픈소스 기여: mongo-java-driver PR#996",
+        "title": "[mongo-java-driver] PR#996",
         "url": "https://github.com/mongodb/mongo-java-driver/pull/996"
       },
       {
-        "title": "오픈소스 기여: mongo-java-driver PR#997",
+        "title": "[mongo-java-driver] PR#997",
         "url": "https://github.com/mongodb/mongo-java-driver/pull/997"
       },
       {
-        "title": "오픈소스 기여: mongo-java-driver ISSUE#4719",
+        "title": "[mongo-java-driver] ISSUE#4719",
         "url": "https://jira.mongodb.org/browse/JAVA-4719"
       },
       {
-        "title": "오픈소스 기여: mongo-java-driver PR#999",
+        "title": "[mongo-java-driver] PR#999",
         "url": "https://github.com/mongodb/mongo-java-driver/pull/999"
       },
       {
-        "title": "오픈소스 기여: google/ksp PR#1088",
+        "title": "[google/ksp] PR#1088",
         "url": "https://github.com/google/ksp/pull/1088"
       },
       {
-        "title": "오픈소스 기여: line/kotlin-jdsl PR#68",
+        "title": "[line/kotlin-jdsl] PR#68",
         "url": "https://github.com/line/kotlin-jdsl/pull/68"
       },
       {
-        "title": "오픈소스 기여: JetBrains/Exposed PR#1582",
+        "title": "[JetBrains/Exposed] PR#1582",
         "url": "https://github.com/JetBrains/Exposed/pull/1582"
       },
       {
@@ -405,7 +405,12 @@
       {
         "title": "코드포코리아: 오픈소스 기반 기술 비영리 단체 설립/운영",
         "url": "https://codefor.kr"
-      },
+      }
+    ]
+  },
+  "activities": {
+    "description": "활동",
+    "list": [
       {
         "title": "2023.02 ~ 2023.03 경북대학교 해커톤 멘토 활동",
         "url": null

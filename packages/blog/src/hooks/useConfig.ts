@@ -68,6 +68,13 @@ interface ReturningUseConfig {
         url: string
       }[]
     }
+    opensources: {
+      description: string | null
+      list: {
+        title: string
+        url: string | null
+      }[]
+    }
     activities: {
       description: string | null
       list: {
