@@ -90,9 +90,7 @@ JDK가 설치되어 있다면 `$ jconsole` 를 입력하여 힙 메모리, 코�
 
 이렇게 스택상에서 컴파일된 버전을 바로 실행시키는 것을 OSR이라고 부릅니다.
 
-> 컴파일 임계치 관련 JVM Option
-
-`컴파일 임계치 변경`
+`컴파일 임계치 변경 JVM Option`
 
 ```java
 -XX:CompileThreadhold=N
