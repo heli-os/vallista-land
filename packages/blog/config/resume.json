@@ -267,7 +267,7 @@
     "title": "기술",
     "list": [
       {
-        "title": "Kotlin",
+        "title": "Kotlin/SpringBoot",
         "descriptions": [
           {
             "title": "Kotlin을 이용한 SpringBoot 프로젝트 개발에 익숙합니다.",
@@ -276,12 +276,7 @@
           {
             "title": "문법을 잘 활용하며, 가독성 향상을 위해 노력합니다.",
             "subTitle": ["객체지향 프로그래밍에 익숙하기 때문에 상속, 확장 등을 통한 추상화에도 강점을 지닙니다."]
-          }
-        ]
-      },
-      {
-        "title": "SpringBoot",
-        "descriptions": [
+          },
           {
             "title": "크거나 작은 규모의 웹 애플리케이션 서버를 설계할 수 있습니다.",
             "subTitle": ["모바일 웹앱, PC, 어드민 등 다양한 프로젝트를 리딩하고 개발한 경험이 있습니다."]
@@ -289,6 +284,22 @@
           {
             "title": "유지보수 용이하게 Package/Module Structure를 구성합니다.",
             "subTitle": []
+          }
+        ]
+      },
+      {
+        "title": "React/Next.js",
+        "descriptions": [
+          {
+            "title": "크거나 작은 규모의 웹 애플리케이션 서버를 설계할 수 있습니다.",
+            "subTitle": ["모바일 웹앱, PC, 어드민 등 다양한 프로젝트를 리딩하고 개발한 경험이 있습니다."]
+          },
+          {
+            "title": "React hooks를 사용하여 적절하게 데이터를 분배합니다.",
+            "subTitle": [
+              "Custom hooks을 줄곧 잘 쓰며, Context API를 사용하여 맥락에 맞는 컴포넌트 상태 격리를 통한 구현이 가능합니다.",
+              "이러한 시스템을 이용하여 디자인 시스템을 구현한 경험이 있습니다."
+            ]
           }
         ]
       },
