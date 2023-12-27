@@ -44,7 +44,7 @@ export const _FoldingButton = styled.button<{ fold: boolean }>`
   ${({ theme, fold }) => css`
     ${fold
       ? css`
-          color: ${theme.colors.HIGHLIGHT.PINK};
+          color: ${theme.colors.HIGHLIGHT.ORANGE};
         `
       : css`
           &:hover {
@@ -76,7 +76,7 @@ export const _SettingButton = styled.button<{ popup: boolean }>`
   ${({ theme, popup }) => css`
     ${popup
       ? css`
-          color: ${theme.colors.HIGHLIGHT.PINK};
+          color: ${theme.colors.HIGHLIGHT.ORANGE};
         `
       : css`
           &:hover {
@@ -129,7 +129,7 @@ export const _SelectGauge = styled.div<{ idx: number; max: number; value: number
   ${({ theme, idx, max, value, selected }) => css`
     left: ${(idx / (max - 1)) * 100}%;
     top: 50%;
-    background-color: ${selected === value ? theme.colors.HIGHLIGHT.PINK : theme.colors.PRIMARY.ACCENT_8};
+    background-color: ${selected === value ? theme.colors.HIGHLIGHT.ORANGE : theme.colors.PRIMARY.ACCENT_8};
 
     &:first-of-type {
       left: 1.5%;

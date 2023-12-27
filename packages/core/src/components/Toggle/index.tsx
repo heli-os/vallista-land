@@ -69,13 +69,13 @@ const Wrapper = styled.span<StyleParams>`
     background: ${toggle
       ? color === 'blue'
         ? theme.colors.SUCCESS.DEFAULT
-        : theme.colors.HIGHLIGHT.PINK
+        : theme.colors.HIGHLIGHT.ORANGE
       : theme.colors.PRIMARY.ACCENT_2};
     border: 1px solid
       ${toggle
         ? color === 'blue'
           ? theme.colors.SUCCESS.DEFAULT
-          : theme.colors.HIGHLIGHT.PINK
+          : theme.colors.HIGHLIGHT.ORANGE
         : theme.colors.PRIMARY.ACCENT_2};
     border-radius: 14px;
     cursor: pointer;

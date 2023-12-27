@@ -132,7 +132,7 @@ export const _Category = styled.a<{ checked?: boolean }>`
         width: 80px;
         height: 80px;
         content: '';
-        border-left: 3px solid ${theme.colors.HIGHLIGHT.PINK};
+        border-left: 3px solid ${theme.colors.HIGHLIGHT.ORANGE};
         box-sizing: border-box;
 
         @media screen and (max-width: 1024px) {
@@ -140,7 +140,7 @@ export const _Category = styled.a<{ checked?: boolean }>`
           height: 60px;
           border-left: none;
 
-          border-bottom: 3px solid ${theme.colors.HIGHLIGHT.PINK};
+          border-bottom: 3px solid ${theme.colors.HIGHLIGHT.ORANGE};
         }
       }
     `}

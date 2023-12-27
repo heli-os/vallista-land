@@ -126,18 +126,18 @@ const defaultVariantColorSets: ButtonColorSet = (theme) => {
     alert: {
       normal: {
         foreground: theme.colors.PRIMARY.BACKGROUND,
-        background: theme.colors.HIGHLIGHT.PINK,
-        border: theme.colors.HIGHLIGHT.PINK
+        background: theme.colors.HIGHLIGHT.ORANGE,
+        border: theme.colors.HIGHLIGHT.ORANGE
       },
       hover: {
-        foreground: theme.colors.HIGHLIGHT.PINK,
+        foreground: theme.colors.HIGHLIGHT.ORANGE,
         background: theme.colors.PRIMARY.BACKGROUND,
-        border: theme.colors.HIGHLIGHT.PINK
+        border: theme.colors.HIGHLIGHT.ORANGE
       },
       active: {
-        foreground: theme.colors.HIGHLIGHT.PINK,
+        foreground: theme.colors.HIGHLIGHT.ORANGE,
         background: theme.colors.PRIMARY.ACCENT_2,
-        border: theme.colors.HIGHLIGHT.PINK
+        border: theme.colors.HIGHLIGHT.ORANGE
       }
     },
     violet: {
@@ -250,18 +250,18 @@ const shadowVariantColorSets: ButtonColorSet = (theme) => {
     alert: {
       normal: {
         foreground: theme.colors.PRIMARY.FOREGROUND,
-        background: theme.colors.HIGHLIGHT.PINK,
-        border: theme.colors.HIGHLIGHT.PINK
+        background: theme.colors.HIGHLIGHT.ORANGE,
+        border: theme.colors.HIGHLIGHT.ORANGE
       },
       hover: {
         foreground: theme.colors.PRIMARY.FOREGROUND,
-        background: theme.colors.HIGHLIGHT.PINK,
-        border: theme.colors.HIGHLIGHT.PINK
+        background: theme.colors.HIGHLIGHT.ORANGE,
+        border: theme.colors.HIGHLIGHT.ORANGE
       },
       active: {
         foreground: theme.colors.PRIMARY.FOREGROUND,
-        background: theme.colors.HIGHLIGHT.PINK,
-        border: theme.colors.HIGHLIGHT.PINK
+        background: theme.colors.HIGHLIGHT.ORANGE,
+        border: theme.colors.HIGHLIGHT.ORANGE
       }
     },
     violet: {
@@ -373,18 +373,18 @@ const ghostVariantColorSets: ButtonColorSet = (theme) => {
     },
     alert: {
       normal: {
-        foreground: theme.colors.HIGHLIGHT.PINK,
+        foreground: theme.colors.HIGHLIGHT.ORANGE,
         background: 'none',
         border: 'transparent'
       },
       hover: {
-        foreground: theme.colors.HIGHLIGHT.PINK,
-        background: theme.colors.HIGHLIGHT.PINK,
+        foreground: theme.colors.HIGHLIGHT.ORANGE,
+        background: theme.colors.HIGHLIGHT.ORANGE,
         border: 'transparent'
       },
       active: {
-        foreground: theme.colors.HIGHLIGHT.PINK,
-        background: theme.colors.HIGHLIGHT.PINK,
+        foreground: theme.colors.HIGHLIGHT.ORANGE,
+        background: theme.colors.HIGHLIGHT.ORANGE,
         border: 'transparent'
       }
     },

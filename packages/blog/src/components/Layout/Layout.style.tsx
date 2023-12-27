@@ -38,15 +38,15 @@ export const _Article = styled.article`
   ${({ theme }) => css`
     a {
       cursor: pointer;
-      border-bottom: 2px solid ${theme.colors.HIGHLIGHT.PINK};
+      border-bottom: 2px solid ${theme.colors.HIGHLIGHT.ORANGE};
       font-weight: 600;
       text-decoration: none;
       color: ${theme.colors.PRIMARY.FOREGROUND};
       transition: all 0.1s ease-out;
 
       &:hover {
-        background: ${theme.colors.HIGHLIGHT.PINK};
-        border-top: 2px solid ${theme.colors.HIGHLIGHT.PINK};
+        background: ${theme.colors.HIGHLIGHT.ORANGE};
+        border-top: 2px solid ${theme.colors.HIGHLIGHT.ORANGE};
         color: ${theme.colors.PRIMARY.BACKGROUND};
       }
     }

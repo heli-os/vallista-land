@@ -160,7 +160,7 @@ export const _Contents = styled(_Wrapper)`
 
       &::marker {
         font-weight: 600;
-        color: ${theme.colors.HIGHLIGHT.PINK};
+        color: ${theme.colors.HIGHLIGHT.ORANGE};
       }
     }
 
@@ -169,7 +169,7 @@ export const _Contents = styled(_Wrapper)`
 
       &::marker {
         font-weight: 600;
-        color: ${theme.colors.HIGHLIGHT.PINK};
+        color: ${theme.colors.HIGHLIGHT.ORANGE};
       }
     }
 
@@ -183,7 +183,7 @@ export const _Contents = styled(_Wrapper)`
 
       & code {
         font-weight: 600;
-        color: ${theme.colors.HIGHLIGHT.PINK};
+        color: ${theme.colors.HIGHLIGHT.ORANGE};
         white-space: inherit;
 
         & * span {
@@ -261,7 +261,7 @@ export const _Contents = styled(_Wrapper)`
 
       & > code {
         font-weight: 600;
-        color: ${theme.colors.HIGHLIGHT.PINK};
+        color: ${theme.colors.HIGHLIGHT.ORANGE};
         white-space: inherit;
 
         & * span {
@@ -276,7 +276,7 @@ export const _Contents = styled(_Wrapper)`
 
     p > code {
       font-weight: 600;
-      color: ${theme.colors.HIGHLIGHT.PINK};
+      color: ${theme.colors.HIGHLIGHT.ORANGE};
       white-space: inherit;
 
       & * span {
@@ -311,7 +311,7 @@ export const _Contents = styled(_Wrapper)`
       margin: 0 -1rem;
       margin-bottom: 2rem;
       padding: 1rem 1rem;
-      border-left: 6px solid ${theme.colors.HIGHLIGHT.PINK};
+      border-left: 6px solid ${theme.colors.HIGHLIGHT.ORANGE};
 
       & > p {
         margin-bottom: 0;

@@ -193,7 +193,7 @@ export const _CardStyleItem = styled.a<CardStyleItemProps>`
       top: 0;
       width: inherit;
       height: inherit;
-      background: ${isActive ? theme.colors.HIGHLIGHT.PINK : theme.colors.PRIMARY.FOREGROUND};
+      background: ${isActive ? theme.colors.HIGHLIGHT.ORANGE : theme.colors.PRIMARY.FOREGROUND};
       opacity: ${isActive ? 0.5 : 0.3};
       border-radius: 12px;
     }
@@ -285,7 +285,7 @@ export const _ListStyleItem = styled.a<Pick<CardStyleItemProps, 'isActive'>>`
   ${({ theme, isActive }) => css`
     ${isActive &&
     css`
-      border-left: 6px solid ${theme.colors.HIGHLIGHT.PINK};
+      border-left: 6px solid ${theme.colors.HIGHLIGHT.ORANGE};
       padding-left: 12px;
     `};
 

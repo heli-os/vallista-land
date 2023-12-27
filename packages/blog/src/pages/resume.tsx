@@ -410,7 +410,7 @@ const Contents = styled.div`
 
     &::marker {
       ${({ theme }) => css`
-        color: ${theme.colors.HIGHLIGHT.PINK};
+        color: ${theme.colors.HIGHLIGHT.ORANGE};
       `}
     }
 
@@ -461,7 +461,7 @@ const TwoColumn = styled.div`
       padding-left: 1rem;
 
       ${({ theme }) => css`
-        border-left: 3px solid ${theme.colors.HIGHLIGHT.PINK};
+        border-left: 3px solid ${theme.colors.HIGHLIGHT.ORANGE};
       `}
     }
   }

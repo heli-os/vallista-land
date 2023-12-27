@@ -58,7 +58,7 @@ export const Colors = {
   HIGHLIGHT: {
     PURPLE: '#F81CE5',
     MAGENTA: '#EB367F',
-    PINK: '#FF6600',
+    ORANGE: '#FF6600',
     YELLOW: '#FFF500'
   }
 }
