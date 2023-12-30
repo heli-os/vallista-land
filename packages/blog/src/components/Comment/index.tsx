@@ -1,4 +1,4 @@
-import { Spinner, useMount } from '@heli-os/vallista-core'
+import { Spinner, Text, useMount } from '@heli-os/vallista-core'
 import { VFC, useRef, useState } from 'react'
 
 import * as Styled from './Comment.style'
@@ -34,13 +34,15 @@ export const Comment: VFC = () => {
     scriptEl.setAttribute('data-lang', 'ko')
     scriptEl.setAttribute('data-loading', 'lazy')
     scriptEl.setAttribute('crossorigin', 'anonymous')
-    ref.current?.appendChild(scriptEl)
+    // ref.current?.appendChild(scriptEl)
   })
 
   return (
     <Styled._Wrapper>
-      {state.status !== 'success' && <Spinner size={50} />}
-      <div ref={ref}></div>
+      {/* {state.status !== 'success' && <Spinner size={50} />} */}
+      <Spinner size={50} />
+      <Text size={12}>현재 외부 댓글 시스템 장애로 댓글 시스템을 이용할 수 없습니다.</Text>
+      {/* <div ref={ref}></div> */}
     </Styled._Wrapper>
   )
 }
