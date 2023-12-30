@@ -9,6 +9,18 @@ export default function HTML(props) {
         <meta httpEquiv='x-ua-compatible' content='ie=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no, minimal-ui' />
         {props.headComponents}
+        {/* <!-- Google tag (gtag.js) --> */}
+        <script async src='https://www.googletagmanager.com/gtag/js?id=G-GT09JQ1S9D' />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GT09JQ1S9D');`
+          }}
+        />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
