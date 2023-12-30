@@ -4,7 +4,7 @@ image: ./assets/1.jpg
 tags:
 - 컴퓨터 사이언스
 date: 2023-12-31 06:21:20
-draft: true
+draft: false
 ---
 
 ![hero](assets/1.jpg)
