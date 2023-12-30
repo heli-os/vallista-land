@@ -259,6 +259,6 @@ DDD의 도메인 모델과 동일한 개념을 지닌 계층입니다. 비즈니
 
 ## Appendix
 
-- <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank">https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html</a>
-- <a href="https://github.com/Gummybearr/random-kata/tree/main/kotlin/simple-hexagonal" target="_blank">https://github.com/Gummybearr/random-kata/tree/main/kotlin/simple-hexagonal</a>
-- <a href="https://github.com/thombergs/buckpal" target="_blank">https://github.com/thombergs/buckpal</a>
+- [https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [https://github.com/Gummybearr/random-kata/tree/main/kotlin/simple-hexagonal](https://github.com/Gummybearr/random-kata/tree/main/kotlin/simple-hexagonal)
+- [https://github.com/thombergs/buckpal](https://github.com/thombergs/buckpal)

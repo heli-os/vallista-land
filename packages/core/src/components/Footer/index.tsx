@@ -184,7 +184,7 @@ export const FooterLink: FC<FooterLinkProps> = (props) => {
       {custom ? (
         children
       ) : (
-        <a href={href} target='_blank'>
+        <a href={href} target='_blank' rel='nofollow'>
           {children}
         </a>
       )}

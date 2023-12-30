@@ -27,7 +27,7 @@ draft: false
 
 ### CalendarList: list
 
-<a href="https://developers.google.com/calendar/api/v3/reference/calendarList/list" target="_blank">https://developers.google.com/calendar/api/v3/reference/calendarList/list</a>
+[https://developers.google.com/calendar/api/v3/reference/calendarList/list](https://developers.google.com/calendar/api/v3/reference/calendarList/list)
 
 ![api list](assets/2.png)
 
@@ -37,13 +37,13 @@ draft: false
 
 ### Events: list
 
-<a href="https://developers.google.com/calendar/api/v3/reference/events/list" target="_blank">https://developers.google.com/calendar/api/v3/reference/events/list</a>
+[https://developers.google.com/calendar/api/v3/reference/events/list](https://developers.google.com/calendar/api/v3/reference/events/list)
 
 ![event list 조회 API#1](assets/3.png)
 
 ![event list 조회 API#2](assets/4.png)
 
-이벤트 리스트 조회 API는 앞서 얻은 캘린더 ID를 이용해 해당 캘린더에 등록된 이벤트의 목록을 조회하는 API입니다. `2022년 11월 25일 19:00~21:00 <sendtime x 500 global 네트워킹 파티>` 같은 각 일정 정보를 이벤트라 부릅니다.
+이벤트 리스트 조회 API는 앞서 얻은 캘린더 ID를 이용해 해당 캘린더에 등록된 이벤트의 목록을 조회하는 API입니다. `2022년 11월 25일 19:00~21:00 <저녁 약속 & 네트워킹 파티>` 같은 각 일정 정보를 이벤트라 부릅니다.
 
 ## Strategy #1. Fetch every time
 
@@ -69,7 +69,7 @@ draft: false
 
 ## Strategy #3. Fetch every time with Sync Token
 
-<a href="https://developers.google.com/calendar/api/guides/sync?hl=en" target="_blank">https://developers.google.com/calendar/api/guides/sync?hl=en</a>
+[https://developers.google.com/calendar/api/guides/sync?hl=en](https://developers.google.com/calendar/api/guides/sync?hl=en)
 
 그럼 다시 매 요청마다 이벤트 정보를 가져오는 방법으로 돌아가 API 호출이 왜 오래 걸리는지 생각해보겠습니다. 일반적으로 API 호출이 오래걸리는 것은 네트워크가 느려서 일수도 있지만, 한번에 탐색하는 데이터의 양이 너무 많아서 그런 경우가 많습니다. 그리고 API Reference를 조금 더 자세히 살펴보면 syncToken이라는 필드가 존재하고 있음을 확인할 수 있습니다.
 
@@ -83,7 +83,7 @@ draft: false
 
 ## Strategy #4. Get push notifications
 
-<a href="https://developers.google.com/calendar/api/guides/push?hl=en" target="_blank">https://developers.google.com/calendar/api/guides/push?hl=en</a>
+[https://developers.google.com/calendar/api/guides/push?hl=en](https://developers.google.com/calendar/api/guides/push?hl=en)
 
 ![Get push notifications watch example](assets/7.png)
 

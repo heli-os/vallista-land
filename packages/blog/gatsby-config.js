@@ -97,7 +97,7 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1024,
               linkImagesToOriginal: false
@@ -105,9 +105,16 @@ module.exports = {
           },
           `gatsby-remark-gifs`,
           {
-            resolve: `gatsby-remark-vscode`,
+            resolve: 'gatsby-remark-vscode',
             options: {
               theme: 'Dark+ (default dark)'
+            }
+          },
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow'
             }
           }
         ]

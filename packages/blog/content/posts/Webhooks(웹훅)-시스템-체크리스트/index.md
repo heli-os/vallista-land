@@ -31,7 +31,7 @@ draft: false
 
 만약 데이터 서명을 선택적 기능으로 제공한다면 '기능은 제공하지만, 사용자가 안전하게 사용하지 않는 것'이라는 책임 회피/전가 즉, Shared Responsibility 구조를 가지게 됩니다. 이는 많은 소프트웨어와 정책, 사업 등에서 채택하고 있는 방법이고 웹훅을 정말 적극적으로 제공하는 깃헙 또한 데이터 서명을 선택적 기능으로 제공하고 있습니다.
 
-<a href="https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks" target="_blank">https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks</a>
+[https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks)
 
 ### 3. 신뢰할 수 있는 발신처 제공
 

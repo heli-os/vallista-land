@@ -39,7 +39,9 @@ export const Footer: VFC = () => {
         <Spacer y={0.1} />
         <Text size={12}>
           Created by <Link to='https://dataportal.kr'>@Theo</Link>. Powered By{' '}
-          <a href='https://github.com/Vallista/vallista-land'>@Vallista-land</a>
+          <a href='https://github.com/Vallista/vallista-land' target='_blank' rel='nofollow'>
+            @Vallista-land
+          </a>
         </Text>
         <Spacer y={0.5} />
       </Styled._FooterAllRightReserve>

@@ -12,14 +12,14 @@ draft: false
 
 블로그를 이관했습니다! 🎉
 
-기존에는 <a href="https://jinssssun.tistory.com" target="_blank">티스토리 블로그</a>를 사용했었고, 여러 블로그 플랫폼을 이용해보면서 느꼈던 경험은 다음과 같았습니다.
+기존에는 [티스토리 블로그](https://jinssssun.tistory.com)를 사용했었고, 여러 블로그 플랫폼을 이용해보면서 느꼈던 경험은 다음과 같았습니다.
  - **네이버 블로그** : 개발자들이 기술 컨텐츠를 다루기에는 생태계 자체가 친화적이지 않았습니다.
  - **벨로그** : Simple, but too simple. 사용하기 간편해진 네이버 블로그라는 느낌이 강했습니다. 커스터마이즈에 대한 한계가 명확했습니다. 오픈소스임에도 발전이 너무 느렸습니다.
  - **워드프레스** : 간단한 정적 컨텐츠를 다루기에는 적합했습니다. 하지만 필요 이상으로 너무 무거웠고, 무엇보다 느렸습니다.
  - **GitHub Pages 정적 블로그** : Jekyll/Gastby 기반 GitHub Hosting 정적 블로그입니다. 블로그의 테마나 소소한 설정을 변경할 때 마다 Commit이 생성되는게 너무 싫었습니다. 마크다운 파일을 하나하나 관리하는 번거로움도 있었구요.
  - **티스토리** : 이리저리 옮겨다니다 결국 정착한 플랫폼이었습니다. 나름 OpenAPI도 제공하고, SEO도 준수 했습니다.
 
-그렇게 티스토리를 몇년간 잘 사용하면서도 Custom Domain에 대한 지원이 미흡한 부분이 정말 아쉬웠습니다. 그럼에도 참아가며 잘 사용하고 있었는데, 이번에 올라온 <a href="https://notice.tistory.com/2664" target="_blnak">[안내] 티스토리 Open API가 종료됩니다.</a> 공지사항을 보고선 빠르게 블로그 플랫폼을 옮겨야겠다는 생각이 들었습니다.
+그렇게 티스토리를 몇년간 잘 사용하면서도 Custom Domain에 대한 지원이 미흡한 부분이 정말 아쉬웠습니다. 그럼에도 참아가며 잘 사용하고 있었는데, 이번에 올라온 [[안내] 티스토리 Open API가 종료됩니다.](https://notice.tistory.com/2664) 공지사항을 보고선 빠르게 블로그 플랫폼을 옮겨야겠다는 생각이 들었습니다.
 
 아예 서비스를 버리지 않고 정비를 해나가는 부분에서 긍정적이기도 했지만, 대략 전해 들어 알고 있는 티스토리 개발 팀의 현황(?)을 고려해보았을 때 아쉬운 부분이 빠른 시일 내에 해결되기는 어려울 것이란 판단이 들었습니다.
 
@@ -29,9 +29,9 @@ draft: false
 
 ## vallista-land
 
-해당 블로그는 **우아한형제들**에 재직중이신 마광휘님이 만드신 오픈소스 블로그 <a href="https://github.com/Vallista/vallista-land" target="_blnak">Vallista/vallista-land</a>를 활용하여 만들어졌습니다.
+해당 블로그는 **우아한형제들**에 재직중이신 마광휘님이 만드신 오픈소스 블로그 [Vallista/vallista-land](https://github.com/Vallista/vallista-land)를 활용하여 만들어졌습니다.
 
-<a href="https://vallista.kr/%EB%B8%94%EB%A1%9C%EA%B7%B8-v3-%EA%B0%9C%ED%8E%B8/#%EB%B8%94%EB%A1%9C%EA%B7%B8-V3" target="_blnak">vallista-land 프로젝트 소개 글</a>을 조금 인용하자면 크게 신경 쓴 사항은 다음과 같다고 합니다. 자세한 내용은 링크에서 확인 부탁드립니다. 🙂
+[vallista-land 프로젝트 소개 글](https://vallista.kr/%EB%B8%94%EB%A1%9C%EA%B7%B8-v3-%EA%B0%9C%ED%8E%B8/#%EB%B8%94%EB%A1%9C%EA%B7%B8-V3)을 조금 인용하자면 크게 신경 쓴 사항은 다음과 같다고 합니다. 자세한 내용은 링크에서 확인 부탁드립니다. 🙂
  - Windows, Mac OS 두 환경에서의 크로스 브라우징 대응 (Chrome, Safari...)
  - 모바일 대응 (Android, iOS)
  - 모노레포를 이용한 사이드 프로젝트에서 사용할 디자인 컴포넌트의 구축
