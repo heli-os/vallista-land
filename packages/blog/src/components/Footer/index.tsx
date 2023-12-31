@@ -25,6 +25,7 @@ export const Footer: VFC = () => {
           <FooterGroup title='관련 사이트'>
             <FooterLink href='https://jinssssun.tistory.com'>다른 블로그</FooterLink>
             <FooterLink href='https://weekly.ac'>위클리 아카데미</FooterLink>
+            <FooterLink href='https://dataportal.kr/rss.xml'>RSS 피드</FooterLink>
           </FooterGroup>
           <FooterGroup title='볼타'>
             <FooterLink href='https://careers.bolta.io'>채용</FooterLink>
