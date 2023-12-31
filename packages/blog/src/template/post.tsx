@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import { useCallback, VFC } from 'react'
 import { PageProps, PostQuery } from 'types/type'
 
+import { AdSense } from '../components/AdSense'
 import { Comment } from '../components/Comment'
 import { Markdown } from '../components/Markdown'
 import { PostHeader } from '../components/PostHeader'
@@ -32,6 +33,7 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
         {series && seriesGroup && <Series name={series} posts={cachedFilterSeries()} />}
       </PostHeader>
       <Markdown html={html} />
+      <AdSense slotId='7216625942' />
       <section id='comments'></section>
       <Comment />
     </div>
