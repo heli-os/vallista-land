@@ -7,14 +7,16 @@ interface Props {
 }
 
 export const AdSense: FC<Props> = ({ slotId }: Props) => {
+  const currentPath = window.location.pathname
+
   useEffect(() => {
     if (window) {
       ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({})
     }
-  }, [])
+  }, [currentPath])
 
   return (
-    <Styled._Wrapper>
+    <Styled._Wrapper key={currentPath}>
       <ins
         className='adsbygoogle'
         style={{ display: 'block' }}
