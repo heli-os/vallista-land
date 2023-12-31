@@ -1,7 +1,7 @@
 {
   "author": "Theo",
-  "title": "Blog",
-  "titleTemplate": "%s · Theo",
+  "title": "테오 블로그",
+  "titleTemplate": "%s · 테오 블로그",
   "placeholder": "/profile.png",
   "siteUrl": "https://dataportal.kr",
   "description": "볼타 CTO 테오 블로그",
