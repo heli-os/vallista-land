@@ -75,7 +75,7 @@ const ResumePage: VFC = () => {
                     </svg>
                     <Spacer x={0.3} />
                     <Text size={16} weight={600}>
-                      이전 블로그 방문하기
+                      볼타 채용 페이지 방문하기
                     </Text>
                   </Container>
                 </Button>

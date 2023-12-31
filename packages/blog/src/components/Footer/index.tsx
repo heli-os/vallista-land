@@ -22,14 +22,16 @@ export const Footer: VFC = () => {
               <Link to='/resume'>이력서</Link>
             </FooterLink>
           </FooterGroup>
-          <FooterGroup title='관련 사이트'>
-            <FooterLink href='https://jinssssun.tistory.com'>다른 블로그</FooterLink>
-            <FooterLink href='https://weekly.ac'>위클리 아카데미</FooterLink>
-            <FooterLink href='https://dataportal.kr/rss.xml'>RSS 피드</FooterLink>
-          </FooterGroup>
           <FooterGroup title='볼타'>
             <FooterLink href='https://careers.bolta.io'>채용</FooterLink>
             <FooterLink href='https://bolta.io'>홈페이지</FooterLink>
+          </FooterGroup>
+          <FooterGroup title='위클리 아카데미'>
+            <FooterLink href='https://open.kakao.com/o/gyvuT5Yd'>채팅방(비밀번호: 9323)</FooterLink>
+            <FooterLink href='https://weekly.ac'>홈페이지</FooterLink>
+          </FooterGroup>
+          <FooterGroup title='관련 사이트'>
+            <FooterLink href='https://dataportal.kr/rss.xml'>RSS 피드</FooterLink>
           </FooterGroup>
         </FooterWrapper>
       </Styled._FooterBox>
