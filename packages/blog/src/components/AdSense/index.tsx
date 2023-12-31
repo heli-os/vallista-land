@@ -11,7 +11,7 @@ export const AdSense: FC<Props> = ({ slotId }: Props) => {
     if (window) {
       ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({})
     }
-  })
+  }, [])
 
   return (
     <Styled._Wrapper>
