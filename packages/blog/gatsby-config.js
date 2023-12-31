@@ -130,6 +130,12 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: `ca-pub-1462947422010620`
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: profile.description,
