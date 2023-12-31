@@ -42,7 +42,7 @@ export const Comment: VFC = () => {
       {/* {state.status !== 'success' && <Spinner size={50} />} */}
       {/* <div ref={ref}></div> */}
       <Spinner size={50} />
-      <Text size={12}>현재 외부 댓글 시스템 장애로 댓글 시스템을 이용할 수 없습니다.</Text>
+      <Text size={12}>현재 외부 댓글 시스템 문제로 댓글을 이용할 수 없습니다.</Text>
     </Styled._Wrapper>
   )
 }
