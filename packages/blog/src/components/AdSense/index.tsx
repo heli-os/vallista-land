@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const AdSense: FC<Props> = ({ slotId }: Props) => {
-  const currentPath = window ? window.location.pathname : null
+  const currentPath = typeof window === 'undefined' ? null : window.location.pathname
 
   useEffect(() => {
     if (window) {
