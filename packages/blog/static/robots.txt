@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://dataportal.kr/sitemap/sitemap-index.xml
