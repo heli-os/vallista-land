@@ -34,15 +34,15 @@ export const Comment: VFC = () => {
     scriptEl.setAttribute('data-lang', 'ko')
     scriptEl.setAttribute('data-loading', 'lazy')
     scriptEl.setAttribute('crossorigin', 'anonymous')
-    ref.current?.appendChild(scriptEl)
+    // ref.current?.appendChild(scriptEl)
   })
 
   return (
     <Styled._Wrapper>
-      {state.status !== 'success' && <Spinner size={50} />}
-      <div ref={ref}></div>
-      {/* <Spinner size={50} /> */}
-      {/* <Text size={12}>현재 외부 댓글 시스템 문제로 댓글을 이용할 수 없습니다.</Text> */}
+      {/* {state.status !== 'success' && <Spinner size={50} />} */}
+      {/* <div ref={ref}></div> */}
+      <Spinner size={50} />
+      <Text size={12}>현재 외부 댓글 시스템 문제로 댓글을 이용할 수 없습니다.</Text>
     </Styled._Wrapper>
   )
 }
