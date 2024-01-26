@@ -3,8 +3,8 @@ title: "2023년 회고: 프로젝트, 퇴사, 창업, 채용, 기술"
 image: ./assets/1.jpeg
 tags:
 
-date: 2024-01-29 08:00:00
-draft: true
+date: 2024-01-26 15:00:00
+draft: false
 ---
 
 ![hero](assets/1.jpeg)
@@ -242,7 +242,7 @@ asbubam(이승우)님의 약 7년 전 [AWS VPC with Terraform Modules](https://b
 
 2023년 8월 25일에는 중소벤처기업부 기술창업지원 프로그램 '팁스(TIPS)'에 선정됩니다. [세금계산서 발행&관리 서비스 '볼타' 운영사 볼타코퍼레이션, '팁스' 선정](https://www.venturesquare.net/893436)
 
-2024년 1월 23일, Pre-A 투자를 유치하였습니다. 해당 투자는 미국계 밴처캐피탈 [스트롱벤처스(Strong Ventures)](https://www.strongvc.com/)가 리드했으며, [컴패노이드 랩스](https://www.companoid.io/)와 [한기용](https://keeyonghan.com/)님이 함께 해주셨습니다. [(가안)볼타코퍼레이션, 프리 A 라운드 투자 유치](.)
+2024년 1월 23일, Pre-A 투자를 유치하였습니다. 해당 투자는 미국계 밴처캐피탈 [스트롱벤처스(Strong Ventures)](https://www.strongvc.com/)가 리드했으며, [컴패노이드 랩스](https://www.companoid.io/)와 [한기용](https://keeyonghan.com/)님이 함께 해주셨습니다. [‘볼타’ 운영사 볼타코퍼레이션, 스트롱벤처스로부터 프리 A 투자 유치](https://platum.kr/archives/221703)
 
 ![keeyong han](assets/6.png)
 
@@ -299,7 +299,7 @@ asbubam(이승우)님의 약 7년 전 [AWS VPC with Terraform Modules](https://b
 
 제품을 더 사용자 친화적이고 효율적으로 만들기 위한 연구와 개발을 지속적으로 진행하려고 합니다. 예정되어 있는 기능과 서비스 뿐 아니라, 앞으로 새롭게 챌린지하게 될 것들까지 상상 할 수 없는 속도로 준비하고 있습니다. 또한, 제품의 안정성과 보안성을 더욱 강화하기 위한 작업도 함께 진행할 예정입니다.
 
-이 글에서 모두 밝히긴 어렵지만 `2024년`은 2023년보다 `10배`, `20배` 빠르게 나아갈 수 있을 것으로 기대합니다.
+이 글에서 모두 밝히긴 어렵지만 `2024년`은 2023년보다 `20배`, `30배` 빠르게 나아갈 수 있을 것으로 기대합니다.
 
 ### 목표 3. 채용
 
