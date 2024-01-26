@@ -2,7 +2,7 @@
 title: "2023년 회고: 프로젝트, 퇴사, 창업, 채용, 기술"
 image: ./assets/1.jpeg
 tags:
-
+- 회고
 date: 2024-01-26 15:00:00
 draft: false
 ---
