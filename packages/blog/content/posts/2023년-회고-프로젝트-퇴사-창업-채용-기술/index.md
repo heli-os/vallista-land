@@ -242,7 +242,7 @@ asbubam(이승우)님의 약 7년 전 [AWS VPC with Terraform Modules](https://b
 
 2023년 8월 25일에는 중소벤처기업부 기술창업지원 프로그램 '팁스(TIPS)'에 선정됩니다. [세금계산서 발행&관리 서비스 '볼타' 운영사 볼타코퍼레이션, '팁스' 선정](https://www.venturesquare.net/893436)
 
-2024년 1월 23일, Pre-A 투자를 유치하였습니다. 해당 투자는 미국계 밴처캐피탈 [스트롱벤처스(Strong Ventures)](https://www.strongvc.com/)가 리드했으며, [컴패노이드 랩스](https://www.companoid.io/)와 [한기용](https://www.linkedin.com/in/keeyonghan/)님이 함께 해주셨습니다. [‘볼타’ 운영사 볼타코퍼레이션, 스트롱벤처스로부터 프리 A 투자 유치](https://platum.kr/archives/221703)
+2023년 12월, Pre-A 투자를 클로징 하였습니다. 해당 투자는 미국계 밴처캐피탈 [스트롱벤처스(Strong Ventures)](https://www.strongvc.com/)가 리드했으며, [컴패노이드 랩스](https://www.companoid.io/)와 [한기용](https://www.linkedin.com/in/keeyonghan/)님이 함께 해주셨습니다. [‘볼타’ 운영사 볼타코퍼레이션, 스트롱벤처스로부터 프리 A 투자 유치](https://platum.kr/archives/221703)
 
 ![keeyong han](assets/6.png)
 
