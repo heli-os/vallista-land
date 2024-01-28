@@ -274,6 +274,31 @@
             ]
           }
         ]
+      },
+      {
+        "name": "Self Employed",
+        "startDate": "2013",
+        "endDate": "2020",
+        "fold": true,
+        "descriptions": [],
+        "projects": [
+          {
+            "name": "개인 사업/프리랜서",
+            "descriptions": [],
+            "startDate": "2013",
+            "endDate": "2020",
+            "which": [
+              {
+                "title": "개인 사업: 매장관리 프로그램 개발/운영",
+                "items": ["초기 개발 기간 1개월 소요", "ARR 1천만원~4천만원 규모의 소규모 부수입"]
+              },
+              {
+                "title": "React, Node.js, Android Fullstack 프리랜서",
+                "items": ["10개 이상 프로젝트 참가"]
+              }
+            ]
+          }
+        ]
       }
     ]
   },
