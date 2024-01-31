@@ -12,7 +12,7 @@ draft: false
 
 최근 `"결국 B2B는 잘 팔면 되는 거 아닌가?"`라는 주제로 고민해 볼 기회가 있었습니다. 평소에도 자주 들리던 이야기였는데요. 이때 했던 고민을 조금 정리해서 작성해 보려고 합니다.
 
-B2B 기업이 성장하는 방식은 크게 영업주도성장(SLG, Sales-led growth)와 제품주도성장두 가지로 Product-led growth) 두 가지로 분류됩니다.
+B2B 기업이 성장하는 방식은 크게 영업주도성장(SLG, Sales-led growth)와 제품주도성장(Product-led growth) 두 가지로 분류됩니다.
 
 ## 영업주도성장(SLG, Sales-led growth)
 
