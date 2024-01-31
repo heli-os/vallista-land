@@ -4,8 +4,8 @@ image: ./assets/1.jpeg
 tags:
 - 스타트업
 series: 볼타 이야기
-date: 2024-02-01 00:07:12
-draft: true
+date: 2024-02-01 00:15:12
+draft: false
 ---
 
 ![hero](assets/1.jpeg)
