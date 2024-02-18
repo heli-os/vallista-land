@@ -4,7 +4,7 @@ image: ./assets/1.jpeg
 tags:
 - 회고
 date: 2024-02-18 21:57:13
-draft: true
+draft: false
 ---
 
 ![hero](./assets/1.jpeg)
