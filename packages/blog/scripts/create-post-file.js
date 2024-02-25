@@ -26,7 +26,9 @@ async function processCall() {
         .toString()
         .padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`,
       'draft: true',
-      '---'
+      '---',
+      '',
+      '![hero](./assets/1.jpeg)'
     ]
 
     const filePath = `${__dirname}/../content/posts/${title.replace(/ /g, '-')}`
