@@ -15,7 +15,7 @@ async function processCall() {
     const textArray = [
       '---',
       `title: ${title}`,
-      `image: ./assets/0.png`,
+      `image: ./assets/1.jpeg`,
       'tags:',
       tags.map((it) => `- ${it}`).join('\n'),
       `date: ${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
