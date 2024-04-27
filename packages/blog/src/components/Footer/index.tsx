@@ -32,7 +32,7 @@ export const Footer: VFC = () => {
           </FooterGroup>
           <FooterGroup title='관련 사이트'>
             <FooterLink href='https://dataportal.kr/rss.xml'>RSS 피드</FooterLink>
-            <FooterLink href='https://news.dataportal.kr'>이름없는 뉴스레터</FooterLink>
+            <FooterLink href='https://epic.weekly.ac'>에픽 뉴스레터</FooterLink>
           </FooterGroup>
         </FooterWrapper>
       </Styled._FooterBox>
