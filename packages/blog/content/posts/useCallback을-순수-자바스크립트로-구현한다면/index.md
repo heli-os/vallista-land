@@ -136,7 +136,7 @@ function ProfileComponent() {
 
 ## 개선 & 최적화 - useCallback Sample #2
 
-첫 번째 예시는 정말 동작만 되게끔 만들기 위해 다수의 함수가 생성되고, 코드의 길이도 긴 편이라 가독성과 효율이 뛰어나지 못합니다. Javascript의 prototype과 클로저를 적극 활용하여 코드의 길이를 전반적으로 줄여보겠습니다.
+첫 번째 예시는 정말 동작만 되게끔 만들기 위해 다수의 함수가 생성되고, 코드의 길이도 긴 편이라 가독성과 효율이 뛰어나지 못합니다. Javascript의 Prototype과 클로저를 적극 활용하여 코드의 길이를 전반적으로 줄여보겠습니다.
 
 ```javascript
 function customUseCallback(callback, dependencies) {
