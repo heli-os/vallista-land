@@ -42,7 +42,7 @@ draft: false
 
 그러다 이 둘이 하나로 합쳐진 `전략 + 실행을 모두 수행하는 역할`이 생겨납니다. 이것이 바로 Scrum Product Owner 입니다. 참고: [What is a Product Owner? | Scrum.org](https://www.scrum.org/resources/what-is-a-product-owner)
 
-참고로 여기서 말하는 `Scrum Product Owner`는 한국에서 널리 알려진 `Product Owner`와는 다릅니다. 해외에는 `Product Owner`라는 Job Position이 없습니다. `Product Manager`가 Scrum Product Owner의 역할을 수행하는 정도의 관계입니다.
+참고로 여기서 말하는 `Scrum Product Owner`는 한국에서 널리 알려진 `Product Owner`와는 다릅니다. 해외에는 `Product Owner`라는 Job Position이 거의 없습니다. 대부분 `Product Manager`가 Scrum Product Owner의 역할을 수행하는 정도의 관계입니다.
 
 이 글에서는 편의상 `Product Manager`를 전략을 담당하는 역할, `Product Owner`를 전략과 실행을 모두 담당하는 역할 정도로 표현할 예정이니 이해 부탁드립니다.
 
