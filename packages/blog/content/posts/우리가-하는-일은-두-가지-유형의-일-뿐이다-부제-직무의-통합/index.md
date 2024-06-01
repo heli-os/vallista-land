@@ -31,8 +31,6 @@ draft: false
 
 시간이 지나며 최근에는 `제품 기획자`라는 이름의 역할이 줄어들고 `Product Manager` / `Project Manager` / `Product Owner` 같은 직무가 등장하기 시작합니다. 그냥 기획자라는 직무를 그럴듯하게 영어로 바꾼 거 아니야? 라고 생각하실 수도 있는데요. 이들이 등장하게 된 배경을 살펴보면 꽤 흥미로운 점이 있습니다.
 
-# Product Manager / Project Manager / Product Owner
-
 `Product Manager`와 `Project Manager`는 기존에 요구사항을 취합하고 요구사항에 맞추어 기능을 기획하던 `기획자`라는 역할에서 더 확장된 직무입니다.
 
 하나씩 살펴보자면 이들은 각각 전략과 실행을 담당하는 역할로 이분화되어 있습니다.
