@@ -57,7 +57,7 @@ const ResumePage: VFC = () => {
                     </Text>
                   </Container>
                 </Button>
-                <Button size='large' width={240} onClick={() => openNewPage(profile.secondary)}>
+                <Button size='large' width={220} onClick={() => openNewPage(profile.secondary)}>
                   <Container row center>
                     <svg
                       viewBox='0 0 24 24'
@@ -75,7 +75,7 @@ const ResumePage: VFC = () => {
                     </svg>
                     <Spacer x={0.3} />
                     <Text size={16} weight={600}>
-                      볼타 채용 페이지 방문하기
+                      볼타 채용 페이지
                     </Text>
                   </Container>
                 </Button>
