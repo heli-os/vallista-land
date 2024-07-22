@@ -2,9 +2,10 @@
 title: PM은 무얼 하는 사람?
 image: ./assets/1.jpeg
 tags:
+- 스타트업
 
 date: 2024-07-22 14:15:09
-draft: true
+draft: false
 ---
 
 ![hero](./assets/1.jpeg)
