@@ -35,6 +35,6 @@ draft: false
 
 반면 회사 전체 인원은 훨씬 많지만, 팀이 10명~20명인 경우 회사 전체를 보는게 쉽지 않다. 자연스레 내가 속한 부서의 업무만 신경 쓰게 된다.
 
-큰 조직과 작은 조직 모두 각자 장단점이 있다. 그러므로 중요한 것은 `내가 지금 어떤 경험을 하고 싶은가?`이다. 두 유형의 조직을 모두 경험해 본 결과 나와 더 맞는 경험은 작은 조직에서 전체를 보고 전체에 영향을 주는 경험이었다.
+큰 조직과 작은 조직 모두 장단점이 있다. 중요한 것은 `내가 지금 어떤 경험을 하고 싶은가?`이다. 두 유형의 조직을 모두 경험해 본 결과 나와 더 맞는 경험은 작은 조직에서 전체를 보고 전체에 영향을 주는 경험이었다.
 
-그 외에도 작은 조직에는 다양한 장점이 있다. 그 이야기를 잘 정리하여 [펴낸 책; Company of One: Why Staying Small Is the Next Big Thing for Business](https://www.amazon.com/Company-One-Staying-Small-Business/dp/1328972356)이 있으니 관심있다면 읽어보길 추천한다.
+그 외에도 작은 조직에는 다양한 장점이 있다. 사례를 기반으로 이야기해주는 [책; Company of One: Why Staying Small Is the Next Big Thing for Business](https://www.amazon.com/Company-One-Staying-Small-Business/dp/1328972356)이 있으니 관심있다면 읽어보길 추천한다.
