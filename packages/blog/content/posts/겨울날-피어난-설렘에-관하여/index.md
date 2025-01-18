@@ -4,7 +4,7 @@ image: ./assets/1.jpeg
 tags:
 - 작문
 date: 2025-01-13 21:11:22
-draft: false
+draft: true
 ---
 
 ![hero](./assets/1.jpeg)
