@@ -2,7 +2,7 @@
 title: "개발 조직에서의 리더 (부제: 다양한 문제해결 스타일)"
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 멘토링
 date: 2025-01-21 01:04:54
 draft: false
 ---
