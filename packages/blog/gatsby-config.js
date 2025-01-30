@@ -33,8 +33,8 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.nodes.map((node) => {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
@@ -46,7 +46,7 @@ module.exports = {
             },
             query: `
               {
-                allMdx(
+                allMarkdownRemark(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   nodes {
@@ -74,6 +74,7 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-mdx',
     'gatsby-plugin-typescript',
     `gatsby-plugin-sharp`,
     {
@@ -88,8 +89,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `${__dirname}/content/posts`,
-        extensions: ['md', 'mdx']
+        path: `${__dirname}/content/posts`
       }
     },
     {
@@ -118,12 +118,6 @@ module.exports = {
             }
           }
         ]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.md`, `.mdx`]
       }
     },
     {

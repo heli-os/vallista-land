@@ -5,8 +5,8 @@ export interface Image {
 export interface Post {
   fields: {
     slug: string
-    timeToRead: number
   }
+  timeToRead: number
   frontmatter: {
     title: string
     date: string
@@ -19,14 +19,14 @@ export interface Post {
 }
 
 export interface IndexQuery {
-  allMdx: {
+  allMarkdownRemark: {
     nodes: Post[]
     group?: { fieldValue: string; totalCount: number }[]
   }
 }
 
 export interface PostQuery extends IndexQuery {
-  mdx: Post & {
+  markdownRemark: Post & {
     id: string
   }
 }
@@ -46,7 +46,7 @@ export interface StaticQuery {
       twitterUsername: string
     }
   }
-  mdx: Post
+  markdownRemark: Post
 }
 
 export interface SidebarPost {

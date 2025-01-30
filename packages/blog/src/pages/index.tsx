@@ -11,7 +11,7 @@ import { filteredByDraft, getTime } from '../utils'
 
 const IndexPage: VFC<PageProps<IndexQuery>> = (props) => {
   const { data } = props
-  const { nodes } = data.allMdx
+  const { nodes } = data.allMarkdownRemark
 
   return (
     <Container>
@@ -129,7 +129,7 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         fields {
           slug

@@ -1,4 +1,4 @@
-# @heli-os/playground
+# @vallista-land/playground
 
 Core Design System을 실행하여 확인하는 공간입니다.
 

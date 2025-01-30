@@ -12,11 +12,10 @@ import { useConfig } from '../hooks/useConfig'
 
 const Post: VFC<PageProps<PostQuery>> = (props) => {
   const { profile } = useConfig()
-  const { allMdx } = props.data
-  const { nodes, group: seriesGroup } = allMdx
-  const { timeToRead } = props.data.mdx.fields
-  const { html } = props.data.mdx
-  const { title, date, image, tags, series } = props.data.mdx.frontmatter
+  const { allMarkdownRemark } = props.data
+  const { nodes, group: seriesGroup } = allMarkdownRemark
+  const { timeToRead, html } = props.data.markdownRemark
+  const { title, date, image, tags, series } = props.data.markdownRemark.frontmatter
 
   const cachedFilterSeries = useCallback(getFilteredSeries, [props.data])
 
@@ -44,7 +43,7 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
     return nodes
       .filter((it) => it.frontmatter.series)
       .filter((it) => it.frontmatter.series === series)
-      .map((it) => ({ name: it.frontmatter.title, timeToRead: it.fields.timeToRead, slug: it.fields.slug }))
+      .map((it) => ({ name: it.frontmatter.title, timeToRead: it.timeToRead, slug: it.fields.slug }))
   }
 }
 
@@ -52,12 +51,12 @@ export default Post
 
 export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         fields {
           slug
-          timeToRead
         }
+        timeToRead
         frontmatter {
           title
           series
@@ -68,13 +67,13 @@ export const pageQuery = graphql`
         totalCount
       }
     }
-    mdx(id: { eq: $id }) {
+    markdownRemark(id: { eq: $id }) {
       id
       html
       fields {
         slug
-        timeToRead
       }
+      timeToRead
       frontmatter {
         title
         tags

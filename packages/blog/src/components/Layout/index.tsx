@@ -13,7 +13,7 @@ import * as Styled from './Layout.style'
 export const Layout: FC = (props) => {
   const { children } = props
   const data: IndexQuery = useStaticQuery(allPostsQuery)
-  const { nodes } = data.allMdx
+  const { nodes } = data.allMarkdownRemark
   // Sidebar Folding
   const [fold, setFold] = useState(false)
 
@@ -59,7 +59,7 @@ export const Layout: FC = (props) => {
 
 const allPostsQuery = graphql`
   query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         fields {
           slug
