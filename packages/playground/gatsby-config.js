@@ -4,18 +4,19 @@ module.exports = {
     title: 'playground'
   },
   plugins: [
-    'gatsby-plugin-emotion',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sitemap',
-    'gatsby-plugin-mdx',
-    'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: './src/pages/'
+        path: './src/pages/',
+        extensions: ['md', 'mdx']
       },
       __key: 'pages'
-    }
+    },
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-mdx',
+    'gatsby-plugin-typescript'
   ]
 }

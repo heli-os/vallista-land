@@ -1,8 +1,8 @@
 {
   "files": [],
   "references": [
-    // { "path": "@vallista-land/core" },
-    // { "path": "@vallista-land/playground" },
-    { "path": "@vallista-land/blog" }
+    // { "path": "@heli-os/core" },
+    // { "path": "@heli-os/playground" },
+    { "path": "@heli-os/blog" }
   ]
 }

@@ -1,13 +1,18 @@
 0 silly argv {
-0 silly argv   _: [ 'add' ],
-0 silly argv   scope: '@vallista-land/blog',
-0 silly argv   globs: [],
+0 silly argv   _: [ 'run' ],
 0 silly argv   lernaVersion: '4.0.0',
-0 silly argv   '$0': '/usr/local/bin/lerna',
-0 silly argv   pkg: '@types/gitalk'
+0 silly argv   '$0': '/Users/sun/repository/vallista-land/node_modules/.bin/lerna',
+0 silly argv   script: 'build:core'
 0 silly argv }
 1 notice cli v4.0.0
-2 verbose rootPath /Users/vallista/Desktop/vallista-land
+2 verbose rootPath /Users/sun/repository/vallista-land
 3 info versioning independent
-4 error HttpErrorGeneral: 404 Not Found - GET https://registry.npmjs.org/@types%2fgitalk - Not found
-4 error     at /Users/vallista/Desktop/vallista-land/node_modules/npm-registry-fetch/check-response.js:95:15
+4 error Error: Unsupported URL Type "workspace:": workspace:*
+4 error     at unsupportedURLType (/Users/sun/repository/vallista-land/node_modules/npm-package-arg/npa.js:246:15)
+4 error     at fromURL (/Users/sun/repository/vallista-land/node_modules/npm-package-arg/npa.js:306:13)
+4 error     at Function.resolve (/Users/sun/repository/vallista-land/node_modules/npm-package-arg/npa.js:76:12)
+4 error     at /Users/sun/repository/vallista-land/node_modules/@lerna/package-graph/index.js:66:30
+4 error     at Array.forEach (<anonymous>)
+4 error     at /Users/sun/repository/vallista-land/node_modules/@lerna/package-graph/index.js:60:38
+4 error     at Map.forEach (<anonymous>)
+4 error     at new PackageGraph (/Users/sun/repository/vallista-land/node_modules/@lerna/package-graph/index.js:49:10)

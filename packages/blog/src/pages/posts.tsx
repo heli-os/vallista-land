@@ -10,7 +10,7 @@ import { toDate, getTime, filteredByDraft } from '../utils'
 
 const PostsPage: VFC<PageProps<IndexQuery>> = (props) => {
   const { data } = props
-  const { nodes } = data.allMarkdownRemark
+  const { nodes } = data.allMdx
   const [search, setSearch] = useState('')
 
   const posts = useMemo(
@@ -123,7 +123,7 @@ export default PostsPage
 
 export const pageQuery = graphql`
   query BlogPostsQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         fields {
           slug
