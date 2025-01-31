@@ -112,7 +112,7 @@ The combination of single-flight at both CloudFront and Aggregator levels, plus 
 
 ### Important Consideration for Single-flight
 
-He noted a critical consideration when implementing single-flight, particularly in Go:
+They noted a critical consideration when implementing single-flight, particularly in Go:
 
 - If single-flight objects aren't separated by routes, the locking mechanism (which occurs for every request) can become a bottleneck. This is a characteristic specific to Go's implementation of single-flight, and the behavior might differ in other programming languages.
 - The combination of single-flight at both CloudFront and Aggregator levels, plus client-side caching, has resulted in a substantial reduction in service requests and overall Redis load, creating a more efficient and performant system.
