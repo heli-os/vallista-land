@@ -8,6 +8,8 @@ date: 2025-01-31 02:58:12
 draft: false
 ---
 
+![hero](./assets/1.jpg)
+
 <iframe src="https://embed.reddit.com/r/Kotlin/comments/1icz7k8/whats_the_name_of_this_concurrency_concept"    scrolling="no" width="100%" height="316"></iframe>
 
 ## 원문 상황
