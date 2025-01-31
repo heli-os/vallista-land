@@ -1,6 +1,6 @@
 ---
 title: "동시성 패턴: Fail-fast와 Single Flight 패턴 비교"
-image: ./assets/concurrency-patterns.jpg
+image: ./assets/1.jpg
 tags:
 - IT 이모저모
 series: "레딧에서는 무슨 이야기를 나눌까?"
