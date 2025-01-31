@@ -56,6 +56,60 @@ While they serve different purposes:
 
 Both patterns are valuable tools in building robust concurrent systems with Kotlin.
 
+## Real-world use cases
+
+Interview with a Server Engineer Working on Live Streaming Applications.
+
+Here's how they optimized their microservices architecture:
+
+### Single-flight Implementation at Aggregator Level
+
+They implemented a single-flight pattern at the aggregator level where requests expecting the same result share one response using the same key. This means:
+
+1. When the aggregator receives requests, it groups identical requests using single-flight
+2. Only one actual request is made to downstream services for each group
+3. The same response is shared across all grouped requests.
+
+### Performance Benefits
+
+This implementation resulted in significant performance improvements:
+
+1. Reduced load on downstream services
+2. Improved aggregator performance by:
+    - Eliminating redundant kernel-level I/O operations
+    - Reducing memory copy operations
+
+### Additional Optimization with Rueidis
+
+They further optimized the system using `Rueidis`, which provides server-assisted client-side caching in Go.
+
+- Reference: [(KOR.) 레디스 클라이언트 사이드 캐시로 반응성 향상 시키기](https://gosuda.org/ko/blog/posts/improving-responsiveness-with-redis-client-side-caching-zb711e502)
+- Reference: [(ENG.)Enhancing Responsiveness with Redis Client-Side Caching](https://gosuda.org/blog/posts/improving-responsiveness-with-redis-client-side-caching-zb711e502)
+
+### Current Architecture
+
+Their architecture flows as follows:
+
+> AWS CloudFront -> Aggregator -> Service
+
+### Multiple Layers of Optimization
+
+The system benefits from multiple optimization layers.
+
+1. First single-flight filter at CloudFront
+2. Second single flight filter at Aggregator
+3. Client-side caching reducing service requests
+
+### Redis Load Reduction
+
+This multi-layered approach significantly reduces Redis load:
+
+1. Traditional flow: Aggregator -> Service -> Redis
+2. Redis, being single-threaded, benefits significantly from reduced read operations
+3. Client-side caching further reduces the need for Redis reads
+
+The combination of single-flight at both CloudFront and Aggregator levels, plus client-side caching, has resulted in a substantial reduction in service requests and overall Redis load, creating a more efficient and performant system.
+
 ## My Thoughts
 
 As a backend engineering, I find this discussion particularly relevant since it addresses a common business scenario we often encounter. When multiple clients requests the same resource simultaneously (e.g. fetching user profiles or processing payment transactions), we need to carefully handle these concurrent requests to optimize system resources and maintain data consistency.
