@@ -84,7 +84,7 @@ This implementation resulted in significant performance improvements:
 They further optimized the system using `Rueidis`, which provides server-assisted client-side caching in Go.
 
 - Reference: [(KOR.) 레디스 클라이언트 사이드 캐시로 반응성 향상 시키기](https://gosuda.org/ko/blog/posts/improving-responsiveness-with-redis-client-side-caching-zb711e502)
-- Reference: [(ENG.)Enhancing Responsiveness with Redis Client-Side Caching](https://gosuda.org/blog/posts/improving-responsiveness-with-redis-client-side-caching-zb711e502)
+- Reference: [(ENG.) Enhancing Responsiveness with Redis Client-Side Caching](https://gosuda.org/blog/posts/improving-responsiveness-with-redis-client-side-caching-zb711e502)
 
 ### Current Architecture
 
