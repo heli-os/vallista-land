@@ -110,6 +110,13 @@ This multi-layered approach significantly reduces Redis load:
 
 The combination of single-flight at both CloudFront and Aggregator levels, plus client-side caching, has resulted in a substantial reduction in service requests and overall Redis load, creating a more efficient and performant system.
 
+### Important Consideration for Single-flight
+
+He noted a critical consideration when implementing single-flight, particularly in Go:
+
+- If single-flight objects aren't separated by routes, the locking mechanism (which occurs for every request) can become a bottleneck. This is a characteristic specific to Go's implementation of single-flight, and the behavior might differ in other programming languages.
+- The combination of single-flight at both CloudFront and Aggregator levels, plus client-side caching, has resulted in a substantial reduction in service requests and overall Redis load, creating a more efficient and performant system.
+
 ## My Thoughts
 
 As a backend engineering, I find this discussion particularly relevant since it addresses a common business scenario we often encounter. When multiple clients requests the same resource simultaneously (e.g. fetching user profiles or processing payment transactions), we need to carefully handle these concurrent requests to optimize system resources and maintain data consistency.
