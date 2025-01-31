@@ -12,8 +12,10 @@ draft: false
 
 ## 원문 상황
 
-- OP가 설명한 상황: 여러 비동기 작업이 있고, 그 중 하나라도 실패하면 다른 작업들을 취소하고 싶은 상황
-- 구체적인 예시: 여러 API를 동시에 호출하는데, 하나라도 실패하면 다른 호출들을 취소
+![question](./assets/1.png)
+
+- OP가 설명한 상황: 동일 메소드에 대한 여러 비동기 요청이 있을때, 이미 다른 비동기 요청에 의해 처리중이라면, 다시 내부 로직을 수행하지 않고 다른 요청의 처리 결과를 기다렸다가 사용하고 싶음.
+- 예시: 한번 호출 할 때 마다 비용이 발생하는 외부 API를 호출하는데, 같은 식별자(key)로 여러 요청이 들어오면 기존 요청의 처리 결과를 기다렸다가 사용
 
 ## 제안된 해결 방식들
 
@@ -51,3 +53,15 @@ While they serve different purposes:
 - Single Flight optimizes resource usage by preventing duplicate operations
 
 Both patterns are valuable tools in building robust concurrent systems with Kotlin.
+
+## My Thoughts
+
+As a backend engineering, I find this discussion particularly relevant since it addresses a common business scenario we often encounter. When multiple clients requests the same resource simultaneously (e.g. fetching user profiles or processing payment transactions), we need to carefully handle these concurrent requests to optimize system resources and maintain data consistency.
+
+What fascinates me is how Golang has built-in support for this pattern through their `singleflight` package. It shows that this concurrency pattern is so commonly needed that they decided to provide it at the language ecosystem level. This makes me wonder why other languages haven't adopted similar built-in solutions.
+
+In my experience with Kotlin and Spring Boot, we often have to implement this pattern ourselves or rely on caching mechanisms. While these solutions work, having a standardized approach like Go's would be beneficial for consistency across different projects and team.
+
+While this pattern might not be 100% applicable in distributed environments with multiple instances, having it as part of the ecosystem provides valuable insights into solving concurrency challenges. Without exploring Go or studying various concurrency patterns, I might never have discovered this elegant approach to handling duplicate requests.
+
+Have you encountered similar concurrency challenges in your project? How did you handle them?
