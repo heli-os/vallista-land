@@ -104,7 +104,7 @@ interface UserRepository {
 }
 ```
 
-#### 3. Service Layer Pattern
+### 3. Service Layer Pattern
 
 ```kotlin
 @Service
