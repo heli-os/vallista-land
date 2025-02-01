@@ -15,7 +15,7 @@ async function processCall() {
     const textArray = [
       '---',
       `title: "${title}"`,
-      `image: ./assets/1.jpeg`,
+      `image: ./assets/1.jpg`,
       'tags:',
       tags.map((it) => `- ${it}`).join('\n'),
       `date: ${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
@@ -28,7 +28,7 @@ async function processCall() {
       'draft: true',
       '---',
       '',
-      '![hero](./assets/1.jpeg)'
+      '![hero](./assets/1.jpg)'
     ]
 
     const filePath = `${__dirname}/../content/posts/${title.replace(/ /g, '-')}`
