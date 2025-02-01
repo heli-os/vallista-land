@@ -206,7 +206,7 @@ export const _Contents = styled(_Wrapper)`
     div[class*='markdown-wrapper'] {
       font-size: 0.9rem;
       text-size-adjust: none;
-      margin: 1rem -1rem;
+      margin: 0 -1rem;
       overflow-x: auto;
       overflow-y: hidden;
       box-sizing: border-box;
@@ -247,7 +247,7 @@ export const _Contents = styled(_Wrapper)`
       margin-bottom: 0;
       margin-top: 0;
       min-width: calc(100% + 1rem);
-      padding: 1rem 1rem 1rem 0;
+      padding: 1em 1em 1em 0;
       -webkit-font-smoothing: subpixel-antialiased;
       overflow: initial;
       white-space: pre;
