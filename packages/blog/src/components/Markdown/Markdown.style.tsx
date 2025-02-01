@@ -251,7 +251,7 @@ export const _Contents = styled(_Wrapper)`
       -webkit-font-smoothing: subpixel-antialiased;
       overflow: initial;
       white-space: pre;
-      font-family: var(--code-font-family);
+      /* font-family: var(--code-font-family); */ // line numbers 숫자랑 높이가 달라서 주석 처리
       word-wrap: normal;
       hyphens: none;
       line-height: 1.5;
@@ -261,7 +261,7 @@ export const _Contents = styled(_Wrapper)`
 
       & > code {
         font-weight: 600;
-        color: ${theme.colors.HIGHLIGHT.ORANGE};
+        /* color: ${theme.colors.HIGHLIGHT.ORANGE}; */ // 굳이 하이라이팅 할 필요 없을듯
         white-space: inherit;
 
         & * span {
