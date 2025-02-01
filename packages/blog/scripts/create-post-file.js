@@ -14,7 +14,7 @@ async function processCall() {
 
     const textArray = [
       '---',
-      `title: ${title}`,
+      `title: "${title}"`,
       `image: ./assets/1.jpeg`,
       'tags:',
       tags.map((it) => `- ${it}`).join('\n'),

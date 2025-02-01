@@ -105,9 +105,11 @@ module.exports = {
           },
           `gatsby-remark-gifs`,
           {
-            resolve: 'gatsby-remark-vscode',
+            resolve: 'gatsby-remark-prismjs',
             options: {
-              theme: 'Dark+ (default dark)'
+              classPrefix: 'language-',
+              showLineNumbers: true,
+              noInlineHighlight: true
             }
           },
           {
