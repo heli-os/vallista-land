@@ -8,7 +8,7 @@ date: 2024-02-04 13:45:50
 draft: false
 ---
 
-![hero](assets/1.jpeg)
+![hero](./assets/1.jpeg)
 
 이 글은 [한기용님](https://www.linkedin.com/in/keeyonghan/)의 글 중 저희 팀이 생각하는 방향과 일치하는 부분이 있어 일부 재가공하여 작성되었습니다.
 

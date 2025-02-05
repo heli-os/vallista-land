@@ -8,7 +8,7 @@ series: 장인 정신
 draft: false
 ---
 
-![The Five Dysfunctions of a Team](assets/1.jpg)
+![The Five Dysfunctions of a Team](./assets/1.jpg)
 
 어제(2023.08.29, 화) 저녁에 한기용님과 함께하는 단체챗에 참가했습니다.
 

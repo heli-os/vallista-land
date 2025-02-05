@@ -7,7 +7,7 @@ date: 2022-12-4 02:35:00
 draft: false
 ---
 
-![hero](assets/1.jpeg)
+![hero](./assets/1.jpeg)
 
 <center>children are together</center>
 

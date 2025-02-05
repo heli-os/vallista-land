@@ -8,7 +8,7 @@ draft: false
 ---
 
 
-![hero](assets/1.png)
+![hero](./assets/1.png)
 
 ## 시작하며
 

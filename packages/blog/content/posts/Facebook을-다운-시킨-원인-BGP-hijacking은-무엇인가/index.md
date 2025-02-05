@@ -7,7 +7,7 @@ date: 2023-12-31 06:21:20
 draft: false
 ---
 
-![hero](assets/1.jpg)
+![hero](./assets/1.jpg)
 
 ## 개요
 

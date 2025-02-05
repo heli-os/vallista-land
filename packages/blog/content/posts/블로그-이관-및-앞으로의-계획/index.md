@@ -8,7 +8,7 @@ date: 2023-12-25 03:53:21
 draft: false
 ---
 
-![hero](assets/1.jpeg)
+![hero](./assets/1.jpeg)
 
 블로그를 이관했습니다! 🎉
 

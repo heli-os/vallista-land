@@ -7,7 +7,7 @@ date: 2022-11-20 05:14:27
 draft: false
 ---
 
-![logo](assets/1.png)
+![logo](./assets/1.png)
 
 ## 들어서며
 

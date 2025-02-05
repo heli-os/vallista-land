@@ -8,7 +8,7 @@ date: 2024-01-01 15:48:47
 draft: true
 ---
 
-![hero](assets/1.jpeg)
+![hero](./assets/1.jpeg)
 
 얼마 전 [JPA Entity 연관관계 어떻게 걸까요? + 엔티티 연관관계 PTSD](https://youtu.be/vgNHW_nb2mg)이라는 영상이 올라왔습니다. 평소 비슷한 질문을 많이 받고 있기도 하고, 최근에 관련하여 고민했던 경험이 있어 글로 해당 생각을 남겨보려고 합니다.
 

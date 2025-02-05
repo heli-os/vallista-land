@@ -7,7 +7,7 @@ date: 2023-09-23 15:18:07
 draft: false
 ---
 
-![hero](assets/1.png)
+![hero](./assets/1.png)
 
 <center>출처: https://xkcd.com/303</center>
 
