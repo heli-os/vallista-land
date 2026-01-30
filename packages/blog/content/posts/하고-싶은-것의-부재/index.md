@@ -2,7 +2,7 @@
 title: "하고 싶은 것의 부재"
 image: ./assets/1.jpeg
 tags:
-- 에세이
+- 단상
 date: 2025-03-02 20:19:26
 draft: false
 ---

@@ -2,7 +2,7 @@
 title: "뿌리 없는 성장은 없다 - 빠른 성장이라는 착각"
 image: ./assets/1.jpeg
 tags:
-- 에세이
+- 단상
 
 date: 2025-07-26 19:25:49
 draft: false

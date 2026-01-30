@@ -2,7 +2,7 @@
 title: "후회하는데 왜 또 볼까 - 콘텐츠 빈지워칭의 역설"
 image: ./assets/1.png
 tags:
-- 에세이
+- 단상
 date: 2026-01-27 12:47:28
 draft: false
 ---

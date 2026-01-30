@@ -2,7 +2,7 @@
 title: "내연기관과 개발자의 만남 - 기계공학에서 배우는 창의적 사고"
 image: ./assets/1.jpeg
 tags:
-- 에세이
+- 단상
 date: 2025-07-29 00:10:15
 draft: false
 ---
