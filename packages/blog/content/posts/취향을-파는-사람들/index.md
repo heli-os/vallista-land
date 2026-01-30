@@ -4,7 +4,7 @@ image: ./assets/1.jpeg
 tags:
 - 단상
 date: 2026-01-30 10:46:59
-draft: true
+draft: false
 ---
 
 ![hero](./assets/1.jpeg)
