@@ -2,7 +2,7 @@
 title: "설렘을 잃지 않는 법"
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 에세이
 date: 2026-01-29 20:17:17
 draft: false
 ---

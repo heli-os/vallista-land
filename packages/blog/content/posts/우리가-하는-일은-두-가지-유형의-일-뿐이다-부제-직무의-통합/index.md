@@ -2,7 +2,7 @@
 title: 우리가 하는 일은 두 가지 유형의 일 뿐이다. (부제; 직무의 통합)
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 에세이
 date: 2024-06-01 19:03:50
 draft: false
 ---

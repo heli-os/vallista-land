@@ -2,7 +2,7 @@
 title: "취향을 파는 사람들"
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 에세이
 date: 2026-01-30 10:46:59
 draft: false
 ---

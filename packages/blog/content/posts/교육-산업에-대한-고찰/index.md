@@ -2,7 +2,7 @@
 title: 교육 산업에 대한 고찰
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 에세이
 date: 2024-05-15 16:34:53
 draft: false
 ---

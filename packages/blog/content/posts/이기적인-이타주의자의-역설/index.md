@@ -2,7 +2,7 @@
 title: "이기적인 이타주의자의 역설"
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 에세이
 date: 2025-08-12 00:51:08
 draft: false
 ---
