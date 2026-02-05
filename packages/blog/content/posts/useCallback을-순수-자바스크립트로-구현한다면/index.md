@@ -2,7 +2,7 @@
 title: useCallback을 순수 자바스크립트로 구현한다면?
 image: ./assets/1.jpeg
 tags:
-- Web Frontend
+- Tech
 date: 2024-05-12 21:07:55
 draft: false
 ---

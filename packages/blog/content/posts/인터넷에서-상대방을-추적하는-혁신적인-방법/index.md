@@ -2,7 +2,7 @@
 title: 인터넷에서 상대방을 추적하는 혁신적인 방법
 image: ./assets/death-note.jpg
 tags:
-- IT 이모저모
+- Tech
 date: 2025-01-22 14:55:30
 draft: false
 ---

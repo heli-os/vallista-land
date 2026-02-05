@@ -2,7 +2,7 @@
 title: 코틀린의 null 값에 대한 고찰
 image: ./assets/1.jpg
 tags:
-- IT 이모저모
+- Tech
 series: "레딧에서는 무슨 이야기를 나눌까?"
 date: 2025-02-01 10:10:48
 draft: false

@@ -2,7 +2,7 @@
 title: Java Compiler Optimization
 image: ./assets/1.png
 tags:
-- JVM
+- Tech
 date: 2022-12-11 23:03:12
 draft: false
 ---

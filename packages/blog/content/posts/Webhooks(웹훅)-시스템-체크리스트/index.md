@@ -2,7 +2,7 @@
 title: Webhooks(웹훅) 시스템 체크리스트
 image: ./assets/1.png
 tags:
-- 시스템 설계
+- Tech
 date: 2022-11-12 03:10:32
 draft: false
 ---

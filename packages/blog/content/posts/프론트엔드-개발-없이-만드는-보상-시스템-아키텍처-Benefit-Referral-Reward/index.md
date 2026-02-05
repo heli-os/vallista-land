@@ -2,7 +2,7 @@
 title: "프론트엔드 개발 없이 만드는 보상 시스템 아키텍처 (Benefit/Referral/Reward)"
 image: ./assets/1.jpeg
 tags:
-- 시스템 설계
+- Tech
 date: 2025-02-25 00:01:39
 draft: true
 ---

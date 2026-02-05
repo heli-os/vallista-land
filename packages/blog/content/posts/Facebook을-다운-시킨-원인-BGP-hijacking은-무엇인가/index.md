@@ -2,7 +2,7 @@
 title: Facebook을 다운 시킨 원인, BGP hijacking은 무엇인가?
 image: ./assets/1.jpg
 tags:
-- 컴퓨터 사이언스
+- Tech
 date: 2023-12-31 06:21:20
 draft: false
 ---

@@ -2,7 +2,7 @@
 title: Google Calendar API 분석 및 시스템 구축 전략
 image: ./assets/1.png
 tags:
-- 시스템 설계
+- Tech
 date: 2022-11-20 05:14:27
 draft: false
 ---

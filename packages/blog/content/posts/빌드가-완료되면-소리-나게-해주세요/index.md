@@ -2,7 +2,7 @@
 title: "???: 빌드가 완료되면 소리 나게 해주세요."
 image: ./assets/1.png
 tags:
-- IT 이모저모
+- Tech
 date: 2023-09-23 15:18:07
 draft: false
 ---
