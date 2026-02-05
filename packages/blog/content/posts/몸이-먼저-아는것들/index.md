@@ -2,7 +2,7 @@
 title: "몸이 먼저 아는것들"
 image: ./assets/1.jpg
 tags:
-- 작문
+- 단상/작문
 date: 2026-01-30 14:21:17
 draft: false
 ---

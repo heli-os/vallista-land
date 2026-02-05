@@ -2,7 +2,7 @@
 title: "첫 페이지를 넘기는 용기"
 image: ./assets/1.jpeg
 tags:
-- 작문
+- 단상/작문
 date: 2026-01-31 23:03:34
 draft: false
 ---

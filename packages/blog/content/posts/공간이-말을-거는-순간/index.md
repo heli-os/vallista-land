@@ -2,7 +2,7 @@
 title: "공간이 말을 거는 순간"
 image: ./assets/1.jpeg
 tags:
-- 작문
+- 단상/작문
 date: 2026-01-30 14:39:49
 draft: false
 ---

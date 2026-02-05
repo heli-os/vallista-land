@@ -2,7 +2,7 @@
 title: '매일 아침, 다시 쓰는 편지'
 image: ./assets/1.jpeg
 tags:
-- 작문
+- 단상/작문
 date: 2025-08-10 05:11:26
 draft: false
 ---

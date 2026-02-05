@@ -2,7 +2,7 @@
 title: "내가 선택한 나의 보호자에게"
 image: ./assets/1.jpeg
 tags:
-- 작문
+- 단상/작문
 date: 2025-08-11 23:38:33
 draft: false
 ---

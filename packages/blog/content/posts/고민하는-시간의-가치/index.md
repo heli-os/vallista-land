@@ -2,7 +2,7 @@
 title: "고민하는 시간의 가치"
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 단상/작문
 date: 2025-03-02 14:53:08
 draft: false
 ---

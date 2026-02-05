@@ -2,7 +2,7 @@
 title: 당신은 얼마나 책임 지고 있나요? (feat. Mandate Levels)
 image: ./assets/1.jpeg
 tags:
-- 단상
+- 단상/작문
 date: 2024-06-11 23:08:34
 draft: false
 ---
