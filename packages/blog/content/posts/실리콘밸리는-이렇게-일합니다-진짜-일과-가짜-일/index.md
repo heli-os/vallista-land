@@ -2,7 +2,7 @@
 title: "실리콘밸리는 이렇게 일합니다: 진짜 일과 가짜 일"
 image: ./assets/1.jpeg
 tags:
-- Tech
+- 기술
 date: 2024-01-12 00:31:42
 draft: true
 ---

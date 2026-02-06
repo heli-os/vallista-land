@@ -2,7 +2,7 @@
 title: "동시성 패턴: Fail-fast와 Single Flight 패턴 비교"
 image: ./assets/1.jpg
 tags:
-- Tech
+- 기술
 series: "레딧에서는 무슨 이야기를 나눌까?"
 date: 2025-01-31 02:58:12
 draft: false

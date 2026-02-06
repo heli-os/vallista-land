@@ -2,7 +2,7 @@
 title: Why DDD, Clean Architecture and Hexagonal?
 image: ./assets/1.png
 tags:
-- Tech
+- 기술
 date: 2022-03-10 03:06:18
 draft: false
 ---
