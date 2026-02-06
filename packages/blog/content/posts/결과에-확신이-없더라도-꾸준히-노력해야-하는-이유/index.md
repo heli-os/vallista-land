@@ -2,7 +2,7 @@
 title: "결과에 확신이 없더라도 꾸준히 노력해야 하는 이유"
 image: ./assets/1.jpeg
 tags:
-- 멘토링
+- 단상/작문
 date: 2025-03-08 12:41:49
 draft: false
 ---

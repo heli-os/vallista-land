@@ -2,7 +2,7 @@
 title: 모든 회사에 어필 할 수 있는 지원 동기와 목표설정 방법
 image: ./assets/1.jpeg
 tags:
-- 멘토링
+- 단상/작문
 date: 2023-12-28 10:36:37
 draft: false
 ---

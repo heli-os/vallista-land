@@ -2,7 +2,7 @@
 title: 더 많은 기회를 발견하는 방법, The Red car theory
 image: ./assets/1.jpeg
 tags:
-- 멘토링
+- 단상/작문
 date: 2024-04-17 21:35:20
 draft: false
 ---
