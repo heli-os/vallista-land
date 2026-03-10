@@ -28,7 +28,7 @@ const IndexPage: VFC<PageProps<IndexQuery>> = (props) => {
           </Title>
           <SubTitle>
             <Text as='p' size={20} weight={400} lineHeight={40}>
-              오랫동안 제품을 만들어왔고, 지금은 스타트업을 창업해 <strong>CTO</strong>로 일하고 있습니다. 개발하며
+              오랫동안 제품을 만들어왔고, 지금은 스타트업을 창업해 CTO로 일하고 있습니다. 그러면서 느끼고
               생각한 것들을 이곳에 남깁니다.
             </Text>
           </SubTitle>
