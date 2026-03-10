@@ -2,8 +2,8 @@
   "name": "@vallista-land/blog",
   "version": "0.1.0",
   "private": true,
-  "description": "template",
-  "author": "vallista",
+  "description": "테오 블로그",
+  "author": "Theo",
   "keywords": [
     "gatsby"
   ],

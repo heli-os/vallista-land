@@ -20,17 +20,16 @@ const IndexPage: VFC<PageProps<IndexQuery>> = (props) => {
         <Wrapper>
           <Title>
             <Text as='span' size={48} weight={800}>
-              어서오세요!
+              안녕하세요,
             </Text>
             <Text as='h1' size={48} weight={800} lineHeight={56}>
-              저는 진태양입니다.
+              진태양입니다.
             </Text>
           </Title>
           <SubTitle>
             <Text as='p' size={20} weight={400} lineHeight={40}>
-              대한민국 서울에서 <strong>소프트웨어 엔지니어</strong>로 일하고 있습니다. 서비스 개발이란 개발과
-              비즈니스와의 커뮤니케이션이 가장 중요하다고 생각하기에 항상 능동적이고 적극적인 커뮤니케이션으로 문제
-              해결과 비즈니스 발전을 위해 뛰어들고 있습니다.
+              오랫동안 제품을 만들어왔고, 지금은 스타트업을 창업해 <strong>CTO</strong>로 일하고 있습니다. 개발하며
+              생각한 것들을 이곳에 남깁니다.
             </Text>
           </SubTitle>
           <Button size='large' color='alert' onClick={() => moveToLocation('/posts')}>
