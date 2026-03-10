@@ -66,7 +66,7 @@ module.exports = {
             // 최종 rss feed파일 입니다. 디렉토리가 다르거나, 이름이 다른경우 설정 가능합니다.
             output: '/rss.xml',
             // 본인의 blog rss feed용 타이틀을 명시합니다.
-            title: "Theo's Blog RSS Feed"
+            title: "테오 블로그 RSS Feed"
           }
         ]
       }
