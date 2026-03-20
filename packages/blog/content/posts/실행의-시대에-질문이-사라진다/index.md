@@ -3,7 +3,7 @@ title: "실행의 시대에 질문이 사라진다"
 image: ./assets/thumbnail.jpeg
 tags:
   - 커리어
-date: 2026-03-19 18:00:00
+date: 2026-03-12 18:00:00
 draft: false
 ---
 

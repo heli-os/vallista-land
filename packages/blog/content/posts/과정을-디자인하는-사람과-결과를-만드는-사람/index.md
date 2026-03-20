@@ -3,7 +3,7 @@ title: "과정을 디자인하는 사람과 결과를 만드는 사람"
 image: ./assets/thumbnail.jpeg
 tags:
   - 커리어
-date: 2026-03-20 23:30:00
+date: 2026-03-15 20:00:00
 draft: false
 ---
 

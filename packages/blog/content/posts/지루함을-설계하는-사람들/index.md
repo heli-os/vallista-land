@@ -3,7 +3,7 @@ title: "지루함을 설계하는 사람들"
 image: ./assets/thumbnail.jpeg
 tags:
   - 커리어
-date: 2026-03-20 15:00:00
+date: 2026-03-13 15:00:00
 draft: false
 ---
 

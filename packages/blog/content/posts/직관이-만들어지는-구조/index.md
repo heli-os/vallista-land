@@ -3,7 +3,7 @@ title: "직관이 만들어지는 구조"
 image: ./assets/thumbnail.jpeg
 tags:
   - 에세이
-date: 2026-03-19 09:00:00
+date: 2026-03-11 09:00:00
 draft: false
 ---
 
