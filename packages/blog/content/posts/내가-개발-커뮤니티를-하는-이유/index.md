@@ -2,7 +2,7 @@
 title: 내가 개발 커뮤니티를 하는 이유 (a.k.a. 10년 회고)
 image: ./assets/1.jpeg
 tags:
-- 일상
+- 회고
 date: 2022-12-4 02:35:00
 draft: false
 ---

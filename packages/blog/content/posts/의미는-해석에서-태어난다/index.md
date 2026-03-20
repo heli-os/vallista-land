@@ -2,7 +2,7 @@
 title: "의미는 해석에서 태어난다"
 image: ./assets/landscape-of-interpretation.jpeg
 tags:
-- 단상/작문
+- 에세이
 series: "생각이 세계가 되는 순간들"
 date: 2026-02-14 12:00:00
 draft: false

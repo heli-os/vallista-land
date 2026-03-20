@@ -3,7 +3,6 @@ title: 번아웃을 한 번에 해결할 수 있는 방법은 성과다
 image: ./assets/1.jpeg
 tags:
 - 스타트업
-- 단상/작문
 date: 2024-02-27 21:12:17
 draft: false
 ---

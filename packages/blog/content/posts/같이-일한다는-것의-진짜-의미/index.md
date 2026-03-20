@@ -2,7 +2,6 @@
 title: "같이 일한다는 것의 진짜 의미"
 image: ./assets/thumbnail.jpeg
 tags:
-  - 단상/작문
   - 스타트업
 date: 2026-03-10 10:00:00
 draft: false

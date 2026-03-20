@@ -2,8 +2,7 @@
 title: "성장은 불편한 동행자에서 시작된다"
 image: ./assets/thumbnail.jpeg
 tags:
-  - 단상/작문
-  - 스타트업
+  - 커리어
 date: 2026-03-20 09:00:00
 draft: false
 ---

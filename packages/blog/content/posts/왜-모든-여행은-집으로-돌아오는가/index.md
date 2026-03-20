@@ -2,7 +2,7 @@
 title: "왜 모든 여행은 집으로 돌아오는가"
 image: ./assets/thumbnail.jpeg
 tags:
-  - 단상/작문
+  - 에세이
 date: 2026-03-20 21:00:00
 draft: false
 ---

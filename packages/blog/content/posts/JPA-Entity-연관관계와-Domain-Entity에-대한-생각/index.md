@@ -2,7 +2,7 @@
 title: JPA Entity 연관관계와 Domain Entity에 대한 생각
 image: ./assets/1.jpeg
 tags:
-- Web Backend
+- 기술
 series: JPA
 date: 2024-01-01 15:48:47
 draft: true

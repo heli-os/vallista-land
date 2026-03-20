@@ -2,7 +2,6 @@
 title: "공정하다는 느낌은 결과가 아니라 과정에서 온다"
 image: ./assets/thumbnail.jpeg
 tags:
-  - 단상/작문
   - 스타트업
 date: 2026-03-10 09:00:00
 draft: false
