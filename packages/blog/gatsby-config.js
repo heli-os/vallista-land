@@ -48,6 +48,7 @@ module.exports = {
               {
                 allMarkdownRemark(
                   sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: { frontmatter: { draft: { ne: true } } }
                 ) {
                   nodes {
                     excerpt
@@ -73,7 +74,53 @@ module.exports = {
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+            allMarkdownRemark(filter: { frontmatter: { draft: { ne: true } } }) {
+              nodes {
+                fields {
+                  slug
+                  lastModified
+                }
+                frontmatter {
+                  date
+                }
+              }
+            }
+          }
+        `,
+        resolvePages: ({ allSitePage, allMarkdownRemark }) => {
+          const postMap = allMarkdownRemark.nodes.reduce((acc, node) => {
+            acc[node.fields.slug] = node
+            return acc
+          }, {})
+          return allSitePage.nodes.map((page) => {
+            const post = postMap[page.path]
+            return {
+              ...page,
+              lastmod: post?.fields?.lastModified || post?.frontmatter?.date || null
+            }
+          })
+        },
+        serialize: ({ path, lastmod }) => ({
+          url: path,
+          ...(lastmod ? { lastmod } : {})
+        })
+      }
+    },
     'gatsby-plugin-mdx',
     'gatsby-plugin-typescript',
     `gatsby-plugin-sharp`,
@@ -116,7 +163,7 @@ module.exports = {
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
-              rel: 'nofollow'
+              rel: 'noopener noreferrer'
             }
           }
         ]

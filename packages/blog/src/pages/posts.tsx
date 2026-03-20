@@ -1,17 +1,29 @@
 import styled from '@emotion/styled'
 import { Container, Spacer, Text, SearchInput } from '@heli-os/vallista-core'
 import { graphql } from 'gatsby'
-import { useMemo, useState, VFC } from 'react'
+import { useEffect, useMemo, useState, VFC } from 'react'
+import { Helmet } from 'react-helmet'
 
 import { ListTable } from '../components/ListTable'
 import { Seo } from '../components/Seo'
 import { IndexQuery, PageProps } from '../types/type'
 import { toDate, getTime, filteredByDraft } from '../utils'
 
+const SITE_URL = 'https://dataportal.kr'
+
 const PostsPage: VFC<PageProps<IndexQuery>> = (props) => {
   const { data } = props
   const { nodes } = data.allMarkdownRemark
   const [search, setSearch] = useState('')
+
+  // URL 쿼리 파라미터에서 검색어 초기화 (SearchAction 연동)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const q = params.get('q')
+      if (q) setSearch(q)
+    }
+  }, [])
 
   const posts = useMemo(
     () =>
@@ -75,9 +87,28 @@ const PostsPage: VFC<PageProps<IndexQuery>> = (props) => {
 
   const hasSearchText = search.length !== 0
 
+  // ItemList 구조화 데이터
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: sortPosts.slice(0, 30).map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${SITE_URL}${post.slug}`
+    }))
+  }
+
+  const breadcrumbs = [
+    { name: '홈', url: `${SITE_URL}/` },
+    { name: '글 목록', url: `${SITE_URL}/posts/` }
+  ]
+
   return (
     <Container>
-      <Seo name='글 목록' />
+      <Seo name='글 목록' breadcrumbs={breadcrumbs} />
+      <Helmet>
+        <script type='application/ld+json'>{JSON.stringify(itemListJsonLd)}</script>
+      </Helmet>
       <Wrapper>
         <Container>
           <div>

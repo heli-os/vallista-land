@@ -1,4 +1,5 @@
 const path = require('path')
+const { execSync } = require('child_process')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 // Babel 설정 시
@@ -21,7 +22,10 @@ exports.createPages = async function ({ actions, graphql }) {
 
   const result = await graphql(`
     {
-      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { frontmatter: { draft: { ne: true } } }
+      ) {
         nodes {
           id
           fields {
@@ -35,7 +39,7 @@ exports.createPages = async function ({ actions, graphql }) {
   const posts = result.data.allMarkdownRemark.nodes
 
   if (posts.length > 0) {
-    posts.forEach((post, index) => {
+    posts.forEach((post) => {
       actions.createPage({
         path: post.fields.slug,
         component: postPage,
@@ -45,6 +49,31 @@ exports.createPages = async function ({ actions, graphql }) {
       })
     })
   }
+
+  // 태그별 정적 페이지 생성
+  const tagResult = await graphql(`
+    {
+      allMarkdownRemark(filter: { frontmatter: { draft: { ne: true } } }) {
+        group(field: frontmatter___tags) {
+          fieldValue
+          totalCount
+        }
+      }
+    }
+  `)
+
+  const tagPage = path.resolve(`./src/template/tag.tsx`)
+  const tags = tagResult.data.allMarkdownRemark.group
+
+  tags.forEach((tag) => {
+    actions.createPage({
+      path: `/tags/${tag.fieldValue}/`,
+      component: tagPage,
+      context: {
+        tag: tag.fieldValue
+      }
+    })
+  })
 }
 
 // 노드 환경 생성될 때
@@ -62,5 +91,24 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       name: 'slug',
       value: `${value}`
     })
+
+    // Git에서 파일의 마지막 수정일 추출
+    try {
+      const filePath = node.fileAbsolutePath
+      const lastModified = execSync(
+        `git log -1 --format=%aI -- "${filePath}"`
+      ).toString().trim()
+      createNodeField({
+        node,
+        name: 'lastModified',
+        value: lastModified || node.frontmatter.date
+      })
+    } catch {
+      createNodeField({
+        node,
+        name: 'lastModified',
+        value: node.frontmatter.date
+      })
+    }
   }
 }
