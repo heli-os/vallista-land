@@ -3,7 +3,7 @@ title: "문맥이 경험의 가치를 결정한다"
 image: ./assets/thumbnail.jpeg
 tags:
   - 에세이
-date: 2026-03-20 23:00:00
+date: 2026-03-15 11:00:00
 draft: false
 ---
 
