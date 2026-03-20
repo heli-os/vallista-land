@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 export const _Header = styled.header`
   text-align: center;
@@ -75,6 +76,14 @@ export const _HeaderTitle = styled.div`
   & > h1 {
     text-align: left;
   }
+`
+
+export const _TagLink = styled(Link)`
+  text-decoration: none !important;
+  border: none !important;
+  color: inherit !important;
+  background: none !important;
+  font-weight: inherit !important;
 `
 
 export const _ChildrenWrapper = styled.div`
