@@ -2,7 +2,7 @@
 title: "성격이라는 피난처"
 image: ./assets/shelter-in-the-field.jpeg
 tags:
-- 단상/작문
+- 에세이
 series: "생각이 세계가 되는 순간들"
 date: 2026-02-14 11:00:00
 draft: false

@@ -2,7 +2,7 @@
 title: 한기용님과 함께하는 단체챗 회고
 image: ./assets/1.jpg
 tags:
-- 일상
+- 에세이
 date: 2023-08-30 11:41:00
 series: 장인 정신
 draft: false

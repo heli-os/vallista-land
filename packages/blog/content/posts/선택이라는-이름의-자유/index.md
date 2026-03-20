@@ -2,7 +2,7 @@
 title: "선택이라는 이름의 자유"
 image: ./assets/crossroads-of-choices.jpeg
 tags:
-- 단상/작문
+- 에세이
 series: "생각이 세계가 되는 순간들"
 date: 2026-02-14 10:00:00
 draft: false

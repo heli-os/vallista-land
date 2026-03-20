@@ -2,7 +2,7 @@
 title: 블로그 이관 및 앞으로의 계획
 image: ./assets/1.jpeg
 tags:
-- 일상
+- 에세이
 series: Vallista-land
 date: 2023-12-25 03:53:21
 draft: false

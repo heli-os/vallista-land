@@ -2,7 +2,7 @@
 title: 다른 사람에게 도움을 구하는 가장 좋은 방법
 image: ./assets/1.jpeg
 tags:
-- 단상/작문
+- 커리어
 date: 2024-01-01 00:06:38
 draft: false
 ---

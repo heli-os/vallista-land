@@ -3,7 +3,6 @@ title: 티몬·위메프 사태로 알아보는 흑자도산
 image: ./assets/1.jpeg
 tags:
 - 스타트업
-- 재무
 date: 2024-08-01 13:37:49
 draft: false
 ---

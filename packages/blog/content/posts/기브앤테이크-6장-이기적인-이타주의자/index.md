@@ -2,7 +2,7 @@
 title: "기브앤테이크 6장. 이기적인 이타주의자"
 image: ./assets/1.jpeg
 tags:
-- 책 리뷰
+- 리뷰
 date: 2025-02-02 02:02:06
 draft: false
 ---

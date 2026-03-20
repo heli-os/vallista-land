@@ -2,8 +2,7 @@
 title: "B2C와 B2B 환경에서의 엔지니어링: 각자의 매력과 차이점"
 image: ./assets/1.jpeg
 tags:
-- 단상/작문
-- 스타트업
+- 커리어
 date: 2025-03-06 21:58:40
 draft: false
 ---
