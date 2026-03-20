@@ -33,9 +33,11 @@ export const PostHeader: FC<PostHeaderProps> = (props) => {
           {tags && (
             <Container row wrap='wrap' gap={0.5}>
               {tags.map((it) => (
-                <Badge key={it} size='large'>
-                  #{it}
-                </Badge>
+                <Styled._TagLink key={it} to={`/tags/${it}/`}>
+                  <Badge size='large'>
+                    #{it}
+                  </Badge>
+                </Styled._TagLink>
               ))}
             </Container>
           )}
@@ -51,23 +53,6 @@ export const PostHeader: FC<PostHeaderProps> = (props) => {
               </Text>
             </Styled._TextContainer>
             <Styled._IconContainer>
-              <Tooltip text='페이스북 공유' position='top'>
-                <Styled._Icon onClick={facebookShare} style={{ marginLeft: '-0.5rem' }}>
-                  <svg
-                    viewBox='0 0 24 24'
-                    width='16'
-                    height='16'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    fill='none'
-                    shapeRendering='geometricPrecision'
-                  >
-                    <path d='M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z' />
-                  </svg>
-                </Styled._Icon>
-              </Tooltip>
               <Tooltip text='링크 복사' position='top'>
                 <Styled._Icon onClick={linkCopy}>
                   <svg
@@ -94,10 +79,6 @@ export const PostHeader: FC<PostHeaderProps> = (props) => {
       </Styled._Wrapper>
     </Styled._Header>
   )
-
-  function facebookShare(): void {
-    toast.error('페이스북 공유 기능은 개발중입니다.')
-  }
 
   function linkCopy(): void {
     copy(decodeURIComponent(location.href))

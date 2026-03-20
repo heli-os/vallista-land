@@ -5,17 +5,34 @@ import { Helmet } from 'react-helmet'
 
 import { StaticQuery } from '../../types/type'
 
+interface BreadcrumbItem {
+  name: string
+  url: string
+}
+
 interface SeoProps {
   name?: string
   description?: string
   image?: string
   isPost?: boolean
   date?: string
+  dateModified?: string
   tags?: string[]
   timeToRead?: number
+  breadcrumbs?: BreadcrumbItem[]
 }
 
-export const Seo: VFC<SeoProps> = ({ name, description, image, isPost = false, date, tags, timeToRead }) => {
+export const Seo: VFC<SeoProps> = ({
+  name,
+  description,
+  image,
+  isPost = false,
+  date,
+  dateModified,
+  tags,
+  timeToRead,
+  breadcrumbs
+}) => {
   const location = useLocation()
   const { site } = useStaticQuery<StaticQuery>(query)
   const { defaultTitle, titleTemplate, defaultDescription, siteUrl, defaultImage, twitterUsername } = site.siteMetadata
@@ -36,7 +53,7 @@ export const Seo: VFC<SeoProps> = ({ name, description, image, isPost = false, d
         image: seo.image,
         url: seo.url,
         datePublished: date,
-        dateModified: date,
+        dateModified: dateModified || date,
         author: {
           '@type': 'Person',
           name: 'Theo',
@@ -69,9 +86,31 @@ export const Seo: VFC<SeoProps> = ({ name, description, image, isPost = false, d
         author: {
           '@type': 'Person',
           name: 'Theo'
+        },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${siteUrl}/posts/?q={search_term_string}`
+          },
+          'query-input': 'required name=search_term_string'
         }
       }
     : null
+
+  const breadcrumbJsonLd =
+    breadcrumbs && breadcrumbs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumbs.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: item.name,
+            item: item.url
+          }))
+        }
+      : null
 
   return (
     <Helmet title={seo.title} titleTemplate={titleTemplate}>
@@ -87,6 +126,11 @@ export const Seo: VFC<SeoProps> = ({ name, description, image, isPost = false, d
       <meta property='og:locale' content='ko_KR' />
       <meta property='og:site_name' content='테오 블로그' />
       {isPost && date && <meta property='article:published_time' content={date} />}
+      {isPost && (dateModified || date) && (
+        <meta property='article:modified_time' content={dateModified || date} />
+      )}
+      {isPost && <meta property='article:author' content={siteUrl} />}
+      {isPost && tags && tags.length > 0 && <meta property='article:section' content={tags[0]} />}
       {isPost && tags && tags.map((tag) => <meta key={tag} property='article:tag' content={tag} />)}
       <meta name='twitter:card' content='summary_large_image' />
       {twitterUsername && <meta name='twitter:creator' content={twitterUsername} />}
@@ -98,6 +142,9 @@ export const Seo: VFC<SeoProps> = ({ name, description, image, isPost = false, d
       )}
       {webSiteJsonLd && (
         <script type='application/ld+json'>{JSON.stringify(webSiteJsonLd)}</script>
+      )}
+      {breadcrumbJsonLd && (
+        <script type='application/ld+json'>{JSON.stringify(breadcrumbJsonLd)}</script>
       )}
     </Helmet>
   )
