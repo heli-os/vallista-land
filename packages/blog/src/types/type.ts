@@ -15,6 +15,7 @@ export interface Post {
     series?: string | null
     draft?: boolean
   }
+  excerpt?: string
   html: string
 }
 
