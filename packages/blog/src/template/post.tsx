@@ -14,14 +14,14 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
   const { profile } = useConfig()
   const { allMarkdownRemark } = props.data
   const { nodes, group: seriesGroup } = allMarkdownRemark
-  const { timeToRead, html } = props.data.markdownRemark
+  const { timeToRead, html, excerpt } = props.data.markdownRemark
   const { title, date, image, tags, series } = props.data.markdownRemark.frontmatter
 
   const cachedFilterSeries = useCallback(getFilteredSeries, [props.data])
 
   return (
     <div>
-      <Seo name={title} image={image?.publicURL} isPost />
+      <Seo name={title} description={excerpt} image={image?.publicURL} isPost date={date} tags={tags} timeToRead={timeToRead} />
       <PostHeader
         title={title}
         date={date}
@@ -69,6 +69,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
+      excerpt(pruneLength: 160)
       html
       fields {
         slug
