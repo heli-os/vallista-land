@@ -1,5 +1,6 @@
 ---
 title: "프론트엔드 개발 없이 만드는 보상 시스템 아키텍처 (Benefit/Referral/Reward)"
+description: "마케팅 프로모션부터 리퍼럴까지, 프론트엔드 개발 없이 보상 시스템을 구조적으로 설계하는 방법을 아키텍처 관점에서 다룬다."
 image: ./assets/1.jpeg
 tags:
 - 기술

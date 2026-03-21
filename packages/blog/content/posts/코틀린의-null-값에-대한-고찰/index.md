@@ -1,5 +1,6 @@
 ---
 title: 코틀린의 null 값에 대한 고찰
+description: "Kotlin의 null 처리 방식에 대한 Reddit 논의를 정리하고, Scope Functions, Early Return, Sealed Class 등 실무 패턴과 아키텍처 설계에 미치는 영향을 분석한다."
 image: ./assets/1.jpg
 tags:
 - 기술

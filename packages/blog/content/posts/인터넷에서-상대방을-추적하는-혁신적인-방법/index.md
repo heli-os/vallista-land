@@ -1,5 +1,6 @@
 ---
 title: 인터넷에서 상대방을 추적하는 혁신적인 방법
+description: "15세 해커가 Cloudflare CDN의 캐시 시스템 특성을 이용해 Signal, Discord 사용자의 위치를 추적할 수 있는 방법을 발견한 사례와 그 시사점을 분석한다."
 image: ./assets/death-note.jpg
 tags:
 - 기술

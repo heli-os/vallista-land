@@ -1,5 +1,6 @@
 ---
 title: useCallback을 순수 자바스크립트로 구현한다면?
+description: "React의 useCallback 훅을 순수 자바스크립트로 단계별 구현해보며, 함수 캐싱의 원리와 React 컴포넌트 생명주기와의 관계를 이해합니다."
 image: ./assets/1.jpeg
 tags:
 - 기술

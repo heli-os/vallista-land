@@ -1,5 +1,6 @@
 ---
 title: "동시성 패턴: Fail-fast와 Single Flight 패턴 비교"
+description: "동일 요청의 중복 실행을 방지하는 Single Flight 패턴과 빠른 실패 전파를 위한 Fail-fast 패턴을 비교하고, 실제 라이브 스트리밍 서비스에서의 적용 사례를 살펴본다."
 image: ./assets/1.jpg
 tags:
 - 기술

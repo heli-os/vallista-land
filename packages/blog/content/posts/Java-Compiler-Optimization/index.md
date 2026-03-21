@@ -1,5 +1,6 @@
 ---
 title: Java Compiler Optimization
+description: "자바 소스 코드가 실행되기까지의 컴파일 과정을 살펴보고, JIT 컴파일러의 최적화 원리와 컴파일 임계치, 코드 캐시 등 JVM 옵션을 통한 성능 튜닝 방법을 다룹니다."
 image: ./assets/1.png
 tags:
 - 기술

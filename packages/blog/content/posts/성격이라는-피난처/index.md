@@ -1,5 +1,6 @@
 ---
 title: "성격이라는 피난처"
+description: "'나는 원래 이런 사람이야'라는 말은 자기 행동을 설명하는 것이 아니라 면책하는 것에 가깝다. 성격에 위임하지 않고 자신의 판단으로 행동의 이유를 설명할 수 있어야 한다."
 image: ./assets/shelter-in-the-field.jpeg
 tags:
 - 에세이

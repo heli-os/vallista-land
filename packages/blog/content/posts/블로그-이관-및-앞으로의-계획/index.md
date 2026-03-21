@@ -1,5 +1,6 @@
 ---
 title: 블로그 이관 및 앞으로의 계획
+description: "다양한 블로그 플랫폼을 거쳐 GitHub Pages 정적 블로그로 이관한 과정과, 앞으로 스타트업, 프론트엔드, 백엔드, 커리어 이야기를 다룰 계획을 소개한다."
 image: ./assets/1.jpeg
 tags:
 - 에세이

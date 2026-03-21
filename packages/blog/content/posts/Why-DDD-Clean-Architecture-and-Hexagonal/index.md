@@ -1,5 +1,6 @@
 ---
 title: Why DDD, Clean Architecture and Hexagonal?
+description: "DDD, 클린 아키텍처, 헥사고날 아키텍처가 왜 등장했는지 그 배경과 핵심 원리를 설명합니다. 결국 이 모든 것의 본질은 명확한 관심사의 분리와 의존성 규칙에 있습니다."
 image: ./assets/1.png
 tags:
 - 기술

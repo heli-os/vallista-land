@@ -1,5 +1,6 @@
 ---
 title: "선택이라는 이름의 자유"
+description: "선택지가 무한해지면 오히려 아무것도 선택하지 못한다. 진정한 자유란 모든 것을 가질 수 있는 상태가 아니라, 무엇을 가지지 않을지 스스로 정할 수 있는 상태다."
 image: ./assets/crossroads-of-choices.jpeg
 tags:
 - 에세이

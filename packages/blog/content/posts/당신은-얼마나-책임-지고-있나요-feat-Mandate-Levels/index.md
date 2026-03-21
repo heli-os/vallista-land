@@ -1,5 +1,6 @@
 ---
 title: 당신은 얼마나 책임 지고 있나요? (feat. Mandate Levels)
+description: "업무에서의 권한과 책임은 단계별로 나뉜다. Mandate Levels라는 9단계 기준을 통해 자신의 역할 범위를 명확히 이해하고, 커리어 발전의 방향을 잡는 방법을 이야기한다."
 image: ./assets/1.jpeg
 tags:
 - 커리어
