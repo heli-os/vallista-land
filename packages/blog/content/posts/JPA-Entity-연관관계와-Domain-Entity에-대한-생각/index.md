@@ -1,5 +1,6 @@
 ---
 title: JPA Entity 연관관계와 Domain Entity에 대한 생각
+description: "JPA Entity 연관관계를 어떻게 설계할지, Domain Entity와는 어떤 관계인지에 대한 생각을 정리합니다. 도메인 로직 기반 개발의 관점에서 바라봅니다."
 image: ./assets/1.jpeg
 tags:
 - 기술

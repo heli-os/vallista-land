@@ -1,5 +1,6 @@
 ---
 title: "유료화, 그 이후 (After Willingness to pay)"
+description: "유료화 이후 스타트업은 수익 유지와 스케일업 사이에서 고민하게 된다. 어떤 선택이든 후회 대신 교훈으로 정리할 수 있어야 하며, 스타트업은 결국 실험과 학습의 반복이다."
 image: ./assets/1.jpeg
 tags:
 - 스타트업

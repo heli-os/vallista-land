@@ -1,5 +1,6 @@
 ---
 title: Google Calendar API 분석 및 시스템 구축 전략
+description: "Google Calendar API의 주요 기능을 분석하고, 캘린더 데이터를 효율적으로 동기화하기 위한 네 가지 전략을 비교합니다. 웹훅 기반 실시간 갱신과 SyncToken 활용이 핵심입니다."
 image: ./assets/1.png
 tags:
 - 기술

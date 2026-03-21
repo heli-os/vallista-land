@@ -1,5 +1,6 @@
 ---
 title: "후회하는데 왜 또 볼까 - 콘텐츠 빈지워칭의 역설"
+description: "밤새 드라마를 보고 후회하면서도 또 반복하는 이유를 행동경제학의 Hot-Cold Empathy Gap으로 풀어본다. 감정의 온도에 따라 달라지는 판단에 대한 이야기."
 image: ./assets/1.png
 tags:
 - 에세이

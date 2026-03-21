@@ -1,5 +1,6 @@
 ---
 title: "???: 빌드가 완료되면 소리 나게 해주세요."
+description: "GraalVM Native Compile의 느린 빌드 시간에 착안한 재미있는 오픈소스 이슈와 PR 이야기. 컴파일 중 음악을 재생하자는 제안이 실제로 머지되기까지의 과정을 소개한다."
 image: ./assets/1.png
 tags:
 - 기술

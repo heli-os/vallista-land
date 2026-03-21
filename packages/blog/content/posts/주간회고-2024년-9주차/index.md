@@ -1,5 +1,6 @@
 ---
 title: "[주간회고] 2024년 9주차"
+description: "프론트엔드 리팩토링, 공동인증서 구조 RND, SLIT/HUSTLE 오프라인 모임 참석, 결정적 순간의 대화 독서까지. 2024년 9주차 회고."
 image: ./assets/1.jpeg
 tags:
 - 회고

@@ -1,5 +1,6 @@
 ---
 title: 더 많은 기회를 발견하는 방법, The Red car theory
+description: "기회는 의식적으로 찾으려 할 때 비로소 보인다. 빨간 차 이론을 통해, 깨어 있는 시선과 주변에 대한 작은 관심이 성장의 동력이 되는 이유를 이야기한다."
 image: ./assets/1.jpeg
 tags:
 - 커리어

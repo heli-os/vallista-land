@@ -121,7 +121,7 @@ export const Seo: VFC<SeoProps> = ({
       {seo.url && <meta property='og:url' content={seo.url} />}
       <meta property='og:type' content={isPost ? 'article' : 'website'} />
       {seo.title && <meta property='og:title' content={seo.title} />}
-      {seo.description && <meta property='og:description' content={seo.description} />}
+      <meta property='og:description' content={seo.description} />
       {seo.image && <meta property='og:image' content={seo.image} />}
       <meta property='og:locale' content='ko_KR' />
       <meta property='og:site_name' content='테오 블로그' />

@@ -1,5 +1,6 @@
 ---
 title: "침묵이 설득하는 순간"
+description: "말이 많아질수록 핵심이 묻히고, 말이 멈춘 순간에 사람들이 집중한다. 침묵은 말의 부재가 아니라 메시지를 가장 깊이 전달하는 도구이다."
 image: ./assets/thumbnail.jpeg
 tags:
   - 에세이

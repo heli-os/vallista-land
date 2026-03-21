@@ -1,5 +1,6 @@
 ---
 title: "의미는 해석에서 태어난다"
+description: "특별한 소재가 아니라 해석하는 훈련이 삶을 의미 있게 만든다. 일상을 능동적으로 경험하고, 에피소드를 하나의 에픽으로 엮는 태도에 대하여."
 image: ./assets/landscape-of-interpretation.jpeg
 tags:
 - 에세이

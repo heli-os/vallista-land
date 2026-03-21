@@ -1,5 +1,6 @@
 ---
 title: Facebook을 다운 시킨 원인, BGP hijacking은 무엇인가?
+description: "2021년 페이스북 대규모 장애의 원인이었던 BGP hijacking을 DNS 구조부터 설명합니다. 인터넷 라우팅 프로토콜의 보안 취약점과 그 영향을 다룹니다."
 image: ./assets/1.jpg
 tags:
 - 기술

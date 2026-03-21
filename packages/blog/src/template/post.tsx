@@ -15,7 +15,7 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
   const { allMarkdownRemark } = props.data
   const { nodes, group: seriesGroup } = allMarkdownRemark
   const { timeToRead, html, excerpt } = props.data.markdownRemark
-  const { title, date, image, tags, series } = props.data.markdownRemark.frontmatter
+  const { title, date, image, tags, series, description: frontmatterDescription } = props.data.markdownRemark.frontmatter
   const lastModified = props.data.markdownRemark.fields?.lastModified
   const siteUrl = 'https://dataportal.kr'
 
@@ -31,7 +31,7 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
     <div>
       <Seo
         name={title}
-        description={excerpt}
+        description={frontmatterDescription || excerpt}
         image={image?.publicURL}
         isPost
         date={date}
@@ -96,6 +96,7 @@ export const pageQuery = graphql`
       timeToRead
       frontmatter {
         title
+        description
         tags
         date
         image {
