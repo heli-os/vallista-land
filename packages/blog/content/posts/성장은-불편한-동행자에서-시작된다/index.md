@@ -3,7 +3,7 @@ title: "성장은 불편한 동행자에서 시작된다"
 description: "편한 관계에서는 아무 일도 일어나지 않는다. 나와 다른 관점이 부딪혀야 내 관점이 날카로워지고, 불편함을 견디는 과정에서 비로소 성장이 시작된다."
 image: ./assets/thumbnail.jpeg
 tags:
-  - 커리어
+  - 성장
 date: 2026-03-13 09:00:00
 draft: false
 ---
