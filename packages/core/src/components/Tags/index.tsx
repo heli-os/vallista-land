@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { TagsProps } from './type'
 
-export const Tags: FC<Partial<TagsProps>> = (props) => {
+export const Tags: FC<PropsWithChildren<Partial<TagsProps>>> = (props) => {
   const { children } = props
 
   return <Container>{children}</Container>

@@ -13,7 +13,7 @@ export function useProgress<T extends Partial<ProgressProps>>(props: T): T & Ret
     return Number(it) >= value
   })
   const selectColor: AvailablePickedColor | undefined =
-    selectKey && Object.keys(colors).length > 2 ? colors[selectKey] : undefined
+    selectKey && Object.keys(colors).length > 2 ? colors[Number(selectKey)] : undefined
 
   return {
     ...props,

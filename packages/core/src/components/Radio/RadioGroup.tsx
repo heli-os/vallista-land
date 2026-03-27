@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { useUniqueId } from '../../hooks/useUniqueId'
 import { RadioContext } from './context'
@@ -21,7 +21,7 @@ import { useRadioGroup } from './useRadioGroup'
  * </RadioGroup>
  * ```
  */
-export const RadioGroup: FC<Partial<RadioGroupProps>> = ({ children, ...props }) => {
+export const RadioGroup: FC<PropsWithChildren<Partial<RadioGroupProps>>> = ({ children, ...props }) => {
   const state = useRadioGroup(props)
   const uniqueId = useUniqueId()
 
