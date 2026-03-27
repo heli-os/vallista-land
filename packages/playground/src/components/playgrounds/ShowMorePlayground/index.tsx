@@ -1,7 +1,7 @@
 import { Container, ShowMore } from '@heli-os/vallista-core'
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 
-const TogglePlayground: VFC = () => {
+const TogglePlayground: FC = () => {
   const [expanded, setExpanded] = useState(false)
 
   return (

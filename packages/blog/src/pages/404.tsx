@@ -1,18 +1,16 @@
 import styled from '@emotion/styled'
-import { useLocation } from '@reach/router'
 import { Image, Spacer, Text } from '@heli-os/vallista-core'
-import { Link } from 'gatsby'
-import { useEffect, VFC } from 'react'
-import { Helmet } from 'react-helmet'
+import { Link, HeadProps } from 'gatsby'
+import { useEffect, FC } from 'react'
 
 import FailureImage from '../assets/images/failure.gif'
 import { Seo } from '../components/Seo'
 
-const NotFoundPage: VFC = () => {
-  const location = useLocation()
-
+const NotFoundPage: FC = () => {
   useEffect(() => {
-    const normalizeUrlArr = location.pathname
+    if (typeof window === 'undefined') return
+
+    const normalizeUrlArr = window.location.pathname
       .split('/')
       .filter((it) => !!it)
       .map((it) => {
@@ -27,16 +25,12 @@ const NotFoundPage: VFC = () => {
     }, 0)
 
     if (count > 2) {
-      window.location.href = `${location.origin}/${normalizeUrlArr.slice(3).join('/')}/`
+      window.location.href = `${window.location.origin}/${normalizeUrlArr.slice(3).join('/')}/`
     }
   }, [])
 
   return (
     <Center>
-      <Seo name='페이지를 찾을 수 없습니다' description='요청하신 페이지를 찾을 수 없습니다.' />
-      <Helmet>
-        <meta name='robots' content='noindex, nofollow' />
-      </Helmet>
       <Image src={FailureImage as string} width={400} height={400} />
       <Text size={16}>페이지를 찾지 못했어요 :(</Text>
       <Spacer y={0.5} />
@@ -55,3 +49,10 @@ const Center = styled.div`
 `
 
 export default NotFoundPage
+
+export const Head = ({ location }: HeadProps) => (
+  <>
+    <Seo name='페이지를 찾을 수 없습니다' description='요청하신 페이지를 찾을 수 없습니다.' pathname={location.pathname} />
+    <meta name='robots' content='noindex, nofollow' />
+  </>
+)

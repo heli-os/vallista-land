@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 import { ErrorMessage } from '../constants/messages'
 
@@ -26,10 +26,10 @@ export interface ContextInterface<S> {
  * const [context, useContext] = createContext<StateInterface>()
  * ```
  */
-export function createContext<S, C = ContextInterface<S>>(): readonly [React.FC<C>, Consumer<C>] {
+export function createContext<S, C = ContextInterface<S>>(): readonly [React.FC<PropsWithChildren<C>>, Consumer<C>] {
   const context = React.createContext<Nullable<C>>(null)
 
-  const Provider: React.FC<C> = ({ children, ...otherProps }) => {
+  const Provider: React.FC<PropsWithChildren<C>> = ({ children, ...otherProps }) => {
     return <context.Provider value={otherProps as C}>{children}</context.Provider>
   }
 

@@ -1,6 +1,6 @@
 import { Container } from '@heli-os/vallista-core'
 import { graphql, useStaticQuery } from 'gatsby'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { FC, PropsWithChildren, useEffect, useMemo, useState } from 'react'
 
 import { Header } from '../Header'
 import { IndexQuery } from '../../types/type'
@@ -10,7 +10,7 @@ import { NavBar } from '../NavBar'
 import { Sidebar } from '../Sidebar'
 import * as Styled from './Layout.style'
 
-export const Layout: FC = (props) => {
+export const Layout: FC<PropsWithChildren> = (props) => {
   const { children } = props
   const data: IndexQuery = useStaticQuery(allPostsQuery)
   const { nodes } = data.allMarkdownRemark
@@ -59,7 +59,7 @@ export const Layout: FC = (props) => {
 
 const allPostsQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       nodes {
         fields {
           slug

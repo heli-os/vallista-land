@@ -1,6 +1,6 @@
 import { css, Theme } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { AvailablePickedColor } from '../ThemeProvider/type'
 import { BadgeProps, BadgeType } from './type'
@@ -33,7 +33,7 @@ import { BadgeProps, BadgeType } from './type'
     </Badge>
  * ```
  */
-export const Badge: FC<Partial<BadgeProps>> = (props) => {
+export const Badge: FC<PropsWithChildren<Partial<BadgeProps>>> = (props) => {
   const { size = 'normal', type = 'primary', variant = 'primary', children, ...otherProps } = props
 
   return (

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { Card } from '../components/Card'
 import BadgePlayground from '../components/playgrounds/BadgePlayground'
@@ -30,7 +30,7 @@ import TogglePlayground from '../components/playgrounds/TogglePlayground'
 import TooltipPlayground from '../components/playgrounds/TooltipPlayground'
 import VideoPlayground from '../components/playgrounds/VideoPlayground'
 
-const IndexPage: VFC = () => {
+const IndexPage: FC = () => {
   return (
     <Wrap>
       <Card title='Container'>

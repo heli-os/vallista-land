@@ -1,5 +1,5 @@
 import { Modal, Spacer, Text, Toggle } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import * as Styled from './Header.style'
 import { HeaderProps, HeaderDialogVariableType } from './Header.type'
@@ -7,7 +7,7 @@ import { useHeader } from './useHeader'
 
 const fontSizeControllerMapper = [14, 16, 18, 20]
 
-export const Header: VFC<HeaderProps> = (props) => {
+export const Header: FC<HeaderProps> = (props) => {
   const { fold, folding, dialog, textSize, mode, openDialog, closeDialog, changeTheme, changeTextSize } =
     useHeader(props)
 

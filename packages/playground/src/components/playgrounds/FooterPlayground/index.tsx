@@ -1,7 +1,7 @@
 import { Container, Footer, FooterGroup, FooterLink } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const FooterPlayground: VFC = () => {
+const FooterPlayground: FC = () => {
   return (
     <Container>
       <Footer>

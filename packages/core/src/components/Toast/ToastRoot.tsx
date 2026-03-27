@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC, useEffect, useRef, useState, VFC } from 'react'
+import { FC, PropsWithChildren, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import { createContext } from '../../utils/createContext'
@@ -41,7 +41,7 @@ let toastUniqueCount = 0
  * 이 Provider는 ThemeProvider에 적용되어 있습니다.
  * 별도로 사용하지 마시고, ThemeProvider를 사용해서 함께 사용하세요.
  */
-export const ToastProvider: FC = ({ children }) => {
+export const ToastProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState] = useState<ToastState>({
     toastList: []
   })
@@ -97,7 +97,7 @@ export const ToastProvider: FC = ({ children }) => {
   }
 }
 
-const ToastRoot: VFC = () => {
+const ToastRoot: FC = () => {
   const { state } = useContext()
   const ref = useRef<HTMLDivElement>(null)
   const [hover, setHover] = useState(false)

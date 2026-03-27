@@ -1,12 +1,12 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { X } from '../Icon/assets'
 import { ReturningUseTag, TagProps } from './type'
 import { useTag } from './useTag'
 
-export const Tag: FC<Partial<TagProps>> = (props) => {
+export const Tag: FC<PropsWithChildren<Partial<TagProps>>> = (props) => {
   const { children, onRemove, id, ...otherProps } = useTag(props)
 
   return (

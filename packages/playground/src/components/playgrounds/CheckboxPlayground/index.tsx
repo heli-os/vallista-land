@@ -1,7 +1,7 @@
 import { Checkbox, Container } from '@heli-os/vallista-core'
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 
-const CheckboxPlayground: VFC = () => {
+const CheckboxPlayground: FC = () => {
   const [checked, setChecked] = useState(false)
   return (
     <Container>

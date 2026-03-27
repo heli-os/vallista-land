@@ -1,8 +1,8 @@
 import { Container, Icon, Input } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { SearchInput } from '../../../../../core/src/components/Input/SearchInput'
 
-const BadgePlayground: VFC = () => {
+const BadgePlayground: FC = () => {
   return (
     <Container>
       <Container row>

@@ -1,9 +1,9 @@
 import { Container, Text } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { BlueContainer } from '../../../components/BlueContainer'
 
-const ContainerPlayground: VFC = () => {
+const ContainerPlayground: FC = () => {
   return (
     <Container>
       <Container row>

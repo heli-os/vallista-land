@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 // styles
 const pageStyles = {
@@ -25,7 +25,7 @@ const codeStyles = {
 }
 
 // markup
-const NotFoundPage: VFC = () => {
+const NotFoundPage: FC = () => {
   return (
     <main style={pageStyles as any}>
       <title>Not found</title>

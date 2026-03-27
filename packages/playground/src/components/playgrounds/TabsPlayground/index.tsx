@@ -1,7 +1,7 @@
 import { Container, Tabs, Text, Icon } from '@heli-os/vallista-core'
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 
-const TogglePlayground: VFC = () => {
+const TogglePlayground: FC = () => {
   const [selected, setSelected] = useState('hello')
   const [selected2, setSelected2] = useState('hello')
   const [selected3, setSelected3] = useState('hello')

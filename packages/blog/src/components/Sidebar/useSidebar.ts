@@ -1,6 +1,5 @@
-import { useLocation } from '@reach/router'
 import { navigate } from 'gatsby'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { SidebarPost } from 'types/type'
 
 import { localStorage } from '../../utils'
@@ -14,7 +13,13 @@ const BLACKLIST: string[] = []
 
 export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar & Omit<T, 'posts'> => {
   const { posts } = props
-  const location = useLocation()
+  const [currentPathname, setCurrentPathname] = useState('/')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentPathname(window.location.pathname)
+    }
+  }, [])
 
   const [search, setSearch] = useState(() => {
     return localStorage.get('search') || DEFAULT_SEARCH_VALUE
@@ -94,7 +99,7 @@ export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar &
   }
 
   function isNowPage(target: string): boolean {
-    return decodeURIComponent(location.pathname).includes(target.slice(0, -1))
+    return decodeURIComponent(currentPathname).includes(target.slice(0, -1))
   }
 
   function changeScrollState(scrollHeight = 0, clientHeight = 0): void {

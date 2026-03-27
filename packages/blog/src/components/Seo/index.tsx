@@ -1,7 +1,5 @@
-import { useLocation } from '@reach/router'
 import { useStaticQuery, graphql } from 'gatsby'
-import { VFC } from 'react'
-import { Helmet } from 'react-helmet'
+import { FC } from 'react'
 
 import { StaticQuery } from '../../types/type'
 
@@ -20,9 +18,10 @@ interface SeoProps {
   tags?: string[]
   timeToRead?: number
   breadcrumbs?: BreadcrumbItem[]
+  pathname?: string
 }
 
-export const Seo: VFC<SeoProps> = ({
+export const Seo: FC<SeoProps> = ({
   name,
   description,
   image,
@@ -31,18 +30,21 @@ export const Seo: VFC<SeoProps> = ({
   dateModified,
   tags,
   timeToRead,
-  breadcrumbs
+  breadcrumbs,
+  pathname = '/'
 }) => {
-  const location = useLocation()
   const { site } = useStaticQuery<StaticQuery>(query)
   const { defaultTitle, titleTemplate, defaultDescription, siteUrl, defaultImage, twitterUsername } = site.siteMetadata
 
+  const normalizedPathname = pathname.endsWith('/') ? pathname : `${pathname}/`
   const seo = {
     title: name || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image || defaultImage}`,
-    url: `${siteUrl}${decodeURIComponent(location.pathname)}`
+    url: `${siteUrl}${normalizedPathname}`
   }
+
+  const fullTitle = titleTemplate.replace('%s', seo.title)
 
   const blogPostingJsonLd = isPost
     ? {
@@ -113,8 +115,8 @@ export const Seo: VFC<SeoProps> = ({
       : null
 
   return (
-    <Helmet title={seo.title} titleTemplate={titleTemplate}>
-      <title>{seo.title}</title>
+    <>
+      <title>{fullTitle}</title>
       <meta name='description' content={seo.description} />
       <meta name='image' content={seo.image} />
       <link rel='canonical' href={seo.url} />
@@ -146,7 +148,7 @@ export const Seo: VFC<SeoProps> = ({
       {breadcrumbJsonLd && (
         <script type='application/ld+json'>{JSON.stringify(breadcrumbJsonLd)}</script>
       )}
-    </Helmet>
+    </>
   )
 }
 export default Seo

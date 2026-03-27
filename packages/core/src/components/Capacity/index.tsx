@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { CapacityProps } from './type'
 
@@ -24,7 +24,7 @@ import { CapacityProps } from './type'
   <Capacity value={100} />
  * ```
  */
-export const Capacity: VFC<CapacityProps> = (props) => {
+export const Capacity: FC<CapacityProps> = (props) => {
   const { value, limit = 100 } = props
 
   return (

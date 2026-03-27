@@ -1,21 +1,20 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Button, Container, Text } from '@heli-os/vallista-core'
-import { graphql, navigate } from 'gatsby'
-import { VFC } from 'react'
+import { graphql, navigate, HeadProps } from 'gatsby'
+import { FC } from 'react'
 
 import { ListTable } from '../components/ListTable'
 import { Seo } from '../components/Seo'
 import { IndexQuery, PageProps, Post } from '../types/type'
 import { filteredByDraft, getTime } from '../utils'
 
-const IndexPage: VFC<PageProps<IndexQuery>> = (props) => {
+const IndexPage: FC<PageProps<IndexQuery>> = (props) => {
   const { data } = props
   const { nodes } = data.allMarkdownRemark
 
   return (
     <Container>
-      <Seo name='홈' />
       <Header>
         <Wrapper>
           <Title>
@@ -32,7 +31,7 @@ const IndexPage: VFC<PageProps<IndexQuery>> = (props) => {
               생각한 것들을 이곳에 남깁니다.
             </Text>
           </SubTitle>
-          <Button size='large' color='alert' onClick={() => moveToLocation('/posts')}>
+          <Button size='large' color='alert' onClick={() => moveToLocation('/posts/')}>
             <Text size={16} weight={800}>
               블로그 글 보러갈까요?
             </Text>
@@ -126,9 +125,11 @@ const Contents = styled.section`
 
 export default IndexPage
 
+export const Head = ({ location }: HeadProps) => <Seo name='홈' pathname={location.pathname} />
+
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       nodes {
         fields {
           slug

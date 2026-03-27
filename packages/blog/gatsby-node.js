@@ -23,7 +23,7 @@ exports.createPages = async function ({ actions, graphql }) {
   const result = await graphql(`
     {
       allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
+        sort: { frontmatter: { date: DESC } }
         filter: { frontmatter: { draft: { ne: true } } }
       ) {
         nodes {
@@ -54,7 +54,7 @@ exports.createPages = async function ({ actions, graphql }) {
   const tagResult = await graphql(`
     {
       allMarkdownRemark(filter: { frontmatter: { draft: { ne: true } } }) {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
           totalCount
         }
@@ -94,7 +94,7 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
 
     // Git에서 파일의 마지막 수정일 추출
     try {
-      const filePath = node.fileAbsolutePath
+      const filePath = node.internal.contentFilePath
       const lastModified = execSync(
         `git log -1 --format=%aI -- "${filePath}"`
       ).toString().trim()

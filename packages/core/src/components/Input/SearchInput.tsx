@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { Input } from '.'
 import { SearchInputProps } from './type'
@@ -17,7 +17,7 @@ import { useInput } from './useInput'
  * <SearchInput size='small' placeholder='search...' disabled />
  * ```
  */
-export const SearchInput: VFC<
+export const SearchInput: FC<
   Partial<Omit<SearchInputProps, 'prefix' | 'suffix' | 'prefixStyling' | 'suffixStyling'>>
 > = (props) => {
   const { size = 'medium', disabled = false, placeholder, value, onChange, onReset } = useInput(props)

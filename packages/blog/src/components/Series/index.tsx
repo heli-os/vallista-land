@@ -1,6 +1,6 @@
 import { Collapse, Container } from '@heli-os/vallista-core'
 import { navigate } from 'gatsby'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import * as Styled from './Series.style'
 
@@ -13,7 +13,7 @@ interface SeriesProps {
   }[]
 }
 
-export const Series: VFC<SeriesProps> = (props) => {
+export const Series: FC<SeriesProps> = (props) => {
   const { name, posts } = props
 
   return (
