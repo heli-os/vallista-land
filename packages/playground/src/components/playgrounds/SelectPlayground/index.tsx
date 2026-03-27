@@ -1,7 +1,7 @@
 import { Container, Select, Icon } from '@heli-os/vallista-core'
-import { useEffect, useState, VFC } from 'react'
+import { useEffect, useState, FC } from 'react'
 
-const SelectPlayground: VFC = () => {
+const SelectPlayground: FC = () => {
   const [select1, setSelect1] = useState('Second option')
 
   useEffect(() => {

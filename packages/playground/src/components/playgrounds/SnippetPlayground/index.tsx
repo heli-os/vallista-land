@@ -1,7 +1,7 @@
 import { Container, Snippet } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const SnippetPlayground: VFC = () => {
+const SnippetPlayground: FC = () => {
   // const [expanded, setExpanded] = useState(false)
 
   return (

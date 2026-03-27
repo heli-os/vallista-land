@@ -1,7 +1,6 @@
 {
   "singleQuote": true,
   "semi": false,
-  "requireConfig": true,
   "jsxSingleQuote": true,
   "tabWidth": 2,
   "bracketSpacing": true,

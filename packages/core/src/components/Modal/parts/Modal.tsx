@@ -1,4 +1,4 @@
-import { FC, KeyboardEventHandler, useEffect, useRef } from 'react'
+import { FC, KeyboardEventHandler, PropsWithChildren, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 import { ModalProvider, useModalContext } from '../context'
@@ -45,7 +45,7 @@ import { BackDrop, Container, ModalContainer, Wrap, Wrapper } from './Modal.styl
  * )
  * ```
  */
-export const Modal: FC<Partial<ModalProps>> = ({ children, ...props }) => {
+export const Modal: FC<PropsWithChildren<Partial<ModalProps>>> = ({ children, ...props }) => {
   return createPortal(
     <ModalProvider>
       <Contents {...props}>{children}</Contents>
@@ -54,7 +54,7 @@ export const Modal: FC<Partial<ModalProps>> = ({ children, ...props }) => {
   )
 }
 
-const Contents: FC<Partial<ModalProps>> = (props) => {
+const Contents: FC<PropsWithChildren<Partial<ModalProps>>> = (props) => {
   const {
     children,
     uniqueId,

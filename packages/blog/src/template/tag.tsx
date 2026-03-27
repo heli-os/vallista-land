@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Container, Spacer } from '@heli-os/vallista-core'
-import { graphql } from 'gatsby'
-import { useMemo, VFC } from 'react'
+import { graphql, HeadProps } from 'gatsby'
+import { useMemo, FC } from 'react'
 
 import { ListTable } from '../components/ListTable'
 import { Seo } from '../components/Seo'
@@ -31,7 +31,7 @@ interface TagQuery {
   }
 }
 
-const TagPage: VFC<PageProps<TagQuery> & { pageContext: TagPageContext }> = (props) => {
+const TagPage: FC<PageProps<TagQuery> & { pageContext: TagPageContext }> = (props) => {
   const { tag } = props.pageContext
   const { nodes } = props.data.allMarkdownRemark
 
@@ -65,18 +65,8 @@ const TagPage: VFC<PageProps<TagQuery> & { pageContext: TagPageContext }> = (pro
       .sort((a, b) => Number(b.year) - Number(a.year))
   }, [nodes])
 
-  const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: tag, url: `${SITE_URL}/tags/${tag}/` }
-  ]
-
   return (
     <Container>
-      <Seo
-        name={`${tag} — 테오 블로그`}
-        description={`${tag} 태그가 포함된 글 모음`}
-        breadcrumbs={breadcrumbs}
-      />
       <Wrapper>
         {views.map((it) => (
           <Container key={it.year}>
@@ -100,11 +90,29 @@ const Wrapper = styled.section`
 
 export default TagPage
 
+export const Head = ({ location, pageContext }: HeadProps<TagQuery, TagPageContext>) => {
+  const { tag } = pageContext
+
+  const breadcrumbs = [
+    { name: '홈', url: `${SITE_URL}/` },
+    { name: tag, url: `${SITE_URL}/tags/${tag}/` }
+  ]
+
+  return (
+    <Seo
+      name={`${tag} — 테오 블로그`}
+      description={`${tag} 태그가 포함된 글 모음`}
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
+  )
+}
+
 export const pageQuery = graphql`
   query TagPageQuery($tag: String!) {
     allMarkdownRemark(
       filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       nodes {
         fields {

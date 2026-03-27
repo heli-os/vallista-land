@@ -1,7 +1,7 @@
 import { Container, Tooltip } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const TooltipPlayground: VFC = () => {
+const TooltipPlayground: FC = () => {
   return (
     <Container>
       <Container row>

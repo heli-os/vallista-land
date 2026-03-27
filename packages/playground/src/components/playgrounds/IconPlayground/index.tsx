@@ -1,7 +1,7 @@
 import { Container, Icon, Text } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const IconPlayground: VFC = () => {
+const IconPlayground: FC = () => {
   return (
     <Container>
       <Container row>

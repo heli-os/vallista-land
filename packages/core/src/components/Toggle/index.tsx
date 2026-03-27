@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { StyleParams, ToggleProps } from './type'
 import { useToggle } from './useToggle'
@@ -20,7 +20,7 @@ import { useToggle } from './useToggle'
  * <Toggle size="small" toggle={state} onChange={setState} />
  * ```
  */
-export const Toggle: VFC<Partial<ToggleProps>> = (props) => {
+export const Toggle: FC<Partial<ToggleProps>> = (props) => {
   const { size = 'small', color = 'blue', onChange, ...otherProps } = useToggle(props)
 
   return (

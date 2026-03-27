@@ -16,6 +16,7 @@ require('prismjs/components/prism-kotlin')
  * 클라이언트 랜더링이 첫 시작될 때
  *
  * - Modal Root를 생성한다. 이 root는 모달을 관리하는데 쓰인다.
+ * - AdSense 스크립트를 로드한다.
  */
 export function onInitialClientRender() {
   let modalRoot = document?.getElementById('modal-root') || null
@@ -24,6 +25,15 @@ export function onInitialClientRender() {
     modalRoot = document.createElement('div')
     modalRoot.id = 'modal-root'
     document.body.appendChild(modalRoot)
+  }
+
+  // AdSense 스크립트 로드
+  if (!document.querySelector('script[src*="adsbygoogle"]')) {
+    const script = document.createElement('script')
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1462947422010620'
+    script.async = true
+    script.crossOrigin = 'anonymous'
+    document.head.appendChild(script)
   }
 }
 

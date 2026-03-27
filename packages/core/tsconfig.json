@@ -15,7 +15,6 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
     "declaration": true,
     "declarationMap": true,
     "allowSyntheticDefaultImports": true

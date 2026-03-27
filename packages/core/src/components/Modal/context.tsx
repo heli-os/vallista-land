@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, PropsWithChildren, useState } from 'react'
 
 import { useUniqueId } from '../../hooks/useUniqueId'
 import { createContext } from '../../utils/createContext'
@@ -8,7 +8,7 @@ const [context, useContext] = createContext<ModalContextStateWithProps>()
 
 export const ModalContext = context
 
-export const ModalProvider: FC<Partial<ModalProps>> = (props) => {
+export const ModalProvider: FC<PropsWithChildren<Partial<ModalProps>>> = (props) => {
   const { children, ...otherProps } = props
 
   const [animationState, setAnimationState] = useState<ModalAnimationState>(ModalAnimationState.IDLE)

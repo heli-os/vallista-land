@@ -1,7 +1,7 @@
 import { Button, Container } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const ButtonPlayground: VFC = () => {
+const ButtonPlayground: FC = () => {
   return (
     <Container>
       <Container row>

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { AvailablePickedColor, Colors } from '../ThemeProvider/type'
 import { ProgressMapperType, ProgressProps, ProgressType } from './type'
@@ -45,7 +45,7 @@ import { useProgress } from './useProgress'
   </Button>
  * ```
  */
-export const Progress: VFC<Partial<ProgressProps>> = (props) => {
+export const Progress: FC<Partial<ProgressProps>> = (props) => {
   const { ...otherProps } = useProgress(props)
 
   return <Bar {...otherProps} />

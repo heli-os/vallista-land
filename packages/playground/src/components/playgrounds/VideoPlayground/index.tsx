@@ -1,7 +1,7 @@
 import { Video, Container } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const VideoPlayground: VFC = () => {
+const VideoPlayground: FC = () => {
   return (
     <Container>
       <Container>

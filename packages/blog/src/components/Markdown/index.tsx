@@ -1,5 +1,4 @@
-import { useLocation } from '@reach/router'
-import { useEffect, useMemo, useRef, VFC } from 'react'
+import { useEffect, useMemo, useRef, FC } from 'react'
 
 import * as Styled from './Markdown.style'
 
@@ -7,8 +6,7 @@ interface MarkdownProps {
   html: string
 }
 
-export const Markdown: VFC<MarkdownProps> = (props) => {
-  const location = useLocation()
+export const Markdown: FC<MarkdownProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null)
   const html = useMemo(() => {
     const result = props.html
@@ -53,7 +51,7 @@ export const Markdown: VFC<MarkdownProps> = (props) => {
     // 페이지가 로드되고 나서 선택된 해딩으로 이동한다.
     window.onload = () => {
       setTimeout(() => {
-        const hashData = decodeURIComponent(location.hash).substring(1)
+        const hashData = decodeURIComponent(window.location.hash).substring(1)
         if (hashData) {
           window.scrollTo(0, document.getElementById(hashData)?.getBoundingClientRect().bottom ?? 0)
         }

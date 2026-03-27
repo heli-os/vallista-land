@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { useUniqueId } from '../../hooks/useUniqueId'
 import { SwitchItem, SwitchProps, NeedSwitchProp } from './type'
@@ -35,7 +35,7 @@ import { useSwitch } from './useSwitch'
  * />
  * ```
  */
-export const Switch: VFC<NeedSwitchProp> = (props) => {
+export const Switch: FC<NeedSwitchProp> = (props) => {
   const { items, onChange, ...otherProps } = useSwitch(props)
   return (
     <Group {...otherProps}>

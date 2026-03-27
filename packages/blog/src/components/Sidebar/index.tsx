@@ -1,5 +1,5 @@
 import { Colors, Container, Text, SearchInput } from '@heli-os/vallista-core'
-import { useEffect, useMemo, useRef, useState, VFC } from 'react'
+import { useEffect, useMemo, useRef, useState, FC } from 'react'
 
 import { SidebarPost } from '../../types/type'
 import * as Styled from './Sidebar.style'
@@ -11,7 +11,7 @@ interface SidebarProps {
   fold: boolean
 }
 
-export const Sidebar: VFC<SidebarProps> = (props) => {
+export const Sidebar: FC<SidebarProps> = (props) => {
   const sidebarProps = useSidebar(props)
   const { posts, totalPosts, search, viewState, changeScrollState, changeSearch, changeLocation, isNowPage } =
     sidebarProps
@@ -111,7 +111,7 @@ interface CategoryListProps {
   isNowPage: (target: string) => boolean
 }
 
-const CategoryList: VFC<CategoryListProps> = ({ viewState, posts, title, isNowPage, moveToLocation }) => {
+const CategoryList: FC<CategoryListProps> = ({ viewState, posts, title, isNowPage, moveToLocation }) => {
   const [fold, setFold] = useState(!posts.find((it) => isNowPage(it.slug)))
 
   const List = useMemo(() => (viewState === 'CARD' ? Styled._CardStyle : Styled._ListStyle), [viewState])

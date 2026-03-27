@@ -2,9 +2,7 @@ const profile = require('./config/profile.json')
 const defaultOpenGraphImage = '/open-graph.jpeg'
 
 module.exports = {
-  flags: {
-    FAST_DEV: true
-  },
+  trailingSlash: 'always',
   siteMetadata: {
     title: profile.title,
     titleTemplate: profile.titleTemplate,
@@ -39,7 +37,7 @@ module.exports = {
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
+                  guid: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
                   custom_elements: [{ 'content:encoded': node.html }]
                 })
               })
@@ -47,7 +45,7 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { frontmatter: { date: DESC } },
                   filter: { frontmatter: { draft: { ne: true } } }
                 ) {
                   nodes {
@@ -73,7 +71,6 @@ module.exports = {
       }
     },
     'gatsby-plugin-emotion',
-    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-sitemap',
       options: {
@@ -116,7 +113,7 @@ module.exports = {
           })
         },
         serialize: ({ path, lastmod }) => ({
-          url: path,
+          url: encodeURI(path),
           ...(lastmod ? { lastmod } : {})
         })
       }
@@ -176,12 +173,6 @@ module.exports = {
         color: `#FF6600`,
         // Disable the loading spinner.
         showSpinner: false
-      }
-    },
-    {
-      resolve: `gatsby-plugin-google-adsense`,
-      options: {
-        publisherId: `ca-pub-1462947422010620`
       }
     },
     {

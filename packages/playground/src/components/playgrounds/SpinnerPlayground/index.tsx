@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { Spinner } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const SpinnerPlayground: VFC = () => {
+const SpinnerPlayground: FC = () => {
   return (
     <TemporaryContainer>
       <Spinner />

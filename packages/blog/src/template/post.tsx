@@ -1,5 +1,5 @@
-import { graphql } from 'gatsby'
-import { useCallback, VFC } from 'react'
+import { graphql, HeadProps } from 'gatsby'
+import { useCallback, FC } from 'react'
 import { PageProps, PostQuery } from 'types/type'
 
 import { AdSense } from '../components/AdSense'
@@ -10,36 +10,17 @@ import { Seo } from '../components/Seo'
 import { Series } from '../components/Series'
 import { useConfig } from '../hooks/useConfig'
 
-const Post: VFC<PageProps<PostQuery>> = (props) => {
+const Post: FC<PageProps<PostQuery>> = (props) => {
   const { profile } = useConfig()
   const { allMarkdownRemark } = props.data
   const { nodes, group: seriesGroup } = allMarkdownRemark
   const { timeToRead, html, excerpt } = props.data.markdownRemark
   const { title, date, image, tags, series, description: frontmatterDescription } = props.data.markdownRemark.frontmatter
-  const lastModified = props.data.markdownRemark.fields?.lastModified
-  const siteUrl = 'https://dataportal.kr'
-
-  const breadcrumbs = [
-    { name: '홈', url: `${siteUrl}/` },
-    { name: '글 목록', url: `${siteUrl}/posts/` },
-    { name: title, url: `${siteUrl}${props.data.markdownRemark.fields.slug}` }
-  ]
 
   const cachedFilterSeries = useCallback(getFilteredSeries, [props.data])
 
   return (
     <div>
-      <Seo
-        name={title}
-        description={frontmatterDescription || excerpt}
-        image={image?.publicURL}
-        isPost
-        date={date}
-        dateModified={lastModified}
-        tags={tags}
-        timeToRead={timeToRead}
-        breadcrumbs={breadcrumbs}
-      />
       <PostHeader
         title={title}
         date={date}
@@ -68,9 +49,38 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
 
 export default Post
 
+const SITE_URL = 'https://dataportal.kr'
+
+export const Head = ({ data, location }: HeadProps<PostQuery>) => {
+  const { title, date, image, tags, description: frontmatterDescription } = data.markdownRemark.frontmatter
+  const { timeToRead, excerpt } = data.markdownRemark
+  const lastModified = data.markdownRemark.fields?.lastModified
+
+  const breadcrumbs = [
+    { name: '홈', url: `${SITE_URL}/` },
+    { name: '글 목록', url: `${SITE_URL}/posts/` },
+    { name: title, url: `${SITE_URL}${encodeURI(data.markdownRemark.fields.slug)}` }
+  ]
+
+  return (
+    <Seo
+      name={title}
+      description={frontmatterDescription || excerpt}
+      image={image?.publicURL}
+      isPost
+      date={date}
+      dateModified={lastModified}
+      tags={tags}
+      timeToRead={timeToRead}
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
+  )
+}
+
 export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       nodes {
         fields {
           slug
@@ -81,7 +91,7 @@ export const pageQuery = graphql`
           series
         }
       }
-      group(field: frontmatter___series) {
+      group(field: { frontmatter: { series: SELECT } }) {
         fieldValue
         totalCount
       }

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { useModalContext } from '../context'
 
@@ -12,7 +12,7 @@ import { useModalContext } from '../context'
  * <Modal.Body>This is a modal</Modal.Body>
  * ```
  */
-const Body: FC = (props) => {
+const Body: FC<PropsWithChildren> = (props) => {
   const { children } = useModalContext(props)
 
   return <Wrapper>{children}</Wrapper>

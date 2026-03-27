@@ -1,5 +1,5 @@
 import { Container, Switch, SwitchItem } from '@heli-os/vallista-core'
-import { useState, VFC } from 'react'
+import { useState, FC } from 'react'
 
 const items: SwitchItem[] = [
   {
@@ -13,7 +13,7 @@ const items: SwitchItem[] = [
     width: 80
   }
 ]
-const SwitchPlayground: VFC = () => {
+const SwitchPlayground: FC = () => {
   const [active, setActive] = useState('item1')
   const [active2, setActive2] = useState('item1')
 

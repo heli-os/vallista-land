@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC, forwardRef } from 'react'
+import { FC, PropsWithChildren, forwardRef } from 'react'
 
 import { NeedRadioProp } from './type'
 import { useRadio } from './useRadio'
@@ -19,7 +19,7 @@ import { useRadio } from './useRadio'
  * <Radio value='value2' />
  * ```
  */
-export const Radio: FC<NeedRadioProp> = forwardRef<HTMLInputElement, NeedRadioProp>(({ children, ...props }, ref) => {
+export const Radio: FC<PropsWithChildren<NeedRadioProp>> = forwardRef<HTMLInputElement, PropsWithChildren<NeedRadioProp>>(({ children, ...props }, ref) => {
   const { onChange, ...otherProps } = useRadio(props)
 
   return (

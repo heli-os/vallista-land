@@ -1,6 +1,6 @@
 import { Container, Spacer, Text } from '@heli-os/vallista-core'
 import { navigate } from 'gatsby'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import * as Styled from './ListTable.style'
 
@@ -14,7 +14,7 @@ interface ListTableProps {
   underline?: boolean
 }
 
-export const ListTable: VFC<ListTableProps> = (props) => {
+export const ListTable: FC<ListTableProps> = (props) => {
   const { title, list, underline = false } = props
 
   return (

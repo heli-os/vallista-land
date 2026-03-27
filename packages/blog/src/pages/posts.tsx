@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 import { Container, Spacer, Text, SearchInput } from '@heli-os/vallista-core'
-import { graphql } from 'gatsby'
-import { useEffect, useMemo, useState, VFC } from 'react'
-import { Helmet } from 'react-helmet'
+import { graphql, HeadProps } from 'gatsby'
+import { useEffect, useMemo, useState, FC } from 'react'
 
 import { ListTable } from '../components/ListTable'
 import { Seo } from '../components/Seo'
@@ -11,7 +10,7 @@ import { toDate, getTime, filteredByDraft } from '../utils'
 
 const SITE_URL = 'https://dataportal.kr'
 
-const PostsPage: VFC<PageProps<IndexQuery>> = (props) => {
+const PostsPage: FC<PageProps<IndexQuery>> = (props) => {
   const { data } = props
   const { nodes } = data.allMarkdownRemark
   const [search, setSearch] = useState('')
@@ -87,28 +86,8 @@ const PostsPage: VFC<PageProps<IndexQuery>> = (props) => {
 
   const hasSearchText = search.length !== 0
 
-  // ItemList 구조화 데이터
-  const itemListJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: sortPosts.slice(0, 30).map((post, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      url: `${SITE_URL}${post.slug}`
-    }))
-  }
-
-  const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '글 목록', url: `${SITE_URL}/posts/` }
-  ]
-
   return (
     <Container>
-      <Seo name='글 목록' breadcrumbs={breadcrumbs} />
-      <Helmet>
-        <script type='application/ld+json'>{JSON.stringify(itemListJsonLd)}</script>
-      </Helmet>
       <Wrapper>
         <Container>
           <div>
@@ -152,9 +131,38 @@ const Wrapper = styled.section`
 `
 export default PostsPage
 
+export const Head = ({ location, data }: HeadProps<IndexQuery>) => {
+  const { nodes } = data.allMarkdownRemark
+  const sortPosts = filteredByDraft(nodes)
+    .sort((a, b) => toDate(b.frontmatter.date).getTime() - toDate(a.frontmatter.date).getTime())
+    .map((it) => ({ slug: it.fields.slug }))
+
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: sortPosts.slice(0, 30).map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${SITE_URL}${encodeURI(post.slug)}`
+    }))
+  }
+
+  const breadcrumbs = [
+    { name: '홈', url: `${SITE_URL}/` },
+    { name: '글 목록', url: `${SITE_URL}/posts/` }
+  ]
+
+  return (
+    <>
+      <Seo name='글 목록' breadcrumbs={breadcrumbs} pathname={location.pathname} />
+      <script type='application/ld+json'>{JSON.stringify(itemListJsonLd)}</script>
+    </>
+  )
+}
+
 export const pageQuery = graphql`
   query BlogPostsQuery {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       nodes {
         fields {
           slug

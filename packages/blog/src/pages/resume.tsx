@@ -1,17 +1,17 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Button, Container, Spacer, Text } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { HeadProps } from 'gatsby'
+import { FC } from 'react'
 
 import { Seo } from '../components/Seo'
 import { useConfig } from '../hooks/useConfig'
 
-const ResumePage: VFC = () => {
+const ResumePage: FC = () => {
   const { profile, resume } = useConfig()
 
   return (
     <Container>
-      <Seo name='이력서' image='/open-graph.jpeg' />
       <Header>
         <Wrapper>
           <Container>
@@ -474,3 +474,5 @@ const SubTitleText = styled.div`
 `
 
 export default ResumePage
+
+export const Head = ({ location }: HeadProps) => <Seo name='이력서' image='/open-graph.jpeg' pathname={location.pathname} />

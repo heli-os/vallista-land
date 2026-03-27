@@ -1,9 +1,9 @@
 import { Spinner, Text, useMount } from '@heli-os/vallista-core'
-import { VFC, useRef, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 
 import * as Styled from './Comment.style'
 
-export const Comment: VFC = () => {
+export const Comment: FC = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [state, setState] = useState<{ status: 'pending' | 'success' | 'failure' }>({ status: 'pending' })
 

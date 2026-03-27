@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { useUniqueId } from '../../hooks/useUniqueId'
 import { FooterGroupProps, FooterLinkProps, FooterProps } from './type'
@@ -18,7 +18,7 @@ import { FooterGroupProps, FooterLinkProps, FooterProps } from './type'
  * ```
  *
  */
-export const Footer: FC<FooterProps> = (props) => {
+export const Footer: FC<PropsWithChildren<FooterProps>> = (props) => {
   const { children } = props
 
   return (
@@ -69,7 +69,7 @@ const FooterNav = styled.nav`
  * </Footer>
  * ```
  */
-export const FooterGroup: FC<FooterGroupProps> = (props) => {
+export const FooterGroup: FC<PropsWithChildren<FooterGroupProps>> = (props) => {
   const { title, children } = props
 
   const id = useUniqueId()
@@ -176,7 +176,7 @@ const FooterGroupTitleLabel = styled.label`
  * </Footer>
  * ```
  */
-export const FooterLink: FC<FooterLinkProps> = (props) => {
+export const FooterLink: FC<PropsWithChildren<FooterLinkProps>> = (props) => {
   const { href, custom = false, children } = props
 
   return (

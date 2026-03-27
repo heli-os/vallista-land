@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { ChangeEvent, FC } from 'react'
+import { ChangeEvent, FC, PropsWithChildren } from 'react'
 
 import { SelectProps } from './type'
 import { useSelect } from './useSelect'
@@ -22,7 +22,7 @@ import { useSelect } from './useSelect'
  * ```
  * 
  */
-export const Select: FC<Partial<SelectProps>> = (props) => {
+export const Select: FC<PropsWithChildren<Partial<SelectProps>>> = (props) => {
   const { children, onChange, icon, isAnotherIcon, ...otherProps } = useSelect(props)
 
   return (

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Children, FC, useEffect, useMemo, useRef, useState } from 'react'
+import { Children, FC, PropsWithChildren, useEffect, useMemo, useRef, useState } from 'react'
 
 import { createContext } from '../../utils/createContext'
 import { CollapseProps, CollapseSizeType } from './type'
@@ -23,7 +23,7 @@ import { useCollapse } from './useCollapse'
   </Collapse>
  * ```
  */
-export const Collapse: FC<Partial<CollapseProps>> = (props) => {
+export const Collapse: FC<PropsWithChildren<Partial<CollapseProps>>> = (props) => {
   const { title, subtitle, fold, expanded, size, card, children } = useCollapse(props)
   const contentRef = useRef<HTMLDivElement>(null)
   const [contentHeight, setContentHeight] = useState(0)
@@ -99,7 +99,7 @@ export const useCollapseContext = useContext
   </CollapseGroup>
  * ```
  */
-export const CollapseGroup: FC = ({ children }) => {
+export const CollapseGroup: FC<PropsWithChildren> = ({ children }) => {
   const collapses = useMemo(() => {
     const result: { key: string; expanded: boolean }[] = []
     Children.forEach(children, (c) => {

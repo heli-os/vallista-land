@@ -1,7 +1,7 @@
 import { Container, LoadingDots } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const ProgressPlayground: VFC = () => {
+const ProgressPlayground: FC = () => {
   return (
     <Container>
       <LoadingDots size={2} />

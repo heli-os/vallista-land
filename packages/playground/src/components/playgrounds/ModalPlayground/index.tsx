@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { Button, Modal, useModal, Text } from '@heli-os/vallista-core'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-const ModalPlayground: VFC = () => {
+const ModalPlayground: FC = () => {
   const { active, open, close } = useModal()
 
   return (

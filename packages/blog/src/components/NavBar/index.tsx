@@ -1,13 +1,18 @@
-import { useLocation } from '@reach/router'
 import { Text, Tooltip, useWindowSize } from '@heli-os/vallista-core'
 import { navigate } from 'gatsby'
-import { useEffect, useMemo, useState, VFC } from 'react'
+import { useEffect, useMemo, useState, FC } from 'react'
 
 import { NavCategory, NavFooter } from '../../../config/navbar'
 import * as Styled from './NavBar.style'
 
-export const NavBar: VFC = () => {
-  const location = useLocation()
+export const NavBar: FC = () => {
+  const [pathname, setPathname] = useState('/')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setPathname(window.location.pathname)
+    }
+  }, [])
   const categories = useMemo(() => Object.values(NavCategory), [])
   const footer = useMemo(() => Object.values(NavFooter), [])
   const [visibleTooltip, setVisibleTooltip] = useState(true)
@@ -62,6 +67,7 @@ export const NavBar: VFC = () => {
   }
 
   function isCategoryActive(target: string): boolean {
-    return location.pathname === target
+    const normalize = (p: string) => (p.endsWith('/') ? p : `${p}/`)
+    return normalize(pathname) === normalize(target)
   }
 }
