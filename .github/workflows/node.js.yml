@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI
 
 on:
@@ -15,34 +12,26 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [20.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.TOKEN }}
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: yarn 설치
-        run: npm install -g yarn
-      - name: yarn workspaces 옵션 활성화
-        run: yarn config set workspaces-experimental true
-      - name: node.js 패키지 installation
-        run: yarn
+          cache: 'yarn'
+      - name: 패키지 설치
+        run: yarn install --frozen-lockfile
       - name: 코어 (디자인시스템) 빌드
         run: yarn build:core
       - name: 블로그 빌드
         run: yarn build:blog
-      - name: git config 이메일 변경
-        run: git config --global user.email "sun@dataportal.kr"
-      - name: git config 이름 변경
-        run: git config --global user.name "Taeyang Jin (Theo)"
-      # packages/blog 들어가서 deploy 스크립트에 TOKEN 주입해 실행
-      - name: 디랙토리 이동 및 heli-os.github.io 배포
+      - name: git config 설정
         run: |
-          yarn directory:blog
-          yarn deploy:blog-ex ${{ secrets.TOKEN }}
+          git config --global user.email "sun@dataportal.kr"
+          git config --global user.name "Taeyang Jin (Theo)"
+      - name: heli-os.github.io 배포
+        run: cd packages/blog && node scripts/deploy.js ${{ secrets.TOKEN }}
