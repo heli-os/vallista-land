@@ -62,6 +62,7 @@ const Post: VFC<PageProps<PostQuery>> = (props) => {
       .filter((it) => it.frontmatter.series)
       .filter((it) => it.frontmatter.series === series)
       .map((it) => ({ name: it.frontmatter.title, timeToRead: it.timeToRead, slug: it.fields.slug }))
+      .reverse()
   }
 }
 
