@@ -92,7 +92,9 @@ draft: {true|false}
 - 단정적 주장보다 탐구적 서술 ("~이다"보다 "~가 아닐까")
 - 독자와 함께 생각하는 느낌의 서술
 
-### 5단계: 썸네일 이미지 프롬프트 생성
+### 5단계: 썸네일 이미지 생성
+
+#### 5-1. 프롬프트 생성
 
 에세이 주제를 반영한 시각적 메타포를 공통 스타일에 추가:
 
@@ -104,6 +106,56 @@ Minimalist editorial illustration, muted warm tones, soft grain texture, no text
 - 주제: 기술 부채 → `...a person carefully stacking wooden blocks on an unstable tower, with cracks forming at the base`
 - 주제: 리더십 → `...a lighthouse beam cutting through dense fog over a calm sea at dusk`
 
+#### 5-2. DeepAI API로 이미지 자동 생성
+
+환경변수 `DEEPAI_API_KEY`가 설정되어 있으면 API를 호출하여 썸네일을 자동 생성한다. 미설정이거나 실패 시 폴백(프롬프트만 출력)한다.
+
+**실행 절차**:
+
+1. API 키 확인:
+```bash
+if [ -z "$DEEPAI_API_KEY" ]; then
+  echo "DEEPAI_API_KEY 미설정 — 폴백: 수동 생성 모드"
+fi
+```
+
+2. API 호출 (키가 존재할 때만):
+```bash
+RESPONSE=$(curl -s -f \
+  -X POST "https://api.deepai.org/api/text2img" \
+  -H "api-key: $DEEPAI_API_KEY" \
+  -d "text={5-1에서 생성한 전체 프롬프트}" \
+  -d "width=1536" \
+  -d "height=864" \
+  -d "image_generator_version=hd")
+```
+
+3. 응답에서 output_url 파싱:
+```bash
+OUTPUT_URL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('output_url',''))" 2>/dev/null)
+```
+
+4. 이미지 다운로드:
+```bash
+curl -s -f -L -o "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" "$OUTPUT_URL"
+```
+
+5. 파일 검증 — 다운로드된 파일이 실제 이미지인지 확인:
+```bash
+file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -qi "jpeg\|jpg\|image"
+```
+검증 실패 시 파일 삭제 후 폴백.
+
+**에러 처리**: 아래 모든 실패 시 에세이 작성은 중단하지 않고 폴백한다.
+
+| 실패 시점 | 대응 |
+|-----------|------|
+| API 키 미설정 | API 호출 스킵, 6단계에서 프롬프트만 출력 |
+| API 호출 실패 (인증/네트워크) | 에러 메시지 + 프롬프트 출력 |
+| JSON 파싱 실패 | 원본 응답 + 프롬프트 출력 |
+| 이미지 다운로드 실패 | output_url + 프롬프트 출력 |
+| 다운로드 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
+
 ### 6단계: 결과 보고
 
 사용자에게 다음을 출력:
@@ -111,7 +163,9 @@ Minimalist editorial illustration, muted warm tones, soft grain texture, no text
 2. frontmatter 요약 (제목, 태그, 시리즈, draft 상태)
 3. 본문 섹션 구조
 4. 썸네일 이미지 생성 프롬프트 (복사 가능한 형태)
-5. "thumbnail.jpeg 이미지를 생성하여 assets/ 폴더에 넣어주세요" 안내
+5. 썸네일 상태:
+   - **자동 생성 성공 시**: "thumbnail.jpeg가 자동 생성되어 assets/ 폴더에 저장되었습니다. 품질을 확인해주세요."
+   - **폴백 시**: "thumbnail.jpeg 이미지를 아래 프롬프트로 생성하여 assets/ 폴더에 넣어주세요" + 실패 원인
 
 ## 주의사항
 

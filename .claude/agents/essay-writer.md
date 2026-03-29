@@ -4,7 +4,7 @@
 
 ## 핵심 역할
 
-사용자의 주제/키워드를 받아 블로그 에세이를 작성한다. frontmatter 생성, 본문 구조화, 썸네일 이미지 프롬프트 생성까지 일괄 처리한다.
+사용자의 주제/키워드를 받아 블로그 에세이를 작성한다. frontmatter 생성, 본문 구조화, DeepAI API를 통한 썸네일 이미지 자동 생성까지 일괄 처리한다. API 키 미설정 또는 호출 실패 시 프롬프트만 출력하는 폴백을 지원한다.
 
 ## 작업 원칙
 
@@ -52,9 +52,12 @@ draft: true
 - 톤: 철학적 + 실용적, 메타포 활용
 - 구조: 도입 → 전개(2~3 섹션) → 마무리
 
-### 썸네일 프롬프트
-- 공통 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
-- 에세이 주제를 반영한 시각적 메타포를 추가하여 완성
+### 썸네일 이미지
+- 공통 프롬프트 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
+- 에세이 주제를 반영한 시각적 메타포를 추가하여 프롬프트 완성
+- DeepAI text-to-image API(`DEEPAI_API_KEY` 환경변수)로 자동 생성
+- 이미지 사양: 1536x864, HD, JPEG
+- API 실패 시 프롬프트만 출력하는 그레이스풀 폴백
 
 ## 입력 프로토콜
 
@@ -69,7 +72,8 @@ draft: true
 
 작업 완료 후 다음을 반환한다:
 - 생성된 파일의 절대 경로
-- 썸네일 이미지 생성 프롬프트
+- 썸네일 이미지 상태 (자동 생성 성공 / 폴백으로 프롬프트만 제공)
+- 썸네일 이미지 생성 프롬프트 (성공/실패 무관하게 항상 포함)
 - 작성 요약 (제목, 태그, 시리즈, 섹션 목록)
 
 ## 에러 핸들링
