@@ -29,6 +29,7 @@ const ResumePage: FC = () => {
             <SubTitle>
               {resume.config.bio.map((it) => (
                 <Text as='p' size={20} weight={400} lineHeight={40} key={it}>
+                  {/* Safety: bio 데이터는 로컬 resume.json에서만 제공되므로 XSS 위험 없음 */}
                   <span dangerouslySetInnerHTML={{ __html: it }} />
                 </Text>
               ))}
@@ -214,6 +215,7 @@ const ResumePage: FC = () => {
                       <li>
                         <Container>
                           <Text size={16}>
+                            {/* Safety: descriptions 데이터는 로컬 resume.json에서만 제공되므로 XSS 위험 없음 */}
                             <span dangerouslySetInnerHTML={{ __html: it_ }} />
                           </Text>
                         </Container>
