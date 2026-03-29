@@ -4,9 +4,11 @@
 
 ### 썸네일 이미지
 - 각 에세이에는 `./assets/thumbnail.jpeg` 썸네일이 필요
-- 썸네일은 외부 이미지 생성 도구(Midjourney, DALL-E 등)로 생성
+- 썸네일은 DeepAI text-to-image API(`DEEPAI_API_KEY` 환경변수)로 자동 생성
+  - API 키 미설정 또는 호출 실패 시: 프롬프트만 출력하고 수동 생성 안내 (폴백)
 - 에세이 작성 시 반드시 이미지 생성 프롬프트를 함께 작성할 것
 - 프롬프트 공통 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
+- 이미지 사양: 1536x864 (HD, 16:9), JPEG 형식
 
 ### 파일 구조
 - 경로: `packages/blog/content/posts/{에세이-제목}/index.md`
