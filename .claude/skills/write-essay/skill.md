@@ -106,43 +106,45 @@ Minimalist editorial illustration, muted warm tones, soft grain texture, no text
 - 주제: 기술 부채 → `...a person carefully stacking wooden blocks on an unstable tower, with cracks forming at the base`
 - 주제: 리더십 → `...a lighthouse beam cutting through dense fog over a calm sea at dusk`
 
-#### 5-2. DeepAI API로 이미지 자동 생성
+#### 5-2. Google AI Studio Imagen API로 이미지 자동 생성
 
-환경변수 `DEEPAI_API_KEY`가 설정되어 있으면 API를 호출하여 썸네일을 자동 생성한다. 미설정이거나 실패 시 폴백(프롬프트만 출력)한다.
+환경변수 `GEMINI_API_KEY`가 설정되어 있으면 Imagen 4.0 API를 호출하여 썸네일을 자동 생성한다. 미설정이거나 실패 시 폴백(프롬프트만 출력)한다.
 
 **실행 절차**:
 
 1. API 키 확인:
 ```bash
-if [ -z "$DEEPAI_API_KEY" ]; then
-  echo "DEEPAI_API_KEY 미설정 — 폴백: 수동 생성 모드"
+if [ -z "$GEMINI_API_KEY" ]; then
+  echo "GEMINI_API_KEY 미설정 — 폴백: 수동 생성 모드"
 fi
 ```
 
 2. API 호출 (키가 존재할 때만):
 ```bash
 RESPONSE=$(curl -s -f \
-  -X POST "https://api.deepai.org/api/text2img" \
-  -H "api-key: $DEEPAI_API_KEY" \
-  -d "text={5-1에서 생성한 전체 프롬프트}" \
-  -d "width=1536" \
-  -d "height=864" \
-  -d "image_generator_version=hd")
+  -X POST "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=$GEMINI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"instances\": [{\"prompt\": \"{5-1에서 생성한 전체 프롬프트}\"}],
+    \"parameters\": {\"sampleCount\": 1, \"aspectRatio\": \"16:9\"}
+  }")
 ```
 
-3. 응답에서 output_url 파싱:
+3. 응답에서 base64 이미지 데이터 추출 및 저장:
 ```bash
-OUTPUT_URL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('output_url',''))" 2>/dev/null)
+echo "$RESPONSE" | python3 -c "
+import sys, json, base64
+data = json.load(sys.stdin)
+img_bytes = base64.b64decode(data['predictions'][0]['bytesBase64Encoded'])
+with open('packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg', 'wb') as f:
+    f.write(img_bytes)
+print('SUCCESS')
+" 2>/dev/null
 ```
 
-4. 이미지 다운로드:
+4. 파일 검증 — 저장된 파일이 실제 이미지인지 확인:
 ```bash
-curl -s -f -L -o "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" "$OUTPUT_URL"
-```
-
-5. 파일 검증 — 다운로드된 파일이 실제 이미지인지 확인:
-```bash
-file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -qi "jpeg\|jpg\|image"
+file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -qi "jpeg\|jpg\|png\|image"
 ```
 검증 실패 시 파일 삭제 후 폴백.
 
@@ -152,9 +154,9 @@ file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -
 |-----------|------|
 | API 키 미설정 | API 호출 스킵, 6단계에서 프롬프트만 출력 |
 | API 호출 실패 (인증/네트워크) | 에러 메시지 + 프롬프트 출력 |
-| JSON 파싱 실패 | 원본 응답 + 프롬프트 출력 |
-| 이미지 다운로드 실패 | output_url + 프롬프트 출력 |
-| 다운로드 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
+| JSON 파싱 실패 / predictions 없음 | 원본 응답 일부 + 프롬프트 출력 |
+| 이미지 디코딩/저장 실패 | 에러 메시지 + 프롬프트 출력 |
+| 저장된 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
 
 ### 6단계: 결과 보고
 
