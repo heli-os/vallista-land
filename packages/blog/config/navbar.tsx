@@ -47,6 +47,26 @@ export const NavCategory: NavCategoryType = {
       </svg>
     ),
     link: '/posts/'
+  },
+  books: {
+    name: '제가 쓴 책을 보세요!',
+    icon: (
+      <svg
+        viewBox='0 0 24 24'
+        width='32'
+        height='32'
+        stroke='currentColor'
+        strokeWidth='1.5'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        fill='none'
+        shapeRendering='geometricPrecision'
+      >
+        <path d='M4 19.5A2.5 2.5 0 016.5 17H20' />
+        <path d='M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z' />
+      </svg>
+    ),
+    link: '/books/'
   }
   // tags: {
   //   name: '태그 단위로 글을 보세요!',

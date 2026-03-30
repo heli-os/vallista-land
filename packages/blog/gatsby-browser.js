@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { onChangeThemeEvent, isDarkMode } from './src/utils'
 
 import { Layout } from './src/components/Layout'
+import { BookLayout } from './src/components/BookLayout'
 
 require('prismjs')
 require('prismjs/themes/prism-tomorrow.css')
@@ -47,8 +48,8 @@ export function wrapRootElement({ element }) {
 }
 
 /** 클라이언트 사이드에서 페이지 단위로 요소를 제작할 때 호출 */
-export function wrapPageElement({ element }) {
-  return <InitializeElement element={element} />
+export function wrapPageElement({ element, props }) {
+  return <InitializeElement element={element} pathname={props.location.pathname} pageContext={props.pageContext} />
 }
 
 const Loader = ({ children }) => {
@@ -75,7 +76,7 @@ const Loading = styled.div`
 
 let firstRender = false
 
-const InitializeElement = ({ element }) => {
+const InitializeElement = ({ element, pathname, pageContext }) => {
   const theme = useTheme()
 
   if (!firstRender) {
@@ -91,6 +92,16 @@ const InitializeElement = ({ element }) => {
   onChangeThemeEvent((themeType) => {
     changeTheme(theme, themeType)
   })
+
+  const isBookPage = pathname?.startsWith('/books/')
+
+  if (isBookPage) {
+    return (
+      <BookLayout bookTitle={pageContext?.bookTitle} bookSlug={pageContext?.bookSlug} pathname={pathname}>
+        {element}
+      </BookLayout>
+    )
+  }
 
   return <Layout>{element}</Layout>
 }

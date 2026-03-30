@@ -1,0 +1,40 @@
+{
+  "title": "작은 팀의 기술",
+  "subtitle": "개발자 출신 창업자의 조직 운영기",
+  "slug": "the-art-of-small-teams",
+  "description": "100개 이상의 제품을 만들며 깨달은 것 — 결국 가장 잘 작동하는 건 작은 팀이었다.",
+  "pdfPath": "/book/작은-팀의-기술.pdf",
+  "coverImage": "/book/cover.jpeg",
+  "ogImage": "/book/og-book.jpeg",
+  "acts": [
+    {
+      "title": "제1막: 왜 작은 팀인가",
+      "chapters": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "title": "제2막: 작은 팀을 작동시키는 기술",
+      "chapters": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "title": "제3막: 작은 팀의 미래",
+      "chapters": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  ]
+}

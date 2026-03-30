@@ -66,6 +66,41 @@ module.exports = {
             output: '/rss.xml',
             // 본인의 blog rss feed용 타이틀을 명시합니다.
             title: "테오 블로그 RSS Feed"
+          },
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map((node) => {
+                return Object.assign({}, node.frontmatter, {
+                  description: node.excerpt,
+                  date: node.frontmatter.date,
+                  url: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
+                  guid: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
+                  custom_elements: [{ 'content:encoded': node.html }]
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { frontmatter: { chapter: ASC } },
+                  filter: { frontmatter: { draft: { ne: true } }, fields: { contentType: { eq: "books" } } }
+                ) {
+                  nodes {
+                    excerpt
+                    html
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/books/rss.xml',
+            title: "테오 책 RSS Feed"
           }
         ]
       }
@@ -134,6 +169,13 @@ module.exports = {
       options: {
         name: `posts`,
         path: `${__dirname}/content/posts`
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `books`,
+        path: `${__dirname}/content/books`
       }
     },
     {

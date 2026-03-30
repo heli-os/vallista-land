@@ -129,7 +129,7 @@ export const Head = ({ location }: HeadProps) => <Seo name='홈' pathname={locat
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { fields: { contentType: { eq: "posts" } } }) {
       nodes {
         fields {
           slug

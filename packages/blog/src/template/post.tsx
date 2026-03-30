@@ -80,7 +80,10 @@ export const Head = ({ data, location }: HeadProps<PostQuery>) => {
 
 export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(
+      sort: { frontmatter: { date: DESC } }
+      filter: { fields: { contentType: { eq: "posts" } } }
+    ) {
       nodes {
         fields {
           slug

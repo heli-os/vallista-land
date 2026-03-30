@@ -152,8 +152,7 @@ export const _SearchBox = styled.div`
 `
 
 export const _Categories = styled.div`
-  margin-top: 73px;
-  padding: 16px 24px 32px;
+  padding: 0 24px 32px;
 `
 
 export const _CardStyle = styled.nav`
@@ -270,6 +269,50 @@ export const _ListBody = styled.div<{ fold: boolean }>`
 
   ${({ fold }) => css`
     height: ${fold ? 0 : 'auto'};
+  `}
+`
+
+export const _BookSection = styled.nav`
+  display: flex;
+  flex-direction: column;
+  margin: 73px 0 0;
+  padding: 16px 24px 12px;
+`
+
+export const _BookSectionHeader = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+    background-color: ${theme.colors.PRIMARY.ACCENT_1};
+    padding: 0;
+    margin: 0 0 6px 0;
+    height: 30px;
+  `}
+`
+
+export const _BookItem = styled.a`
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: background 0.2s ease;
+
+  ${({ theme }) => css`
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 6px;
+      color: ${theme.colors.PRIMARY.ACCENT_4};
+    }
+
+    &:hover {
+      background-color: ${theme.colors.PRIMARY.ACCENT_2};
+    }
   `}
 `
 

@@ -59,7 +59,7 @@ export const Layout: FC<PropsWithChildren> = (props) => {
 
 const allPostsQuery = graphql`
   query {
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { fields: { contentType: { eq: "posts" } } }) {
       nodes {
         fields {
           slug
