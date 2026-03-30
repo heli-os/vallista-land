@@ -1,4 +1,4 @@
-import { FC, KeyboardEventHandler, PropsWithChildren, useEffect, useRef } from 'react'
+import { FC, KeyboardEventHandler, PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { ModalProvider, useModalContext } from '../context'
@@ -46,6 +46,14 @@ import { BackDrop, Container, ModalContainer, Wrap, Wrapper } from './Modal.styl
  * ```
  */
 export const Modal: FC<PropsWithChildren<Partial<ModalProps>>> = ({ children, ...props }) => {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
   return createPortal(
     <ModalProvider>
       <Contents {...props}>{children}</Contents>
