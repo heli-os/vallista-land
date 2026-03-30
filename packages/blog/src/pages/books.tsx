@@ -139,7 +139,7 @@ const BookCard = styled.div`
     transition: all 0.2s;
     &:hover {
       border-color: ${theme.colors.HIGHLIGHT.ORANGE};
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: ${theme.shadows.EXTRA_SMALL};
     }
   `}
 `
@@ -157,11 +157,13 @@ const BookCardInner = styled.div`
 `
 
 const BookCoverThumb = styled.img`
-  width: 120px;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
+  ${({ theme }) => css`
+    width: 120px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: ${theme.shadows.EXTRA_SMALL};
+    flex-shrink: 0;
+  `}
 `
 
 const BookCardText = styled.div`
