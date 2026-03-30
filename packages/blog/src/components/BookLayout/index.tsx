@@ -5,6 +5,7 @@ import { navigate } from 'gatsby'
 import { FC, PropsWithChildren, useEffect } from 'react'
 
 import { Footer } from '../Footer'
+import { TextSizeControl } from '../TextSizeControl'
 
 interface BookLayoutProps {
   bookTitle?: string
@@ -31,19 +32,24 @@ export const BookLayout: FC<PropsWithChildren<BookLayoutProps>> = ({ children, b
     <Wrapper>
       <Container>
         <TopNav>
-          <NavLink onClick={() => navigate('/')}>블로그 홈</NavLink>
-          <NavDivider>/</NavDivider>
-          <NavLink onClick={() => navigate('/books/')}>책 목록</NavLink>
-          {bookTitle && (
-            <>
-              <NavDivider>/</NavDivider>
-              {bookPath && !isLandingPage ? (
-                <NavLink onClick={() => navigate(bookPath)}>{bookTitle}</NavLink>
-              ) : (
-                <NavCurrent>{bookTitle}</NavCurrent>
-              )}
-            </>
-          )}
+          <BreadcrumbGroup>
+            <NavLink onClick={() => navigate('/')}>블로그 홈</NavLink>
+            <NavDivider>/</NavDivider>
+            <NavLink onClick={() => navigate('/books/')}>책 목록</NavLink>
+            {bookTitle && (
+              <>
+                <NavDivider>/</NavDivider>
+                {bookPath && !isLandingPage ? (
+                  <NavLink onClick={() => navigate(bookPath)}>{bookTitle}</NavLink>
+                ) : (
+                  <NavCurrent>{bookTitle}</NavCurrent>
+                )}
+              </>
+            )}
+          </BreadcrumbGroup>
+          <TextSizeControlWrapper>
+            <TextSizeControl />
+          </TextSizeControlWrapper>
         </TopNav>
         <Main>
           <Article>{children}</Article>
@@ -65,10 +71,22 @@ const TopNav = styled.nav`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: space-between;
     padding: 1rem 2rem;
     border-bottom: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
   `}
+`
+
+const BreadcrumbGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+const TextSizeControlWrapper = styled.div`
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `
 
 const NavLink = styled.span`

@@ -1,7 +1,8 @@
 import { useTheme } from '@heli-os/vallista-core'
 import { useEffect, useState } from 'react'
 
-import { isDarkMode, localStorage, onChangeThemeEvent } from '../../utils'
+import { useTextSize } from '../../hooks/useTextSize'
+import { isDarkMode, onChangeThemeEvent } from '../../utils'
 import { HeaderDialogType, HeaderProps, ReturnUseHeader, HeaderDialogVariableType, ThemeModeType } from './Header.type'
 
 export const useHeader = <T extends HeaderProps>(props: T): ReturnUseHeader & T => {
@@ -14,16 +15,7 @@ export const useHeader = <T extends HeaderProps>(props: T): ReturnUseHeader & T 
     visible: false,
     type: 'SETTING'
   })
-  const [textSize, setTextSize] = useState(() => {
-    let localTextSize = localStorage.get('text-size')
-
-    if (!localTextSize) {
-      localStorage.set('text-size', '16')
-      localTextSize = '16'
-    }
-
-    return parseInt(localTextSize, 10) || 16
-  })
+  const { textSize, changeTextSize } = useTextSize()
 
   useEffect(() => {
     onChangeThemeEvent((_theme) => {
@@ -35,17 +27,6 @@ export const useHeader = <T extends HeaderProps>(props: T): ReturnUseHeader & T 
     if (!mode) return
     theme.state.changeTheme(mode)
   }, [mode])
-
-  useEffect(() => {
-    if (!document?.body?.parentElement) return
-    if (textSize === 16) {
-      const { fontSize, ...otherProps } = document.body.parentElement.style
-      ;(document.body.parentElement as any).style = otherProps
-      return
-    }
-
-    document.body.parentElement.style.fontSize = `${textSize}px`
-  }, [textSize])
 
   return {
     ...props,
@@ -64,11 +45,6 @@ export const useHeader = <T extends HeaderProps>(props: T): ReturnUseHeader & T 
 
   function closeDialog(): void {
     setDialog((before) => ({ ...before, visible: false }))
-  }
-
-  function changeTextSize(size: number): void {
-    localStorage.set('text-size', size.toString())
-    setTextSize(size)
   }
 
   function changeTheme(_theme: ThemeModeType): void {
