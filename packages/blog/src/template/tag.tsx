@@ -111,7 +111,7 @@ export const Head = ({ location, pageContext }: HeadProps<TagQuery, TagPageConte
 export const pageQuery = graphql`
   query TagPageQuery($tag: String!) {
     allMarkdownRemark(
-      filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
+      filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } }, fields: { contentType: { eq: "posts" } } }
       sort: { frontmatter: { date: DESC } }
     ) {
       nodes {

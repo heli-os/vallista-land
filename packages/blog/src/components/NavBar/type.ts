@@ -10,6 +10,7 @@ export interface NavCategoryType {
   me: NavCategoryProperties
   home: NavCategoryProperties
   posts: NavCategoryProperties
+  books?: NavCategoryProperties
   tags?: NavCategoryProperties
 }
 export interface NavFooterType {

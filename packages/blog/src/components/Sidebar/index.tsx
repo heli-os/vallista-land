@@ -1,4 +1,5 @@
 import { Colors, Container, Text, SearchInput } from '@heli-os/vallista-core'
+import { navigate } from 'gatsby'
 import { useEffect, useMemo, useRef, useState, FC } from 'react'
 
 import { SidebarPost } from '../../types/type'
@@ -73,6 +74,26 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         </Styled._SearchBox>
       </Styled._Header>
       <Styled._SidebarContainer ref={ref} {...sidebarProps}>
+        <Styled._BookSection>
+          <Styled._BookSectionHeader>
+            <div style={{ width: '24px', height: '16px' }}>
+              <svg viewBox='0 0 24 24' width='16' height='16' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' fill='none'>
+                <path d='M4 19.5A2.5 2.5 0 016.5 17H20' />
+                <path d='M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z' />
+              </svg>
+            </div>
+            <Text>책</Text>
+          </Styled._BookSectionHeader>
+          <Styled._BookItem onClick={() => navigate('/books/the-art-of-small-teams/')}>
+            <div>
+              <svg viewBox='0 0 24 24' width='20' height='20' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' fill='none' shapeRendering='geometricPrecision'>
+                <path d='M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z' />
+                <path d='M13 2v7h7' />
+              </svg>
+            </div>
+            <Text>작은 팀의 기술</Text>
+          </Styled._BookItem>
+        </Styled._BookSection>
         <Styled._Categories>
           <Container>
             {Object.entries(posts).map(([title, _posts]) => (

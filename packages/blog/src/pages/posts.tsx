@@ -162,7 +162,7 @@ export const Head = ({ location, data }: HeadProps<IndexQuery>) => {
 
 export const pageQuery = graphql`
   query BlogPostsQuery {
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }, filter: { fields: { contentType: { eq: "posts" } } }) {
       nodes {
         fields {
           slug
