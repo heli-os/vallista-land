@@ -19,6 +19,9 @@ export const Footer: FC = () => {
               <Link to='/posts/'>포스트</Link>
             </FooterLink>
             <FooterLink custom>
+              <Link to='/books/'>책</Link>
+            </FooterLink>
+            <FooterLink custom>
               <Link to='/resume/'>이력서</Link>
             </FooterLink>
           </FooterGroup>
