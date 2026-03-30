@@ -136,11 +136,13 @@ const Header = styled.header`
 `
 
 const CoverImage = styled.img`
-  width: 240px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  margin-bottom: 1.5rem;
+  ${({ theme }) => css`
+    width: 240px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: ${theme.shadows.MEDIUM};
+    margin-bottom: 1.5rem;
+  `}
 `
 
 const BookTitle = styled.h1`
