@@ -6,7 +6,7 @@ tags:
   - 조직
   - 성장
 date: 2026-03-30 15:00:00
-draft: true
+draft: false
 ---
 
 ![여섯 가지 질문에 답할 수 있는가](./assets/thumbnail.jpeg)
