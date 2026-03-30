@@ -123,7 +123,7 @@ export const pageQuery = graphql`
 const Wrapper = styled.div`
   max-width: 720px;
   margin: 0 auto;
-  padding: 2rem 0 4rem;
+  padding: 2rem 1.5rem 4rem;
 `
 
 const Header = styled.header`
