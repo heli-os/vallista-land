@@ -49,6 +49,32 @@ export const _Contents = styled(_Wrapper)`
       margin: 0 0 2rem;
     }
 
+    /* Table */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    th,
+    td {
+      padding: 0.75rem 1rem;
+      border: 1px solid ${theme.colors.PRIMARY.ACCENT_3};
+      text-align: left;
+      line-height: 1.6;
+      color: ${theme.colors.PRIMARY.ACCENT_8};
+      white-space: nowrap;
+    }
+
+    th {
+      font-weight: 600;
+      background: ${theme.colors.PRIMARY.ACCENT_2};
+      color: ${theme.colors.PRIMARY.FOREGROUND};
+    }
+
     center {
       color: ${theme.colors.PRIMARY.ACCENT_5};
       font-size: 0.8rem;
