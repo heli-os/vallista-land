@@ -344,7 +344,7 @@ export const _Contents = styled(_Wrapper)`
       padding: 1rem 1rem;
       border-left: 6px solid ${theme.colors.HIGHLIGHT.ORANGE};
 
-      & > p {
+      & > *:last-child {
         margin-bottom: 0;
       }
 
