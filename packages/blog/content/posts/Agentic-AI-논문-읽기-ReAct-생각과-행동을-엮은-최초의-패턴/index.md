@@ -7,7 +7,7 @@ tags:
   - 리포트
 date: 2026-04-06 09:00:00
 series: Agentic AI 논문 읽기
-draft: true
+draft: false
 ---
 
 ![Agentic AI 논문 읽기: ReAct — 생각과 행동을 엮은 최초의 패턴](./assets/thumbnail.jpeg)
