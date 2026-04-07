@@ -5,7 +5,8 @@
 ### 썸네일 이미지
 - 각 에세이에는 `./assets/thumbnail.jpeg` 썸네일이 필요
 - 썸네일은 Google AI Studio Gemini API(`GEMINI_API_KEY` 환경변수)로 자동 생성
-  - 모델: `imagen-4.0-generate-001` (aspectRatio: 16:9 지원)
+  - 모델 우선순위: `imagen-4.0-generate-001` → `gemini-2.5-flash-image` (폴백)
+  - **16:9 후처리 필수**: API가 16:9를 지원하지 않는 경우, 생성 후 Pillow로 center-crop → 1536x864 리사이즈
   - API 키 미설정 또는 호출 실패 시: 프롬프트만 출력하고 수동 생성 안내 (폴백)
 - 에세이 작성 시 반드시 이미지 생성 프롬프트를 함께 작성할 것
 - 프롬프트 공통 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
