@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 export const _List = styled.ol`
-  padding-left: 1.5rem;
+  padding-left: 2.5rem;
   box-sizing: border-box;
   line-height: 1.6;
   list-style: decimal;
