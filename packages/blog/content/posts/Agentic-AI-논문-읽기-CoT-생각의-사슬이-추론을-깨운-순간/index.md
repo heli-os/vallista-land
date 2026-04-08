@@ -5,7 +5,7 @@ image: ./assets/thumbnail.jpeg
 tags:
   - 기술
   - 리포트
-date: 2026-04-07 09:00:00
+date: 2026-04-01 17:00:00
 series: Agentic AI 논문 읽기
 draft: false
 ---
