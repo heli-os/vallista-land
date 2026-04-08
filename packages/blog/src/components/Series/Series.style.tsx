@@ -27,15 +27,15 @@ export const _Item = styled.li<{ timeToRead: number; active: boolean }>`
       border-bottom: 2px solid ${theme.colors.HIGHLIGHT.ORANGE};
       font-weight: 600;
       text-decoration: none;
-      color: ${active ? theme.colors.PRIMARY.BACKGROUND : theme.colors.PRIMARY.FOREGROUND};
-      background: ${active ? theme.colors.HIGHLIGHT.ORANGE : 'transparent'};
-      border-top: ${active ? `2px solid ${theme.colors.HIGHLIGHT.ORANGE}` : 'none'};
+      color: ${active ? theme.colors.HIGHLIGHT.ORANGE : theme.colors.PRIMARY.FOREGROUND};
+      background: transparent;
+      border-left: ${active ? `4px solid ${theme.colors.HIGHLIGHT.ORANGE}` : 'none'};
+      padding-left: ${active ? '6px' : '0'};
       transition: all 0.1s ease-out;
 
       &:hover {
-        background: ${theme.colors.HIGHLIGHT.ORANGE};
-        border-top: 2px solid ${theme.colors.HIGHLIGHT.ORANGE};
-        color: ${theme.colors.PRIMARY.BACKGROUND};
+        background: ${active ? 'transparent' : theme.colors.HIGHLIGHT.ORANGE};
+        color: ${active ? theme.colors.HIGHLIGHT.ORANGE : theme.colors.PRIMARY.BACKGROUND};
       }
     }
   `}
