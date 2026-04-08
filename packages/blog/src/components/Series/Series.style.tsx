@@ -8,8 +8,8 @@ export const _List = styled.ol`
   list-style: decimal;
 `
 
-export const _Item = styled.li<{ timeToRead: number }>`
-  ${({ theme, timeToRead }) => css`
+export const _Item = styled.li<{ timeToRead: number; active: boolean }>`
+  ${({ theme, timeToRead, active }) => css`
     margin-bottom: 0.5rem;
     &::marker {
       font-weight: 600;
@@ -23,11 +23,13 @@ export const _Item = styled.li<{ timeToRead: number }>`
     }
 
     & > span {
-      cursor: pointer;
+      cursor: ${active ? 'default' : 'pointer'};
       border-bottom: 2px solid ${theme.colors.HIGHLIGHT.ORANGE};
       font-weight: 600;
       text-decoration: none;
-      color: ${theme.colors.PRIMARY.FOREGROUND};
+      color: ${active ? theme.colors.PRIMARY.BACKGROUND : theme.colors.PRIMARY.FOREGROUND};
+      background: ${active ? theme.colors.HIGHLIGHT.ORANGE : 'transparent'};
+      border-top: ${active ? `2px solid ${theme.colors.HIGHLIGHT.ORANGE}` : 'none'};
       transition: all 0.1s ease-out;
 
       &:hover {

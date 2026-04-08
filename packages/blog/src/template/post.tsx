@@ -29,7 +29,9 @@ const Post: FC<PageProps<PostQuery>> = (props) => {
         timeToRead={timeToRead}
         author={profile.author}
       >
-        {series && seriesGroup && <Series name={series} posts={cachedFilterSeries()} />}
+        {series && seriesGroup && (
+          <Series name={series} currentSlug={props.data.markdownRemark.fields.slug} posts={cachedFilterSeries()} />
+        )}
       </PostHeader>
       <Markdown html={html} />
       <AdSense slotId='7216625942' />
