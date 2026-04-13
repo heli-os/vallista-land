@@ -5,7 +5,7 @@ image: ./assets/thumbnail.jpeg
 tags:
   - 스타트업
   - 기술
-date: 2026-04-12 15:00:00
+date: 2026-04-13 15:00:00
 draft: false
 ---
 
