@@ -232,12 +232,10 @@ export const _Contents = styled(_Wrapper)`
     div[class*='markdown-wrapper'] {
       font-size: 0.9rem;
       text-size-adjust: none;
-      margin: 0 -1rem;
+      margin: 0 0 2rem 0;
       overflow-x: auto;
       overflow-y: hidden;
       box-sizing: border-box;
-      /* background-color: var(--scrollbar-background); */
-      /* padding-left: 2rem; */
 
       /** 파이어폭스 스크롤 대응 */
       scrollbar-width: 8px;
@@ -255,16 +253,6 @@ export const _Contents = styled(_Wrapper)`
         background: var(--scrollbar-thumb);
         border-radius: 0;
       }
-
-      @media screen and (min-width: 1350px) {
-        margin-left: -3.5rem;
-        margin-right: -3.5rem;
-        margin-bottom: 2rem;
-      }
-
-      @media screen and (max-width: 1024px) {
-        padding-left: 1rem;
-      }
     }
 
     pre {
@@ -272,8 +260,8 @@ export const _Contents = styled(_Wrapper)`
       float: left;
       margin-bottom: 0;
       margin-top: 0;
-      min-width: calc(100% + 1rem);
-      padding: 1em 1em 1em 0;
+      min-width: 100%;
+      padding: 1em;
       -webkit-font-smoothing: subpixel-antialiased;
       overflow: initial;
       white-space: pre;
