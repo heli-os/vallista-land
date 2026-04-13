@@ -18,9 +18,8 @@
 
 ## 링크드인 버전
 
-"그 데이터 좀 볼 수 있게 해주세요"
-
-이 한마디에 개발팀의 3개월이 날아갑니다.
+금융 API 연동, 5분이면 된다고 하면 믿으시겠습니까?
+저도 안 믿었습니다. 직접 만들기 전까지는.
 
 —
 
@@ -96,4 +95,4 @@ Claude Code 같은 AI 코딩 에이전트에게 API 문서를 넘기면,
 
 h6s.ai에서 초대를 요청해 주세요.
 
-#FinTech #API #HeadlessFinance #금융데이터 #스타트업 #H6S
+#FinTech #API #HeadlessFinance #금융데이터 #스타트업 #H6S #OpenBanking #DeveloperExperience #AIAgent
