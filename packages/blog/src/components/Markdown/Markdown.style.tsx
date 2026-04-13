@@ -338,23 +338,17 @@ export const _Contents = styled(_Wrapper)`
     }
 
     blockquote {
-      background: ${theme.colors.PRIMARY.ACCENT_2};
-      margin: 0 -1rem;
+      background: ${theme.colors.PRIMARY.ACCENT_1};
+      margin: 0;
       margin-bottom: 2rem;
-      padding: 1rem 1rem;
-      border-left: 6px solid ${theme.colors.HIGHLIGHT.ORANGE};
+      padding: 1.25rem 1.5rem;
+      border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
+      border-top: 3px solid ${theme.colors.HIGHLIGHT.ORANGE};
+      border-radius: 4px;
+      box-shadow: ${theme.shadows.SMALLEST};
 
       & > *:last-child {
         margin-bottom: 0;
-      }
-
-      @media screen and (min-width: 1350px) {
-        margin-left: -3.5rem;
-        margin-right: -3.5rem;
-      }
-
-      @media screen and (max-width: 1024px) {
-        padding-left: 1rem;
       }
     }
   `}
