@@ -277,16 +277,17 @@
       },
       {
         "name": "Self Employed",
-        "startDate": "2013.01",
-        "endDate": "2020.12",
+        "position": "Freelancer & Individual Entrepreneurship/Business",
+        "startDate": "2016.07",
+        "endDate": "2020.06",
         "fold": true,
         "descriptions": [],
         "projects": [
           {
             "name": "개인 사업/프리랜서",
             "descriptions": [],
-            "startDate": "2013.01",
-            "endDate": "2020.12",
+            "startDate": "2016.07",
+            "endDate": "2020.06",
             "which": [
               {
                 "title": "개인 사업: 매장관리 프로그램 개발/운영",
@@ -296,6 +297,28 @@
                 "title": "React, Node.js, Android Fullstack 프리랜서",
                 "items": ["10개 이상 프로젝트 참가"]
               }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Various Companies",
+        "position": "Software Engineer",
+        "startDate": "2013.01",
+        "endDate": "2016.06",
+        "fold": true,
+        "descriptions": ["DirectX 9, C++ based rendering engine & game client"],
+        "projects": [
+          {
+            "name": "게임 클라이언트 & 렌더링 엔진 개발",
+            "descriptions": [],
+            "startDate": "2013.01",
+            "endDate": "2016.06",
+            "which": [
+              { "title": "DirectX 9 기반 2D/3D 렌더링 파이프라인 구현" },
+              { "title": "HLSL 셰이더 작성 및 렌더링 효과(라이팅, 포스트 프로세싱 등) 개발" },
+              { "title": "게임 클라이언트 UI 프레임워크 및 인게임 시스템 구현" },
+              { "title": "에셋 로딩/메모리 관리 등 클라이언트 공통 인프라 개발" }
             ]
           }
         ]
