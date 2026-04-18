@@ -4,7 +4,6 @@ description: "수학자들이 '결혼 문제'라 부르는 공식이 있다. 37%
 image: ./assets/thumbnail.jpeg
 tags:
   - 에세이
-  - 기술
 date: 2026-04-18 21:00:00
 draft: false
 ---
