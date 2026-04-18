@@ -16,7 +16,7 @@ export const Markdown: FC<MarkdownProps> = (props) => {
       .replaceAll('</pre>', '</pre></div>')
 
     return result
-  }, [])
+  }, [props.html])
 
   useEffect(() => {
     // heading 전부 체크해서 해시에 저장할 수 있는 버튼을 추가한다.

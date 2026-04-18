@@ -45,6 +45,9 @@ export interface StaticQuery {
       siteUrl: string
       defaultImage: string
       twitterUsername: string
+      sameAs?: string[]
+      jobTitle?: string
+      knowsAbout?: string[]
     }
   }
   markdownRemark: Post

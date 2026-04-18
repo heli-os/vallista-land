@@ -125,7 +125,13 @@ const Contents = styled.section`
 
 export default IndexPage
 
-export const Head = ({ location }: HeadProps) => <Seo name='홈' pathname={location.pathname} />
+export const Head = ({ location }: HeadProps) => (
+  <Seo
+    name='테오 블로그 — 엔지니어링, Agentic AI, 에세이'
+    pathname={location.pathname}
+    noTemplate
+  />
+)
 
 export const pageQuery = graphql`
   query {

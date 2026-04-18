@@ -4,8 +4,20 @@
   "titleTemplate": "%s · 테오 블로그",
   "placeholder": "/profile.png",
   "siteUrl": "https://dataportal.kr",
-  "description": "오랫동안 제품을 만들어온 엔지니어의 블로그",
+  "description": "스타트업 CTO가 쓰는 제품 엔지니어링, Agentic AI 논문 리뷰, 조직·성장 에세이, 작은 팀의 기술에 대한 블로그. 오랫동안 제품을 만들어온 엔지니어의 기록.",
   "twitterUserName": "",
   "github": "heli-os",
-  "secondary": "https://careers.bolta.io"
+  "secondary": "https://careers.bolta.io",
+  "sameAs": [
+    "https://github.com/heli-os",
+    "https://careers.bolta.io"
+  ],
+  "jobTitle": "Product Engineer · CTO",
+  "knowsAbout": [
+    "Product Engineering",
+    "Agentic AI",
+    "Software Architecture",
+    "Startup",
+    "Organization Design"
+  ]
 }
