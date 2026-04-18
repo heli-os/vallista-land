@@ -71,7 +71,6 @@ export const _HeaderTitle = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: 0 1.5rem;
 
   & > h1 {
     text-align: left;
