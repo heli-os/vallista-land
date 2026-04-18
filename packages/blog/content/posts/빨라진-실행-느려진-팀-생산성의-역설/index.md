@@ -14,7 +14,7 @@ draft: false
 
 이상한 일이다. 팀의 실행 속도는 분명히 빨라졌다. 예전에 2주 걸리던 피처를 3일 만에 끝낸다. 그런데 팀 전체의 속도는 오히려 느려진 것 같다. 실행이 빨라진 건 좋은 일이다. 그런데 왜 팀은 더 불안해졌을까.
 
-### How의 비용은 0에 수렴하고 있다
+## How의 비용은 0에 수렴하고 있다
 
 ![Minimalist editorial illustration of a robotic arm typing code rapidly on a screen while a person next to it stares at a blank whiteboard, muted warm tones, soft grain texture, no text, 16:9 aspect ratio](./assets/2.jpeg)
 
@@ -26,7 +26,7 @@ How — 어떻게 만들 것인가 — 의 비용은 빠르게 0에 수렴하고
 
 How는 점점 싸지는데, What은 여전히 비싸다. 여기서 역설이 시작된다.
 
-### 그래서 기업은 개발자를 내보낸다
+## 그래서 기업은 개발자를 내보낸다
 
 ![Minimalist editorial illustration of an office space divided in half, one side busy and crowded with people, the other side with empty desks and chairs, muted warm tones, soft grain texture, no text, 16:9 aspect ratio](./assets/3.jpeg)
 
@@ -44,7 +44,7 @@ How는 점점 싸지는데, What은 여전히 비싸다. 여기서 역설이 시
 
 그래서 많은 기업들이 구조조정을 택한다. 이것이 지난 3년간 우리가 목격한 흐름의 구조적 원인이다. 실행력이 높아질수록, 실행하는 사람의 자리가 위태로워지는 역설. 빨라진 실행이 느려진 팀을 만들고, 느려진 팀이 더 적은 사람을 요구한다.
 
-### What을 나눠야 한다
+## What을 나눠야 한다
 
 그렇다면 이 역설을 어떻게 깰 수 있을까.
 
@@ -60,7 +60,7 @@ How는 점점 싸지는데, What은 여전히 비싸다. 여기서 역설이 시
 
 결국 How만 잘하는 사람은 대체 가능해진다. What에 참여할 수 있는 엔지니어만이 팀에서 유의미한 자리를 유지할 수 있다. 이건 위협이 아니라 기회다. 과거에는 엔지니어가 기획에 참여할 여유가 없었지만, 지금은 실행 시간이 줄어든 만큼 여유가 생겼으니까.
 
-### What과 How를 같은 스프린트에서 하지 않기
+## What과 How를 같은 스프린트에서 하지 않기
 
 ![Minimalist editorial illustration of a timeline with alternating colored blocks in different hues arranged in a staggered pattern, suggesting an interleaved workflow, muted warm tones, soft grain texture, no text, 16:9 aspect ratio](./assets/4.jpeg)
 
@@ -84,7 +84,7 @@ What에 참여하는 것만으로는 부족하다. 운영 구조도 바뀌어야
 
 교차 운영은 약간의 리드 타임이 필요하다. 지금 3월이라면, 4월 초에 실행할 것에 대한 What을 지금부터 시작해야 한다. 하지만 이 투자가 팀 전체의 블로킹을 없앤다.
 
-### 직관은 훈련된다
+## 직관은 훈련된다
 
 What을 잘하려면 직관이 필요하다. 고객이 문의를 넣었을 때, "이 문제를 동일하게 겪는 다른 고객사가 어디일까"가 바로 떠오르는 수준. 별도 리서치 없이도 "이건 진짜 문제일 수 있겠다"라는 판단이 서는 수준.
 
@@ -100,7 +100,7 @@ What을 잘하려면 직관이 필요하다. 고객이 문의를 넣었을 때, 
 
 "신입 PM은 없다"는 말이 있다. 직관이 쌓이는 데 시간이 걸리기 때문이다. 하지만 이건 PM만의 이야기가 아니다. What에 참여하려는 모든 사람에게 해당한다. 그리고 지금, 실행이 빨라진 덕분에 우리에겐 그 훈련을 할 시간이 생겼다.
 
-### 빨라진 실행을 기회로
+## 빨라진 실행을 기회로
 
 How가 공짜가 되어가는 세상이다. 이 흐름은 되돌릴 수 없다. 실행 비용은 앞으로도 계속 줄어들 것이고, 같은 일을 하는 데 필요한 사람은 점점 적어질 것이다.
 

@@ -89,6 +89,7 @@ const PostsPage: FC<PageProps<IndexQuery>> = (props) => {
   return (
     <Container>
       <Wrapper>
+        <PageTitle>글 목록</PageTitle>
         <Container>
           <div>
             <SearchInput value={search} onChange={setSearch} size='large' placeholder='검색할 텍스트를 입력하세요.' />
@@ -129,6 +130,13 @@ const Wrapper = styled.section`
   max-width: 900px;
   padding: 2rem;
 `
+
+const PageTitle = styled.h1`
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem;
+`
+
 export default PostsPage
 
 export const Head = ({ location, data }: HeadProps<IndexQuery>) => {

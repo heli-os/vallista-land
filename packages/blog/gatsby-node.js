@@ -147,6 +147,131 @@ exports.createPages = async function ({ actions, graphql }) {
   }
 }
 
+// 빌드 완료 시 AI 크롤러용 llms.txt 생성
+exports.onPostBuild = async ({ graphql, reporter }) => {
+  const result = await graphql(`
+    {
+      site {
+        siteMetadata {
+          siteUrl
+          title
+          description
+        }
+      }
+      allMarkdownRemark(
+        sort: { frontmatter: { date: DESC } }
+        filter: {
+          fields: { contentType: { eq: "posts" } }
+          frontmatter: { draft: { ne: true } }
+        }
+      ) {
+        nodes {
+          excerpt(pruneLength: 180)
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date
+            tags
+            description
+          }
+        }
+      }
+      bookChapters: allMarkdownRemark(
+        sort: { frontmatter: { chapter: ASC } }
+        filter: {
+          fields: { contentType: { eq: "books" } }
+          frontmatter: { draft: { ne: true } }
+        }
+      ) {
+        nodes {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            chapter
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) {
+    reporter.panicOnBuild('llms.txt 생성 실패', result.errors)
+    return
+  }
+
+  const { siteUrl, title, description } = result.data.site.siteMetadata
+  const posts = result.data.allMarkdownRemark.nodes
+  const bookChapters = result.data.bookChapters.nodes
+
+  const encodeUrl = (slug) => `${siteUrl}${encodeURI(slug)}`
+
+  const lines = []
+  lines.push(`# ${title}`)
+  lines.push('')
+  lines.push(`> ${description}`)
+  lines.push('')
+  lines.push('이 파일은 LLM·AI 검색 엔진(ChatGPT, Perplexity, Claude, Gemini 등)이 사이트를 효율적으로 이해하도록 돕는 가이드입니다.')
+  lines.push('')
+  lines.push('## 주요 리소스')
+  lines.push(`- 전체 글 목록: ${siteUrl}/posts/`)
+  lines.push(`- 태그 목록: ${siteUrl}/tags/`)
+  lines.push(`- 책 목록: ${siteUrl}/books/`)
+  lines.push(`- 저자 소개: ${siteUrl}/about/`)
+  lines.push(`- 저자 이력서: ${siteUrl}/resume/`)
+  lines.push(`- 사이트맵: ${siteUrl}/sitemap-index.xml`)
+  lines.push(`- RSS: ${siteUrl}/rss.xml`)
+  lines.push(`- 책 RSS: ${siteUrl}/books/rss.xml`)
+  lines.push('')
+
+  // 태그별 그룹
+  const byTag = {}
+  posts.forEach((p) => {
+    (p.frontmatter.tags || []).forEach((t) => {
+      if (!byTag[t]) byTag[t] = []
+      byTag[t].push(p)
+    })
+  })
+  const tagOrder = Object.keys(byTag).sort((a, b) => byTag[b].length - byTag[a].length)
+
+  lines.push('## 글 (최신순)')
+  lines.push('')
+  posts.forEach((p) => {
+    const summary = p.frontmatter.description || p.excerpt || ''
+    lines.push(`- [${p.frontmatter.title}](${encodeUrl(p.fields.slug)}) — ${summary}`)
+  })
+  lines.push('')
+
+  lines.push('## 태그별')
+  lines.push('')
+  tagOrder.forEach((tag) => {
+    lines.push(`### ${tag} (${byTag[tag].length}개)`)
+    byTag[tag].slice(0, 20).forEach((p) => {
+      lines.push(`- [${p.frontmatter.title}](${encodeUrl(p.fields.slug)})`)
+    })
+    if (byTag[tag].length > 20) {
+      lines.push(`- … 외 ${byTag[tag].length - 20}개`)
+    }
+    lines.push('')
+  })
+
+  if (bookChapters.length > 0) {
+    lines.push('## 책 챕터')
+    lines.push('')
+    bookChapters.forEach((c) => {
+      lines.push(`- [${c.frontmatter.title}](${encodeUrl(c.fields.slug)})`)
+    })
+    lines.push('')
+  }
+
+  const outputPath = path.resolve(__dirname, 'public', 'llms.txt')
+  fs.writeFileSync(outputPath, lines.join('\n'), 'utf8')
+  reporter.info(`[llms.txt] 생성 완료: ${outputPath} (${posts.length}개 글)`)
+}
+
 // 노드 환경 생성될 때
 exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions

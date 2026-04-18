@@ -20,7 +20,7 @@ export const ListTable: FC<ListTableProps> = (props) => {
   return (
     <Container>
       <Styled._TitleWrapper underline={underline}>
-        <Text as='h3' size={32} weight={800}>
+        <Text as='h2' size={32} weight={800}>
           {title}
         </Text>
       </Styled._TitleWrapper>

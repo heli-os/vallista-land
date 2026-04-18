@@ -11,7 +11,10 @@ module.exports = {
     author: profile.author,
     url: profile.siteUrl,
     image: defaultOpenGraphImage,
-    twitterUsername: ''
+    twitterUsername: '',
+    sameAs: profile.sameAs || [],
+    jobTitle: profile.jobTitle || '',
+    knowsAbout: profile.knowsAbout || []
   },
   plugins: [
     {
@@ -220,9 +223,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: profile.description,
+        name: profile.title,
         short_name: profile.author,
+        description: profile.description,
         start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#FF6600`,
+        display: `standalone`,
+        lang: `ko`,
         icon: `static/favicons/favicon-96x96.png`,
         icons: [
           {

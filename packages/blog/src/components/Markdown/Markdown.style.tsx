@@ -137,20 +137,24 @@ export const _Contents = styled(_Wrapper)`
       margin: 0 0 1.25rem;
     }
 
-    h1,
-    h2 {
+    h1 {
       font-size: 1.8rem;
       filter: brightness(1);
     }
 
-    h3 {
+    h2 {
       font-size: 1.4rem;
+      filter: brightness(1);
+    }
+
+    h3 {
+      font-size: 1.15rem;
       filter: brightness(1.3);
     }
 
     h4 {
       filter: brightness(1.5);
-      font-size: 1.1rem;
+      font-size: 1rem;
       padding-bottom: 0.25rem;
       text-transform: uppercase;
     }

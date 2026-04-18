@@ -68,6 +68,9 @@ const TagPage: FC<PageProps<TagQuery> & { pageContext: TagPageContext }> = (prop
   return (
     <Container>
       <Wrapper>
+        <PageTitle>
+          <TagLabel>태그</TagLabel> {tag}
+        </PageTitle>
         {views.map((it) => (
           <Container key={it.year}>
             <div>
@@ -88,6 +91,22 @@ const Wrapper = styled.section`
   padding: 2rem;
 `
 
+const PageTitle = styled.h1`
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem;
+`
+
+const TagLabel = styled.span`
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  margin-right: 0.4rem;
+  border-radius: 999px;
+  vertical-align: middle;
+  opacity: 0.7;
+`
+
 export default TagPage
 
 export const Head = ({ location, pageContext }: HeadProps<TagQuery, TagPageContext>) => {
@@ -95,13 +114,14 @@ export const Head = ({ location, pageContext }: HeadProps<TagQuery, TagPageConte
 
   const breadcrumbs = [
     { name: '홈', url: `${SITE_URL}/` },
+    { name: '태그', url: `${SITE_URL}/tags/` },
     { name: tag, url: `${SITE_URL}/tags/${tag}/` }
   ]
 
   return (
     <Seo
-      name={`${tag} — 테오 블로그`}
-      description={`${tag} 태그가 포함된 글 모음`}
+      name={tag}
+      description={`${tag} 태그가 포함된 글 모음 — 테오 블로그`}
       breadcrumbs={breadcrumbs}
       pathname={location.pathname}
     />
