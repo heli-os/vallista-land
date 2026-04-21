@@ -5,7 +5,7 @@ image: ./assets/thumbnail.jpeg
 tags:
   - 에세이
   - 성장
-date: 2026-04-05 14:00:00
+date: 2026-04-14 14:00:00
 draft: false
 ---
 
