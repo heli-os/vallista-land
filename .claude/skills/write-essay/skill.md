@@ -223,3 +223,4 @@ file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -
 - 이미지 경로는 반드시 `./assets/thumbnail.jpeg`. 레거시 `1.jpeg` 패턴 사용 금지. 이유: CLAUDE.md에서 `thumbnail.jpeg`를 명시적으로 규정했으며, 기존 스크립트(create-post-file.js)의 `1.jpeg`는 구버전 규칙
 - 본문에서 `#`(h1)이나 `##`(h2)를 섹션 제목으로 사용하지 않는다. `###`(h3)만 사용. 이유: Gatsby 템플릿에서 포스트 제목이 h1으로 렌더링되므로 본문 섹션은 h3부터 시작해야 계층 구조가 올바름
 - draft 기본값은 true. 사용자가 명시적으로 발행을 요청하지 않는 한 draft: true로 생성
+- 한글 글자와 `**bold**`를 공백 없이 붙이지 않는다. CommonMark의 flanking 규칙상 `**텍스트**한글` 처럼 양쪽이 한글/영문자면 닫는 `**`가 강조로 인식되지 않아 별표가 그대로 렌더링된다. 닫는 `**` 뒤에는 공백, 구두점(`.`, `,`, `:`, `)`), 또는 개행이 와야 한다. 닫히지 않는다면 해당 강조를 풀거나(`**Top Applicant**의` → `Top Applicant의`), 문장을 재구성한다. 예외: 앞쪽에 구두점이 있으면 뒤쪽이 한글이어도 닫힘 (`**상위 50%**에` OK)
