@@ -5,7 +5,7 @@ image: ./assets/thumbnail.jpeg
 tags:
   - 에세이
 date: 2026-04-22 03:00:00
-draft: false
+draft: true
 ---
 
 ![출구를 늦추는 저녁](./assets/thumbnail.jpeg)
