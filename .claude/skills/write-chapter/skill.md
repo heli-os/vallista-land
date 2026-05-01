@@ -96,6 +96,25 @@ spec의 전환 지침을 따라:
 
 파일명: `_workspace/book/chapters/ch-{NN}-draft.md`
 
+### 8단계: humanize-post 자체검증 (자동)
+
+산출물 저장이 끝나면 humanize-post 스킬을 자동 호출하여 humanize-kr v1.5 quick-rules의 S1 AI-tell 패턴을 자체검증·핀포인트 윤문한다.
+
+**입력**: 7단계에서 저장한 `_workspace/book/chapters/ch-{NN}-draft.md` 경로 (블로그 포스트가 아닌 챕터 파일이지만 본문이 한국어 산문이므로 동일 적용)
+
+**처리**:
+- S1 0건 → SKIP (등급 A)
+- S1 1~5건 → 자동 핀포인트 윤문 (변경률 10% 이내, 등급 B 진입)
+- S1 6건 초과 → 자동수정 **중단**, 사용자에게 글로벌 humanize-kr 정밀 윤문 권고 (`cd ~/.claude/skills/humanize-kr && claude` → "이 글 자연스럽게 윤문해줘")
+
+**Do-NOT 보호**: 인용·고유명사·수치·코드 펜스·spec/소스 메타 코멘트(`<!-- ... -->`)·blueprint의 톤 가이드 준수 voice는 100% 보존. 챕터 deep rewrite의 의도된 비유 발전(메타포 풀어쓰기)은 D-5 의인화 패턴이라도 그대로 둔다.
+
+**재작업 흐름과의 관계**: `revision_feedback` 반영 재작성 후에도 동일하게 8단계 호출. 단, 이미 humanize 통과한 부분이 다시 S1 잔존 0건이면 즉시 SKIP되어 무한 루프는 발생하지 않는다.
+
+**산출물**: `.context/humanize-post/{run_id}/{before.md, findings.json, diff.txt, summary.md}` 자동 생성.
+
+상세 절차·S1 패턴 표·자체검증 6항은 `.claude/skills/humanize-post/skill.md` 참조.
+
 ## 재작업 절차
 
 `revision_feedback`이 있는 경우:
