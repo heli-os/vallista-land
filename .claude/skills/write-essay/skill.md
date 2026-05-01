@@ -96,15 +96,54 @@ draft: {true|false}
 
 #### 5-1. 프롬프트 생성
 
-에세이 주제를 반영한 시각적 메타포를 공통 스타일에 추가:
+에세이의 톤·깊이에 따라 두 모드 중 하나를 선택한다.
+
+**모드 선택 기준**
+
+| 신호 | 권장 모드 |
+|---|---|
+| 가벼운 일상 글 / 짧은 회고 / 단편 통찰 | A (기본) |
+| 시리즈 소속 / 깊이 있는 분석 / 책 리뷰 / 통합 에세이 | B (시그니처) |
+| 모호하면 | A로 시작, 사용자 피드백 후 B로 승격 가능 |
+
+##### 모드 A — 기본 (가벼운 일상 에세이)
+
+공통 스타일 + 한 줄 시각 묘사:
 
 ```
-Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style, {에세이 주제를 시각화하는 구체적 묘사}
+Minimalist editorial illustration, muted warm tones, soft grain texture, 16:9 aspect ratio, blog thumbnail style, {에세이 주제를 시각화하는 구체적 묘사}. Absolutely no text of any kind anywhere in the frame — no letters, no numbers, no Korean characters, no captions, no signage, no labels, no glyphs, no typography, no watermarks.
 ```
 
 **예시**:
 - 주제: 기술 부채 → `...a person carefully stacking wooden blocks on an unstable tower, with cracks forming at the base`
 - 주제: 리더십 → `...a lighthouse beam cutting through dense fog over a calm sea at dusk`
+
+##### 모드 B — 시그니처 (시리즈 / 깊이 있는 에세이)
+
+A24 × Apple keynote × Kurzgesagt editorial 3D 톤. 모든 변주가 공유하는 7항목 시각 코드 + 5종 변주 프롬프트가 `references/signature-prompts.md`에 정의되어 있다. 이 모드를 사용할 때:
+
+1. 본문에서 핵심 메타포 1개를 추출
+2. `references/signature-prompts.md`의 변주 인덱스 표에서 메타포에 가장 부합하는 것을 고름
+3. 5종으로 부족하면 동일 시각 코드 안에서 새 변주를 작성 (작성 가이드 동일 파일 하단)
+
+**변주 인덱스 (요약)**:
+
+| # | 슬러그 | 어울리는 본문 메타포 |
+|---|---|---|
+| 1 | two-track | 같은 거리/다른 강박, 속도 비교 |
+| 2 | dimmer-console | 강도 조절, 감정 점유율, 스위치 |
+| 3 | empty-desk | 자리 비움, 손 놓아도 굴러감 |
+| 4 | three-readers | 같은 텍스트의 다른 해석/관점 |
+| 5 | mirror | 자기 검열 해제, 화면 뒤로 |
+
+풀 프롬프트는 반드시 `.claude/skills/write-essay/references/signature-prompts.md` 참조.
+
+**시리즈 시각 코드 — 새 변주 작성 시 7항목 모두 준수 (요약)**:
+faceless humanoid + matte 재질만 + 부드러운 탑 라이트 + 좌측 1/3 네거티브 스페이스 (텍스트 자리라고 명시 금지) + 액센트 픽셀 단위 + subtle film grain + 통일된 강한 텍스트 금지 절.
+
+**모든 시그니처 프롬프트의 Negative에 반드시 다음을 포함**: `absolutely no text of any kind anywhere in the frame — no letters, no numbers, no Korean characters, no captions, no signage, no labels, no glyphs, no typography, no watermarks`. `Korean headline overlay` / `headline space` / `text overlay` 류 표현은 자체가 텍스트 생성 신호이므로 프롬프트에 절대 쓰지 않는다. 책·간판·모니터·라벨 등 텍스트가 들어가기 쉬운 객체가 장면에 있으면 `the {object} appears blank without any printed content` 절을 추가.
+
+미드저니 전용 토큰(`--ar`, `--style raw`, `--v 6`)은 Imagen/Gemini에 무의미하므로 프롬프트 본문에서 제외. aspect ratio는 5-2의 API parameter로 전달.
 
 #### 5-2. Google AI Studio Imagen API로 이미지 자동 생성
 
@@ -207,14 +246,36 @@ file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -
 | 저장된 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
 | 비율 불일치 (16:9 아님) | Pillow center-crop + 1536x864 리사이즈 자동 적용 |
 
-### 6단계: 결과 보고
+### 6단계: humanize-post 자체검증 (자동)
+
+본문·썸네일 작성이 끝나면 humanize-post 스킬을 자동 호출하여 humanize-kr v1.5 quick-rules의 S1 AI-tell 패턴을 자체검증·핀포인트 윤문한다. 본 스킬에서 직접 수행할 수도 있고, humanize-post 스킬 절차(`.claude/skills/humanize-post/skill.md`)를 그대로 인보크할 수도 있다.
+
+**입력**: 4단계에서 작성한 `packages/blog/content/posts/{폴더명}/index.md` 경로
+
+**처리**:
+- S1 0건 → SKIP (등급 A)
+- S1 1~5건 → 자동 핀포인트 윤문 (변경률 10% 이내, 등급 B 진입)
+- S1 6건 초과 → 자동수정 **중단**, 사용자에게 글로벌 humanize-kr 정밀 윤문 권고 (`cd ~/.claude/skills/humanize-kr && claude` → "이 글 자연스럽게 윤문해줘")
+
+**Do-NOT 보호**: 큰따옴표 인용·고유명사·수치·코드 펜스·작가 voice는 100% 보존.
+
+**산출물**: `.context/humanize-post/{run_id}/{before.md, findings.json, diff.txt, summary.md}` 자동 생성. 7단계 결과 보고에 등급·변경률·적용 내역 포함.
+
+상세 절차·S1 패턴 표·자체검증 6항은 `.claude/skills/humanize-post/skill.md` 참조.
+
+### 7단계: 결과 보고
 
 사용자에게 다음을 출력:
 1. 생성된 파일 경로
 2. frontmatter 요약 (제목, 태그, 시리즈, draft 상태)
 3. 본문 섹션 구조
-4. 썸네일 이미지 생성 프롬프트 (복사 가능한 형태)
-5. 썸네일 상태:
+4. **humanize-post 자체검증 결과**:
+   - S1 finding 수 + 자동 윤문 적용 건수 + 등급
+   - 변경률 (%)
+   - 산출물 경로 (`.context/humanize-post/{run_id}/`)
+   - S1 6건+ 시 정밀 윤문 권고 메시지
+5. 썸네일 이미지 생성 프롬프트 (복사 가능한 형태)
+6. 썸네일 상태:
    - **자동 생성 성공 시**: "thumbnail.jpeg가 자동 생성되어 assets/ 폴더에 저장되었습니다. 품질을 확인해주세요."
    - **폴백 시**: "thumbnail.jpeg 이미지를 아래 프롬프트로 생성하여 assets/ 폴더에 넣어주세요" + 실패 원인
 

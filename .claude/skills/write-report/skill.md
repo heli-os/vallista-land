@@ -216,15 +216,37 @@ file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -
 | 저장된 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
 | 비율 불일치 (16:9 아님) | Pillow center-crop + 1536x864 리사이즈 자동 적용 |
 
-### 6단계: 결과 보고
+### 6단계: humanize-post 자체검증 (자동)
+
+본문·썸네일 작성이 끝나면 humanize-post 스킬을 자동 호출하여 humanize-kr v1.5 quick-rules의 S1 AI-tell 패턴을 자체검증·핀포인트 윤문한다.
+
+**입력**: 4단계에서 작성한 `packages/blog/content/posts/{폴더명}/index.md` 경로
+
+**처리**:
+- S1 0건 → SKIP (등급 A)
+- S1 1~5건 → 자동 핀포인트 윤문 (변경률 10% 이내, 등급 B 진입)
+- S1 6건 초과 → 자동수정 **중단**, 사용자에게 글로벌 humanize-kr 정밀 윤문 권고 (`cd ~/.claude/skills/humanize-kr && claude` → "이 글 자연스럽게 윤문해줘")
+
+**Do-NOT 보호**: 큰따옴표 인용·블록쿼트 인용문(>)·고유명사·수치·코드 펜스·작가 voice는 100% 보존. 리포트 특성상 인용문 비중이 크므로 인용 영역 침범 방지가 특히 중요.
+
+**산출물**: `.context/humanize-post/{run_id}/{before.md, findings.json, diff.txt, summary.md}` 자동 생성. 7단계 결과 보고에 등급·변경률·적용 내역 포함.
+
+상세 절차·S1 패턴 표·자체검증 6항은 `.claude/skills/humanize-post/skill.md` 참조.
+
+### 7단계: 결과 보고
 
 사용자에게 다음을 출력:
 1. 생성된 파일 경로
 2. frontmatter 요약 (제목, 태그, draft 상태)
 3. 본문 섹션 구조 (섹션 제목 목록)
 4. 인용문 수
-5. 썸네일 이미지 생성 프롬프트 (복사 가능한 형태)
-6. 썸네일 상태:
+5. **humanize-post 자체검증 결과**:
+   - S1 finding 수 + 자동 윤문 적용 건수 + 등급
+   - 변경률 (%)
+   - 산출물 경로 (`.context/humanize-post/{run_id}/`)
+   - S1 6건+ 시 정밀 윤문 권고 메시지
+6. 썸네일 이미지 생성 프롬프트 (복사 가능한 형태)
+7. 썸네일 상태:
    - **자동 생성 성공 시**: "thumbnail.jpeg가 자동 생성되어 assets/ 폴더에 저장되었습니다. 품질을 확인해주세요."
    - **폴백 시**: "thumbnail.jpeg 이미지를 아래 프롬프트로 생성하여 assets/ 폴더에 넣어주세요" + 실패 원인
 
