@@ -1,4 +1,4 @@
-import { Modal, Spacer, Text, Toggle } from '@heli-os/vallista-core'
+import { Modal, Spacer, Text } from '@heli-os/vallista-core'
 import { FC } from 'react'
 
 import * as Styled from './Header.style'
@@ -8,8 +8,7 @@ import { useHeader } from './useHeader'
 const fontSizeControllerMapper = [14, 16, 18, 20]
 
 export const Header: FC<HeaderProps> = (props) => {
-  const { fold, folding, dialog, textSize, mode, openDialog, closeDialog, changeTheme, changeTextSize } =
-    useHeader(props)
+  const { fold, folding, dialog, textSize, openDialog, closeDialog, changeTextSize } = useHeader(props)
 
   return (
     <Styled._Container fold={fold}>
@@ -48,43 +47,6 @@ export const Header: FC<HeaderProps> = (props) => {
           </svg>
         </Styled._SettingButton>
       </div>
-      <Styled._ThemeToggleContainer>
-        <svg
-          viewBox='0 0 24 24'
-          width='18'
-          height='18'
-          stroke='currentColor'
-          strokeWidth='1.5'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-          fill='none'
-          shapeRendering='geometricPrecision'
-        >
-          <circle cx='12' cy='12' r='5' />
-          <path d='M12 1v2' />
-          <path d='M12 21v2' />
-          <path d='M4.22 4.22l1.42 1.42' />
-          <path d='M18.36 18.36l1.42 1.42' />
-          <path d='M1 12h2' />
-          <path d='M21 12h2' />
-          <path d='M4.22 19.78l1.42-1.42' />
-          <path d='M18.36 5.64l1.42-1.42' />
-        </svg>
-        <Toggle toggle={mode === 'DARK'} size='medium' onChange={handleDarkModeToggle} color='pink' />
-        <svg
-          viewBox='0 0 24 24'
-          width='18'
-          height='18'
-          stroke='currentColor'
-          strokeWidth='1.5'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-          fill='none'
-          shapeRendering='geometricPrecision'
-        >
-          <path d='M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' />
-        </svg>
-      </Styled._ThemeToggleContainer>
       <Modal.Modal active={dialog.visible}>
         <Modal.Body>
           <Modal.Header>
@@ -115,14 +77,6 @@ export const Header: FC<HeaderProps> = (props) => {
       </Modal.Modal>
     </Styled._Container>
   )
-
-  function handleDarkModeToggle(state: boolean): void {
-    if (state) {
-      changeTheme('DARK')
-    } else {
-      changeTheme('LIGHT')
-    }
-  }
 
   function changeREM(size: number): void {
     changeTextSize(size)

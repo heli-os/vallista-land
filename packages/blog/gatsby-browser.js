@@ -1,9 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { ThemeProvider, useTheme } from '@heli-os/vallista-core'
+import { ThemeProvider } from '@heli-os/vallista-core'
 import React, { useEffect, useState } from 'react'
-
-import { onChangeThemeEvent, isDarkMode } from './src/utils'
 
 import { Layout } from './src/components/Layout'
 import { BookLayout } from './src/components/BookLayout'
@@ -74,24 +72,10 @@ const Loading = styled.div`
   `}
 `
 
-let firstRender = false
-
 const InitializeElement = ({ element, pathname, pageContext }) => {
-  const theme = useTheme()
-
-  if (!firstRender) {
-    if (isDarkMode()) {
-      changeTheme(theme, 'DARK')
-    } else {
-      changeTheme(theme, 'LIGHT')
-    }
-
-    firstRender = true
-  }
-
-  onChangeThemeEvent((themeType) => {
-    changeTheme(theme, themeType)
-  })
+  useEffect(() => {
+    document.body.style.backgroundColor = '#fff'
+  }, [])
 
   const isBookPage = pathname?.startsWith('/books/')
 
@@ -104,16 +88,4 @@ const InitializeElement = ({ element, pathname, pageContext }) => {
   }
 
   return <Layout>{element}</Layout>
-}
-
-const changeTheme = (theme, type) => {
-  if (typeof window === 'undefined') return
-
-  if (type === 'LIGHT') {
-    document.body.style.backgroundColor = '#fff'
-    theme.state.changeTheme('LIGHT')
-  } else {
-    document.body.style.backgroundColor = '#000'
-    theme.state.changeTheme('DARK')
-  }
 }

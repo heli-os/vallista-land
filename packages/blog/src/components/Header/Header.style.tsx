@@ -87,20 +87,6 @@ export const _SettingButton = styled.button<{ popup: boolean }>`
   `}
 `
 
-export const _ThemeToggleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ${({ theme }) => css`
-    color: ${theme.colors.PRIMARY.FOREGROUND};
-  `}
-
-  & > label {
-    margin: 0 12px;
-  }
-`
-
 export const _EnvironmentContainer = styled.div`
   display: flex;
   flex-direction: column;

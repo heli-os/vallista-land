@@ -28,4 +28,3 @@ export function filteredByDraft(posts: Post[]): Post[] {
 }
 
 export * as localStorage from './storage'
-export * from './theme'
