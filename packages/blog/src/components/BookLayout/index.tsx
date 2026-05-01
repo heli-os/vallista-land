@@ -1,8 +1,8 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Container, useTheme } from '@heli-os/vallista-core'
+import { Container } from '@heli-os/vallista-core'
 import { navigate } from 'gatsby'
-import { FC, PropsWithChildren, useEffect } from 'react'
+import { FC, PropsWithChildren } from 'react'
 
 import { Footer } from '../Footer'
 import { TextSizeControl } from '../TextSizeControl'
@@ -14,15 +14,6 @@ interface BookLayoutProps {
 }
 
 export const BookLayout: FC<PropsWithChildren<BookLayoutProps>> = ({ children, bookTitle, bookSlug, pathname }) => {
-  const theme = useTheme()
-
-  useEffect(() => {
-    theme.state.changeTheme('LIGHT')
-    if (typeof window !== 'undefined') {
-      document.body.style.backgroundColor = '#fff'
-    }
-  }, [])
-
   const bookPath = bookSlug
     ? `/books/${bookSlug.replace(/^\/|\/$/g, '')}/`
     : undefined

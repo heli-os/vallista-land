@@ -1,41 +1,21 @@
-import { useTheme } from '@heli-os/vallista-core'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useTextSize } from '../../hooks/useTextSize'
-import { isDarkMode, onChangeThemeEvent } from '../../utils'
-import { HeaderDialogType, HeaderProps, ReturnUseHeader, HeaderDialogVariableType, ThemeModeType } from './Header.type'
+import { HeaderDialogType, HeaderProps, ReturnUseHeader, HeaderDialogVariableType } from './Header.type'
 
 export const useHeader = <T extends HeaderProps>(props: T): ReturnUseHeader & T => {
-  const theme = useTheme()
-  const [mode, setMode] = useState<ThemeModeType>(() => {
-    if (typeof window === 'undefined') return 'LIGHT'
-    return isDarkMode() ? 'DARK' : 'LIGHT'
-  })
   const [dialog, setDialog] = useState<HeaderDialogType>({
     visible: false,
     type: 'SETTING'
   })
   const { textSize, changeTextSize } = useTextSize()
 
-  useEffect(() => {
-    onChangeThemeEvent((_theme) => {
-      setMode(_theme)
-    })
-  }, [])
-
-  useEffect(() => {
-    if (!mode) return
-    theme.state.changeTheme(mode)
-  }, [mode])
-
   return {
     ...props,
-    mode,
     textSize,
     dialog,
     openDialog,
     closeDialog,
-    changeTheme,
     changeTextSize
   }
 
@@ -45,9 +25,5 @@ export const useHeader = <T extends HeaderProps>(props: T): ReturnUseHeader & T 
 
   function closeDialog(): void {
     setDialog((before) => ({ ...before, visible: false }))
-  }
-
-  function changeTheme(_theme: ThemeModeType): void {
-    setMode(_theme)
   }
 }
