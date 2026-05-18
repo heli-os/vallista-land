@@ -23,8 +23,6 @@ const STATIC_DIR = join(BLOG_ROOT, 'static')
 const OG_DIR = join(STATIC_DIR, 'og')
 const ASSETS_DIR = join(__dirname, 'assets')
 
-const profile = JSON.parse(readFileSync(join(BLOG_ROOT, 'config', 'profile.json'), 'utf-8'))
-
 const WIDTH = 1200
 const HEIGHT = 630
 
@@ -38,30 +36,30 @@ const COLOR = {
 
 // 페이지 매니페스트 — name 이 곧 /og/<name>.jpeg, 그리고 default 는 open-graph.jpeg 도 겸한다.
 const PAGES = [
-  { name: 'default', title: '테오 블로그', subtitle: profile.description },
-  { name: 'index', title: '테오 블로그', subtitle: '엔지니어링 · Agentic AI · 에세이' },
+  { name: 'default', title: '테오 블로그', subtitle: '제품 엔지니어링과 조직·성장, Agentic AI를 다루는 블로그.' },
+  { name: 'index', title: '테오 블로그', subtitle: '제품을 만들어온 스타트업 CTO가 보고 겪은 것을 적는 블로그.' },
   {
     name: 'coffee-chat',
     title: '커피챗',
-    subtitle: 'AI 시대엔 더 이상 효율은 없다. 제품·개발·AI를 둘러싼 열린 질문을 일대일로.'
+    subtitle: '제품과 개발, AI에 대한 질문을 일대일로 함께 이야기하는 자리.'
   },
   {
     name: 'about',
     title: '소개',
-    subtitle: '테오 블로그와 저자 진태양(Theo)에 대한 소개. 제품 엔지니어링·Agentic AI·조직·성장 에세이.'
+    subtitle: '블로그가 무엇을 다루고 누가 쓰는지에 대한 소개.'
   },
-  { name: 'resume', title: '이력서', subtitle: 'Product Engineer · CTO — 진태양(Theo)' },
-  { name: 'books', title: '책', subtitle: '테오가 쓴 책 목록' },
-  { name: 'posts', title: '글 목록', subtitle: '테오 블로그의 모든 글' },
+  { name: 'resume', title: '이력서', subtitle: '제품을 만들고 팀을 꾸려온 진태양(Theo)의 이력.' },
+  { name: 'books', title: '책', subtitle: "'작은 팀의 기술' — 개발자 출신 창업자의 조직 운영기." },
+  { name: 'posts', title: '글 목록', subtitle: '지금까지 쓴 글을 연도별로 모아둔 곳.' },
   {
     name: 'tags',
     title: '태그 목록',
-    subtitle: '에세이 · 기술 · 성장 · 조직 · 스타트업 · 회고 · 리뷰 · 리포트'
+    subtitle: '주제별로 글을 모아 보는 곳.'
   },
   {
     name: '404',
     title: '페이지를 찾을 수 없습니다',
-    subtitle: '요청하신 페이지를 찾을 수 없습니다.'
+    subtitle: '찾는 페이지가 없어요. 주소가 바뀌었거나 글이 사라졌을 수 있어요.'
   }
 ]
 
