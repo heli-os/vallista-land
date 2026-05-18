@@ -11,6 +11,7 @@ export interface NavCategoryType {
   home: NavCategoryProperties
   posts: NavCategoryProperties
   books?: NavCategoryProperties
+  coffeechat?: NavCategoryProperties
   tags?: NavCategoryProperties
 }
 export interface NavFooterType {

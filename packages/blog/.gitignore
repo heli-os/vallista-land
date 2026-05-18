@@ -2,3 +2,7 @@ node_modules/
 .cache/
 public
 .credentials.json
+
+# 빌드타임 자동 생성 OG 이미지 (scripts/generate-og-images.mjs)
+# open-graph.jpeg 는 JSON-LD 로고 겸용이라 추적 유지
+static/og/

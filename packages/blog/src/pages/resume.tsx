@@ -477,4 +477,4 @@ const SubTitleText = styled.div`
 
 export default ResumePage
 
-export const Head = ({ location }: HeadProps) => <Seo name='이력서' image='/open-graph.jpeg' pathname={location.pathname} />
+export const Head = ({ location }: HeadProps) => <Seo name='이력서' image='/og/resume.jpeg' pathname={location.pathname} />

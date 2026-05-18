@@ -27,6 +27,7 @@ export * from './Footer'
 export * from './Tooltip'
 export * from './Input'
 export * from './Toast'
+export * from './Dropdown'
 
 export { ImageComponent as Image } from './Image'
 

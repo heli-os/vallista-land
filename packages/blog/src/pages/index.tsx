@@ -128,6 +128,7 @@ export default IndexPage
 export const Head = ({ location }: HeadProps) => (
   <Seo
     name='테오 블로그 — 엔지니어링, Agentic AI, 에세이'
+    image='/og/index.jpeg'
     pathname={location.pathname}
     noTemplate
   />

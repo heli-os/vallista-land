@@ -54,6 +54,11 @@ export const _Section = styled.section`
 
   @media screen and (max-width: 1024px) {
     flex-direction: row;
+
+    /** 모바일에서는 소셜(GitHub/LinkedIn) 그룹을 숨겨 콘텐츠 내비만 노출. 소셜은 about/resume에서 접근 */
+    & > nav:last-of-type {
+      display: none;
+    }
   }
 `
 
