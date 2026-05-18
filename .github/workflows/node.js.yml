@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: ['main']
 
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,8 +34,10 @@ jobs:
       - name: 블로그 빌드
         run: yarn build:blog
       - name: git config 설정
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config --global user.email "sun@dataportal.kr"
           git config --global user.name "Taeyang Jin (Theo)"
       - name: heli-os.github.io 배포
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: cd packages/blog && node scripts/deploy.js ${{ secrets.TOKEN }}
