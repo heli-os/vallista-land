@@ -60,6 +60,9 @@ const AboutPage: FC = () => {
             <li>
               <Link to='/resume/'>이력 / 저자 소개</Link> — 커리어와 활동
             </li>
+            <li>
+              <Link to='/coffee-chat/'>커피챗</Link> — 일대일로 같이 질문을 푸는 자리
+            </li>
           </LinkList>
         </Section>
 
@@ -157,12 +160,6 @@ const Section = styled.section`
     & > ul li {
       margin-bottom: 0.3rem;
     }
-
-    a {
-      color: ${theme.colors.HIGHLIGHT.ORANGE};
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
   `}
 `
 
@@ -173,10 +170,5 @@ const LinkList = styled.ul`
     font-size: 1rem;
     line-height: 1.9;
     color: ${theme.colors.PRIMARY.ACCENT_6};
-
-    a {
-      color: ${theme.colors.HIGHLIGHT.ORANGE};
-      font-weight: 600;
-    }
   `}
 `
