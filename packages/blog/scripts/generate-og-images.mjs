@@ -73,10 +73,10 @@ const el = (type, style, children) => ({ type, props: { style, ...(children !== 
 
 const titleFontSize = (title) => {
   const len = [...title].length
-  if (len <= 8) return 92
-  if (len <= 16) return 76
-  if (len <= 28) return 60
-  return 48
+  if (len <= 6) return 132
+  if (len <= 10) return 104
+  if (len <= 16) return 84
+  return 72
 }
 
 const truncate = (text, max) => ([...text].length <= max ? text : `${[...text].slice(0, max - 1).join('')}…`)
@@ -90,13 +90,13 @@ const card = ({ title, subtitle }) =>
       justifyContent: 'space-between',
       width: WIDTH,
       height: HEIGHT,
-      padding: '80px',
+      padding: '56px',
       backgroundColor: COLOR.bg,
       color: COLOR.fg,
       fontFamily: 'Pretendard'
     },
     [
-      el('div', { display: 'flex', width: '72px', height: '10px', borderRadius: '5px', backgroundColor: COLOR.accent }),
+      el('div', { display: 'flex', width: '88px', height: '12px', borderRadius: '6px', backgroundColor: COLOR.accent }),
       el('div', { display: 'flex', flexDirection: 'column' }, [
         el(
           'div',
@@ -105,14 +105,19 @@ const card = ({ title, subtitle }) =>
         ),
         el(
           'div',
-          { display: 'flex', marginTop: '28px', fontSize: '30px', fontWeight: 400, lineHeight: 1.45, color: COLOR.muted },
-          truncate(subtitle, 88)
+          {
+            display: 'flex',
+            marginTop: '24px',
+            fontSize: '44px',
+            fontWeight: 400,
+            lineHeight: 1.45,
+            color: COLOR.muted,
+            whiteSpace: 'nowrap'
+          },
+          truncate(subtitle, 34)
         )
       ]),
-      el('div', { display: 'flex', fontSize: '26px', fontWeight: 700 }, [
-        el('div', { display: 'flex' }, '테오 블로그'),
-        el('div', { display: 'flex', color: COLOR.muted, fontWeight: 400, marginLeft: '14px' }, '· dataportal.kr')
-      ])
+      el('div', { display: 'flex', fontSize: '32px', fontWeight: 700, color: COLOR.fg }, 'dataportal.kr')
     ]
   )
 
