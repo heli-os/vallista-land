@@ -85,7 +85,7 @@ const BooksPage: FC<BooksPageProps> = ({ data }) => {
 export default BooksPage
 
 export const Head = ({ location }: HeadProps) => (
-  <Seo name='책' description='테오가 쓴 책 목록' isPost={false} pathname={location.pathname} />
+  <Seo name='책' description='테오가 쓴 책 목록' image='/og/books.jpeg' isPost={false} pathname={location.pathname} />
 )
 
 export const pageQuery = graphql`

@@ -39,15 +39,6 @@ export const _Article = styled.article`
     a {
       cursor: pointer;
       color: ${theme.colors.PRIMARY.FOREGROUND};
-      text-decoration: underline;
-      text-decoration-color: ${theme.colors.PRIMARY.ACCENT_3};
-      text-underline-offset: 3px;
-      transition: color 0.15s ease;
-
-      &:hover {
-        color: ${theme.colors.HIGHLIGHT.ORANGE};
-        text-decoration-color: ${theme.colors.HIGHLIGHT.ORANGE};
-      }
     }
   `}
 `

@@ -107,6 +107,7 @@ export const Head = ({ location }: HeadProps) => {
       <Seo
         name='소개'
         description='테오 블로그와 저자 진태양(Theo)에 대한 소개. 제품 엔지니어링·Agentic AI·조직·성장 에세이.'
+        image='/og/about.jpeg'
         breadcrumbs={breadcrumbs}
         pathname={location.pathname}
       />

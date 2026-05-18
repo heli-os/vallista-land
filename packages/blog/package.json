@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "run:blog": "npx kill-port 8000 && gatsby develop",
+    "og:blog": "node ./scripts/generate-og-images.mjs",
+    "prebuild:blog": "node ./scripts/generate-og-images.mjs",
     "build:blog": "gatsby build --log-pages",
     "serve:blog": "gatsby serve",
     "clean:blog": "gatsby clean",
@@ -51,6 +53,8 @@
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.0.0",
+    "satori": "^0.12.0",
+    "sharp": "^0.32.6"
   }
 }

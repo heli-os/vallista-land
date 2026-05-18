@@ -52,7 +52,7 @@ export default NotFoundPage
 
 export const Head = ({ location }: HeadProps) => (
   <>
-    <Seo name='페이지를 찾을 수 없습니다' description='요청하신 페이지를 찾을 수 없습니다.' pathname={location.pathname} />
+    <Seo name='페이지를 찾을 수 없습니다' description='요청하신 페이지를 찾을 수 없습니다.' image='/og/404.jpeg' pathname={location.pathname} />
     <meta name='robots' content='noindex, nofollow' />
   </>
 )

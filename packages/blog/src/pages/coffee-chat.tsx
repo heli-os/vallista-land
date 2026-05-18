@@ -327,6 +327,7 @@ export const Head = ({ location }: HeadProps) => {
       <Seo
         name='커피챗'
         description='AI 시대엔 더 이상 효율은 없다. 제품·개발·AI를 둘러싼 열린 질문을 일대일로 함께 푸는 커피챗을 신청하세요.'
+        image='/og/coffee-chat.jpeg'
         breadcrumbs={breadcrumbs}
         pathname={location.pathname}
       />

@@ -162,7 +162,7 @@ export const Head = ({ location, data }: HeadProps<IndexQuery>) => {
 
   return (
     <>
-      <Seo name='글 목록' breadcrumbs={breadcrumbs} pathname={location.pathname} />
+      <Seo name='글 목록' image='/og/posts.jpeg' breadcrumbs={breadcrumbs} pathname={location.pathname} />
       <script type='application/ld+json'>{JSON.stringify(itemListJsonLd)}</script>
     </>
   )

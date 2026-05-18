@@ -25,6 +25,21 @@ export const _Contents = styled(_Wrapper)`
   }
 
   ${({ theme }) => css`
+    /* Inline Link */
+
+    a {
+      color: ${theme.colors.PRIMARY.FOREGROUND};
+      text-decoration: underline;
+      text-decoration-color: ${theme.colors.PRIMARY.ACCENT_3};
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: ${theme.colors.HIGHLIGHT.ORANGE};
+        text-decoration-color: ${theme.colors.HIGHLIGHT.ORANGE};
+      }
+    }
+
     /** image */
 
     p > img {
