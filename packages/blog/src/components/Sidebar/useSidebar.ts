@@ -1,3 +1,4 @@
+import { useLocation } from '@reach/router'
 import { navigate } from 'gatsby'
 import { useEffect, useMemo, useState } from 'react'
 import { SidebarPost } from 'types/type'
@@ -13,13 +14,7 @@ const BLACKLIST: string[] = []
 
 export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar & Omit<T, 'posts'> => {
   const { posts } = props
-  const [currentPathname, setCurrentPathname] = useState('/')
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentPathname(window.location.pathname)
-    }
-  }, [])
+  const { pathname: currentPathname } = useLocation()
 
   const [search, setSearch] = useState(() => {
     return localStorage.get('search') || DEFAULT_SEARCH_VALUE
