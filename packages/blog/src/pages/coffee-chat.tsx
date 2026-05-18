@@ -298,6 +298,12 @@ const CoffeeChatPage: FC = () => {
                 bolta.io
               </a>
             </li>
+            <li>
+              Financial Data API:{' '}
+              <a href={H6S_URL} target='_blank' rel='noopener noreferrer'>
+                h6s.ai
+              </a>
+            </li>
           </LinkList>
         </Section>
       </Wrapper>
