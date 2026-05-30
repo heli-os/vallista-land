@@ -61,7 +61,7 @@ export const _Contents = styled(_Wrapper)`
     blockquote,
     ol {
       font-size: 1rem;
-      margin: 0 0 2rem;
+      margin: 0 0 1rem;
     }
 
     /* Table */
@@ -141,7 +141,7 @@ export const _Contents = styled(_Wrapper)`
     h2:not(:first-of-type),
     h3:not(:first-of-type),
     h4:not(:first-of-type) {
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
 
     h1,
