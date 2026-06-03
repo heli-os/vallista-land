@@ -6,7 +6,7 @@ tags:
   - 에세이
   - 성장
 date: 2026-06-04 07:52:37
-draft: true
+draft: false
 ---
 
 ![진짜 경쟁은 보이지 않는다를 표현한 일러스트레이션](./assets/thumbnail.jpeg)
