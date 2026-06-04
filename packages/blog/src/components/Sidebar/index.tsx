@@ -1,5 +1,4 @@
 import { Colors, Container, Text, SearchInput } from '@heli-os/vallista-core'
-import { navigate } from 'gatsby'
 import { useEffect, useMemo, useRef, useState, FC } from 'react'
 
 import { SidebarPost } from '../../types/type'
@@ -14,8 +13,7 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = (props) => {
   const sidebarProps = useSidebar(props)
-  const { posts, totalPosts, search, viewState, changeScrollState, changeSearch, changeLocation, isNowPage } =
-    sidebarProps
+  const { posts, totalPosts, search, viewState, changeScrollState, changeSearch, isNowPage } = sidebarProps
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -84,7 +82,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
             </div>
             <Text>책</Text>
           </Styled._BookSectionHeader>
-          <Styled._BookItem onClick={() => navigate('/books/the-art-of-small-teams/')}>
+          <Styled._BookItem to='/books/the-art-of-small-teams/'>
             <div>
               <svg viewBox='0 0 24 24' width='20' height='20' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' fill='none' shapeRendering='geometricPrecision'>
                 <path d='M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z' />
@@ -97,23 +95,13 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         <Styled._Categories>
           <Container>
             {Object.entries(posts).map(([title, _posts]) => (
-              <CategoryList
-                title={title}
-                posts={_posts}
-                moveToLocation={moveToLocation}
-                isNowPage={isNowPage}
-                viewState={viewState}
-              />
+              <CategoryList title={title} posts={_posts} isNowPage={isNowPage} viewState={viewState} />
             ))}
           </Container>
         </Styled._Categories>
       </Styled._SidebarContainer>
     </aside>
   )
-
-  function moveToLocation(target: string): void {
-    changeLocation(target)
-  }
 
   function handleInput(target: string): void {
     changeSearch(target)
@@ -128,11 +116,10 @@ interface CategoryListProps {
   viewState: ViewStateType
   title: string
   posts: SidebarPost[]
-  moveToLocation: (target: string) => void
   isNowPage: (target: string) => boolean
 }
 
-const CategoryList: FC<CategoryListProps> = ({ viewState, posts, title, isNowPage, moveToLocation }) => {
+const CategoryList: FC<CategoryListProps> = ({ viewState, posts, title, isNowPage }) => {
   const [fold, setFold] = useState(!posts.find((it) => isNowPage(it.slug)))
 
   const List = useMemo(() => (viewState === 'CARD' ? Styled._CardStyle : Styled._ListStyle), [viewState])
@@ -173,7 +160,7 @@ const CategoryList: FC<CategoryListProps> = ({ viewState, posts, title, isNowPag
         {posts.map((it) => (
           <ListItem
             key={it.name}
-            onClick={() => moveToLocation(it.slug)}
+            to={it.slug}
             image={it.image}
             text={it.name}
             isActive={isNowPage(it.slug)}

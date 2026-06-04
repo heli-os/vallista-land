@@ -1,7 +1,12 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 import { CommonLayoutProps } from './Sidebar.type'
+
+// 커스텀 스타일 prop이 DOM(<a>)으로 새지 않도록 거른다.
+const STYLE_ONLY_PROPS = ['image', 'text', 'isActive']
+const shouldForwardLinkProp = (prop: string): boolean => !STYLE_ONLY_PROPS.includes(prop)
 
 export const _SidebarContainer = styled.div<CommonLayoutProps>`
   position: fixed;
@@ -163,7 +168,7 @@ export const _CardStyle = styled.nav`
 `
 
 type CardStyleItemProps = Partial<CommonLayoutProps> & { image: string | null; text: string; isActive: boolean }
-export const _CardStyleItem = styled.a<CardStyleItemProps>`
+export const _CardStyleItem = styled(Link, { shouldForwardProp: shouldForwardLinkProp })<CardStyleItemProps>`
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -292,7 +297,7 @@ export const _BookSectionHeader = styled.div`
   `}
 `
 
-export const _BookItem = styled.a`
+export const _BookItem = styled(Link)`
   position: relative;
   display: flex;
   justify-content: flex-start;
@@ -316,7 +321,7 @@ export const _BookItem = styled.a`
   `}
 `
 
-export const _ListStyleItem = styled.a<Pick<CardStyleItemProps, 'isActive'>>`
+export const _ListStyleItem = styled(Link, { shouldForwardProp: shouldForwardLinkProp })<Pick<CardStyleItemProps, 'isActive'>>`
   position: relative;
   display: flex;
   justify-content: flex-start;

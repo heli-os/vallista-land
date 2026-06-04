@@ -1,5 +1,4 @@
 import { Container, Spacer, Text } from '@heli-os/vallista-core'
-import { navigate } from 'gatsby'
 import { FC } from 'react'
 
 import * as Styled from './ListTable.style'
@@ -27,7 +26,7 @@ export const ListTable: FC<ListTableProps> = (props) => {
       <Spacer y={1} />
       <Styled._List>
         {list.map((it) => (
-          <Styled._ListItem key={it.slug} onClick={() => moveToLocation(it.slug)}>
+          <Styled._ListItem key={it.slug} to={it.slug}>
             <Text as='span' size={16} weight={600}>
               {it.name}
             </Text>
@@ -39,8 +38,4 @@ export const ListTable: FC<ListTableProps> = (props) => {
       </Styled._List>
     </Container>
   )
-
-  function moveToLocation(target: string): void {
-    navigate(target)
-  }
 }

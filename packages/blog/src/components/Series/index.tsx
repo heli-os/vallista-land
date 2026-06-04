@@ -1,5 +1,5 @@
 import { Collapse, Container } from '@heli-os/vallista-core'
-import { navigate } from 'gatsby'
+import { Link } from 'gatsby'
 import { FC } from 'react'
 
 import * as Styled from './Series.style'
@@ -23,15 +23,11 @@ export const Series: FC<SeriesProps> = (props) => {
         <Styled._List>
           {posts.map((it) => (
             <Styled._Item timeToRead={it.timeToRead} active={it.slug === currentSlug} key={it.name}>
-              <span onClick={() => it.slug !== currentSlug && moveToLocation(it.slug)}>{it.name}</span>
+              {it.slug === currentSlug ? <span>{it.name}</span> : <Link to={it.slug}>{it.name}</Link>}
             </Styled._Item>
           ))}
         </Styled._List>
       </Container>
     </Collapse>
   )
-
-  function moveToLocation(slug: string): void {
-    navigate(slug)
-  }
 }

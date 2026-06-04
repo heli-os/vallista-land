@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 export const _TitleWrapper = styled.header<{ underline: boolean }>`
   ${({ theme, underline }) => css`
@@ -12,7 +13,7 @@ export const _TitleWrapper = styled.header<{ underline: boolean }>`
 
 export const _List = styled.div``
 
-export const _ListItem = styled.a`
+export const _ListItem = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;

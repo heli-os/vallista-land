@@ -1,5 +1,4 @@
 import { useLocation } from '@reach/router'
-import { navigate } from 'gatsby'
 import { useEffect, useMemo, useState } from 'react'
 import { SidebarPost } from 'types/type'
 
@@ -89,8 +88,7 @@ export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar &
     isNowPage,
     changeScrollState,
     changeViewState,
-    changeSearch,
-    changeLocation
+    changeSearch
   }
 
   function isNowPage(target: string): boolean {
@@ -110,9 +108,5 @@ export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar &
   function changeSearch(target: string): void {
     setSearch(target)
     localStorage.set('search', '')
-  }
-
-  function changeLocation(target: string): void {
-    navigate(target)
   }
 }

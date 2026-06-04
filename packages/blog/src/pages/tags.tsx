@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Container } from '@heli-os/vallista-core'
-import { graphql, navigate, HeadProps } from 'gatsby'
+import { graphql, Link, HeadProps } from 'gatsby'
 import { FC, useMemo } from 'react'
 
 import { Seo } from '../components/Seo'
@@ -34,7 +34,7 @@ const TagsPage: FC<TagsPageProps> = ({ data }) => {
         <Intro>글에 달린 태그 목록입니다. 태그를 누르면 해당 주제로 모인 글을 볼 수 있어요.</Intro>
         <TagList>
           {tags.map((tag) => (
-            <TagItem key={tag.fieldValue} onClick={() => navigate(`/tags/${tag.fieldValue}/`)}>
+            <TagItem key={tag.fieldValue} to={`/tags/${tag.fieldValue}/`}>
               <TagName>{tag.fieldValue}</TagName>
               <TagCount>{tag.totalCount}개</TagCount>
             </TagItem>
@@ -119,16 +119,13 @@ const Intro = styled.p`
   `}
 `
 
-const TagList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
+const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 `
 
-const TagItem = styled.li`
+const TagItem = styled(Link)`
   ${({ theme }) => css`
     display: inline-flex;
     align-items: center;
@@ -137,6 +134,7 @@ const TagItem = styled.li`
     border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
     border-radius: 999px;
     cursor: pointer;
+    text-decoration: none;
     transition: all 0.15s ease;
 
     &:hover {
