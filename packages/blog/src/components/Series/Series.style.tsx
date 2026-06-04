@@ -22,7 +22,8 @@ export const _Item = styled.li<{ timeToRead: number; active: boolean }>`
       font-size: 0.8rem;
     }
 
-    & > span {
+    & > span,
+    & > a {
       cursor: ${active ? 'default' : 'pointer'};
       border-bottom: 2px solid ${theme.colors.HIGHLIGHT.ORANGE};
       font-weight: 600;

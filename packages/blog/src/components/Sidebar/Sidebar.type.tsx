@@ -19,7 +19,6 @@ export interface ReturnUseSidebar {
   changeScrollState: (scrollHeight?: number, clientHeight?: number) => void
   changeViewState: () => void
   changeSearch: (target: string) => void
-  changeLocation: (target: string) => void
 }
 
 export type CommonLayoutProps = Pick<SidebarProps, 'fold'> & Pick<ReturnUseSidebar, 'scrollState' | 'viewState'>

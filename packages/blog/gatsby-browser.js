@@ -1,7 +1,7 @@
-import { css } from '@emotion/react'
+import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { ThemeProvider } from '@heli-os/vallista-core'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { Layout } from './src/components/Layout'
 import { BookLayout } from './src/components/BookLayout'
@@ -51,25 +51,22 @@ export function wrapPageElement({ element, props }) {
 }
 
 const Loader = ({ children }) => {
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    setLoading(true)
-  }, [])
-
-  return <Loading loading={loading}>{children}</Loading>
+  return <Loading>{children}</Loading>
 }
 
-const Loading = styled.div`
-  transition: opacity 0.2s ease;
-  opacity: 0;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
-  ${({ loading }) => css`
-    ${loading &&
-    css`
-      opacity: 1;
-    `}
-  `}
+// JS 없이도 콘텐츠가 보이도록 CSS 애니메이션으로 페이드인한다.
+// (이전 구현은 useEffect로 opacity를 토글해 JS가 꺼지면 opacity:0으로 고정됐다)
+const Loading = styled.div`
+  animation: ${fadeIn} 0.2s ease forwards;
 `
 
 const InitializeElement = ({ element, pathname, pageContext }) => {
