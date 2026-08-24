@@ -21,6 +21,7 @@ export const _ListItem = styled(Link)`
   border-radius: 6px;
   padding: 0.625rem 1.5rem;
   margin: 0 -1.5rem;
+  text-decoration: none;
 
   ${({ theme }) => css`
     color: ${theme.colors.PRIMARY.ACCENT_6} !important;
