@@ -5,8 +5,8 @@ image: ./assets/thumbnail.jpeg
 tags:
   - 기술
   - 조직
-date: 2026-08-25 08:31:04
-draft: true
+date: 2026-08-25 08:49:29
+draft: false
 ---
 
 ![회사의 모든 정보를 아는 사람은 없다](./assets/thumbnail.jpeg)
