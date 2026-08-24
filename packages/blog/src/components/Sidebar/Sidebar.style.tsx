@@ -180,6 +180,7 @@ export const _CardStyleItem = styled(Link, { shouldForwardProp: shouldForwardLin
   cursor: pointer;
   overflow: hidden;
   transform: scale(1, 1);
+  text-decoration: none;
   transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 
   ${({ theme, image, text, isActive }) => css`
@@ -302,8 +303,10 @@ export const _BookItem = styled(Link)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: inherit;
   cursor: pointer;
   padding: 6px 0;
+  text-decoration: none;
   transition: background 0.2s ease;
 
   ${({ theme }) => css`
@@ -326,8 +329,10 @@ export const _ListStyleItem = styled(Link, { shouldForwardProp: shouldForwardLin
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: inherit;
   cursor: pointer;
   padding: 6px 0;
+  text-decoration: none;
   transition: border 0.2s ease;
 
   ${({ theme, isActive }) => css`
