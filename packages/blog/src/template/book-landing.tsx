@@ -44,7 +44,7 @@ const BookLanding: FC<BookLandingPageProps> = ({ data }) => {
       </Header>
 
       <Description>
-        100개 이상의 제품을 만들며 깨달은 것 — 결국 가장 잘 작동하는 건 작은 팀이었다.
+        100개 이상의 제품을 만들며 깨달은 것: 결국 가장 잘 작동하는 건 작은 팀이었다.
         <br />
         채용부터 AI 시대의 조직까지, 작은 팀 위에 쌓아 올린 운영의 기술.
       </Description>

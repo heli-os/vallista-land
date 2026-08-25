@@ -31,16 +31,16 @@ const AboutPage: FC = () => {
           <h2>주요 카테고리</h2>
           <ul>
             <li>
-              <strong>에세이</strong> — 일, 조직, 성장, 삶에 대한 짧은 관찰 기록
+              <strong>에세이</strong>: 일, 조직, 성장, 삶에 대한 짧은 관찰 기록
             </li>
             <li>
-              <strong>기술</strong> — 제품 엔지니어링과 아키텍처, 개발 방법론
+              <strong>기술</strong>: 제품 엔지니어링과 아키텍처, 개발 방법론
             </li>
             <li>
-              <strong>Agentic AI 논문 읽기</strong> — LLM 에이전트·툴 사용·멀티에이전트 관련 주요 논문 리뷰
+              <strong>Agentic AI 논문 읽기</strong>: LLM 에이전트·툴 사용·멀티에이전트 관련 주요 논문 리뷰
             </li>
             <li>
-              <strong>작은 팀의 기술 (책)</strong> — 개발자 출신 창업자의 조직 운영기
+              <strong>작은 팀의 기술 (책)</strong>: 개발자 출신 창업자의 조직 운영기
             </li>
           </ul>
         </Section>
@@ -49,19 +49,19 @@ const AboutPage: FC = () => {
           <h2>탐색하기</h2>
           <LinkList>
             <li>
-              <Link to='/posts/'>전체 글 목록</Link> — 지금까지 쓴 모든 글
+              <Link to='/posts/'>전체 글 목록</Link>: 지금까지 쓴 모든 글
             </li>
             <li>
-              <Link to='/tags/'>태그 목록</Link> — 주제별로 모아 보기
+              <Link to='/tags/'>태그 목록</Link>: 주제별로 모아 보기
             </li>
             <li>
-              <Link to='/books/'>책</Link> — 연재 중인 책
+              <Link to='/books/'>책</Link>: 연재 중인 책
             </li>
             <li>
-              <Link to='/resume/'>이력 / 저자 소개</Link> — 커리어와 활동
+              <Link to='/resume/'>이력 / 저자 소개</Link>: 커리어와 활동
             </li>
             <li>
-              <Link to='/coffee-chat/'>커피챗</Link> — 일대일로 같이 질문을 푸는 자리
+              <Link to='/coffee-chat/'>커피챗</Link>: 일대일로 같이 질문을 푸는 자리
             </li>
           </LinkList>
         </Section>

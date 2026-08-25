@@ -77,7 +77,7 @@ export const Head = ({ data, location }: HeadProps<BookChapterData>) => {
 
   return (
     <Seo
-      name={`${title} — 작은 팀의 기술`}
+      name={`${title}: 작은 팀의 기술`}
       description={description || excerpt}
       image='/book/og-book.jpeg'
       isPost={false}

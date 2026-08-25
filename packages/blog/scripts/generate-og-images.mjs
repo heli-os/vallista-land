@@ -34,7 +34,7 @@ const COLOR = {
   accent: '#0070F3'
 }
 
-// 페이지 매니페스트 — name 이 곧 /og/<name>.jpeg, 그리고 default 는 open-graph.jpeg 도 겸한다.
+// 페이지 매니페스트: name 이 곧 /og/<name>.jpeg, 그리고 default 는 open-graph.jpeg 도 겸한다.
 const PAGES = [
   { name: 'default', title: '테오 블로그', subtitle: '제품 엔지니어링과 조직·성장, Agentic AI를 다루는 블로그.' },
   { name: 'index', title: '테오 블로그', subtitle: '제품을 만들어온 스타트업 CTO가 보고 겪은 것을 적는 블로그.' },
@@ -49,7 +49,7 @@ const PAGES = [
     subtitle: '블로그가 무엇을 다루고 누가 쓰는지에 대한 소개.'
   },
   { name: 'resume', title: '이력서', subtitle: '제품을 만들고 팀을 꾸려온 진태양(Theo)의 이력.' },
-  { name: 'books', title: '책', subtitle: "'작은 팀의 기술' — 개발자 출신 창업자의 조직 운영기." },
+  { name: 'books', title: '책', subtitle: "'작은 팀의 기술': 개발자 출신 창업자의 조직 운영기." },
   { name: 'posts', title: '글 목록', subtitle: '지금까지 쓴 글을 연도별로 모아둔 곳.' },
   {
     name: 'tags',

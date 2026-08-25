@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI 논문 읽기: Halo — DAG로 에이전트 워크플로우를 최적화하다"
+title: "Agentic AI 논문 읽기: Halo, DAG로 에이전트 워크플로우를 최적화하다"
 description: "Halo 논문을 해설합니다. 에이전틱 LLM 워크플로우를 구조화된 DAG로 표현하고, 배치 쿼리 간 공유 계산을 발견하여 GPU-CPU 이종 파이프라인을 공동 스케줄링하는 시스템 최적화 접근법을 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: Halo — DAG로 에이전트 워크플로우를 최적화하다](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: Halo, DAG로 에이전트 워크플로우를 최적화하다](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

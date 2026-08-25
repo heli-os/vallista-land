@@ -241,7 +241,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   lines.push('')
   posts.forEach((p) => {
     const summary = p.frontmatter.description || p.excerpt || ''
-    lines.push(`- [${p.frontmatter.title}](${encodeUrl(p.fields.slug)}) — ${summary}`)
+    lines.push(`- [${p.frontmatter.title}](${encodeUrl(p.fields.slug)}): ${summary}`)
   })
   lines.push('')
 

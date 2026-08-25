@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI 논문 읽기: BloombergGPT — 금융 특화 대규모 언어 모델의 탄생"
+title: "Agentic AI 논문 읽기: BloombergGPT, 금융 특화 대규모 언어 모델의 탄생"
 description: "BloombergGPT 논문을 해설합니다. Bloomberg의 40년치 금융 데이터 363B 토큰으로 훈련된 50.6B 모델이 금융 과제에서 범용 모델을 압도하면서도, 도메인 특화와 범용성의 균형을 어떻게 달성했는지 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: BloombergGPT — 금융 특화 대규모 언어 모델의 탄생](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: BloombergGPT, 금융 특화 대규모 언어 모델의 탄생](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

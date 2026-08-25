@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI 논문 읽기: A-MEM — 제텔카스텐에서 영감받은 에이전트 기억 시스템"
+title: "Agentic AI 논문 읽기: A-MEM, 제텔카스텐에서 영감받은 에이전트 기억 시스템"
 description: "A-MEM 논문을 해설합니다. 니클라스 루만의 제텔카스텐 방법론에서 영감받아, LLM 에이전트가 사전 정의된 구조 없이 동적으로 메모리를 조직·진화시키는 에이전틱 메모리 시스템을 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: A-MEM — 제텔카스텐에서 영감받은 에이전트 기억 시스템](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: A-MEM, 제텔카스텐에서 영감받은 에이전트 기억 시스템](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

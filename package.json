@@ -17,6 +17,7 @@
   },
   "scripts": {
     "bootstrap": "yarn install",
+    "check:blog-typography": "yarn workspace @vallista-land/blog test:typography && yarn workspace @vallista-land/blog check:typography",
     "run:core": "yarn workspace @heli-os/vallista-core run:core",
     "build:core": "yarn workspace @heli-os/vallista-core build:core",
     "publish:core": "yarn workspace @heli-os/vallista-core publish:core",

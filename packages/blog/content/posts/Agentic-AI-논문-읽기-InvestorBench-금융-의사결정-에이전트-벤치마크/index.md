@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI 논문 읽기: InvestorBench — 금융 의사결정 에이전트 벤치마크"
+title: "Agentic AI 논문 읽기: InvestorBench, 금융 의사결정 에이전트 벤치마크"
 description: "InvestorBench 논문을 해설합니다. 주식·암호화폐·ETF 세 가지 자산에 걸쳐 13개 LLM의 투자 의사결정 능력을 평가하고, 계층적 장기 메모리 모델의 설계를 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: InvestorBench — 금융 의사결정 에이전트 벤치마크](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: InvestorBench, 금융 의사결정 에이전트 벤치마크](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

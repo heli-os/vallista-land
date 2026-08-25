@@ -19,7 +19,7 @@ draft: false
 
 상품 추천과 영상 추천은 대체로 사용자의 선호라는 한 축을 최적화한다. 클릭이 발생하면 그 자체로 보상이고, 추천의 결과는 소비 시간으로 환산된다. 리크루트먼트 추천에는 두 가지가 다르다.
 
-첫째, 양방향 매칭(reciprocal matching)이다. 지원자가 공고를 좋아해도 채용담당자가 그 지원자를 뽑지 않으면 추천은 실패다. 반대 방향도 마찬가지다. 데이팅 앱이 양쪽 호감을 동시에 봐야 성사되는 것과 같은 구조다. 시스템은 지원자 선호와 채용담당자 선호를 동시에 모델링해야 한다. LinkedIn의 리쿠르터 검색/추천 시스템은 이 비대칭을 명시적으로 다루며 공고-지원자 양쪽을 각각 임베딩(embedding)으로 학습한다 ([LinkedIn Engineering — AI Behind Recruiter Search and Recommendation Systems](https://www.linkedin.com/blog/engineering/recommendations/ai-behind-linkedin-recruiter-search-and-recommendation-systems)).
+첫째, 양방향 매칭(reciprocal matching)이다. 지원자가 공고를 좋아해도 채용담당자가 그 지원자를 뽑지 않으면 추천은 실패다. 반대 방향도 마찬가지다. 데이팅 앱이 양쪽 호감을 동시에 봐야 성사되는 것과 같은 구조다. 시스템은 지원자 선호와 채용담당자 선호를 동시에 모델링해야 한다. LinkedIn의 리쿠르터 검색/추천 시스템은 이 비대칭을 명시적으로 다루며 공고-지원자 양쪽을 각각 임베딩(embedding)으로 학습한다 ([LinkedIn Engineering: AI Behind Recruiter Search and Recommendation Systems](https://www.linkedin.com/blog/engineering/recommendations/ai-behind-linkedin-recruiter-search-and-recommendation-systems)).
 
 둘째, 라벨 희소성이다. 클릭(CTR, Click-Through Rate)은 넘쳐나지만 최종 채용(confirmed hire)은 수백에서 수천 번의 노출에 한 번 정도 발생하는 이벤트다. 게다가 "누가 실제로 채용되었는가"는 시스템 내부에 명시적으로 기록되지 않고, 대개 지원자의 프로필 직책 변화 같은 간접 신호로 추정된다. 이 때문에 리크루트먼트 RecSys는 클릭/지원 같은 밀도 높은 신호로 모델을 학습하되, 희소한 downstream 신호로 목적함수를 보정하는 다중 신호 설계를 거의 예외 없이 채택한다.
 
@@ -37,9 +37,9 @@ Retrieval은 "후보 풀을 만드는" 넓고 거친 단계, Ranking은 "소수�
 
 ## Retrieval -- 수억 공고에서 수백 개로
 
-Retrieval 단계의 표준은 Two-tower 모델이다. 지원자 타워는 프로필·스킬·행동 시퀀스를 벡터로 압축하고, 공고 타워는 JD·회사·직무를 벡터로 압축한다. 두 벡터의 내적(dot product)이 매칭 스코어이며, 공고 벡터들은 미리 인덱싱해 ANN(Approximate Nearest Neighbor) 검색으로 수백 개의 후보를 상수 시간에 뽑는다. 산업 공통의 기법이다 ([LinkedIn Engineering — Using Embeddings to Up Its Match Game for Job Seekers](https://www.linkedin.com/blog/engineering/platform-platformization/using-embeddings-to-up-its-match-game-for-job-seekers)).
+Retrieval 단계의 표준은 Two-tower 모델이다. 지원자 타워는 프로필·스킬·행동 시퀀스를 벡터로 압축하고, 공고 타워는 JD·회사·직무를 벡터로 압축한다. 두 벡터의 내적(dot product)이 매칭 스코어이며, 공고 벡터들은 미리 인덱싱해 ANN(Approximate Nearest Neighbor) 검색으로 수백 개의 후보를 상수 시간에 뽑는다. 산업 공통의 기법이다 ([LinkedIn Engineering: Using Embeddings to Up Its Match Game for Job Seekers](https://www.linkedin.com/blog/engineering/platform-platformization/using-embeddings-to-up-its-match-game-for-job-seekers)).
 
-2024년 LinkedIn이 공개한 JUDE는 이 구조에 LLM을 얹은 사례다. 7B 파라미터 Mistral을 LoRA로 파인튜닝하여 지원자·공고 타워를 각각 구축하고, 해시 기반 디듀플리케이션으로 추론량을 약 6배 줄였다. A/B 테스트 결과는 qualified application +2.07%, dismiss-to-apply -5.13%, 전체 application +1.91%로 보고되었다 ([LinkedIn Engineering — JUDE: LLM-Based Representation Learning for Job Recommendations](https://www.linkedin.com/blog/engineering/ai/jude-llm-based-representation-learning-for-linkedin-job-recommendations)).
+2024년 LinkedIn이 공개한 JUDE는 이 구조에 LLM을 얹은 사례다. 7B 파라미터 Mistral을 LoRA로 파인튜닝하여 지원자·공고 타워를 각각 구축하고, 해시 기반 디듀플리케이션으로 추론량을 약 6배 줄였다. A/B 테스트 결과는 qualified application +2.07%, dismiss-to-apply -5.13%, 전체 application +1.91%로 보고되었다 ([LinkedIn Engineering: JUDE: LLM-Based Representation Learning for Job Recommendations](https://www.linkedin.com/blog/engineering/ai/jude-llm-based-representation-learning-for-linkedin-job-recommendations)).
 
 주의할 점은, Retrieval은 정확한 랭킹이 아니라 리콜을 맡는다는 것이다. 여기서의 스코어는 "이 공고가 지원자의 관심 공간에 들어오는가"를 판정하는 대략적 좌표이지, 채용 확률이 아니다. 사용자가 받은 알림의 "80+개"는 이 단계를 통과한 모수에 가깝다.
 
@@ -50,8 +50,8 @@ Ranking 단계는 두 겹으로 쪼개져 있다. L1 Ranking에서 로지스틱 
 피처 측면에서는 세 갈래의 신호가 합류한다.
 
 - **콘텐츠 신호**: 프로필 임베딩, 스킬 벡터, JD 임베딩, 회사·직무 카테고리.
-- **활동 신호**: apply, save, dismiss 시퀀스를 순차 모델로 요약한 활동 임베딩. 2022년 LinkedIn 공개 실험에서 이 임베딩 하나만으로 confirmed hire가 약 5% 개선된 것으로 보고되었다 ([LinkedIn Engineering — Improving Job Matching with Machine-Learned Activity Features](https://engineering.linkedin.com/blog/2022/improving-job-matching-with-machine-learned-activity-features-)).
-- **개인화 층**: GDMix가 전역 고정효과(fixed effect) 모델 위에 멤버·공고별 랜덤 효과(random effect) 모델을 얹는 혼합 효과(mixed effects) 구조로, 글로벌 모델과 개인 모델을 동시에 운영한다 ([LinkedIn Engineering — GDMix: A Deep Ranking Personalization Framework](https://www.linkedin.com/blog/engineering/member-customer-experience/gdmix-a-deep-ranking-personalization-framework)).
+- **활동 신호**: apply, save, dismiss 시퀀스를 순차 모델로 요약한 활동 임베딩. 2022년 LinkedIn 공개 실험에서 이 임베딩 하나만으로 confirmed hire가 약 5% 개선된 것으로 보고되었다 ([LinkedIn Engineering: Improving Job Matching with Machine-Learned Activity Features](https://engineering.linkedin.com/blog/2022/improving-job-matching-with-machine-learned-activity-features-)).
+- **개인화 층**: GDMix가 전역 고정효과(fixed effect) 모델 위에 멤버·공고별 랜덤 효과(random effect) 모델을 얹는 혼합 효과(mixed effects) 구조로, 글로벌 모델과 개인 모델을 동시에 운영한다 ([LinkedIn Engineering: GDMix: A Deep Ranking Personalization Framework](https://www.linkedin.com/blog/engineering/member-customer-experience/gdmix-a-deep-ranking-personalization-framework)).
 
 학계 선행 연구로는 LinkedIn이 2018년 공개한 [Towards Deep Learning for Talent Search (arXiv:1809.06473)](https://arxiv.org/abs/1809.06473)와 [Personalized Job Recommendation System at LinkedIn (RecSys 2017)](https://dl.acm.org/doi/10.1145/3109859.3109921)이 이 파이프라인의 초기 뼈대를 제시한다. engagement label(클릭·지원)과 relevance label(전문 평가자 주석)을 이중 감독으로 사용하는 설계가 RecSys 2017 논문에서 이미 정립되어 있다.
 
@@ -103,7 +103,7 @@ Re-ranking의 관점에서 보면, 최종 리스트에 오른 지원자·공고�
 | Qualified Application | 낮음 | 지원이 유효한 서류 심사까지 도달하는가 |
 | Confirmed Hire | 매우 낮음 | 실제로 채용으로 이어지는가 |
 
-[LinkedIn Engineering — Building the Next Generation of Job Search](https://www.linkedin.com/blog/engineering/ai/building-the-next-generation-of-job-search-at-linkedin)는 최근 몇 년의 흐름이 CTR·Apply 같은 상위 깔때기 신호에서 qualified application·confirmed hire 같은 downstream outcome으로 목적함수가 내려가고 있음을 명시적으로 서술한다. 같은 "상위 지원자" 라벨이라도 2020년과 2026년의 그것이 같은 것을 의미하지 않는다.
+[LinkedIn Engineering: Building the Next Generation of Job Search](https://www.linkedin.com/blog/engineering/ai/building-the-next-generation-of-job-search-at-linkedin)는 최근 몇 년의 흐름이 CTR·Apply 같은 상위 깔때기 신호에서 qualified application·confirmed hire 같은 downstream outcome으로 목적함수가 내려가고 있음을 명시적으로 서술한다. 같은 "상위 지원자" 라벨이라도 2020년과 2026년의 그것이 같은 것을 의미하지 않는다.
 
 ## 스코어와 기회 사이의 간극
 

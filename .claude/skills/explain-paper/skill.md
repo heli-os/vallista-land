@@ -247,6 +247,8 @@ file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -
 
 **Do-NOT 보호**: 논문 인용·고유명사(저자·기관·논문 제목)·arXiv ID·수치·실험 결과·영어 약어(Transformer, RLHF, MoE 등)·코드 펜스·번역 용어 첫 등장 시 영어 병기 형식(`한국어(English)`) 100% 보존. 논문 해설 특성상 정확성이 voice보다 우선.
 
+**문장 대시 검사**: 저장 전 U+2014와 U+2013 문자가 제목, 설명, 이미지 대체 텍스트, 본문에 남지 않았는지 확인한다.
+
 **산출물**: `.context/humanize-post/{run_id}/{before.md, findings.json, diff.txt, summary.md}` 자동 생성. 7단계 결과 보고에 등급·변경률·적용 내역 포함.
 
 상세 절차·S1 패턴 표·자체검증 6항은 `.claude/skills/humanize-post/skill.md` 참조.
