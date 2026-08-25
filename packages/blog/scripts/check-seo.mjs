@@ -8,6 +8,8 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 const BLOG_ROOT = resolve(SCRIPT_DIR, '..')
 const PUBLIC_DIR = resolve(BLOG_ROOT, 'public')
 const POSTS_DIR = resolve(BLOG_ROOT, 'content/posts')
+// 본문 링크 상한. 현재 최댓값은 일반 글 36개, 주제 허브 31개, 태그 페이지 41개다.
+const CONTENT_LINK_LIMIT = 80
 const failures = []
 
 const walk = (directory, predicate) =>
@@ -75,9 +77,16 @@ htmlFiles.forEach((file) => {
     failures.push(`${pathname}: canonical 불일치 (${canonical})`)
   }
 
-  const hrefCount = count(html, /<a(?:\s|>)/gi)
-  const isCollectionIndex = pathname === '/posts/' || pathname.startsWith('/tags/')
-  if (!isCollectionIndex && hrefCount > 100) failures.push(`${pathname}: 링크 ${hrefCount}개`)
+  // 본문 링크만 센다. 내비와 사이드바, 푸터는 모든 페이지에 57개가 똑같이 붙어서
+  // 전체 개수로 재면 크롬을 재는 셈이 되고, 일반 글이 이미 96/100까지 차 있었다.
+  // /posts/ 는 전체 아카이브라 본문 링크가 많은 게 정상이므로 면제한다.
+  const articleHtml = html.match(/<article[^>]*>([\s\S]*)<\/article>/i)?.[1]
+  if (articleHtml && pathname !== '/posts/') {
+    const contentLinks = count(articleHtml, /<a(?:\s|>)/gi)
+    if (contentLinks > CONTENT_LINK_LIMIT) {
+      failures.push(`${pathname}: 본문 링크 ${contentLinks}개 (상한 ${CONTENT_LINK_LIMIT})`)
+    }
+  }
 
   const scripts = [...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
   const schemas = []

@@ -63,10 +63,19 @@ const fadeIn = keyframes`
   }
 `
 
+// wrapRootElement 가 감싸는 사이트 최상위 래퍼다. Layout 과 BookLayout 이 모두 이 아래에 있다.
+//
 // JS 없이도 콘텐츠가 보이도록 CSS 애니메이션으로 페이드인한다.
 // (이전 구현은 useEffect로 opacity를 토글해 JS가 꺼지면 opacity:0으로 고정됐다)
+//
+// 링크 밑줄 제거는 여기서 기본값으로 준다. 컴포넌트마다 따로 껐더니
+// 새 컴포넌트를 만들 때마다 빠뜨려 세 번 재발했다(#94, #99, #102).
 const Loading = styled.div`
   animation: ${fadeIn} 0.2s ease forwards;
+
+  a {
+    text-decoration: none;
+  }
 `
 
 const InitializeElement = ({ element, pathname, pageContext }) => {
