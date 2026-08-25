@@ -33,8 +33,12 @@ jobs:
         run: yarn check:blog-typography
       - name: 코어 (디자인시스템) 빌드
         run: yarn build:core
+      - name: 블로그 타입 검사
+        run: yarn typecheck:blog
       - name: 블로그 빌드
         run: yarn build:blog
+      - name: 블로그 SEO 검사
+        run: yarn seo:check:blog
       - name: git config 설정
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |

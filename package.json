@@ -18,6 +18,7 @@
   "scripts": {
     "bootstrap": "yarn install",
     "check:blog-typography": "yarn workspace @vallista-land/blog test:typography && yarn workspace @vallista-land/blog check:typography",
+    "typecheck:blog": "tsc --noEmit -p packages/blog/tsconfig.json",
     "run:core": "yarn workspace @heli-os/vallista-core run:core",
     "build:core": "yarn workspace @heli-os/vallista-core build:core",
     "publish:core": "yarn workspace @heli-os/vallista-core publish:core",
@@ -26,6 +27,7 @@
     "clean:playground": "cd packages/playground && gatsby clean",
     "run:blog": "yarn workspace @vallista-land/blog run:blog",
     "build:blog": "yarn workspace @vallista-land/blog build:blog",
+    "seo:check:blog": "yarn workspace @vallista-land/blog seo:check",
     "clean:blog": "cd packages/blog && gatsby clean",
     "post:blog": "cd packages/blog && yarn post:blog",
     "deploy:blog": "cd packages/blog && yarn deploy:blog",

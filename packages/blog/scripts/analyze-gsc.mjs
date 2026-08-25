@@ -3,6 +3,8 @@ import { resolve } from 'node:path'
 
 import { SITE_URL } from '../src/utils/seo-url.js'
 
+const topicsConfig = JSON.parse(readFileSync(new URL('../config/topics.json', import.meta.url), 'utf8'))
+
 const aliases = {
   page: ['page', '페이지', 'url'],
   query: ['query', '검색어', 'queries'],
@@ -82,39 +84,17 @@ const loadRows = (path) => {
     .filter((row) => row.page)
 }
 
-const topics = [
-  {
-    name: 'Agentic AI',
-    matches: (page) => decodeURIComponent(page).includes('Agentic-AI-논문-읽기')
-  },
-  {
-    name: '조직·스타트업',
-    matches: (page) =>
-      [
-        '같이-일한다는',
-        '리더십팀',
-        '여섯-가지-질문',
-        '우리다움',
-        '조직이라는',
-        '회사의-모든-정보',
-        '빨라진-실행',
-        '스타트업-채용',
-        '채용되는-것은',
-        '행동을-지적',
-        '공정하다는',
-        '불편한-지적',
-        '버튼-다음의-제품',
-        '프로토타입이라는',
-        '지루함을-설계',
-        '명령이-아니라',
-        '금융-데이터',
-        '프로덕트에서-플레이어',
-        '떠날-수-있어서',
-        '책상-바깥',
-        '미션-선언문'
-      ].some((fragment) => decodeURIComponent(page).includes(fragment))
+// 주제 구성은 config/topics.json 하나만 본다. 허브에 글이 추가되면 이 스크립트도 따라온다.
+const topics = topicsConfig.map((topic) => {
+  const slugs = new Set(topic.sections.flatMap((section) => section.slugs))
+  return {
+    name: topic.title,
+    matches: (page) => {
+      const pathname = decodeURIComponent(new URL(page, SITE_URL).pathname).replace(/^\/+|\/+$/g, '')
+      return slugs.has(pathname)
+    }
   }
-]
+})
 
 const aggregatePages = (rows) => {
   const pages = new Map()
