@@ -29,14 +29,29 @@ for u in \
 done
 ```
 
-세 요청 모두 `301`이고 `location`이 `https://dataportal.kr/posts/?utm_source=redirect-test`여야 합니다. 이어서 아래로 최종 응답까지 리다이렉트가 한 번인지 확인합니다.
+세 요청 모두 `301`이어야 합니다. 이어서 아래로 최종 응답까지 몇 번 거치는지 확인합니다.
 
 ```sh
-curl -sS -o /dev/null -L -w 'redirects=%{num_redirects} final=%{url_effective}\n' \
+curl -sS -o /dev/null -L --max-time 20 \
+  -w 'redirects=%{num_redirects} final=%{url_effective}\n' \
   'http://dataportal.kr/posts/?utm_source=redirect-test'
 ```
 
-`www` 에서 apex로 가는 규칙은 이미 동작합니다(2026-08-25 확인). 남은 것은 HTTP를 HTTPS로 올리는 한 단계입니다. 그때까지는 같은 문서가 http와 https 양쪽에서 200으로 서빙되며, 정본은 문서의 canonical 태그만으로 표시됩니다.
+2026-08-25 기준 실측값입니다.
+
+| 요청 | 홉 | 최종 |
+| --- | ---: | --- |
+| `http://dataportal.kr/posts/` | 1 | `https://dataportal.kr/posts/` |
+| `http://www.dataportal.kr/posts/` | 2 | `https://dataportal.kr/posts/` |
+| `https://www.dataportal.kr/posts/` | 1 | `https://dataportal.kr/posts/` |
+
+쿼리 문자열은 세 경우 모두 보존됩니다.
+
+`www` 에 HTTP로 들어오는 경우만 두 번 거칩니다. Always Use HTTPS가 먼저 같은 호스트의 HTTPS로 올리고, 그다음 `www` 에서 apex로 가는 기존 규칙이 걸리기 때문입니다. 한 번으로 줄이려면 Rules에서 `www.dataportal.kr/*` 를 `https://dataportal.kr/$1` 로 보내는 Redirect Rule을 추가하세요. 도착지가 같고 홉만 줄어드는 최적화라 급한 항목은 아닙니다.
+
+### 남은 항목
+
+`Strict-Transport-Security` 헤더가 없습니다. SSL/TLS의 HSTS를 켜면 브라우저가 첫 요청부터 HTTPS로 가서 리다이렉트 자체를 건너뜁니다. max-age를 길게 잡으면 되돌리기 어려우니 짧게 시작해 늘리세요.
 
 ### GitHub Pages 설정은 대안이 아닙니다
 
