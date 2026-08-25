@@ -5,6 +5,9 @@ on:
     branches: ['main']
   pull_request:
     branches: ['main']
+  # GitHub 이 push 이벤트를 흘려 배포가 누락될 때 수동으로 다시 돌리는 통로다.
+  # 724c8d4 가 main 에 올라갔는데 워크플로 실행이 0건이라 배포가 빠졌다.
+  workflow_dispatch:
 
 concurrency:
   group: deploy-${{ github.ref }}
@@ -40,10 +43,10 @@ jobs:
       - name: 블로그 SEO 검사
         run: yarn seo:check:blog
       - name: git config 설정
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
         run: |
           git config --global user.email "sun@dataportal.kr"
           git config --global user.name "Taeyang Jin (Theo)"
       - name: heli-os.github.io 배포
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
         run: cd packages/blog && node scripts/deploy.js ${{ secrets.TOKEN }}
