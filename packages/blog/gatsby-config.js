@@ -1,4 +1,5 @@
 const profile = require('./config/profile.json')
+const { toAbsoluteUrl, toCanonicalPath } = require('./src/utils/seo-url')
 const defaultOpenGraphImage = '/open-graph.jpeg'
 
 module.exports = {
@@ -14,7 +15,8 @@ module.exports = {
     twitterUsername: '',
     sameAs: profile.sameAs || [],
     jobTitle: profile.jobTitle || '',
-    knowsAbout: profile.knowsAbout || []
+    knowsAbout: profile.knowsAbout || [],
+    worksFor: profile.worksFor || null
   },
   plugins: [
     {
@@ -39,8 +41,8 @@ module.exports = {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
-                  url: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
-                  guid: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
+                  url: toAbsoluteUrl(node.fields.slug),
+                  guid: toAbsoluteUrl(node.fields.slug),
                   custom_elements: [{ 'content:encoded': node.html }]
                 })
               })
@@ -49,7 +51,7 @@ module.exports = {
               {
                 allMarkdownRemark(
                   sort: { frontmatter: { date: DESC } },
-                  filter: { frontmatter: { draft: { ne: true } } }
+                  filter: { frontmatter: { draft: { ne: true } }, fields: { contentType: { eq: "posts" } } }
                 ) {
                   nodes {
                     excerpt
@@ -68,7 +70,7 @@ module.exports = {
             // 최종 rss feed파일 입니다. 디렉토리가 다르거나, 이름이 다른경우 설정 가능합니다.
             output: '/rss.xml',
             // 본인의 blog rss feed용 타이틀을 명시합니다.
-            title: "테오 블로그 RSS Feed"
+            title: '테오 블로그 RSS Feed'
           },
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
@@ -76,8 +78,8 @@ module.exports = {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
-                  url: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
-                  guid: encodeURI(site.siteMetadata.siteUrl + node.fields.slug),
+                  url: toAbsoluteUrl(node.fields.slug),
+                  guid: toAbsoluteUrl(node.fields.slug),
                   custom_elements: [{ 'content:encoded': node.html }]
                 })
               })
@@ -103,7 +105,7 @@ module.exports = {
               }
             `,
             output: '/books/rss.xml',
-            title: "테오 책 RSS Feed"
+            title: '테오 책 RSS Feed'
           }
         ]
       }
@@ -132,6 +134,7 @@ module.exports = {
                 }
                 frontmatter {
                   date
+                  updated
                 }
               }
             }
@@ -146,12 +149,12 @@ module.exports = {
             const post = postMap[page.path]
             return {
               ...page,
-              lastmod: post?.fields?.lastModified || post?.frontmatter?.date || null
+              lastmod: post?.fields?.lastModified || post?.frontmatter?.updated || post?.frontmatter?.date || null
             }
           })
         },
         serialize: ({ path, lastmod }) => ({
-          url: encodeURI(path),
+          url: toCanonicalPath(path),
           ...(lastmod ? { lastmod } : {})
         })
       }

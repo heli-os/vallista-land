@@ -8,8 +8,6 @@ import { Seo } from '../components/Seo'
 import { PageProps } from '../types/type'
 import { toDate, getTime } from '../utils'
 
-const SITE_URL = 'https://dataportal.kr'
-
 interface TagPageContext {
   tag: string
 }
@@ -109,13 +107,13 @@ const TagLabel = styled.span`
 
 export default TagPage
 
-export const Head = ({ location, pageContext }: HeadProps<TagQuery, TagPageContext>) => {
+export const Head = ({ data, location, pageContext }: HeadProps<TagQuery, TagPageContext>) => {
   const { tag } = pageContext
 
   const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '태그', url: `${SITE_URL}/tags/` },
-    { name: tag, url: `${SITE_URL}/tags/${tag}/` }
+    { name: '홈', url: '/' },
+    { name: '태그', url: '/tags/' },
+    { name: tag, url: `/tags/${tag}/` }
   ]
 
   return (
@@ -123,6 +121,11 @@ export const Head = ({ location, pageContext }: HeadProps<TagQuery, TagPageConte
       name={tag}
       description={`${tag} 태그가 포함된 글 모음: 테오 블로그`}
       image='/og/tags.jpeg'
+      pageType='collection'
+      collectionItems={data.allMarkdownRemark.nodes.map((post) => ({
+        name: post.frontmatter.title,
+        url: post.fields.slug
+      }))}
       breadcrumbs={breadcrumbs}
       pathname={location.pathname}
     />

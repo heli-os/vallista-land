@@ -8,6 +8,7 @@ import { useSidebar } from './useSidebar'
 
 interface SidebarProps {
   posts: SidebarPost[]
+  totalPosts: number
   fold: boolean
 }
 
@@ -75,7 +76,16 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         <Styled._BookSection>
           <Styled._BookSectionHeader>
             <div style={{ width: '24px', height: '16px' }}>
-              <svg viewBox='0 0 24 24' width='16' height='16' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' fill='none'>
+              <svg
+                viewBox='0 0 24 24'
+                width='16'
+                height='16'
+                stroke='currentColor'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                fill='none'
+              >
                 <path d='M4 19.5A2.5 2.5 0 016.5 17H20' />
                 <path d='M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z' />
               </svg>
@@ -84,21 +94,39 @@ export const Sidebar: FC<SidebarProps> = (props) => {
           </Styled._BookSectionHeader>
           <Styled._BookItem to='/books/the-art-of-small-teams/'>
             <div>
-              <svg viewBox='0 0 24 24' width='20' height='20' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' fill='none' shapeRendering='geometricPrecision'>
+              <svg
+                viewBox='0 0 24 24'
+                width='20'
+                height='20'
+                stroke='currentColor'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                fill='none'
+                shapeRendering='geometricPrecision'
+              >
                 <path d='M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z' />
                 <path d='M13 2v7h7' />
               </svg>
             </div>
             <Text>작은 팀의 기술</Text>
           </Styled._BookItem>
+          <Styled._TopicSectionHeader>
+            <Text>주제별로 읽기</Text>
+          </Styled._TopicSectionHeader>
+          <Styled._TopicLink to='/topics/agentic-ai/'>Agentic AI 논문 읽기</Styled._TopicLink>
+          <Styled._TopicLink to='/topics/organization-startup/'>조직과 스타트업</Styled._TopicLink>
         </Styled._BookSection>
         <Styled._Categories>
           <Container>
             {Object.entries(posts).map(([title, _posts]) => (
-              <CategoryList title={title} posts={_posts} isNowPage={isNowPage} viewState={viewState} />
+              <CategoryList key={title} title={title} posts={_posts} isNowPage={isNowPage} viewState={viewState} />
             ))}
           </Container>
         </Styled._Categories>
+        <Styled._AllPostsLink to={search ? `/posts/?q=${encodeURIComponent(search)}` : '/posts/'}>
+          {search ? '전체 글에서 검색' : '전체 글 보기'} →
+        </Styled._AllPostsLink>
       </Styled._SidebarContainer>
     </aside>
   )
@@ -158,13 +186,7 @@ const CategoryList: FC<CategoryListProps> = ({ viewState, posts, title, isNowPag
       </Styled._ListHeader>
       <Styled._ListBody fold={fold}>
         {posts.map((it) => (
-          <ListItem
-            key={it.name}
-            to={it.slug}
-            image={it.image}
-            text={it.name}
-            isActive={isNowPage(it.slug)}
-          >
+          <ListItem key={it.name} to={it.slug} image={it.image} text={it.name} isActive={isNowPage(it.slug)}>
             {viewState === 'LIST' && (
               <>
                 <div>

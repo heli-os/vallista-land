@@ -34,17 +34,17 @@ export const Footer: FC = () => {
             <FooterLink href='https://weekly.ac'>홈페이지</FooterLink>
           </FooterGroup>
           <FooterGroup title='관련 사이트'>
-            <FooterLink href='https://dataportal.kr/rss.xml'>RSS 피드</FooterLink>
+            <FooterLink href='/rss.xml'>RSS 피드</FooterLink>
           </FooterGroup>
         </FooterWrapper>
       </Styled._FooterBox>
       <Styled._FooterAllRightReserve>
         <Text size={12}>
-          Copyright ⓒ {nowYear} <Link to='https://dataportal.kr'>Theo</Link> All rights reserved.
+          Copyright ⓒ {nowYear} <Link to='/'>Theo</Link> All rights reserved.
         </Text>
         <Spacer y={0.1} />
         <Text size={12}>
-          Created by <Link to='https://dataportal.kr'>@Theo</Link>. Powered By{' '}
+          Created by <Link to='/'>@Theo</Link>. Powered By{' '}
           <a href='https://github.com/Vallista/vallista-land' target='_blank' rel='nofollow'>
             @Vallista-land
           </a>

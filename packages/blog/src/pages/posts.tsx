@@ -8,8 +8,6 @@ import { Seo } from '../components/Seo'
 import { IndexQuery, PageProps } from '../types/type'
 import { toDate, getTime, filteredByDraft } from '../utils'
 
-const SITE_URL = 'https://dataportal.kr'
-
 const PostsPage: FC<PageProps<IndexQuery>> = (props) => {
   const { data } = props
   const { nodes } = data.allMarkdownRemark
@@ -143,28 +141,22 @@ export const Head = ({ location, data }: HeadProps<IndexQuery>) => {
   const { nodes } = data.allMarkdownRemark
   const sortPosts = filteredByDraft(nodes)
     .sort((a, b) => toDate(b.frontmatter.date).getTime() - toDate(a.frontmatter.date).getTime())
-    .map((it) => ({ slug: it.fields.slug }))
-
-  const itemListJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: sortPosts.slice(0, 30).map((post, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      url: `${SITE_URL}${encodeURI(post.slug)}`
-    }))
-  }
+    .map((it) => ({ name: it.frontmatter.title, url: it.fields.slug }))
 
   const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '글 목록', url: `${SITE_URL}/posts/` }
+    { name: '홈', url: '/' },
+    { name: '글 목록', url: '/posts/' }
   ]
 
   return (
-    <>
-      <Seo name='글 목록' image='/og/posts.jpeg' breadcrumbs={breadcrumbs} pathname={location.pathname} />
-      <script type='application/ld+json'>{JSON.stringify(itemListJsonLd)}</script>
-    </>
+    <Seo
+      name='글 목록'
+      image='/og/posts.jpeg'
+      pageType='collection'
+      collectionItems={sortPosts.slice(0, 30)}
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
   )
 }
 

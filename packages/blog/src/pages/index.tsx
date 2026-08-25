@@ -1,7 +1,7 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Button, Container, Text } from '@heli-os/vallista-core'
-import { graphql, navigate, HeadProps } from 'gatsby'
+import { Container, Text } from '@heli-os/vallista-core'
+import { graphql, Link, HeadProps } from 'gatsby'
 import { FC } from 'react'
 
 import { ListTable } from '../components/ListTable'
@@ -27,15 +27,15 @@ const IndexPage: FC<PageProps<IndexQuery>> = (props) => {
           </Title>
           <SubTitle>
             <Text as='p' size={20} weight={400} lineHeight={40}>
-              오랫동안 제품을 만들어왔고, 지금은 스타트업을 창업해 CTO로 일하고 있습니다. 그러면서 느끼고
-              생각한 것들을 이곳에 남깁니다.
+              오랫동안 제품을 만들어왔고, 지금은 스타트업을 창업해 CTO로 일하고 있습니다. 그러면서 느끼고 생각한 것들을
+              이곳에 남깁니다.
             </Text>
           </SubTitle>
-          <Button size='large' color='alert' onClick={() => moveToLocation('/posts/')}>
+          <PostsLink to='/posts/'>
             <Text size={16} weight={800}>
               블로그 글 보러갈까요?
             </Text>
-          </Button>
+          </PostsLink>
         </Wrapper>
       </Header>
       <Contents>
@@ -48,10 +48,6 @@ const IndexPage: FC<PageProps<IndexQuery>> = (props) => {
     const [, month, day] = getTime(target)
 
     return `${Number(month)}월 ${Number(day)}일`
-  }
-
-  function moveToLocation(target: string): void {
-    navigate(target)
   }
 
   function filteredNewestPosts(posts: Post[]): { name: string; slug: string; date: string }[] {
@@ -123,12 +119,22 @@ const Contents = styled.section`
   padding: 2rem;
 `
 
+const PostsLink = styled(Link)`
+  display: inline-block;
+  padding: 14px 20px;
+  border-radius: 8px;
+  background: #ff6600;
+  color: #fff;
+  text-decoration: none;
+`
+
 export default IndexPage
 
 export const Head = ({ location }: HeadProps) => (
   <Seo
     name='테오 블로그: 엔지니어링, Agentic AI, 에세이'
     image='/og/index.jpeg'
+    pageType='home'
     pathname={location.pathname}
     noTemplate
   />

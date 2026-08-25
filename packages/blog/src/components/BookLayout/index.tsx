@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Container } from '@heli-os/vallista-core'
-import { navigate } from 'gatsby'
+import { Link } from 'gatsby'
 import { FC, PropsWithChildren } from 'react'
 
 import { Footer } from '../Footer'
@@ -14,9 +14,7 @@ interface BookLayoutProps {
 }
 
 export const BookLayout: FC<PropsWithChildren<BookLayoutProps>> = ({ children, bookTitle, bookSlug, pathname }) => {
-  const bookPath = bookSlug
-    ? `/books/${bookSlug.replace(/^\/|\/$/g, '')}/`
-    : undefined
+  const bookPath = bookSlug ? `/books/${bookSlug.replace(/^\/|\/$/g, '')}/` : undefined
   const isLandingPage = pathname === bookPath
 
   return (
@@ -24,14 +22,14 @@ export const BookLayout: FC<PropsWithChildren<BookLayoutProps>> = ({ children, b
       <Container>
         <TopNav>
           <BreadcrumbGroup>
-            <NavLink onClick={() => navigate('/')}>블로그 홈</NavLink>
+            <NavLink to='/'>블로그 홈</NavLink>
             <NavDivider>/</NavDivider>
-            <NavLink onClick={() => navigate('/books/')}>책 목록</NavLink>
+            <NavLink to='/books/'>책 목록</NavLink>
             {bookTitle && (
               <>
                 <NavDivider>/</NavDivider>
                 {bookPath && !isLandingPage ? (
-                  <NavLink onClick={() => navigate(bookPath)}>{bookTitle}</NavLink>
+                  <NavLink to={bookPath}>{bookTitle}</NavLink>
                 ) : (
                   <NavCurrent>{bookTitle}</NavCurrent>
                 )}
@@ -80,12 +78,13 @@ const TextSizeControlWrapper = styled.div`
   }
 `
 
-const NavLink = styled.span`
+const NavLink = styled(Link)`
   ${({ theme }) => css`
     cursor: pointer;
     font-size: 0.85rem;
     color: ${theme.colors.PRIMARY.ACCENT_4};
     transition: color 0.2s;
+    text-decoration: none;
     &:hover {
       color: ${theme.colors.HIGHLIGHT.ORANGE};
     }

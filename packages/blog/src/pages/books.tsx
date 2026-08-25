@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Container } from '@heli-os/vallista-core'
-import { graphql, navigate, HeadProps } from 'gatsby'
+import { graphql, Link, HeadProps } from 'gatsby'
 import { FC, useMemo } from 'react'
 
 import { Seo } from '../components/Seo'
@@ -22,35 +22,41 @@ interface BooksPageProps {
   data: BooksQuery
 }
 
+interface BookMeta {
+  title: string
+  subtitle: string
+  description: string
+  coverImage: string
+}
+
+// 목록 카드와 구조화 데이터가 같은 제목을 쓰도록 한 곳에 둔다.
+const BOOK_META: Record<string, BookMeta> = {
+  'the-art-of-small-teams': {
+    title: '작은 팀의 기술',
+    subtitle: '개발자 출신 창업자의 조직 운영기',
+    description: '100개 이상의 제품을 만들며 깨달은 것: 결국 가장 잘 작동하는 건 작은 팀이었다.',
+    coverImage: '/book/cover.jpeg'
+  }
+}
+
+const toBookSlugs = (nodes: BookChapterNode[]): string[] =>
+  Array.from(new Set(nodes.map((node) => node.fields.slug.split('/')[2]))).filter((slug) => BOOK_META[slug])
+
 const BooksPage: FC<BooksPageProps> = ({ data }) => {
   const nodes = data.allMarkdownRemark.nodes
 
-  const books = useMemo(() => {
-    const groups: Record<string, { slug: string; chapters: BookChapterNode[] }> = {}
-    nodes.forEach((n) => {
-      const bookSlug = n.fields.slug.split('/')[2]
-      if (!groups[bookSlug]) groups[bookSlug] = { slug: bookSlug, chapters: [] }
-      groups[bookSlug].chapters.push(n)
-    })
-    return Object.values(groups).map((g) => ({
-      slug: g.slug,
-      chapterCount: g.chapters.length,
-      totalReadTime: g.chapters.reduce((sum, c) => sum + c.timeToRead, 0)
-    }))
-  }, [nodes])
-
-  const BOOK_META: Record<
-    string,
-    { title: string; subtitle: string; description: string; coverImage: string }
-  > = {
-    'the-art-of-small-teams': {
-      title: '작은 팀의 기술',
-      subtitle: '개발자 출신 창업자의 조직 운영기',
-      description:
-        '100개 이상의 제품을 만들며 깨달은 것: 결국 가장 잘 작동하는 건 작은 팀이었다.',
-      coverImage: '/book/cover.jpeg'
-    }
-  }
+  const books = useMemo(
+    () =>
+      toBookSlugs(nodes).map((slug) => {
+        const chapters = nodes.filter((node) => node.fields.slug.split('/')[2] === slug)
+        return {
+          slug,
+          chapterCount: chapters.length,
+          totalReadTime: chapters.reduce((sum, chapter) => sum + chapter.timeToRead, 0)
+        }
+      }),
+    [nodes]
+  )
 
   return (
     <Container>
@@ -59,9 +65,8 @@ const BooksPage: FC<BooksPageProps> = ({ data }) => {
         <BookGrid>
           {books.map((book) => {
             const meta = BOOK_META[book.slug]
-            if (!meta) return null
             return (
-              <BookCard key={book.slug} onClick={() => navigate(`/books/${book.slug}/`)}>
+              <BookCard key={book.slug} to={`/books/${book.slug}/`}>
                 <BookCardInner>
                   <BookCoverThumb src={meta.coverImage} alt={meta.title} />
                   <BookCardText>
@@ -84,9 +89,23 @@ const BooksPage: FC<BooksPageProps> = ({ data }) => {
 
 export default BooksPage
 
-export const Head = ({ location }: HeadProps) => (
-  <Seo name='책' description='테오가 쓴 책 목록' image='/og/books.jpeg' isPost={false} pathname={location.pathname} />
-)
+export const Head = ({ location, data }: HeadProps<BooksQuery>) => {
+  const bookSlugs = toBookSlugs(data.allMarkdownRemark.nodes)
+  return (
+    <Seo
+      name='책'
+      description='테오가 쓴 책 목록'
+      image='/og/books.jpeg'
+      pageType='collection'
+      collectionItems={bookSlugs.map((slug) => ({ name: BOOK_META[slug].title, url: `/books/${slug}/` }))}
+      breadcrumbs={[
+        { name: '홈', url: '/' },
+        { name: '책', url: '/books/' }
+      ]}
+      pathname={location.pathname}
+    />
+  )
+}
 
 export const pageQuery = graphql`
   query BooksListQuery {
@@ -130,13 +149,15 @@ const BookGrid = styled.div`
   gap: 1.5rem;
 `
 
-const BookCard = styled.div`
+const BookCard = styled(Link)`
   ${({ theme }) => css`
     padding: 2rem;
     border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s;
+    color: inherit;
+    text-decoration: none;
     &:hover {
       border-color: ${theme.colors.HIGHLIGHT.ORANGE};
       box-shadow: ${theme.shadows.EXTRA_SMALL};

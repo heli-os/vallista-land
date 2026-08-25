@@ -17,6 +17,12 @@ export function getTime(date: string): [string, string, string] {
   return [translate[0] || '0', translate[1] || '0', translate[2] || '0']
 }
 
+// 날짜 문자열을 그대로 쪼개 쓴다. Date로 바꾸면 실행 환경 타임존에 따라 하루가 밀린다.
+export function formatKoreanDate(date: string): string {
+  const [year, month, day] = getTime(date)
+  return `${year}년 ${Number(month)}월 ${Number(day)}일`
+}
+
 export function filteredByDraft(posts: Post[]): Post[] {
   return posts.filter((it) =>
     !it.frontmatter.draft

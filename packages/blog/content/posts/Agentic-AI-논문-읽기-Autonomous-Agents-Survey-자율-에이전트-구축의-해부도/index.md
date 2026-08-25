@@ -1,5 +1,6 @@
 ---
 title: "Agentic AI 논문 읽기: Autonomous Agents Survey, 자율 에이전트 구축의 해부도"
+seoTitle: "자율 에이전트 구축 구조, Autonomous Agents Survey"
 description: "LLM 기반 자율 에이전트 서베이를 해설합니다. 프로파일링, 메모리, 계획, 행동의 4가지 핵심 모듈로 에이전트 구축을 체계적으로 분류하고, 사회 시뮬레이션에서 소프트웨어 개발까지 응용을 조망합니다."
 image: ./assets/thumbnail.jpeg
 tags:

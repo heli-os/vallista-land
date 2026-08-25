@@ -2,6 +2,7 @@ import { SidebarPost } from 'types/type'
 
 export interface SidebarProps {
   posts: SidebarPost[]
+  totalPosts: number
   fold: boolean
 }
 
