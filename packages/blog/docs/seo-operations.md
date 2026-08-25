@@ -47,11 +47,52 @@ curl -sS -o /dev/null -L --max-time 20 \
 
 쿼리 문자열은 세 경우 모두 보존됩니다.
 
-`www` 에 HTTP로 들어오는 경우만 두 번 거칩니다. Always Use HTTPS가 먼저 같은 호스트의 HTTPS로 올리고, 그다음 `www` 에서 apex로 가는 기존 규칙이 걸리기 때문입니다. 한 번으로 줄이려면 Rules에서 `www.dataportal.kr/*` 를 `https://dataportal.kr/$1` 로 보내는 Redirect Rule을 추가하세요. 도착지가 같고 홉만 줄어드는 최적화라 급한 항목은 아닙니다.
+`www` 에 HTTP로 들어오는 경우만 두 번 거칩니다. Always Use HTTPS가 먼저 같은 호스트의 HTTPS로 올리고, 그다음 `www` 에서 apex로 가는 기존 규칙이 걸리기 때문입니다. 이 홉을 줄이지 않기로 한 이유는 아래 HSTS 절에 적었습니다.
 
-### 남은 항목
+위 표는 첫 방문자 기준입니다. HSTS를 받은 브라우저는 요청을 보내기 전에 `http://`를 `https://`로 바꾸므로 재방문자는 첫 홉이 사라집니다. `curl` 에는 이 동작이 보이지 않습니다.
 
-`Strict-Transport-Security` 헤더가 없습니다. SSL/TLS의 HSTS를 켜면 브라우저가 첫 요청부터 HTTPS로 가서 리다이렉트 자체를 건너뜁니다. max-age를 길게 잡으면 되돌리기 어려우니 짧게 시작해 늘리세요.
+### HSTS
+
+SSL/TLS → Edge Certificates → HTTP Strict Transport Security 에서 켭니다. 2026-08-25 적용값입니다.
+
+```
+strict-transport-security: max-age=2592000; includeSubDomains
+```
+
+| 항목 | 값 | 근거 |
+| --- | --- | --- |
+| Max Age | 1개월 (2592000) | 드롭다운의 최소 유효값. 최대 잠금 기간이 곧 최대 복구 시간이라 짧게 시작한다 |
+| Apply HSTS policy to subdomains | 켬 | 아래 서브도메인이 모두 HTTPS 정상 |
+| Preload | 끔 | 목록에서 빼는 데 몇 달이 걸린다. 사실상 되돌릴 수 없다 |
+| No-Sniff header | 임의 | `X-Content-Type-Options: nosniff`, 부작용 없음 |
+
+한 달간 문제가 없으면 6개월이나 1년으로 올립니다. Preload는 1년 이상을 요구하므로 그때 따로 판단합니다.
+
+**되돌리는 법**: Max Age를 0으로 바꾸면 `max-age=0` 을 내보내고, 이후 재방문하는 브라우저부터 해제됩니다. 그동안 방문하지 않은 브라우저는 원래 기간이 끝나야 풀립니다.
+
+#### includeSubDomains 의 조건
+
+apex가 이 헤더를 내보내면 브라우저는 모든 서브도메인에 HTTPS를 강제합니다. 앞으로 만드는 서브도메인은 첫날부터 유효한 HTTPS를 갖춰야 합니다. 2026-08-25 확인 결과입니다.
+
+| 호스트 | HTTPS | 헤더 |
+| --- | --- | --- |
+| `www` | 301로 apex | 있음 |
+| `docs` | 200 | 있음 |
+| `mail` | 301로 Dooray | 있음 |
+| `cdn` | 404 (CloudFront, 인증서 정상) | 없음 |
+
+`cdn` 은 Cloudflare 프록시를 거치지 않고 CloudFront로 바로 가서 헤더를 내보내지 않습니다. 그래도 apex의 `includeSubDomains` 때문에 브라우저는 이 호스트에도 HTTPS를 강제합니다. HTTPS가 정상 동작하므로 문제는 없습니다.
+
+### www 에 HTTP로 들어오는 2홉은 두었습니다
+
+Redirect Rule로 1홉으로 줄일 수 있지만 하지 않았습니다. Cloudflare에서 Redirect Rules와 Always Use HTTPS 중 무엇이 먼저 도는지에 따라 결과가 갈리고, 확실히 1홉으로 만들려면 Always Use HTTPS를 끄고 규칙 하나로 둘 다 처리해야 합니다.
+
+```
+expression: (http.host eq "www.dataportal.kr") or (not ssl)
+target:     concat("https://dataportal.kr", http.request.uri.path)
+```
+
+검증된 토글을 직접 만든 규칙으로 대체하는 셈이라, 리다이렉트 한 홉을 줄이려고 지기에는 위험이 큽니다. HSTS를 켜면 재방문자 기준으로 이 홉이 사라지므로 실익도 작습니다.
 
 ### GitHub Pages 설정은 대안이 아닙니다
 
