@@ -113,20 +113,21 @@ export const _Category = styled(Link)<{ checked?: boolean }>`
   }
 
   ${({ theme, checked }) => css`
+    /* 아이콘 svg가 currentColor를 쓰므로 색은 링크 자신에 둔다.
+       내부 div에 걸면 Tooltip 래퍼가 없는 좁은 화면에서 규칙이 매칭되지 않아
+       href가 붙은 a의 브라우저 기본 링크색이 그대로 드러난다. */
+    color: ${theme.colors.PRIMARY.FOREGROUND};
+
     & > div > div:first-of-type {
       width: inherit;
       height: inherit;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: ${theme.colors.PRIMARY.FOREGROUND};
     }
 
     &:hover {
       background: ${theme.colors.PRIMARY.ACCENT_3};
-    }
-
-    &:hover > div > div:first-of-type {
       color: ${theme.colors.PRIMARY.BACKGROUND};
     }
 
