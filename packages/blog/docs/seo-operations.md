@@ -1,26 +1,46 @@
 # SEO 배포 운영 절차
 
-## Cloudflare 리다이렉트
+## HTTPS 강제
 
-Cloudflare 대시보드의 **Rules → Redirect Rules → Bulk Redirects**에서 아래 세 항목을 영구 리다이렉트(301)로 등록합니다.
+`dataportal.kr`은 Cloudflare 프록시를 거칩니다. apex와 `www` 모두 Cloudflare IP로 해석되고 엣지 인증서도 Cloudflare가 발급한 것입니다. TLS를 Cloudflare가 종료하므로 클라이언트가 보는 리다이렉트는 Cloudflare에서만 정할 수 있습니다.
 
-| 원본                         | 대상                     |
-| ---------------------------- | ------------------------ |
-| `http://dataportal.kr/`      | `https://dataportal.kr/` |
-| `http://www.dataportal.kr/`  | `https://dataportal.kr/` |
-| `https://www.dataportal.kr/` | `https://dataportal.kr/` |
+**Cloudflare 대시보드 → `dataportal.kr` → SSL/TLS → Edge Certificates → Always Use HTTPS를 켜세요.** 이 토글 하나로 아래 세 경우가 모두 정리됩니다. 하위 경로와 쿼리 문자열은 자동으로 보존되므로 Bulk Redirects를 따로 등록할 필요가 없습니다. 같은 화면의 HSTS도 함께 켜면 헤더 수준에서 고정됩니다.
 
-세 항목 모두 하위 경로 일치와 쿼리 문자열 보존을 켜세요. 그러면 HTTP와 `www` 요청이 중간 호스트를 거치지 않고 한 번의 301로 HTTPS apex에 도착합니다.
-
-배포 뒤 아래 명령으로 상태 코드, `Location`, 쿼리 문자열을 확인합니다.
+API로 켜려면 `Zone` → `Zone Settings` → `Edit` 권한을 `dataportal.kr` 존에만 부여한 토큰으로 아래를 호출합니다.
 
 ```sh
-curl -sSI 'http://dataportal.kr/posts/?utm_source=redirect-test'
-curl -sSI 'http://www.dataportal.kr/posts/?utm_source=redirect-test'
-curl -sSI 'https://www.dataportal.kr/posts/?utm_source=redirect-test'
+curl -X PATCH \
+  "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/settings/always_use_https" \
+  -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+  -H 'Content-Type: application/json' \
+  --data '{"value":"on"}'
 ```
 
-각 응답은 `301`이어야 하며 `Location`은 `https://dataportal.kr/posts/?utm_source=redirect-test`여야 합니다. 이어서 `curl -sSIL`로 최종 응답까지 리다이렉트가 한 번인지 확인하세요.
+### 검증
+
+```sh
+for u in \
+  'http://dataportal.kr/posts/?utm_source=redirect-test' \
+  'http://www.dataportal.kr/posts/?utm_source=redirect-test' \
+  'https://www.dataportal.kr/posts/?utm_source=redirect-test'; do
+  printf '%s\n  code=%s location=%s\n' "$u" \
+    "$(curl -sS -o /dev/null -w '%{http_code}' --max-time 15 "$u")" \
+    "$(curl -sS -o /dev/null -w '%{redirect_url}' --max-time 15 "$u")"
+done
+```
+
+세 요청 모두 `301`이고 `location`이 `https://dataportal.kr/posts/?utm_source=redirect-test`여야 합니다. 이어서 아래로 최종 응답까지 리다이렉트가 한 번인지 확인합니다.
+
+```sh
+curl -sS -o /dev/null -L -w 'redirects=%{num_redirects} final=%{url_effective}\n' \
+  'http://dataportal.kr/posts/?utm_source=redirect-test'
+```
+
+`www` 에서 apex로 가는 규칙은 이미 동작합니다(2026-08-25 확인). 남은 것은 HTTP를 HTTPS로 올리는 한 단계입니다. 그때까지는 같은 문서가 http와 https 양쪽에서 200으로 서빙되며, 정본은 문서의 canonical 태그만으로 표시됩니다.
+
+### GitHub Pages 설정은 대안이 아닙니다
+
+Pages 저장소의 `https_enforced`를 켜는 것은 같은 문제의 해법이 아닙니다. DNS가 Pages를 직접 가리키지 않아 GitHub이 `dataportal.kr` 인증서를 발급한 적이 없고(`https_certificate` 객체 없음), 이 설정은 Cloudflare에서 오리진으로 가는 구간에만 영향을 줍니다. Cloudflare의 SSL 모드가 Flexible인 상태에서 켜면 리다이렉트 루프가 생깁니다. 손대지 마세요.
 
 ## 배포 전 검사
 
