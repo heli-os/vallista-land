@@ -64,7 +64,7 @@ corepack yarn workspace @vallista-land/blog build:blog
 corepack yarn workspace @vallista-land/blog seo:check
 ```
 
-`seo:check`는 indexable 페이지의 title, description, canonical, H1과 canonical 경로, 페이지별 링크 수를 검사합니다. 구조화 데이터는 JSON-LD 블록이 최소 하나 있는지, 글 페이지에 `BlogPosting`이 있는지, 그 필수 필드가 채워졌는지를 문법 검사와 함께 봅니다. 마지막으로 draft 노출과 RSS 분리를 확인합니다.
+`seo:check`는 indexable 페이지의 title, description, canonical, H1과 canonical 경로, 본문 링크 수를 검사합니다. 링크는 `article` 안쪽만 셉니다. 내비와 사이드바, 푸터는 모든 페이지에 같은 개수가 붙어서 전체 개수로 재면 본문이 아니라 크롬을 재게 됩니다. 구조화 데이터는 JSON-LD 블록이 최소 하나 있는지, 글 페이지에 `BlogPosting`이 있는지, 그 필수 필드가 채워졌는지를 문법 검사와 함께 봅니다. 마지막으로 draft 노출과 RSS 분리를 확인합니다.
 
 홈, 두 주제 허브, 일반 글, 책 챕터는 다음 도구에도 각각 입력합니다.
 
