@@ -113,6 +113,7 @@ const TagItem = styled(Link)`
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    color: inherit;
     padding: 0.6rem 1rem;
     border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
     border-radius: 999px;

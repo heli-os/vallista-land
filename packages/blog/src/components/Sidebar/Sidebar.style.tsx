@@ -293,6 +293,8 @@ export const _TopicSectionHeader = styled.div`
 
   margin-top: 14px;
   padding-top: 14px;
+  /* 아이콘이 없는 항목이라 형제 항목(_BookItem)의 아이콘 폭 20px + 간격 6px 만큼 들여쓴다. */
+  padding-left: 26px;
   font-size: 13px;
 `
 
@@ -305,7 +307,7 @@ export const _TopicLink = styled(Link)`
     }
   `}
 
-  padding: 7px 0;
+  padding: 7px 0 7px 26px;
   font-size: 14px;
   line-height: 1.4;
   text-decoration: none;

@@ -23,7 +23,7 @@ export const TopicHub: FC<TopicHubProps> = ({ topic, posts }) => {
   const updatedDate = formatKoreanDate(topic.updated)
 
   return (
-    <div>
+    <Styled._Wrapper>
       <Styled._Header>
         <h1>{topic.title}</h1>
         {topic.intro.map((paragraph) => (
@@ -65,6 +65,6 @@ export const TopicHub: FC<TopicHubProps> = ({ topic, posts }) => {
           </Styled._PostList>
         </Styled._Section>
       ))}
-    </div>
+    </Styled._Wrapper>
   )
 }
