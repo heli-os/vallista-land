@@ -61,6 +61,9 @@ export const _ReadingOrder = styled.section`
   ol {
     margin: 0;
     padding-left: 24px;
+    /* core 리셋이 ol, ul 의 list-style 을 없앤다. 읽는 순서를 안내하는
+       자리라 번호를 되살린다. */
+    list-style: decimal;
   }
 
   li + li {
@@ -109,6 +112,9 @@ export const _PostLink = styled(Link)`
   `}
 
   display: block;
+  /* height 100% 와 패딩을 함께 쓴다. border-box 가 없으면 패딩과 보더가
+     그리드 셀 높이 위에 더해져 다음 행 카드와 겹친다. */
+  box-sizing: border-box;
   height: 100%;
   padding: 18px;
   border-radius: 10px;
