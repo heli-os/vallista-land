@@ -1,5 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
+import { AnchorHTMLAttributes, ComponentType } from 'react'
 
 export const _Container = styled.aside`
   position: fixed;
@@ -69,7 +71,7 @@ export const _Wrapper = styled.nav`
   }
 `
 
-export const _Category = styled.a<{ checked?: boolean }>`
+export const _Category = styled(Link)<{ checked?: boolean }>`
   position: relative;
   display: flex;
   justify-content: center;
@@ -151,3 +153,7 @@ export const _Category = styled.a<{ checked?: boolean }>`
     `}
   `}
 `
+
+export const _ExternalCategory = _Category.withComponent('a') as unknown as ComponentType<
+  AnchorHTMLAttributes<HTMLAnchorElement>
+>

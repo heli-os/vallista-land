@@ -57,6 +57,16 @@ const PAGES = [
     subtitle: '주제별로 글을 모아 보는 곳.'
   },
   {
+    name: 'topic-agentic-ai',
+    title: 'Agentic AI 논문 읽기',
+    subtitle: '에이전트 구조부터 평가와 도메인 응용까지 이어 읽는 25편.'
+  },
+  {
+    name: 'topic-organization-startup',
+    title: '조직과 스타트업',
+    subtitle: '작은 팀의 운영, 채용, 리더십, 제품 판단에 관한 기록.'
+  },
+  {
     name: '404',
     title: '페이지를 찾을 수 없습니다',
     subtitle: '찾는 페이지가 없어요. 주소가 바뀌었거나 글이 사라졌을 수 있어요.'
@@ -100,7 +110,13 @@ const card = ({ title, subtitle }) =>
       el('div', { display: 'flex', flexDirection: 'column' }, [
         el(
           'div',
-          { display: 'flex', fontSize: titleFontSize(title), fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.02em' },
+          {
+            display: 'flex',
+            fontSize: titleFontSize(title),
+            fontWeight: 700,
+            lineHeight: 1.2,
+            letterSpacing: '-0.02em'
+          },
           title
         ),
         el(
@@ -122,10 +138,7 @@ const card = ({ title, subtitle }) =>
   )
 
 const toJpeg = async (svg, outPath) => {
-  await sharp(Buffer.from(svg))
-    .resize(WIDTH, HEIGHT)
-    .jpeg({ quality: 82, mozjpeg: true })
-    .toFile(outPath)
+  await sharp(Buffer.from(svg)).resize(WIDTH, HEIGHT).jpeg({ quality: 82, mozjpeg: true }).toFile(outPath)
 }
 
 const main = async () => {

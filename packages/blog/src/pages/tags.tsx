@@ -16,8 +16,6 @@ interface TagsPageProps {
   data: TagsQuery
 }
 
-const SITE_URL = 'https://dataportal.kr'
-
 const TagsPage: FC<TagsPageProps> = ({ data }) => {
   const tags = useMemo(
     () =>
@@ -51,41 +49,26 @@ export const Head = ({ location, data }: HeadProps<TagsQuery>) => {
   const tags = [...data.allMarkdownRemark.group].filter((g) => Boolean(g.fieldValue))
 
   const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '태그', url: `${SITE_URL}/tags/` }
+    { name: '홈', url: '/' },
+    { name: '태그', url: '/tags/' }
   ]
 
-  const collectionJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: '태그 목록 · 테오 블로그',
-    url: `${SITE_URL}/tags/`,
-    hasPart: tags.map((t) => ({
-      '@type': 'CollectionPage',
-      name: t.fieldValue,
-      url: `${SITE_URL}/tags/${encodeURIComponent(t.fieldValue)}/`
-    }))
-  }
-
   return (
-    <>
-      <Seo
-        name='태그 목록'
-        description='테오 블로그의 모든 태그 목록. 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트 등.'
-        image='/og/tags.jpeg'
-        breadcrumbs={breadcrumbs}
-        pathname={location.pathname}
-      />
-      <script type='application/ld+json'>{JSON.stringify(collectionJsonLd)}</script>
-    </>
+    <Seo
+      name='태그 목록'
+      description='테오 블로그의 모든 태그 목록. 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트 등.'
+      image='/og/tags.jpeg'
+      pageType='collection'
+      collectionItems={tags.map((tag) => ({ name: tag.fieldValue, url: `/tags/${tag.fieldValue}/` }))}
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
   )
 }
 
 export const pageQuery = graphql`
   query TagsIndexQuery {
-    allMarkdownRemark(
-      filter: { fields: { contentType: { eq: "posts" } }, frontmatter: { draft: { ne: true } } }
-    ) {
+    allMarkdownRemark(filter: { fields: { contentType: { eq: "posts" } }, frontmatter: { draft: { ne: true } } }) {
       group(field: { frontmatter: { tags: SELECT } }) {
         fieldValue
         totalCount

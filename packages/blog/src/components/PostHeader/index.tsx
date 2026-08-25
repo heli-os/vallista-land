@@ -2,7 +2,7 @@ import { Text, Badge, Container, Spacer, Tooltip, copy, useToasts } from '@heli-
 import { Link } from 'gatsby'
 import { FC, PropsWithChildren } from 'react'
 
-import { getTime } from '../../utils'
+import { formatKoreanDate } from '../../utils'
 import * as Styled from './PostHeader.style'
 
 interface PostHeaderProps {
@@ -10,15 +10,17 @@ interface PostHeaderProps {
   tags?: string[]
   image?: string
   date: string
+  updated?: string
   author: string
   timeToRead: number
 }
 
 export const PostHeader: FC<PropsWithChildren<PostHeaderProps>> = (props) => {
-  const { title, tags, date, author, timeToRead, children } = props
-  const [year, month, day] = getTime(date)
+  const { title, tags, date, updated, author, timeToRead, children } = props
   const toast = useToasts()
-  const dateToString = `${year}년 ${Number(month)}월 ${Number(day)}일`
+  const dateToString = formatKoreanDate(date)
+  const shouldShowUpdated = Boolean(updated && new Date(updated).getTime() > new Date(date).getTime())
+  const updatedToString = shouldShowUpdated && updated ? formatKoreanDate(updated) : null
 
   return (
     <Styled._Header>
@@ -32,9 +34,7 @@ export const PostHeader: FC<PropsWithChildren<PostHeaderProps>> = (props) => {
             <Container row wrap='wrap' gap={0.5}>
               {tags.map((it) => (
                 <Styled._TagLink key={it} to={`/tags/${it}/`}>
-                  <Badge size='large'>
-                    #{it}
-                  </Badge>
+                  <Badge size='large'>#{it}</Badge>
                 </Styled._TagLink>
               ))}
             </Container>
@@ -49,6 +49,11 @@ export const PostHeader: FC<PropsWithChildren<PostHeaderProps>> = (props) => {
               <Text size={14} as='span'>
                 {dateToString} · {timeToRead} min read
               </Text>
+              {updatedToString && (
+                <Text size={12} as='span'>
+                  수정 {updatedToString}
+                </Text>
+              )}
             </Styled._TextContainer>
             <Styled._IconContainer>
               <Tooltip text='링크 복사' position='top'>

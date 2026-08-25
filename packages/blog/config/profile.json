@@ -8,16 +8,11 @@
   "twitterUserName": "",
   "github": "heli-os",
   "secondary": "https://careers.bolta.io",
-  "sameAs": [
-    "https://github.com/heli-os",
-    "https://careers.bolta.io"
-  ],
+  "sameAs": ["https://github.com/heli-os", "https://www.linkedin.com/in/taeyang-jin"],
+  "worksFor": {
+    "name": "볼타",
+    "url": "https://careers.bolta.io"
+  },
   "jobTitle": "Product Engineer · CTO",
-  "knowsAbout": [
-    "Product Engineering",
-    "Agentic AI",
-    "Software Architecture",
-    "Startup",
-    "Organization Design"
-  ]
+  "knowsAbout": ["Product Engineering", "Agentic AI", "Software Architecture", "Startup", "Organization Design"]
 }

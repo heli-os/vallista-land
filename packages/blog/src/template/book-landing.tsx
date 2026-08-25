@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { graphql, navigate, HeadProps } from 'gatsby'
+import { graphql, Link, HeadProps } from 'gatsby'
 import { FC } from 'react'
 
 import { Seo } from '../components/Seo'
@@ -29,18 +29,18 @@ const ACTS = [
 ]
 
 const BookLanding: FC<BookLandingPageProps> = ({ data }) => {
-  const nodes = [...data.allMarkdownRemark.nodes].sort(
-    (a, b) => a.frontmatter.chapter - b.frontmatter.chapter
-  )
+  const nodes = [...data.allMarkdownRemark.nodes].sort((a, b) => a.frontmatter.chapter - b.frontmatter.chapter)
   const totalReadTime = nodes.reduce((sum, n) => sum + n.timeToRead, 0)
 
   return (
     <Wrapper>
       <Header>
-        <CoverImage src="/book/cover.jpeg" alt="작은 팀의 기술 표지" />
+        <CoverImage src='/book/cover.jpeg' alt='작은 팀의 기술 표지' />
         <BookTitle>작은 팀의 기술</BookTitle>
         <Subtitle>개발자 출신 창업자의 조직 운영기</Subtitle>
-        <Meta>전 {nodes.length}장 · 약 {totalReadTime}분</Meta>
+        <Meta>
+          전 {nodes.length}장 · 약 {totalReadTime}분
+        </Meta>
       </Header>
 
       <Description>
@@ -66,7 +66,7 @@ const BookLanding: FC<BookLandingPageProps> = ({ data }) => {
                 const node = nodes.find((n) => n.frontmatter.chapter === chNum)
                 if (!node) return null
                 return (
-                  <ChapterItem key={chNum} onClick={() => navigate(node.fields.slug)}>
+                  <ChapterItem key={chNum} to={node.fields.slug}>
                     <ChapterTitle>{node.frontmatter.title}</ChapterTitle>
                     <ChapterMeta>{node.timeToRead}분</ChapterMeta>
                   </ChapterItem>
@@ -77,21 +77,28 @@ const BookLanding: FC<BookLandingPageProps> = ({ data }) => {
         ))}
       </TOC>
 
-      <StartReading onClick={() => nodes[0] && navigate(nodes[0].fields.slug)}>
-        처음부터 읽기
-      </StartReading>
+      {nodes[0] && <StartReading to={nodes[0].fields.slug}>처음부터 읽기</StartReading>}
     </Wrapper>
   )
 }
 
 export default BookLanding
 
-export const Head = ({ location }: HeadProps) => (
+export const Head = ({ location, data }: HeadProps<BookLandingData>) => (
   <Seo
     name='작은 팀의 기술'
     description='개발자 출신 창업자의 조직 운영기. 채용, 리더십, 피드백, 실행 구조, AI 시대의 조직까지.'
     image='/book/og-book.jpeg'
-    isPost={false}
+    pageType='collection'
+    collectionItems={data.allMarkdownRemark.nodes.map((node) => ({
+      name: node.frontmatter.title,
+      url: node.fields.slug
+    }))}
+    breadcrumbs={[
+      { name: '홈', url: '/' },
+      { name: '책', url: '/books/' },
+      { name: '작은 팀의 기술', url: location.pathname }
+    ]}
     pathname={location.pathname}
   />
 )
@@ -219,15 +226,14 @@ const ActTitle = styled.h2`
   `}
 `
 
-const ChapterList = styled.ul`
-  list-style: none;
+const ChapterList = styled.div`
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 `
 
-const ChapterItem = styled.li`
+const ChapterItem = styled(Link)`
   ${({ theme }) => css`
     display: flex;
     justify-content: space-between;
@@ -237,6 +243,7 @@ const ChapterItem = styled.li`
     cursor: pointer;
     border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
     transition: all 0.2s;
+    text-decoration: none;
     &:hover {
       border-color: ${theme.colors.HIGHLIGHT.ORANGE};
       background: ${theme.colors.PRIMARY.ACCENT_1};
@@ -260,7 +267,7 @@ const ChapterMeta = styled.span`
   `}
 `
 
-const StartReading = styled.button`
+const StartReading = styled(Link)`
   ${({ theme }) => css`
     display: block;
     width: 100%;
@@ -273,6 +280,8 @@ const StartReading = styled.button`
     border-radius: 8px;
     cursor: pointer;
     transition: opacity 0.2s;
+    text-align: center;
+    text-decoration: none;
     &:hover {
       opacity: 0.85;
     }

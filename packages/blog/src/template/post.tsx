@@ -6,6 +6,7 @@ import { AdSense } from '../components/AdSense'
 import { Comment } from '../components/Comment'
 import { Markdown } from '../components/Markdown'
 import { PostHeader } from '../components/PostHeader'
+import { RelatedPosts } from '../components/RelatedPosts'
 import { Seo } from '../components/Seo'
 import { Series } from '../components/Series'
 import { useConfig } from '../hooks/useConfig'
@@ -15,7 +16,7 @@ const Post: FC<PageProps<PostQuery>> = (props) => {
   const { allMarkdownRemark } = props.data
   const { nodes, group: seriesGroup } = allMarkdownRemark
   const { timeToRead, html, excerpt } = props.data.markdownRemark
-  const { title, date, image, tags, series, description: frontmatterDescription } = props.data.markdownRemark.frontmatter
+  const { title, date, updated, image, tags, series } = props.data.markdownRemark.frontmatter
 
   const cachedFilterSeries = useCallback(getFilteredSeries, [props.data])
 
@@ -24,6 +25,7 @@ const Post: FC<PageProps<PostQuery>> = (props) => {
       <PostHeader
         title={title}
         date={date}
+        updated={updated}
         image={image?.publicURL}
         tags={tags}
         timeToRead={timeToRead}
@@ -34,6 +36,7 @@ const Post: FC<PageProps<PostQuery>> = (props) => {
         )}
       </PostHeader>
       <Markdown html={html} />
+      <RelatedPosts currentSlug={props.data.markdownRemark.fields.slug} posts={nodes} />
       <AdSense slotId='7216625942' />
       <section id='comments'></section>
       <Comment />
@@ -51,25 +54,24 @@ const Post: FC<PageProps<PostQuery>> = (props) => {
 
 export default Post
 
-const SITE_URL = 'https://dataportal.kr'
-
 export const Head = ({ data, location }: HeadProps<PostQuery>) => {
-  const { title, date, image, tags, description: frontmatterDescription } = data.markdownRemark.frontmatter
+  const { title, seoTitle, date, image, tags, description: frontmatterDescription } = data.markdownRemark.frontmatter
   const { timeToRead, excerpt } = data.markdownRemark
   const lastModified = data.markdownRemark.fields?.lastModified
 
   const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '글 목록', url: `${SITE_URL}/posts/` },
-    { name: title, url: `${SITE_URL}${encodeURI(data.markdownRemark.fields.slug)}` }
+    { name: '홈', url: '/' },
+    { name: '글 목록', url: '/posts/' },
+    { name: title, url: data.markdownRemark.fields.slug }
   ]
 
   return (
     <Seo
       name={title}
+      seoTitle={seoTitle}
       description={frontmatterDescription || excerpt}
       image={image?.publicURL}
-      isPost
+      pageType='post'
       date={date}
       dateModified={lastModified}
       tags={tags}
@@ -84,7 +86,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
     allMarkdownRemark(
       sort: { frontmatter: { date: DESC } }
-      filter: { fields: { contentType: { eq: "posts" } } }
+      filter: { fields: { contentType: { eq: "posts" } }, frontmatter: { draft: { ne: true } } }
     ) {
       nodes {
         fields {
@@ -112,9 +114,11 @@ export const pageQuery = graphql`
       timeToRead
       frontmatter {
         title
+        seoTitle
         description
         tags
         date
+        updated
         image {
           publicURL
         }

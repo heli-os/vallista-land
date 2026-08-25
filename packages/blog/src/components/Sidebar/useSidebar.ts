@@ -11,6 +11,9 @@ const DEFAULT_SCROLL_STATE: ScrollStateType = 'HIDE'
 
 const BLACKLIST: string[] = []
 
+// 사이드바는 태그마다 최신 글 몇 개만 보여주고, 나머지는 전체 글 목록으로 넘긴다.
+const POSTS_PER_TAG = 5
+
 export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar & Omit<T, 'posts'> => {
   const { posts } = props
   const { pathname: currentPathname } = useLocation()
@@ -53,7 +56,7 @@ export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar &
           return acc
         }, {})
     )
-  }, [])
+  }, [posts])
 
   // 태그 형태로 변환된 포스트 목록
   const taggedPosts = useMemo(
@@ -63,7 +66,7 @@ export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar &
         curr.tags
           .filter((it) => !BLACKLIST.includes(it))
           .forEach((it) => {
-            acc[it].push(curr)
+            if (acc[it].length < POSTS_PER_TAG) acc[it].push(curr)
           })
         return acc
       }, allTags),
@@ -81,7 +84,7 @@ export const useSidebar = <T extends SidebarProps>(props: T): ReturnUseSidebar &
   return {
     ...props,
     posts: filteredTaggedPosts,
-    totalPosts: posts.length,
+    totalPosts: props.totalPosts,
     scrollState,
     viewState,
     search,

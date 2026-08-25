@@ -285,6 +285,46 @@ export const _BookSection = styled.nav`
   padding: 16px 24px 12px;
 `
 
+export const _TopicSectionHeader = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.PRIMARY.ACCENT_4};
+    border-top: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
+  `}
+
+  margin-top: 14px;
+  padding-top: 14px;
+  font-size: 13px;
+`
+
+export const _TopicLink = styled(Link)`
+  ${({ theme }) => css`
+    color: ${theme.colors.PRIMARY.FOREGROUND};
+
+    &:hover {
+      background: ${theme.colors.PRIMARY.ACCENT_2};
+    }
+  `}
+
+  padding: 7px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+`
+
+export const _AllPostsLink = styled(Link)`
+  ${({ theme }) => css`
+    color: ${theme.colors.HIGHLIGHT.ORANGE};
+    border-top: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
+  `}
+
+  display: block;
+  margin: 0 24px 32px;
+  padding: 16px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+`
+
 export const _BookSectionHeader = styled.div`
   ${({ theme }) => css`
     display: flex;
@@ -324,7 +364,9 @@ export const _BookItem = styled(Link)`
   `}
 `
 
-export const _ListStyleItem = styled(Link, { shouldForwardProp: shouldForwardLinkProp })<Pick<CardStyleItemProps, 'isActive'>>`
+export const _ListStyleItem = styled(Link, { shouldForwardProp: shouldForwardLinkProp })<
+  Pick<CardStyleItemProps, 'isActive'>
+>`
   position: relative;
   display: flex;
   justify-content: flex-start;

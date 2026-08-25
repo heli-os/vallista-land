@@ -41,7 +41,7 @@ export const Layout: FC<PropsWithChildren> = (props) => {
     <Styled._Wrapper>
       <Container>
         <NavBar />
-        <Sidebar posts={posts} fold={fold} />
+        <Sidebar posts={posts} totalPosts={posts.length} fold={fold} />
         <Header fold={fold} folding={handleFold} />
         <Styled._Main fold={fold}>
           <Styled._Article>{children}</Styled._Article>

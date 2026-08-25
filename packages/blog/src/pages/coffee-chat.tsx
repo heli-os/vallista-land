@@ -6,8 +6,6 @@ import { FC, FormEvent, useState } from 'react'
 
 import { Seo } from '../components/Seo'
 
-const SITE_URL = 'https://dataportal.kr'
-
 // Web3Forms access key. 설계상 클라이언트에 노출되는 공개 키이며 비밀값이 아니다.
 const WEB3FORMS_ACCESS_KEY = 'c56a3af0-f690-4822-8222-6651232862c9'
 
@@ -149,14 +147,14 @@ const CoffeeChatPage: FC = () => {
           <p>
             그 감각으로 회사 일과는 별개로 크고 작은 프로젝트를 약 100개 만들었습니다. 마케팅 자동화부터 코로나19 공적
             마스크 공공데이터까지 주제는 매번 달랐지만 방식은 늘 같았습니다. 문제를 다시 정의하고, 익숙한 길 대신 낯선
-            길로 부딪혀 보고, 끝나면 되짚어 다음 판단을 바꿉니다. 이 <Link to={RETRO_POST_URL}>회고 루틴</Link>을
-            10년째 바꾸지 않고 돌리고 있습니다. 피드백보다 회고가 중요하다고 생각합니다. 되짚은 것을 다음에 반영하지
-            않으면 그 시간은 그냥 버린 시간이니까요.
+            길로 부딪혀 보고, 끝나면 되짚어 다음 판단을 바꿉니다. 이 <Link to={RETRO_POST_URL}>회고 루틴</Link>을 10년째
+            바꾸지 않고 돌리고 있습니다. 피드백보다 회고가 중요하다고 생각합니다. 되짚은 것을 다음에 반영하지 않으면 그
+            시간은 그냥 버린 시간이니까요.
           </p>
           <p>
             볼타를 시작하기 전에도 그 루틴은 회사 밖으로 번졌습니다. C++ 게임 개발을 공부하던 게 유료 기술 콘텐츠가
-            됐고, 그다음엔 사람으로 번졌습니다. 동료들과 기술 비영리 단체를 700명 이상 규모로 키웠고, 멘토링으로
-            2,000명 이상과 커리어·엔지니어링 이야기를 나눴습니다.
+            됐고, 그다음엔 사람으로 번졌습니다. 동료들과 기술 비영리 단체를 700명 이상 규모로 키웠고, 멘토링으로 2,000명
+            이상과 커리어·엔지니어링 이야기를 나눴습니다.
           </p>
           <p>
             그리고 같은 눈으로 더 큰 틈을 보고, 동료들과{' '}
@@ -315,30 +313,18 @@ export default CoffeeChatPage
 
 export const Head = ({ location }: HeadProps) => {
   const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '커피챗', url: `${SITE_URL}/coffee-chat/` }
+    { name: '홈', url: '/' },
+    { name: '커피챗', url: '/coffee-chat/' }
   ]
 
-  const profilePageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    name: '커피챗 · 테오 블로그',
-    url: `${SITE_URL}/coffee-chat/`,
-    mainEntity: { '@id': `${SITE_URL}/#person` },
-    isPartOf: { '@id': `${SITE_URL}/#website` }
-  }
-
   return (
-    <>
-      <Seo
-        name='커피챗'
-        description='AI 시대엔 더 이상 효율은 없다. 제품·개발·AI를 둘러싼 열린 질문을 일대일로 함께 푸는 커피챗을 신청하세요.'
-        image='/og/coffee-chat.jpeg'
-        breadcrumbs={breadcrumbs}
-        pathname={location.pathname}
-      />
-      <script type='application/ld+json'>{JSON.stringify(profilePageJsonLd)}</script>
-    </>
+    <Seo
+      name='커피챗'
+      description='AI 시대엔 더 이상 효율은 없다. 제품·개발·AI를 둘러싼 열린 질문을 일대일로 함께 푸는 커피챗을 신청하세요.'
+      image='/og/coffee-chat.jpeg'
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
   )
 }
 

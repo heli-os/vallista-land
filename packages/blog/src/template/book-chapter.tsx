@@ -18,11 +18,12 @@ interface BookChapterData {
     html: string
     excerpt: string
     timeToRead: number
-    fields: { slug: string }
+    fields: { slug: string; lastModified: string }
     frontmatter: {
       title: string
       chapter: number
       description: string | null
+      date: string
     }
   }
   allMarkdownRemark: {
@@ -48,9 +49,7 @@ const BookChapter: FC<BookChapterPageProps> = ({ data, pageContext }) => {
     return {
       prev: idx > 0 ? { title: sorted[idx - 1].frontmatter.title, slug: sorted[idx - 1].fields.slug } : null,
       next:
-        idx < sorted.length - 1
-          ? { title: sorted[idx + 1].frontmatter.title, slug: sorted[idx + 1].fields.slug }
-          : null
+        idx < sorted.length - 1 ? { title: sorted[idx + 1].frontmatter.title, slug: sorted[idx + 1].fields.slug } : null
     }
   }, [allChapters, chapter])
 
@@ -71,16 +70,31 @@ const BookChapter: FC<BookChapterPageProps> = ({ data, pageContext }) => {
 
 export default BookChapter
 
-export const Head = ({ data, location }: HeadProps<BookChapterData>) => {
-  const { title, description } = data.markdownRemark.frontmatter
+export const Head = ({
+  data,
+  location,
+  pageContext
+}: HeadProps<BookChapterData, { bookSlug: string; bookTitle: string }>) => {
+  const { title, description, date } = data.markdownRemark.frontmatter
   const { excerpt } = data.markdownRemark
 
   return (
     <Seo
-      name={`${title} — 작은 팀의 기술`}
+      name={title}
+      seoTitle={`${title} — ${pageContext.bookTitle}`}
       description={description || excerpt}
       image='/book/og-book.jpeg'
-      isPost={false}
+      pageType='bookChapter'
+      date={date}
+      dateModified={data.markdownRemark.fields.lastModified}
+      bookName={pageContext.bookTitle}
+      bookUrl={`/books/${pageContext.bookSlug}/`}
+      breadcrumbs={[
+        { name: '홈', url: '/' },
+        { name: '책', url: '/books/' },
+        { name: pageContext.bookTitle, url: `/books/${pageContext.bookSlug}/` },
+        { name: title, url: location.pathname }
+      ]}
       pathname={location.pathname}
     />
   )
@@ -94,11 +108,13 @@ export const pageQuery = graphql`
       timeToRead
       fields {
         slug
+        lastModified
       }
       frontmatter {
         title
         chapter
         description
+        date
       }
     }
     allMarkdownRemark(

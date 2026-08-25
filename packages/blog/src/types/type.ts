@@ -5,11 +5,15 @@ export interface Image {
 export interface Post {
   fields: {
     slug: string
+    lastModified?: string
   }
   timeToRead: number
   frontmatter: {
     title: string
+    seoTitle?: string
+    description?: string
     date: string
+    updated?: string
     tags: string[]
     image: Image | null
     series?: string | null
@@ -48,6 +52,10 @@ export interface StaticQuery {
       sameAs?: string[]
       jobTitle?: string
       knowsAbout?: string[]
+      worksFor?: {
+        name: string
+        url: string
+      }
     }
   }
   markdownRemark: Post

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { navigate } from 'gatsby'
-import { FC } from 'react'
+import { Link } from 'gatsby'
+import { FC, HTMLAttributes, ComponentType } from 'react'
 
 interface ChapterInfo {
   title: string
@@ -17,21 +17,19 @@ interface BookChapterNavProps {
 export const BookChapterNav: FC<BookChapterNavProps> = ({ prev, next, tocLink }) => {
   return (
     <Wrapper>
-      <NavItem align='left' disabled={!prev} onClick={() => prev && navigate(prev.slug)}>
-        {prev ? (
+      {prev ? (
+        <NavItem align='left' to={prev.slug}>
           <>
             <Label>← 이전 챕터</Label>
             <Title>{prev.title}</Title>
           </>
-        ) : (
+        </NavItem>
+      ) : (
+        <DisabledNavItem align='left'>
           <Label>&nbsp;</Label>
-        )}
-      </NavItem>
-      <NavItem
-        align='right'
-        disabled={false}
-        onClick={() => (next ? navigate(next.slug) : navigate(tocLink))}
-      >
+        </DisabledNavItem>
+      )}
+      <NavItem align='right' to={next ? next.slug : tocLink}>
         {next ? (
           <>
             <Label>다음 챕터 →</Label>
@@ -56,26 +54,27 @@ const Wrapper = styled.nav`
   padding: 0 2rem;
 `
 
-const NavItem = styled.div<{ align: 'left' | 'right'; disabled?: boolean }>`
-  ${({ theme, align, disabled }) => css`
+const NavItem = styled(Link)<{ align: 'left' | 'right' }>`
+  ${({ theme, align }) => css`
     flex: 1;
-    cursor: ${disabled ? 'default' : 'pointer'};
+    cursor: pointer;
     text-align: ${align};
     padding: 1rem;
     border-radius: 8px;
     border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
     transition: all 0.2s;
-    opacity: ${disabled ? 0.4 : 1};
+    text-decoration: none;
 
-    ${!disabled &&
-    css`
-      &:hover {
-        border-color: ${theme.colors.HIGHLIGHT.ORANGE};
-        background: ${theme.colors.PRIMARY.ACCENT_1};
-      }
-    `}
+    &:hover {
+      border-color: ${theme.colors.HIGHLIGHT.ORANGE};
+      background: ${theme.colors.PRIMARY.ACCENT_1};
+    }
   `}
 `
+
+const DisabledNavItem = NavItem.withComponent('span') as unknown as ComponentType<
+  HTMLAttributes<HTMLSpanElement> & { align: 'left' | 'right' }
+>
 
 const Label = styled.div`
   ${({ theme }) => css`

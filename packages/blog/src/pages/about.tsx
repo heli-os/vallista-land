@@ -6,8 +6,6 @@ import { FC } from 'react'
 
 import { Seo } from '../components/Seo'
 
-const SITE_URL = 'https://dataportal.kr'
-
 const AboutPage: FC = () => {
   return (
     <Container>
@@ -16,14 +14,12 @@ const AboutPage: FC = () => {
         <Section>
           <h2>테오 블로그는</h2>
           <p>
-            스타트업에서 CTO로 일하며 오랫동안 제품을 만들어온 엔지니어 <strong>진태양(Theo)</strong>이
-            글을 쓰는 곳입니다. 제품 엔지니어링, 조직과 성장, Agentic AI 논문 읽기, 작은 팀의 기술에 대한
-            관찰과 생각을 담습니다.
+            스타트업에서 CTO로 일하며 오랫동안 제품을 만들어온 엔지니어 <strong>진태양(Theo)</strong>이 글을 쓰는
+            곳입니다. 제품 엔지니어링, 조직과 성장, Agentic AI 논문 읽기, 작은 팀의 기술에 대한 관찰과 생각을 담습니다.
           </p>
           <p>
-            기술은 도구일 뿐, 결국 사람과 팀과 제품이 어떻게 맞물리는지가 더 중요하다고 믿습니다. 그래서
-            이 블로그는 프레임워크·라이브러리 튜토리얼보다는 <em>왜 그렇게 만들게 되었는지</em>에 대한
-            이야기가 더 많습니다.
+            기술은 도구일 뿐, 결국 사람과 팀과 제품이 어떻게 맞물리는지가 더 중요하다고 믿습니다. 그래서 이 블로그는
+            프레임워크·라이브러리 튜토리얼보다는 <em>왜 그렇게 만들게 되었는지</em>에 대한 이야기가 더 많습니다.
           </p>
         </Section>
 
@@ -73,10 +69,16 @@ const AboutPage: FC = () => {
               RSS: <a href='/rss.xml'>전체 글 피드</a> · <a href='/books/rss.xml'>책 피드</a>
             </li>
             <li>
-              GitHub: <a href='https://github.com/heli-os' target='_blank' rel='noopener noreferrer'>@heli-os</a>
+              GitHub:{' '}
+              <a href='https://github.com/heli-os' target='_blank' rel='noopener noreferrer'>
+                @heli-os
+              </a>
             </li>
             <li>
-              채용 중인 회사: <a href='https://careers.bolta.io' target='_blank' rel='noopener noreferrer'>bolta.io</a>
+              채용 중인 회사:{' '}
+              <a href='https://careers.bolta.io' target='_blank' rel='noopener noreferrer'>
+                bolta.io
+              </a>
             </li>
           </ul>
         </Section>
@@ -89,30 +91,19 @@ export default AboutPage
 
 export const Head = ({ location }: HeadProps) => {
   const breadcrumbs = [
-    { name: '홈', url: `${SITE_URL}/` },
-    { name: '소개', url: `${SITE_URL}/about/` }
+    { name: '홈', url: '/' },
+    { name: '소개', url: '/about/' }
   ]
 
-  const aboutPageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    name: '소개 · 테오 블로그',
-    url: `${SITE_URL}/about/`,
-    mainEntity: { '@id': `${SITE_URL}/#person` },
-    isPartOf: { '@id': `${SITE_URL}/#website` }
-  }
-
   return (
-    <>
-      <Seo
-        name='소개'
-        description='테오 블로그와 저자 진태양(Theo)에 대한 소개. 제품 엔지니어링·Agentic AI·조직·성장 에세이.'
-        image='/og/about.jpeg'
-        breadcrumbs={breadcrumbs}
-        pathname={location.pathname}
-      />
-      <script type='application/ld+json'>{JSON.stringify(aboutPageJsonLd)}</script>
-    </>
+    <Seo
+      name='소개'
+      description='테오 블로그와 저자 진태양(Theo)에 대한 소개. 제품 엔지니어링·Agentic AI·조직·성장 에세이.'
+      image='/og/about.jpeg'
+      pageType='about'
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
   )
 }
 

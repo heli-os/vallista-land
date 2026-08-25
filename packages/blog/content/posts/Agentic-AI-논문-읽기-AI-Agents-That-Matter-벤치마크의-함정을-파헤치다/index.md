@@ -1,5 +1,6 @@
 ---
 title: "Agentic AI 논문 읽기: AI Agents That Matter — 벤치마크의 함정을 파헤치다"
+seoTitle: "AI 에이전트 벤치마크의 함정 — AI Agents That Matter"
 description: "AI Agents That Matter 논문을 해설합니다. HumanEval SOTA 에이전트가 단순 재시도와 정확도 차이가 없으면서 비용은 50배라는 실증을 통해, 에이전트 벤치마킹의 네 가지 근본 문제와 파레토 프론티어 접근법을 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:

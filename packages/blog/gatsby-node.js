@@ -1,7 +1,17 @@
 const path = require('path')
 const fs = require('fs')
-const { execSync } = require('child_process')
 const { createFilePath } = require('gatsby-source-filesystem')
+const { toAbsoluteUrl } = require('./src/utils/seo-url')
+
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+    type MarkdownRemarkFrontmatter {
+      seoTitle: String
+      updated: Date @dateformat
+      imagePrompt: String
+    }
+  `)
+}
 
 // Babel 설정 시
 // @babel/plugin-transform-react-jsx를 추가해야 emotion.jsx등 런타임을 확인해서 변경함
@@ -54,9 +64,7 @@ exports.createPages = async function ({ actions, graphql }) {
   // 태그별 정적 페이지 생성
   const tagResult = await graphql(`
     {
-      allMarkdownRemark(
-        filter: { frontmatter: { draft: { ne: true } }, fields: { contentType: { eq: "posts" } } }
-      ) {
+      allMarkdownRemark(filter: { frontmatter: { draft: { ne: true } }, fields: { contentType: { eq: "posts" } } }) {
         group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
           totalCount
@@ -115,9 +123,7 @@ exports.createPages = async function ({ actions, graphql }) {
       // book.json에서 책 제목 읽기
       let bookTitle = bookSlug
       try {
-        const bookJson = JSON.parse(
-          fs.readFileSync(path.resolve(`./content/books/${bookSlug}/book.json`), 'utf8')
-        )
+        const bookJson = JSON.parse(fs.readFileSync(path.resolve(`./content/books/${bookSlug}/book.json`), 'utf8'))
         bookTitle = bookJson.title || bookSlug
       } catch (_) {}
 
@@ -160,10 +166,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
       }
       allMarkdownRemark(
         sort: { frontmatter: { date: DESC } }
-        filter: {
-          fields: { contentType: { eq: "posts" } }
-          frontmatter: { draft: { ne: true } }
-        }
+        filter: { fields: { contentType: { eq: "posts" } }, frontmatter: { draft: { ne: true } } }
       ) {
         nodes {
           excerpt(pruneLength: 180)
@@ -180,10 +183,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
       }
       bookChapters: allMarkdownRemark(
         sort: { frontmatter: { chapter: ASC } }
-        filter: {
-          fields: { contentType: { eq: "books" } }
-          frontmatter: { draft: { ne: true } }
-        }
+        filter: { fields: { contentType: { eq: "books" } }, frontmatter: { draft: { ne: true } } }
       ) {
         nodes {
           fields {
@@ -207,18 +207,22 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   const posts = result.data.allMarkdownRemark.nodes
   const bookChapters = result.data.bookChapters.nodes
 
-  const encodeUrl = (slug) => `${siteUrl}${encodeURI(slug)}`
+  const encodeUrl = (slug) => toAbsoluteUrl(slug)
 
   const lines = []
   lines.push(`# ${title}`)
   lines.push('')
   lines.push(`> ${description}`)
   lines.push('')
-  lines.push('이 파일은 LLM·AI 검색 엔진(ChatGPT, Perplexity, Claude, Gemini 등)이 사이트를 효율적으로 이해하도록 돕는 가이드입니다.')
+  lines.push(
+    '이 파일은 LLM·AI 검색 엔진(ChatGPT, Perplexity, Claude, Gemini 등)이 사이트를 효율적으로 이해하도록 돕는 가이드입니다.'
+  )
   lines.push('')
   lines.push('## 주요 리소스')
   lines.push(`- 전체 글 목록: ${siteUrl}/posts/`)
   lines.push(`- 태그 목록: ${siteUrl}/tags/`)
+  lines.push(`- Agentic AI 논문 읽기: ${siteUrl}/topics/agentic-ai/`)
+  lines.push(`- 조직과 스타트업: ${siteUrl}/topics/organization-startup/`)
   lines.push(`- 책 목록: ${siteUrl}/books/`)
   lines.push(`- 저자 소개: ${siteUrl}/about/`)
   lines.push(`- 저자 이력서: ${siteUrl}/resume/`)
@@ -230,7 +234,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   // 태그별 그룹
   const byTag = {}
   posts.forEach((p) => {
-    (p.frontmatter.tags || []).forEach((t) => {
+    ;(p.frontmatter.tags || []).forEach((t) => {
       if (!byTag[t]) byTag[t] = []
       byTag[t].push(p)
     })
@@ -303,23 +307,14 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
       })
     }
 
-    // Git에서 파일의 마지막 수정일 추출
-    try {
-      const fp = node.internal.contentFilePath
-      const lastModified = execSync(
-        `git log -1 --format=%aI -- "${fp}"`
-      ).toString().trim()
-      createNodeField({
-        node,
-        name: 'lastModified',
-        value: lastModified || node.frontmatter.date
-      })
-    } catch {
-      createNodeField({
-        node,
-        name: 'lastModified',
-        value: node.frontmatter.date
-      })
-    }
+    const publishedAt = node.frontmatter.date
+    const updatedAt = node.frontmatter.updated
+    const hasLaterUpdate = updatedAt && publishedAt && new Date(updatedAt).getTime() > new Date(publishedAt).getTime()
+
+    createNodeField({
+      node,
+      name: 'lastModified',
+      value: hasLaterUpdate ? updatedAt : publishedAt
+    })
   }
 }

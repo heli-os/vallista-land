@@ -17,7 +17,7 @@ const ResumePage: FC = () => {
           <Container>
             <Title>
               <Container>
-                <Text as='h2' size={48} weight={800}>
+                <Text as='h1' size={48} weight={800}>
                   {resume.config.name}
                 </Text>
                 <Text as='h2' size={32} weight={800}>
@@ -207,7 +207,13 @@ const ResumePage: FC = () => {
             {resume.hobby.list.map((it, idx) => (
               <Container key={idx}>
                 <Text as='h3' size={24} weight={600}>
-                  {it.url !== null ? <a onClick={() => openNewPage(it.url!)}>{it.title}</a> : it.title}
+                  {it.url !== null ? (
+                    <a href={it.url} target='_blank' rel='noopener noreferrer'>
+                      {it.title}
+                    </a>
+                  ) : (
+                    it.title
+                  )}
                 </Text>
                 <div>
                   {it.descriptions?.map((it_, idx) => (
@@ -240,7 +246,9 @@ const ResumePage: FC = () => {
               {resume.speaker.list.map((it, idx) => (
                 <li key={idx}>
                   <Text size={16}>
-                    <a onClick={() => openNewPage(it.url)}>{it.title}</a>
+                    <a href={it.url} target='_blank' rel='noopener noreferrer'>
+                      {it.title}
+                    </a>
                   </Text>
                 </li>
               ))}
@@ -260,7 +268,9 @@ const ResumePage: FC = () => {
                 it.url !== null ? (
                   <li key={idx}>
                     <Text size={16}>
-                      <a onClick={() => openNewPage(it.url!)}>{it.title}</a>
+                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
+                        {it.title}
+                      </a>
                     </Text>
                   </li>
                 ) : (
@@ -285,7 +295,9 @@ const ResumePage: FC = () => {
                 it.url !== null ? (
                   <li key={idx}>
                     <Text size={16}>
-                      <a onClick={() => openNewPage(it.url!)}>{it.title}</a>
+                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
+                        {it.title}
+                      </a>
                     </Text>
                   </li>
                 ) : (
@@ -310,7 +322,9 @@ const ResumePage: FC = () => {
                 it.url !== null ? (
                   <li key={idx}>
                     <Text size={16}>
-                      <a onClick={() => openNewPage(it.url!)}>{it.title}</a>
+                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
+                        {it.title}
+                      </a>
                     </Text>
                   </li>
                 ) : (
@@ -335,7 +349,9 @@ const ResumePage: FC = () => {
                 it.url !== null ? (
                   <li key={idx}>
                     <Text size={16}>
-                      <a onClick={() => openNewPage(it.url!)}>{it.title}</a>
+                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
+                        {it.title}
+                      </a>
                     </Text>
                     <SubTitleText>
                       <Text size={14}>{it.description}</Text>
@@ -477,4 +493,6 @@ const SubTitleText = styled.div`
 
 export default ResumePage
 
-export const Head = ({ location }: HeadProps) => <Seo name='이력서' image='/og/resume.jpeg' pathname={location.pathname} />
+export const Head = ({ location }: HeadProps) => (
+  <Seo name='이력서' image='/og/resume.jpeg' pageType='profile' pathname={location.pathname} />
+)

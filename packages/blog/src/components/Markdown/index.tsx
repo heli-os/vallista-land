@@ -10,6 +10,9 @@ export const Markdown: FC<MarkdownProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null)
   const html = useMemo(() => {
     const result = props.html
+      // 페이지 제목만 H1을 사용한다. 본문의 H1은 문서 섹션인 H2로 내린다.
+      .replaceAll('<h1', '<h2')
+      .replaceAll('</h1>', '</h2>')
       // pre 태그 (소스코드)에 추가하여 wrapping 하는 div를 추가한다.
       // 해당 div는 스크롤 처리를 진행한다.
       .replaceAll('<pre', '<div class="markdown-wrapper"><pre')

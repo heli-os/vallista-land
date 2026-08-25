@@ -1,5 +1,6 @@
 ---
 title: "Agentic AI 논문 읽기: Multi-Agent Survey — 집단 지능의 지도를 펼치다"
+seoTitle: "다중 에이전트 시스템 구조 — Multi-Agent Survey"
 description: "LLM 기반 다중 에이전트 서베이 논문을 해설합니다. 에이전트-환경 인터페이스, 프로파일링, 통신, 능력 획득의 4축 프레임워크로 다중 에이전트 연구의 전체 지형을 조망하고, AutoGen과 MetaGPT가 이 지도 위에서 어디에 서 있는지 재해석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
