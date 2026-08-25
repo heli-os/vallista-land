@@ -2,6 +2,14 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
+// 다른 페이지(posts, about)와 같은 본문 폭과 여백을 쓴다. 없으면 뷰포트 오른쪽 끝까지 붙는다.
+export const _Wrapper = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+`
+
 export const _Header = styled.header`
   margin-bottom: 48px;
 
@@ -113,4 +121,6 @@ export const _ReadingLink = styled(Link)`
   ${({ theme }) => css`
     color: ${theme.colors.PRIMARY.FOREGROUND};
   `}
+
+  text-decoration: none;
 `

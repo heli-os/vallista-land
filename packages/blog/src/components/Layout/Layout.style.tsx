@@ -36,7 +36,11 @@ export const _Main = styled.main<{ fold: boolean }>`
 
 export const _Article = styled.article`
   ${({ theme }) => css`
-    a {
+    /* 마크다운 본문과 JSX 산문에 그대로 놓인 링크에만 기본 색을 준다.
+       styled 링크는 emotion 클래스를 달고 나오므로 :not([class])에 걸리지 않고,
+       자기 색을 그대로 쓴다. 이 조건이 없으면 '.클래스 a'가 컴포넌트의
+       단일 클래스 규칙을 항상 이겨서 CTA와 허브 링크 색이 무시된다. */
+    a:not([class]) {
       cursor: pointer;
       color: ${theme.colors.PRIMARY.FOREGROUND};
     }
