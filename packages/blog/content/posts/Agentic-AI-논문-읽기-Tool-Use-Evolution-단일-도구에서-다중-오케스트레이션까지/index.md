@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI 논문 읽기: Tool Use Evolution — 단일 도구에서 다중 오케스트레이션까지"
+title: "Agentic AI 논문 읽기: Tool Use Evolution, 단일 도구에서 다중 오케스트레이션까지"
 description: "LLM 에이전트의 도구 사용 진화를 다룬 서베이를 해설합니다. 단일 도구 호출의 정확성에서 다중 도구 오케스트레이션의 견고성까지, 6가지 차원으로 도구 사용의 전체 지형을 조망합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: Tool Use Evolution — 단일 도구에서 다중 오케스트레이션까지](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: Tool Use Evolution, 단일 도구에서 다중 오케스트레이션까지](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >
