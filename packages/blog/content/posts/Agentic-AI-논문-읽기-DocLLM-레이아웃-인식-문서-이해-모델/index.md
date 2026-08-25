@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI 논문 읽기: DocLLM — 레이아웃 인식 문서 이해 모델"
+title: "Agentic AI 논문 읽기: DocLLM, 레이아웃 인식 문서 이해 모델"
 description: "DocLLM 논문을 해설합니다. 비전 인코더 없이 바운딩 박스 좌표만으로 문서 레이아웃을 이해하는 경량 LLM 확장의 설계와, 16개 데이터셋 중 14개에서 SOTA를 달성한 분리된 공간 어텐션 메커니즘을 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: DocLLM — 레이아웃 인식 문서 이해 모델](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: DocLLM, 레이아웃 인식 문서 이해 모델](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

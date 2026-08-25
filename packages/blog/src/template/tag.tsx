@@ -119,7 +119,7 @@ export const Head = ({ data, location, pageContext }: HeadProps<TagQuery, TagPag
   return (
     <Seo
       name={tag}
-      description={`${tag} 태그가 포함된 글 모음 — 테오 블로그`}
+      description={`${tag} 태그가 포함된 글 모음: 테오 블로그`}
       image='/og/tags.jpeg'
       pageType='collection'
       collectionItems={data.allMarkdownRemark.nodes.map((post) => ({

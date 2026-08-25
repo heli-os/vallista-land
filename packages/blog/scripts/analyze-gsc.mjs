@@ -163,7 +163,7 @@ const selectTargets = (rows, maximum) => {
 const toPathname = (page) => decodeURIComponent(new URL(page, SITE_URL).pathname)
 
 const formatDelta = (current, previous) => {
-  if (previous === undefined) return '—'
+  if (previous === undefined) return '-'
   const value = current - previous
   return `${value > 0 ? '+' : ''}${value.toFixed(1)}`
 }

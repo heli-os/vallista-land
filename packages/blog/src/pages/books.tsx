@@ -34,7 +34,7 @@ const BOOK_META: Record<string, BookMeta> = {
   'the-art-of-small-teams': {
     title: '작은 팀의 기술',
     subtitle: '개발자 출신 창업자의 조직 운영기',
-    description: '100개 이상의 제품을 만들며 깨달은 것 — 결국 가장 잘 작동하는 건 작은 팀이었다.',
+    description: '100개 이상의 제품을 만들며 깨달은 것: 결국 가장 잘 작동하는 건 작은 팀이었다.',
     coverImage: '/book/cover.jpeg'
   }
 }

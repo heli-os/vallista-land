@@ -1,6 +1,6 @@
 ---
-title: "Agentic AI 논문 읽기: Rise and Potential — 뇌·지각·행동으로 본 에이전트 전망"
-seoTitle: "LLM 에이전트의 구조 — Rise and Potential"
+title: "Agentic AI 논문 읽기: Rise and Potential, 뇌·지각·행동으로 본 에이전트 전망"
+seoTitle: "LLM 에이전트의 구조, Rise and Potential"
 description: "LLM 기반 에이전트의 부상과 잠재력 서베이를 해설합니다. 인지 능력(Brain), 지각(Perception), 행동(Action)의 세 축으로 에이전트를 구성하고, 단일→다중→인간 협업의 3단계로 미래를 전망합니다."
 image: ./assets/thumbnail.jpeg
 tags:
@@ -11,7 +11,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: Rise and Potential — 뇌·지각·행동으로 본 에이전트 전망](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: Rise and Potential, 뇌·지각·행동으로 본 에이전트 전망](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

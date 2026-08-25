@@ -8,6 +8,8 @@
     "gatsby"
   ],
   "scripts": {
+    "check:typography": "node ./scripts/check-forbidden-dashes.mjs",
+    "test:typography": "node --test ./scripts/check-forbidden-dashes.test.mjs",
     "run:blog": "npx kill-port 8000 && gatsby develop",
     "og:blog": "node ./scripts/generate-og-images.mjs",
     "thumbnail:blog": "node ./scripts/generate-thumbnail.mjs",

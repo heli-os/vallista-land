@@ -1,6 +1,6 @@
 ---
-title: "Agentic AI 논문 읽기: Constitutional AI — 원칙 기반 자기 개선"
-description: "Constitutional AI 논문을 해설합니다. 인간 피드백 레이블 없이 원칙(헌법)만으로 AI를 자기 개선시키는 Anthropic의 2단계 프로세스 — 비판-수정의 지도학습과 RLAIF — 를 분석합니다."
+title: "Agentic AI 논문 읽기: Constitutional AI, 원칙 기반 자기 개선"
+description: "Constitutional AI 논문을 해설합니다. 인간 피드백 레이블 없이 원칙(헌법)만으로 AI를 자기 개선시키는 Anthropic의 2단계 프로세스(비판-수정의 지도학습과 RLAIF)를 분석합니다."
 image: ./assets/thumbnail.jpeg
 tags:
   - 기술
@@ -10,7 +10,7 @@ series: Agentic AI 논문 읽기
 draft: false
 ---
 
-![Agentic AI 논문 읽기: Constitutional AI — 원칙 기반 자기 개선](./assets/thumbnail.jpeg)
+![Agentic AI 논문 읽기: Constitutional AI, 원칙 기반 자기 개선](./assets/thumbnail.jpeg)
 
 > **논문 정보**
 >

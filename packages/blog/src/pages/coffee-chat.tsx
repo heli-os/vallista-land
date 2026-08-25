@@ -105,7 +105,7 @@ const CoffeeChatPage: FC = () => {
           <p>
             정답을 드리는 자리는 아닙니다. 저도 아직 답을 못 낸 질문이 있어서, 같은 고민을 하는 분과 마주 앉아 생각을
             나눠 보고 싶습니다. 효율이 모두의 것이 된 시대에 사람의 일은 어디로 옮겨 가는지, 문제를 다시 세우는 감각과
-            비대칭을 읽는 판단은 어떻게 길러지는지 — 비슷한 질문을 안고 계시다면 함께 이야기해 보고 싶습니다.
+            비대칭을 읽는 판단은 어떻게 길러지는지 궁금합니다. 비슷한 질문을 안고 계시다면 함께 이야기해 보고 싶습니다.
           </p>
           <p>이 주제를 더 깊게 풀어 둔 글이 있습니다. 대화 전에 읽어 오시면 이야기가 빨리 깊어집니다.</p>
           <LinkList>
@@ -164,7 +164,7 @@ const CoffeeChatPage: FC = () => {
             를 시작했습니다. 기업 금융이라는 오래된 비효율을 전자세금계산서부터 손대고 있습니다. 한 방식에 머무르지
             않으려고 계속 다른 길도 시도하는데, 최근엔 헤드리스 방식으로 금융 데이터를 다뤄 본{' '}
             <a href={H6S_URL} target='_blank' rel='noopener noreferrer'>
-              headless — Financial Data API
+              headless: Financial Data API
             </a>
             가 그중 하나였습니다.
           </p>
@@ -277,7 +277,7 @@ const CoffeeChatPage: FC = () => {
           <h2>더 읽어볼 거리</h2>
           <LinkList>
             <li>
-              <Link to={ESSAY_URL}>AI 시대엔 더 이상 효율은 없다</Link> — 이 대화의 출발점이 된 글
+              <Link to={ESSAY_URL}>AI 시대엔 더 이상 효율은 없다</Link>: 이 대화의 출발점이 된 글
             </li>
             {RELATED_POSTS.map((post) => (
               <li key={post.url}>

@@ -81,7 +81,7 @@ export const Head = ({
   return (
     <Seo
       name={title}
-      seoTitle={`${title} — ${pageContext.bookTitle}`}
+      seoTitle={`${title}: ${pageContext.bookTitle}`}
       description={description || excerpt}
       image='/book/og-book.jpeg'
       pageType='bookChapter'
