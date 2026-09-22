@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { toAbsoluteUrl } = require('./src/utils/seo-url')
+const topics = require('./config/topics.json')
 
 exports.createSchemaCustomization = ({ actions }) => {
   actions.createTypes(`
@@ -221,8 +222,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   lines.push('## 주요 리소스')
   lines.push(`- 전체 글 목록: ${siteUrl}/posts/`)
   lines.push(`- 태그 목록: ${siteUrl}/tags/`)
-  lines.push(`- Agentic AI 논문 읽기: ${siteUrl}/topics/agentic-ai/`)
-  lines.push(`- 조직과 스타트업: ${siteUrl}/topics/organization-startup/`)
+  topics.forEach((topic) => lines.push(`- ${topic.title}: ${siteUrl}${topic.path}`))
   lines.push(`- 책 목록: ${siteUrl}/books/`)
   lines.push(`- 저자 소개: ${siteUrl}/about/`)
   lines.push(`- 저자 이력서: ${siteUrl}/resume/`)
