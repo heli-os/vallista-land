@@ -6,6 +6,11 @@ import * as Styled from './Sidebar.style'
 import { ViewStateType } from './Sidebar.type'
 import { useSidebar } from './useSidebar'
 
+const TOPICS = [
+  { to: '/topics/agentic-ai/', title: 'Agentic AI 논문 읽기' },
+  { to: '/topics/organization-startup/', title: '조직과 스타트업' }
+]
+
 interface SidebarProps {
   posts: SidebarPost[]
   totalPosts: number
@@ -111,11 +116,45 @@ export const Sidebar: FC<SidebarProps> = (props) => {
             </div>
             <Text>작은 팀의 기술</Text>
           </Styled._BookItem>
-          <Styled._TopicSectionHeader>
+          <Styled._TopicDivider />
+          <Styled._BookSectionHeader>
+            <div style={{ width: '24px', height: '16px' }}>
+              <svg
+                viewBox='0 0 24 24'
+                width='16'
+                height='16'
+                stroke='currentColor'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                fill='none'
+              >
+                <circle cx='12' cy='12' r='10' />
+                <path d='M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z' />
+              </svg>
+            </div>
             <Text>주제별로 읽기</Text>
-          </Styled._TopicSectionHeader>
-          <Styled._TopicLink to='/topics/agentic-ai/'>Agentic AI 논문 읽기</Styled._TopicLink>
-          <Styled._TopicLink to='/topics/organization-startup/'>조직과 스타트업</Styled._TopicLink>
+          </Styled._BookSectionHeader>
+          {TOPICS.map((topic) => (
+            <Styled._BookItem key={topic.to} to={topic.to}>
+              <div>
+                <svg
+                  viewBox='0 0 24 24'
+                  width='20'
+                  height='20'
+                  stroke='currentColor'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  fill='none'
+                  shapeRendering='geometricPrecision'
+                >
+                  <path d='M4 9h16M4 15h16M10 3L8 21M16 3l-2 18' />
+                </svg>
+              </div>
+              <Text>{topic.title}</Text>
+            </Styled._BookItem>
+          ))}
         </Styled._BookSection>
         <Styled._Categories>
           <Container>

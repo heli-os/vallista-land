@@ -285,32 +285,13 @@ export const _BookSection = styled.nav`
   padding: 16px 24px 12px;
 `
 
-export const _TopicSectionHeader = styled.div`
+export const _TopicDivider = styled.hr`
   ${({ theme }) => css`
-    color: ${theme.colors.PRIMARY.ACCENT_4};
+    border: none;
     border-top: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
   `}
 
-  margin-top: 14px;
-  padding-top: 14px;
-  /* 아이콘이 없는 항목이라 형제 항목(_BookItem)의 아이콘 폭 20px + 간격 6px 만큼 들여쓴다. */
-  padding-left: 26px;
-  font-size: 13px;
-`
-
-export const _TopicLink = styled(Link)`
-  ${({ theme }) => css`
-    color: ${theme.colors.PRIMARY.FOREGROUND};
-
-    &:hover {
-      background: ${theme.colors.PRIMARY.ACCENT_2};
-    }
-  `}
-
-  padding: 7px 0 7px 26px;
-  font-size: 14px;
-  line-height: 1.4;
-  text-decoration: none;
+  margin: 14px 0;
 `
 
 export const _AllPostsLink = styled(Link)`
