@@ -1,15 +1,11 @@
 import { Colors, Container, Text, SearchInput } from '@heli-os/vallista-core'
 import { useEffect, useMemo, useRef, useState, FC } from 'react'
 
+import { topics } from '../../config/topics'
 import { SidebarPost } from '../../types/type'
 import * as Styled from './Sidebar.style'
 import { ViewStateType } from './Sidebar.type'
 import { useSidebar } from './useSidebar'
-
-const TOPICS = [
-  { to: '/topics/agentic-ai/', title: 'Agentic AI 논문 읽기' },
-  { to: '/topics/organization-startup/', title: '조직과 스타트업' }
-]
 
 interface SidebarProps {
   posts: SidebarPost[]
@@ -135,8 +131,8 @@ export const Sidebar: FC<SidebarProps> = (props) => {
             </div>
             <Text>주제별로 읽기</Text>
           </Styled._BookSectionHeader>
-          {TOPICS.map((topic) => (
-            <Styled._BookItem key={topic.to} to={topic.to}>
+          {topics.map((topic) => (
+            <Styled._BookItem key={topic.id} to={topic.path}>
               <div>
                 <svg
                   viewBox='0 0 24 24'
