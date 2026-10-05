@@ -12,6 +12,8 @@ const COMMON_STYLE =
   'Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style'
 // Codex가 생성 원본을 복사해 두는 임시 파일. 실행마다 새 임시 디렉터리에 둔다.
 const SOURCE_FILE_NAME = 'thumbnail-source.png'
+// 에이전트 Bash timeout(300초 권장) 안에서 임시 디렉터리 정리까지 끝나도록 Codex 실행에 상한을 둔다.
+const CODEX_TIMEOUT_MS = 240_000
 
 const getArgument = (name) => {
   const index = process.argv.indexOf(name)
@@ -38,9 +40,10 @@ const requestCodex = (workDir, prompt) => {
   const result = spawnSync(
     'codex',
     ['exec', '-s', 'workspace-write', '--skip-git-repo-check', '-C', workDir, buildCodexInstruction(prompt)],
-    { stdio: ['ignore', 'ignore', 'pipe'], encoding: 'utf8' }
+    { stdio: ['ignore', 'ignore', 'pipe'], encoding: 'utf8', timeout: CODEX_TIMEOUT_MS }
   )
 
+  if (result.error?.code === 'ETIMEDOUT') throw new Error(`codex 시간 초과 (${CODEX_TIMEOUT_MS / 1000}초)`)
   if (result.error) throw new Error(`codex 실행 실패: ${result.error.message}`)
   if (result.status !== 0) throw new Error(`codex 종료 코드 ${result.status}: ${result.stderr.trim().slice(-500)}`)
 
