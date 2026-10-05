@@ -4,10 +4,10 @@
 
 ### 썸네일 이미지
 - 각 에세이에는 `./assets/thumbnail.jpeg` 썸네일이 필요
-- 썸네일은 Google AI Studio Gemini API(`GEMINI_API_KEY` 환경변수)로 자동 생성
-  - 모델 우선순위: `imagen-4.0-generate-001` → `gemini-2.5-flash-image` (폴백)
-  - **16:9 후처리 필수**: API가 16:9를 지원하지 않는 경우, 생성 후 Pillow로 center-crop → 1536x864 리사이즈
-  - API 키 미설정 또는 호출 실패 시: 프롬프트만 출력하고 수동 생성 안내 (폴백)
+- 썸네일은 Codex CLI로 생성한다. 직접 API를 호출하지 말고 `packages/blog/scripts/generate-thumbnail.mjs`를 쓴다
+  - 실행: `node packages/blog/scripts/generate-thumbnail.mjs --post packages/blog/content/posts/{폴더} --prompt "<프롬프트>"`
+  - 스크립트가 `codex exec` 별도 세션에서 내장 `image_gen`으로 생성하고, sharp로 center-crop 해서 1536x864 JPEG로 저장한다
+  - Codex 미설치, 로그인 만료, 생성 실패 시(종료 코드 2): 프롬프트만 출력하고 수동 생성 안내 (폴백)
 - 에세이 작성 시 반드시 이미지 생성 프롬프트를 함께 작성할 것
 - 프롬프트 공통 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
 - 이미지 사양: 1536x864 (HD, 16:9), JPEG 형식
@@ -18,7 +18,10 @@
 - Frontmatter: title, image, tags, date, draft 필수
 
 ### 태그
-- 사용 가능한 태그: 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트
+- 사용 가능한 태그: 에세이, 작문, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트
+  - 에세이: 필자 본인의 경험과 생각을 쓰는 글
+  - 작문: 가상의 화자와 장면으로 쓰는 창작 산문 (단편, 콩트 등). 작문 글에는 에세이 태그를 함께 달지 않는다
+- 허용 태그 목록은 이 절에만 둔다. 스킬과 에이전트 문서는 목록을 복사하지 말고 이 절을 참조한다
 
 ### 콘텐츠 스타일
 - 섹션 제목: `##` 사용 (H2 기준. 예전 포스트의 `###`는 Markdown 렌더러가 자동으로 H2로 승격하므로 신규 글부터 `##` 사용)

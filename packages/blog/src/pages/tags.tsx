@@ -56,7 +56,7 @@ export const Head = ({ location, data }: HeadProps<TagsQuery>) => {
   return (
     <Seo
       name='태그 목록'
-      description='테오 블로그의 모든 태그 목록. 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트 등.'
+      description='테오 블로그의 모든 태그 목록. 에세이, 작문, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트 등.'
       image='/og/tags.jpeg'
       pageType='collection'
       collectionItems={tags.map((tag) => ({ name: tag.fieldValue, url: `/tags/${tag.fieldValue}/` }))}

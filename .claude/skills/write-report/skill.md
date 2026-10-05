@@ -23,7 +23,7 @@ description: "세션/팟캐스트/컨퍼런스 내용을 구조화된 리포트 
 
 1. 제목이 비어있으면 사용자에게 요청
 2. 태그가 허용 목록에 있는지 확인
-   - 허용: 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트
+   - 허용: CLAUDE.md `### 태그` 절의 허용 태그
    - 불허 태그 입력 시 → 가장 유사한 허용 태그 제안
 3. source_text가 파일 경로이면 해당 파일을 읽어서 내용 획득
 4. source_text가 비어있으면 사용자에게 요청
@@ -117,104 +117,34 @@ draft: {true|false}
 Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style, {리포트 주제를 시각화하는 구체적 묘사}
 ```
 
-#### 5-2. Google AI Studio Imagen API로 이미지 자동 생성
+#### 5-2. Codex CLI로 이미지 생성
 
-환경변수 `GEMINI_API_KEY`가 설정되어 있으면 Imagen 4.0 API를 호출하여 썸네일을 자동 생성한다. 미설정이거나 실패 시 폴백(프롬프트만 출력)한다.
+썸네일은 `packages/blog/scripts/generate-thumbnail.mjs`로 만든다. 스크립트가 Codex CLI(`codex exec`) 별도 세션을 띄워 내장 `image_gen` 도구로 이미지를 생성하고, sharp로 center-crop 해서 1536x864 JPEG로 `assets/thumbnail.jpeg`에 저장한다. API 키는 필요 없다. Codex CLI 로그인과 블로그 패키지 의존성(sharp) 설치가 전제다.
 
-**실행 절차**:
-
-1. API 키 확인:
+레포 루트에서 실행한다:
 ```bash
-if [ -z "$GEMINI_API_KEY" ]; then
-  echo "GEMINI_API_KEY 미설정 — 폴백: 수동 생성 모드"
-fi
+node packages/blog/scripts/generate-thumbnail.mjs \
+  --post packages/blog/content/posts/{폴더명} \
+  --prompt "{5-1에서 생성한 전체 프롬프트}"
 ```
 
-2. API 호출 (키가 존재할 때만) — 우선순위: imagen-4.0 → gemini-2.5-flash-image 폴백:
+- `--prompt`를 생략하면 frontmatter의 `imagePrompt`를 읽는다.
+- 프롬프트에 공통 스타일 문구가 없으면 스크립트가 뒤에 붙인다.
+- 한 번에 1~3분 걸린다. 결과가 마음에 들지 않으면 같은 명령을 다시 실행한다.
+
+생성 후 검증:
 ```bash
-# 1차 시도: imagen-4.0-generate-001
-RESPONSE=$(curl -s -f \
-  -X POST "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=$GEMINI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"instances\": [{\"prompt\": \"{5-1에서 생성한 전체 프롬프트}\"}],
-    \"parameters\": {\"sampleCount\": 1, \"aspectRatio\": \"16:9\"}
-  }" 2>/dev/null)
-
-# imagen 실패 시 gemini-2.5-flash-image 폴백
-if [ $? -ne 0 ] || echo "$RESPONSE" | grep -q '"error"'; then
-  RESPONSE=$(curl -s \
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent" \
-    -H "x-goog-api-key: $GEMINI_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"contents\": [{\"parts\": [{\"text\": \"{5-1에서 생성한 전체 프롬프트}\"}]}],
-      \"generationConfig\": {\"responseModalities\": [\"IMAGE\"]}
-    }")
-fi
+file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg"   # JPEG, 1536x864 확인
 ```
+이미지를 직접 열어 글자나 워터마크가 들어가지 않았는지도 확인한다.
 
-3. 응답에서 base64 이미지 데이터 추출 및 저장:
-```bash
-echo "$RESPONSE" | python3 -c "
-import sys, json, base64
-data = json.load(sys.stdin)
-if 'predictions' in data:
-    img_bytes = base64.b64decode(data['predictions'][0]['bytesBase64Encoded'])
-else:
-    for candidate in data.get('candidates', []):
-        for part in candidate.get('content', {}).get('parts', []):
-            if 'inlineData' in part:
-                img_bytes = base64.b64decode(part['inlineData']['data'])
-                break
-with open('packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg', 'wb') as f:
-    f.write(img_bytes)
-print('SUCCESS')
-" 2>/dev/null
-```
+**에러 처리**: 실패해도 리포트 작성은 중단하지 않는다.
 
-4. **16:9 후처리 (필수)** — 비율이 16:9가 아니면 center-crop + 리사이즈:
-```bash
-python3 -c "
-from PIL import Image
-path = 'packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg'
-img = Image.open(path)
-w, h = img.size
-target_ratio = 16 / 9
-current_ratio = w / h
-if abs(current_ratio - target_ratio) > 0.01:
-    if current_ratio > target_ratio:
-        new_w = int(h * target_ratio)
-        left = (w - new_w) // 2
-        img = img.crop((left, 0, left + new_w, h))
-    else:
-        new_h = int(w / target_ratio)
-        top = (h - new_h) // 2
-        img = img.crop((0, top, w, top + new_h))
-    img = img.resize((1536, 864), Image.LANCZOS)
-    img.save(path, 'JPEG', quality=90)
-    print(f'Resized to 1536x864 (16:9)')
-else:
-    print(f'Already 16:9: {w}x{h}')
-"
-```
-
-5. 파일 검증 — 저장된 파일이 실제 이미지인지 확인:
-```bash
-file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -qi "jpeg\|jpg\|png\|image"
-```
-검증 실패 시 파일 삭제 후 폴백.
-
-**에러 처리**: 아래 모든 실패 시 리포트 작성은 중단하지 않고 폴백한다.
-
-| 실패 시점 | 대응 |
-|-----------|------|
-| API 키 미설정 | API 호출 스킵, 6단계에서 프롬프트만 출력 |
-| API 호출 실패 (인증/네트워크) | 에러 메시지 + 프롬프트 출력 |
-| JSON 파싱 실패 / predictions 없음 | 원본 응답 일부 + 프롬프트 출력 |
-| 이미지 디코딩/저장 실패 | 에러 메시지 + 프롬프트 출력 |
-| 저장된 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
-| 비율 불일치 (16:9 아님) | Pillow center-crop + 1536x864 리사이즈 자동 적용 |
+| 종료 코드 | 원인 | 대응 |
+|-----------|------|------|
+| 0 | 생성 성공 | 검증 후 진행 |
+| 2 | codex 미설치, 로그인 만료, 생성 실패, 원본 파일 누락 | 스크립트가 출력한 프롬프트를 최종 보고에 담아 수동 생성 안내 |
+| 1 | 인자 누락, 글 경로 오류, 후처리 실패 | 메시지를 보고 경로나 인자를 고친 뒤 재실행 |
 
 ### 6단계: humanize-post 자체검증 (자동)
 
