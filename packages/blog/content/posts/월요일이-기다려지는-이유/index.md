@@ -5,7 +5,7 @@ image: ./assets/thumbnail.jpeg
 tags:
   - 작문
 date: 2026-10-05 12:51:05
-draft: true
+draft: false
 ---
 
 ![월요일이 기다려지는 이유](./assets/thumbnail.jpeg)
