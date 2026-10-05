@@ -1,6 +1,6 @@
 # 시그니처 모드 — 시리즈 시각 코드 & 변주 풀 프롬프트
 
-`write-essay` 스킬 5-1단계에서 **모드 B (시그니처)**를 선택했을 때 참조한다. 시리즈/깊이 있는 에세이를 위한 A24 × Apple keynote × Kurzgesagt editorial 3D 톤. Imagen 4.0 / Gemini 2.5 Flash Image 어느 쪽이든 그대로 입력 가능.
+`write-essay` 스킬 5-1단계에서 **모드 B (시그니처)**를 선택했을 때 참조한다. 시리즈/깊이 있는 에세이를 위한 A24 × Apple keynote × Kurzgesagt editorial 3D 톤. Codex `image_gen`(5-2의 `generate-thumbnail.mjs`)에 그대로 입력 가능.
 
 ## 시리즈 시각 코드 (모든 변주에 공통)
 
@@ -137,10 +137,10 @@ Negative: absolutely no text of any kind anywhere in the frame — no letters, n
    - L6: `Mood: ...`
    - L7: `Style: A24 × Apple keynote × Kurzgesagt editorial 3D, ...`
    - L8: `Negative: ...` (시리즈 공통 + 이 변주 고유 부정문)
-4. **금지 토큰**: 미드저니 전용 `--ar`, `--style raw`, `--v 6` 같은 파라미터는 Imagen/Gemini에 무의미하므로 제외 (aspect ratio는 API parameter로 전달)
+4. **금지 토큰**: 미드저니 전용 `--ar`, `--style raw`, `--v 6` 같은 파라미터는 Codex `image_gen`에 무의미하므로 제외 (16:9 비율은 스크립트 후처리로 맞춤)
 
 ## 운영 메모
 
-- Imagen 4.0의 `aspectRatio`는 16:9까지 지원. 21:9는 후처리 크롭이 필요하지만 실용상 16:9로 통일하는 것이 단순함.
-- 한 변주에서 마음에 드는 결과가 안 나오면 같은 프롬프트로 재시도 (Imagen은 시드 차이로 다른 결과를 줌).
+- 스크립트가 결과를 1536x864(16:9)로 center-crop 한다. 21:9 같은 다른 비율은 쓰지 않고 16:9로 통일한다.
+- 한 변주에서 마음에 드는 결과가 안 나오면 같은 프롬프트로 재시도 (생성할 때마다 다른 결과가 나옴).
 - 시리즈 글이 5편 이상 쌓이면 동일 변주 반복 사용을 피해 시리즈 안에서도 시각 변화를 준다.

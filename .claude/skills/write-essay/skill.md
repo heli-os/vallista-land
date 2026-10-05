@@ -23,7 +23,8 @@ description: "블로그 에세이를 CLAUDE.md 규칙에 맞춰 생성한다. �
 
 1. 제목이 비어있으면 사용자에게 요청
 2. 태그가 허용 목록에 있는지 확인
-   - 허용: 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트
+   - 허용: CLAUDE.md `### 태그` 절의 허용 태그
+   - 가상의 화자로 쓰는 창작 산문이면 `에세이` 대신 `작문` 태그를 쓴다
    - 불허 태그 입력 시 → 가장 유사한 허용 태그 제안
 3. 시리즈가 지정되었으면 기존 시리즈 목록과 대조
    - 기존: "좌뇌의 소설", "생각이 세계가 되는 순간들", "레딧에서는 무슨 이야기를 나눌까?", "볼타 이야기", "Vallista-land", "JPA", "장인 정신"
@@ -156,108 +157,13 @@ faceless humanoid + matte 재질만 + 부드러운 탑 라이트 + 좌측 1/3 �
 
 **모든 시그니처 프롬프트의 Negative에 반드시 다음을 포함**: `absolutely no text of any kind anywhere in the frame — no letters, no numbers, no Korean characters, no captions, no signage, no labels, no glyphs, no typography, no watermarks`. `Korean headline overlay` / `headline space` / `text overlay` 류 표현은 자체가 텍스트 생성 신호이므로 프롬프트에 절대 쓰지 않는다. 책·간판·모니터·라벨 등 텍스트가 들어가기 쉬운 객체가 장면에 있으면 `the {object} appears blank without any printed content` 절을 추가.
 
-미드저니 전용 토큰(`--ar`, `--style raw`, `--v 6`)은 Imagen/Gemini에 무의미하므로 프롬프트 본문에서 제외. aspect ratio는 5-2의 API parameter로 전달.
+미드저니 전용 토큰(`--ar`, `--style raw`, `--v 6`)은 Codex `image_gen`에 무의미하므로 프롬프트 본문에서 제외. 16:9 비율은 5-2 스크립트의 후처리로 맞춘다.
 
-#### 5-2. Google AI Studio Imagen API로 이미지 자동 생성
+#### 5-2. Codex CLI로 이미지 생성
 
-환경변수 `GEMINI_API_KEY`가 설정되어 있으면 Imagen 4.0 API를 호출하여 썸네일을 자동 생성한다. 미설정이거나 실패 시 폴백(프롬프트만 출력)한다.
+5-1에서 만든 전체 프롬프트를 `--prompt`로 넘겨 CLAUDE.md `### 썸네일 이미지` 절의 절차대로 `generate-thumbnail.mjs`를 실행한다. 실행 명령, Bash `timeout` 지정, 생성 후 검증, 종료 코드별 대응은 그 절을 따른다.
 
-**실행 절차**:
-
-1. API 키 확인:
-```bash
-if [ -z "$GEMINI_API_KEY" ]; then
-  echo "GEMINI_API_KEY 미설정 — 폴백: 수동 생성 모드"
-fi
-```
-
-2. API 호출 (키가 존재할 때만) — 우선순위: imagen-4.0 → gemini-2.5-flash-image 폴백:
-```bash
-# 1차 시도: imagen-4.0-generate-001
-RESPONSE=$(curl -s -f \
-  -X POST "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=$GEMINI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"instances\": [{\"prompt\": \"{5-1에서 생성한 전체 프롬프트}\"}],
-    \"parameters\": {\"sampleCount\": 1, \"aspectRatio\": \"16:9\"}
-  }" 2>/dev/null)
-
-# imagen 실패 시 gemini-2.5-flash-image 폴백
-if [ $? -ne 0 ] || echo "$RESPONSE" | grep -q '"error"'; then
-  RESPONSE=$(curl -s \
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent" \
-    -H "x-goog-api-key: $GEMINI_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"contents\": [{\"parts\": [{\"text\": \"{5-1에서 생성한 전체 프롬프트}\"}]}],
-      \"generationConfig\": {\"responseModalities\": [\"IMAGE\"]}
-    }")
-fi
-```
-
-3. 응답에서 base64 이미지 데이터 추출 및 저장:
-```bash
-echo "$RESPONSE" | python3 -c "
-import sys, json, base64
-data = json.load(sys.stdin)
-# imagen 응답 형식
-if 'predictions' in data:
-    img_bytes = base64.b64decode(data['predictions'][0]['bytesBase64Encoded'])
-# gemini 응답 형식
-else:
-    for candidate in data.get('candidates', []):
-        for part in candidate.get('content', {}).get('parts', []):
-            if 'inlineData' in part:
-                img_bytes = base64.b64decode(part['inlineData']['data'])
-                break
-with open('packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg', 'wb') as f:
-    f.write(img_bytes)
-print('SUCCESS')
-" 2>/dev/null
-```
-
-4. **16:9 후처리 (필수)** — 비율이 16:9가 아니면 center-crop + 리사이즈:
-```bash
-python3 -c "
-from PIL import Image
-path = 'packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg'
-img = Image.open(path)
-w, h = img.size
-target_ratio = 16 / 9
-current_ratio = w / h
-if abs(current_ratio - target_ratio) > 0.01:
-    if current_ratio > target_ratio:
-        new_w = int(h * target_ratio)
-        left = (w - new_w) // 2
-        img = img.crop((left, 0, left + new_w, h))
-    else:
-        new_h = int(w / target_ratio)
-        top = (h - new_h) // 2
-        img = img.crop((0, top, w, top + new_h))
-    img = img.resize((1536, 864), Image.LANCZOS)
-    img.save(path, 'JPEG', quality=90)
-    print(f'Resized to 1536x864 (16:9)')
-else:
-    print(f'Already 16:9: {w}x{h}')
-"
-```
-
-5. 파일 검증 — 저장된 파일이 실제 이미지인지 확인:
-```bash
-file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -qi "jpeg\|jpg\|png\|image"
-```
-검증 실패 시 파일 삭제 후 폴백.
-
-**에러 처리**: 아래 모든 실패 시 에세이 작성은 중단하지 않고 폴백한다.
-
-| 실패 시점 | 대응 |
-|-----------|------|
-| API 키 미설정 | API 호출 스킵, 6단계에서 프롬프트만 출력 |
-| API 호출 실패 (인증/네트워크) | 에러 메시지 + 프롬프트 출력 |
-| JSON 파싱 실패 / predictions 없음 | 원본 응답 일부 + 프롬프트 출력 |
-| 이미지 디코딩/저장 실패 | 에러 메시지 + 프롬프트 출력 |
-| 저장된 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
-| 비율 불일치 (16:9 아님) | Pillow center-crop + 1536x864 리사이즈 자동 적용 |
+생성에 실패해도 에세이 작성은 중단하지 않는다. 종료 코드 2이면 스크립트가 출력한 프롬프트를 최종 보고에 담아 수동 생성을 안내한다.
 
 ### 6단계: humanize-post 자체검증 (자동)
 

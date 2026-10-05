@@ -40,7 +40,7 @@ grep -rl "draft: true" packages/blog/content/posts/*/index.md
 1. 대상 포스트 식별
 2. 현재 태그 확인
 3. 새 태그가 허용 목록에 있는지 검증
-   - 허용: 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰
+   - 허용: CLAUDE.md `### 태그` 절의 허용 태그
 4. frontmatter의 tags 섹션 수정
 5. 변경 전/후 보고
 

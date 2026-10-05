@@ -1,4 +1,6 @@
-import { existsSync, mkdirSync, readFileSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -8,6 +10,10 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 const BLOG_ROOT = resolve(SCRIPT_DIR, '..')
 const COMMON_STYLE =
   'Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style'
+// Codex가 생성 원본을 복사해 두는 임시 파일. 실행마다 새 임시 디렉터리에 둔다.
+const SOURCE_FILE_NAME = 'thumbnail-source.png'
+// 에이전트 Bash timeout(300초 권장) 안에서 임시 디렉터리 정리까지 끝나도록 Codex 실행에 상한을 둔다.
+const CODEX_TIMEOUT_MS = 240_000
 
 const getArgument = (name) => {
   const index = process.argv.indexOf(name)
@@ -21,53 +27,35 @@ const readPrompt = (markdown) => {
   return match ? unquote(match[1]) : undefined
 }
 
-const requestImagen = async (apiKey, prompt) => {
-  const response = await fetch(
-    'https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-      body: JSON.stringify({
-        instances: [{ prompt }],
-        parameters: { sampleCount: 1, aspectRatio: '16:9' }
-      })
-    }
+const buildCodexInstruction = (prompt) =>
+  [
+    'Generate exactly ONE landscape 16:9 image with your built-in image_gen tool. Do not draw it with code, SVG, or HTML.',
+    `Image prompt: ${prompt}`,
+    `After generation, copy the generated file without any conversion to ./${SOURCE_FILE_NAME} in the current directory.`,
+    'Do not create, modify, or delete any other file.'
+  ].join('\n\n')
+
+// Codex CLI 별도 세션에 생성을 맡긴다. 쓰기 권한은 실행별 임시 디렉터리로 한정한다.
+const requestCodex = (workDir, prompt) => {
+  const result = spawnSync(
+    'codex',
+    ['exec', '-s', 'workspace-write', '--skip-git-repo-check', '-C', workDir, buildCodexInstruction(prompt)],
+    { stdio: ['ignore', 'ignore', 'pipe'], encoding: 'utf8', timeout: CODEX_TIMEOUT_MS }
   )
 
-  if (!response.ok) throw new Error(`Imagen 요청 실패 (${response.status}): ${await response.text()}`)
-  const payload = await response.json()
-  const encoded = payload.predictions?.[0]?.bytesBase64Encoded
-  if (!encoded) throw new Error('Imagen 응답에서 이미지 데이터를 찾지 못했습니다.')
-  return Buffer.from(encoded, 'base64')
-}
+  if (result.error?.code === 'ETIMEDOUT') throw new Error(`codex 시간 초과 (${CODEX_TIMEOUT_MS / 1000}초)`)
+  if (result.error) throw new Error(`codex 실행 실패: ${result.error.message}`)
+  if (result.status !== 0) throw new Error(`codex 종료 코드 ${result.status}: ${result.stderr.trim().slice(-500)}`)
 
-const requestGemini = async (apiKey, prompt) => {
-  const response = await fetch(
-    'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
-      })
-    }
-  )
-
-  if (!response.ok) throw new Error(`Gemini 요청 실패 (${response.status}): ${await response.text()}`)
-  const payload = await response.json()
-  const imagePart = payload.candidates?.[0]?.content?.parts?.find(
-    (part) => part.inlineData?.data || part.inline_data?.data
-  )
-  const encoded = imagePart?.inlineData?.data || imagePart?.inline_data?.data
-  if (!encoded) throw new Error('Gemini 응답에서 이미지 데이터를 찾지 못했습니다.')
-  return Buffer.from(encoded, 'base64')
+  const sourcePath = join(workDir, SOURCE_FILE_NAME)
+  if (!existsSync(sourcePath)) throw new Error(`codex가 ${SOURCE_FILE_NAME}를 만들지 않았습니다.`)
+  return sourcePath
 }
 
 const main = async () => {
   const postArgument = getArgument('--post')
   if (!postArgument) {
-    throw new Error('사용법: node scripts/generate-thumbnail.mjs --post <글 폴더 또는 index.md 경로>')
+    throw new Error('사용법: node scripts/generate-thumbnail.mjs --post <글 폴더 또는 index.md 경로> [--prompt "<프롬프트>"]')
   }
 
   const suppliedPath = resolve(process.cwd(), postArgument)
@@ -78,33 +66,32 @@ const main = async () => {
   const configuredPrompt = getArgument('--prompt') || readPrompt(markdown)
   if (!configuredPrompt) throw new Error('frontmatter의 imagePrompt 또는 --prompt 인자가 필요합니다.')
   const prompt = configuredPrompt.includes(COMMON_STYLE) ? configuredPrompt : `${configuredPrompt}. ${COMMON_STYLE}`
-  const outputPath = join(dirname(markdownPath), 'assets', 'thumbnail.jpeg')
-  const apiKey = process.env.GEMINI_API_KEY
+  const assetsDir = join(dirname(markdownPath), 'assets')
+  const outputPath = join(assetsDir, 'thumbnail.jpeg')
 
-  if (!apiKey) {
-    console.error('[generate-thumbnail] GEMINI_API_KEY가 없습니다. 아래 프롬프트로 수동 생성하세요.')
-    console.error(prompt)
-    process.exitCode = 2
-    return
-  }
+  mkdirSync(assetsDir, { recursive: true })
+  const workDir = mkdtempSync(join(tmpdir(), 'thumbnail-'))
 
-  // 이미지 생성 비용을 쓰기 전에 저장 경로를 확보한다. sharp의 toFile은 상위 디렉터리를 만들지 않는다.
-  mkdirSync(dirname(outputPath), { recursive: true })
-
-  let source
   try {
-    source = await requestImagen(apiKey, prompt)
-    console.log('✓ imagen-4.0-generate-001 생성 완료')
-  } catch (imagenError) {
-    console.warn(`[generate-thumbnail] Imagen 실패: ${imagenError.message}`)
-    source = await requestGemini(apiKey, prompt)
-    console.log('✓ gemini-2.5-flash-image 폴백 완료')
-  }
+    let sourcePath
+    try {
+      sourcePath = requestCodex(workDir, prompt)
+      console.log('✓ codex image_gen 생성 완료')
+    } catch (codexError) {
+      console.error(`[generate-thumbnail] ${codexError.message}`)
+      console.error('[generate-thumbnail] 아래 프롬프트로 수동 생성하세요.')
+      console.error(prompt)
+      process.exitCode = 2
+      return
+    }
 
-  await sharp(source)
-    .resize(1536, 864, { fit: 'cover', position: 'centre' })
-    .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(outputPath)
+    await sharp(sourcePath)
+      .resize(1536, 864, { fit: 'cover', position: 'centre' })
+      .jpeg({ quality: 88, mozjpeg: true })
+      .toFile(outputPath)
+  } finally {
+    rmSync(workDir, { recursive: true, force: true })
+  }
 
   console.log(`✓ ${outputPath.replace(`${BLOG_ROOT}/`, '')} (1536x864 JPEG)`)
 }

@@ -23,7 +23,7 @@ description: "논문을 해설하는 블로그 포스트를 생성한다. 번역
 
 1. 제목이 비어있으면 사용자에게 요청
 2. 태그가 허용 목록에 있는지 확인
-   - 허용: 에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트
+   - 허용: CLAUDE.md `### 태그` 절의 허용 태그
 3. paper_source가 파일 경로이면 해당 파일을 읽어서 내용 획득
    - 같은 디렉토리에 summary 파일이 있으면 함께 참조
 4. 논문의 기본 정보 추출: 제목, 저자, 소속, 출판 연도, arXiv ID 등
@@ -133,106 +133,11 @@ draft: {true|false}
 Minimalist editorial illustration, muted warm tones, soft grain texture, no text no letters no words no labels, 16:9 aspect ratio, blog thumbnail style, {논문 주제를 시각화하는 구체적 묘사}
 ```
 
-#### 5-2. Google AI Studio Imagen API로 이미지 자동 생성
+#### 5-2. Codex CLI로 이미지 생성
 
-환경변수 `GEMINI_API_KEY`가 설정되어 있으면 Imagen 4.0 API를 호출하여 썸네일을 자동 생성한다. 미설정이거나 실패 시 폴백(프롬프트만 출력)한다.
+5-1에서 만든 전체 프롬프트를 `--prompt`로 넘겨 CLAUDE.md `### 썸네일 이미지` 절의 절차대로 `generate-thumbnail.mjs`를 실행한다. 실행 명령, Bash `timeout` 지정, 생성 후 검증, 종료 코드별 대응은 그 절을 따른다.
 
-**실행 절차**:
-
-1. API 키 확인:
-```bash
-if [ -z "$GEMINI_API_KEY" ]; then
-  echo "GEMINI_API_KEY 미설정 — 폴백: 수동 생성 모드"
-fi
-```
-
-2. API 호출 (키가 존재할 때만) — 우선순위: imagen-4.0 → gemini-2.5-flash-image 폴백:
-```bash
-# 1차 시도: imagen-4.0-generate-001
-RESPONSE=$(curl -s -f "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict" \
-  -H "x-goog-api-key: ${GEMINI_API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "instances": [{"prompt": "{5-1에서 생성한 전체 프롬프트}"}],
-    "parameters": {"aspectRatio": "16:9", "sampleCount": 1}
-  }' 2>/dev/null)
-
-# imagen 실패 시 gemini-2.5-flash-image 폴백
-if [ $? -ne 0 ] || echo "$RESPONSE" | grep -q '"error"'; then
-  RESPONSE=$(curl -s \
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent" \
-    -H "x-goog-api-key: $GEMINI_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"contents\": [{\"parts\": [{\"text\": \"{5-1에서 생성한 전체 프롬프트}\"}]}],
-      \"generationConfig\": {\"responseModalities\": [\"IMAGE\"]}
-    }")
-fi
-```
-
-3. 응답에서 base64 이미지 추출 및 저장:
-```bash
-echo "$RESPONSE" | python3 -c "
-import sys, json, base64
-data = json.load(sys.stdin)
-if 'predictions' in data:
-    img = base64.b64decode(data['predictions'][0]['bytesBase64Encoded'])
-else:
-    for candidate in data.get('candidates', []):
-        for part in candidate.get('content', {}).get('parts', []):
-            if 'inlineData' in part:
-                img = base64.b64decode(part['inlineData']['data'])
-                break
-with open('packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg', 'wb') as f:
-    f.write(img)
-print(f'Image saved: {len(img)} bytes')
-"
-```
-
-4. **16:9 후처리 (필수)** — 비율이 16:9가 아니면 center-crop + 리사이즈:
-```bash
-python3 -c "
-from PIL import Image
-path = 'packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg'
-img = Image.open(path)
-w, h = img.size
-target_ratio = 16 / 9
-current_ratio = w / h
-if abs(current_ratio - target_ratio) > 0.01:
-    if current_ratio > target_ratio:
-        new_w = int(h * target_ratio)
-        left = (w - new_w) // 2
-        img = img.crop((left, 0, left + new_w, h))
-    else:
-        new_h = int(w / target_ratio)
-        top = (h - new_h) // 2
-        img = img.crop((0, top, w, top + new_h))
-    img = img.resize((1536, 864), Image.LANCZOS)
-    img.save(path, 'JPEG', quality=90)
-    print(f'Resized to 1536x864 (16:9)')
-else:
-    print(f'Already 16:9: {w}x{h}')
-"
-```
-
-5. 파일 검증 — 저장된 파일이 실제 이미지인지 확인:
-```bash
-file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg" | grep -qi "jpeg\|jpg\|png\|image"
-```
-검증 실패 시 파일 삭제 후 폴백.
-
-6. 생성된 이미지에 텍스트가 포함되어 있으면 프롬프트에 "absolutely no text" 강화 후 재생성 (최대 1회 재시도)
-
-**에러 처리**: 아래 모든 실패 시 포스트 작성은 중단하지 않고 폴백한다.
-
-| 실패 시점 | 대응 |
-|-----------|------|
-| API 키 미설정 | API 호출 스킵, 6단계에서 프롬프트만 출력 |
-| API 호출 실패 (인증/네트워크) | 에러 메시지 + 프롬프트 출력 |
-| JSON 파싱 실패 / predictions 없음 | 원본 응답 일부 + 프롬프트 출력 |
-| 이미지 디코딩/저장 실패 | 에러 메시지 + 프롬프트 출력 |
-| 저장된 파일이 이미지 아님 | 파일 삭제 + 프롬프트 출력 |
-| 비율 불일치 (16:9 아님) | Pillow center-crop + 1536x864 리사이즈 자동 적용 |
+생성에 실패해도 포스트 작성은 중단하지 않는다. 종료 코드 2이면 스크립트가 출력한 프롬프트를 최종 보고에 담아 수동 생성을 안내한다.
 
 ### 6단계: humanize-post 자체검증 (자동)
 

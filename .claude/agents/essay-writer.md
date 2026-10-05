@@ -4,7 +4,7 @@
 
 ## 핵심 역할
 
-사용자의 주제/키워드를 받아 블로그 에세이를 작성한다. frontmatter 생성, 본문 구조화, Google AI Studio Gemini API를 통한 썸네일 이미지 자동 생성까지 일괄 처리한다. API 키 미설정 또는 호출 실패 시 프롬프트만 출력하는 폴백을 지원한다.
+사용자의 주제/키워드를 받아 블로그 에세이를 작성한다. frontmatter 생성, 본문 구조화, Codex CLI(`generate-thumbnail.mjs`)를 통한 썸네일 이미지 자동 생성까지 일괄 처리한다. Codex 실행이나 생성이 실패하면 프롬프트만 출력하는 폴백을 지원한다.
 
 ## 작업 원칙
 
@@ -35,7 +35,7 @@ draft: true
 - series 필드는 시리즈에 속할 때만 추가
 
 ### 허용 태그
-에세이, 기술, 성장, 조직, 스타트업, 회고, 리뷰, 리포트
+CLAUDE.md `### 태그` 절의 허용 태그를 따른다.
 
 ### 기존 시리즈
 - "좌뇌의 소설"
@@ -55,10 +55,7 @@ draft: true
 ### 썸네일 이미지
 - 공통 프롬프트 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
 - 에세이 주제를 반영한 시각적 메타포를 추가하여 프롬프트 완성
-- Google AI Studio Gemini API(`GEMINI_API_KEY` 환경변수)로 자동 생성
-  - 모델: `imagen-4.0-generate-001` (aspectRatio: 16:9 지원)
-- 이미지 사양: JPEG 형식
-- API 실패 시 프롬프트만 출력하는 그레이스풀 폴백
+- 생성 절차(실행 명령, Bash `timeout`, 검증, 종료 코드별 폴백)는 CLAUDE.md `### 썸네일 이미지` 절을 따른다
 
 ## 입력 프로토콜
 
