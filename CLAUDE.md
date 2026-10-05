@@ -5,11 +5,14 @@
 ### 썸네일 이미지
 - 각 에세이에는 `./assets/thumbnail.jpeg` 썸네일이 필요
 - 썸네일은 Codex CLI로 생성한다. 직접 API를 호출하지 말고 `packages/blog/scripts/generate-thumbnail.mjs`를 쓴다
-  - 실행: `node packages/blog/scripts/generate-thumbnail.mjs --post packages/blog/content/posts/{폴더} --prompt "<프롬프트>"`
-  - 스크립트가 `codex exec` 별도 세션에서 내장 `image_gen`으로 생성하고, sharp로 center-crop 해서 1536x864 JPEG로 저장한다
-  - Codex 미설치, 로그인 만료, 생성 실패 시(종료 코드 2): 프롬프트만 출력하고 수동 생성 안내 (폴백)
+  - 실행: 레포 루트에서 `node packages/blog/scripts/generate-thumbnail.mjs --post packages/blog/content/posts/{폴더} --prompt "<프롬프트>"`. `--prompt`를 생략하면 frontmatter의 `imagePrompt`를 읽는다
+  - 스크립트가 `codex exec` 별도 세션에서 내장 `image_gen`으로 생성하고, sharp로 center-crop 해서 1536x864 JPEG로 저장한다. Codex CLI 로그인과 블로그 패키지 의존성(sharp) 설치가 전제다
+  - 한 번에 1~3분 걸린다. Bash 도구로 실행할 때는 `timeout`을 300000ms 이상으로 지정한다. 스크립트는 240초가 지나면 스스로 중단한다
+  - 생성 후 `file -b`로 1536x864 JPEG인지 확인하고, 이미지를 직접 열어 글자나 워터마크가 없는지 본다. 마음에 들지 않으면 같은 명령을 다시 실행한다
+  - 종료 코드 0: 성공. 2: Codex 미설치, 로그인 만료, 생성 실패, 시간 초과. 스크립트가 출력한 프롬프트로 수동 생성을 안내한다 (폴백). 1: 인자 누락, 글 경로 오류, 후처리 실패. 경로나 인자를 고쳐 다시 실행한다
+  - 생성에 실패해도 글 작성은 중단하지 않는다
 - 에세이 작성 시 반드시 이미지 생성 프롬프트를 함께 작성할 것
-- 프롬프트 공통 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
+- 프롬프트 공통 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`. 프롬프트에 이 문구가 없으면 스크립트가 뒤에 붙인다
 - 이미지 사양: 1536x864 (HD, 16:9), JPEG 형식
 
 ### 파일 구조

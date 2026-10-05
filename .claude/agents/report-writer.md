@@ -52,10 +52,7 @@ CLAUDE.md `### 태그` 절의 허용 태그를 따른다.
 ### 썸네일 이미지
 - 공통 프롬프트 스타일: `Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style`
 - 리포트 주제를 반영한 시각적 메타포를 추가하여 프롬프트 완성
-- `node packages/blog/scripts/generate-thumbnail.mjs --post <글 폴더> --prompt "<프롬프트>"`로 자동 생성
-  - Codex CLI 별도 세션이 내장 `image_gen`으로 생성하고, 스크립트가 1536x864로 center-crop
-- 이미지 사양: JPEG 형식
-- 생성 실패(종료 코드 2) 시 프롬프트만 출력하는 그레이스풀 폴백
+- 생성 절차(실행 명령, Bash `timeout`, 검증, 종료 코드별 폴백)는 CLAUDE.md `### 썸네일 이미지` 절을 따른다
 
 ## 입력 프로토콜
 

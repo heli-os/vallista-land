@@ -135,32 +135,9 @@ Minimalist editorial illustration, muted warm tones, soft grain texture, no text
 
 #### 5-2. Codex CLI로 이미지 생성
 
-썸네일은 `packages/blog/scripts/generate-thumbnail.mjs`로 만든다. 스크립트가 Codex CLI(`codex exec`) 별도 세션을 띄워 내장 `image_gen` 도구로 이미지를 생성하고, sharp로 center-crop 해서 1536x864 JPEG로 `assets/thumbnail.jpeg`에 저장한다. API 키는 필요 없다. Codex CLI 로그인과 블로그 패키지 의존성(sharp) 설치가 전제다.
+5-1에서 만든 전체 프롬프트를 `--prompt`로 넘겨 CLAUDE.md `### 썸네일 이미지` 절의 절차대로 `generate-thumbnail.mjs`를 실행한다. 실행 명령, Bash `timeout` 지정, 생성 후 검증, 종료 코드별 대응은 그 절을 따른다.
 
-레포 루트에서 실행한다:
-```bash
-node packages/blog/scripts/generate-thumbnail.mjs \
-  --post packages/blog/content/posts/{폴더명} \
-  --prompt "{5-1에서 생성한 전체 프롬프트}"
-```
-
-- `--prompt`를 생략하면 frontmatter의 `imagePrompt`를 읽는다.
-- 프롬프트에 공통 스타일 문구가 없으면 스크립트가 뒤에 붙인다.
-- 한 번에 1~3분 걸린다. 결과가 마음에 들지 않으면 같은 명령을 다시 실행한다.
-
-생성 후 검증:
-```bash
-file -b "packages/blog/content/posts/{폴더명}/assets/thumbnail.jpeg"   # JPEG, 1536x864 확인
-```
-이미지를 직접 열어 글자나 워터마크가 들어가지 않았는지도 확인한다.
-
-**에러 처리**: 실패해도 포스트 작성은 중단하지 않는다.
-
-| 종료 코드 | 원인 | 대응 |
-|-----------|------|------|
-| 0 | 생성 성공 | 검증 후 진행 |
-| 2 | codex 미설치, 로그인 만료, 생성 실패, 원본 파일 누락 | 스크립트가 출력한 프롬프트를 최종 보고에 담아 수동 생성 안내 |
-| 1 | 인자 누락, 글 경로 오류, 후처리 실패 | 메시지를 보고 경로나 인자를 고친 뒤 재실행 |
+생성에 실패해도 포스트 작성은 중단하지 않는다. 종료 코드 2이면 스크립트가 출력한 프롬프트를 최종 보고에 담아 수동 생성을 안내한다.
 
 ### 6단계: humanize-post 자체검증 (자동)
 
