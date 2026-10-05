@@ -1,5 +1,6 @@
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -9,7 +10,7 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
 const BLOG_ROOT = resolve(SCRIPT_DIR, '..')
 const COMMON_STYLE =
   'Minimalist editorial illustration, muted warm tones, soft grain texture, no text, 16:9 aspect ratio, blog thumbnail style'
-// Codex가 생성 원본을 복사해 두는 임시 파일. sharp 후처리 뒤 지운다.
+// Codex가 생성 원본을 복사해 두는 임시 파일. 실행마다 새 임시 디렉터리에 둔다.
 const SOURCE_FILE_NAME = 'thumbnail-source.png'
 
 const getArgument = (name) => {
@@ -32,18 +33,18 @@ const buildCodexInstruction = (prompt) =>
     'Do not create, modify, or delete any other file.'
   ].join('\n\n')
 
-// Codex CLI 별도 세션에 생성을 맡긴다. 쓰기 권한은 assets 디렉터리로 한정한다.
-const requestCodex = (assetsDir, prompt) => {
+// Codex CLI 별도 세션에 생성을 맡긴다. 쓰기 권한은 실행별 임시 디렉터리로 한정한다.
+const requestCodex = (workDir, prompt) => {
   const result = spawnSync(
     'codex',
-    ['exec', '-s', 'workspace-write', '--skip-git-repo-check', '-C', assetsDir, buildCodexInstruction(prompt)],
+    ['exec', '-s', 'workspace-write', '--skip-git-repo-check', '-C', workDir, buildCodexInstruction(prompt)],
     { stdio: ['ignore', 'ignore', 'pipe'], encoding: 'utf8' }
   )
 
   if (result.error) throw new Error(`codex 실행 실패: ${result.error.message}`)
   if (result.status !== 0) throw new Error(`codex 종료 코드 ${result.status}: ${result.stderr.trim().slice(-500)}`)
 
-  const sourcePath = join(assetsDir, SOURCE_FILE_NAME)
+  const sourcePath = join(workDir, SOURCE_FILE_NAME)
   if (!existsSync(sourcePath)) throw new Error(`codex가 ${SOURCE_FILE_NAME}를 만들지 않았습니다.`)
   return sourcePath
 }
@@ -66,26 +67,27 @@ const main = async () => {
   const outputPath = join(assetsDir, 'thumbnail.jpeg')
 
   mkdirSync(assetsDir, { recursive: true })
-
-  let sourcePath
-  try {
-    sourcePath = requestCodex(assetsDir, prompt)
-    console.log('✓ codex image_gen 생성 완료')
-  } catch (codexError) {
-    console.error(`[generate-thumbnail] ${codexError.message}`)
-    console.error('[generate-thumbnail] 아래 프롬프트로 수동 생성하세요.')
-    console.error(prompt)
-    process.exitCode = 2
-    return
-  }
+  const workDir = mkdtempSync(join(tmpdir(), 'thumbnail-'))
 
   try {
+    let sourcePath
+    try {
+      sourcePath = requestCodex(workDir, prompt)
+      console.log('✓ codex image_gen 생성 완료')
+    } catch (codexError) {
+      console.error(`[generate-thumbnail] ${codexError.message}`)
+      console.error('[generate-thumbnail] 아래 프롬프트로 수동 생성하세요.')
+      console.error(prompt)
+      process.exitCode = 2
+      return
+    }
+
     await sharp(sourcePath)
       .resize(1536, 864, { fit: 'cover', position: 'centre' })
       .jpeg({ quality: 88, mozjpeg: true })
       .toFile(outputPath)
   } finally {
-    rmSync(sourcePath, { force: true })
+    rmSync(workDir, { recursive: true, force: true })
   }
 
   console.log(`✓ ${outputPath.replace(`${BLOG_ROOT}/`, '')} (1536x864 JPEG)`)
