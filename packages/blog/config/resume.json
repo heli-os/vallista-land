@@ -1,238 +1,213 @@
 {
-  "config": {
+  "profile": {
     "name": "진태양",
-    "role": "CTO / Co-Founder",
-    "bio": [
-      "볼타코퍼레이션 <string>공동창업자 겸 CTO</string>",
-      "기업 금융 비효율을 최적화하는 <string>제품 설계 및 서비스 개발</string>"
+    "nameEn": "Theo",
+    "role": "볼타 공동창업자, CTO",
+    "intro": [
+      "볼타를 공동 창업하고 CTO로 제품 기획과 엔지니어링, 운영을 맡고 있습니다. 한국의 금융과 비즈니스 인프라를 API로 소프트웨어에 연결하는 일을 합니다.",
+      "그 전에는 카카오페이에서 은행 연동과 금융 플랫폼을 만들었습니다. 회사 밖에서는 코드포코리아를 함께 세워 코로나19 공적 마스크 재고 API와 개인안심번호를 만들었고, 개발자 커뮤니티와 멘토링을 꾸준히 이어 왔습니다.",
+      "글쓰기를 좋아하고, 쉬는 날에는 풍경과 야생 동물 사진을 찍습니다."
     ],
-    "github": "https://github.com/heli-os",
-    "email": "sun@dataportal.kr"
+    "links": [
+      { "label": "볼타", "url": "https://bolta.io" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/taeyang-jin" },
+      { "label": "GitHub", "url": "https://github.com/heli-os" },
+      { "label": "커피챗", "url": "/coffee-chat/" }
+    ]
   },
   "careers": {
     "title": "경력",
     "list": [
       {
         "name": "볼타코퍼레이션",
-        "position": "CTO / Co-Founder",
-        "department": "프로덕트팀",
+        "url": "https://bolta.io",
+        "position": "Co-Founder, CTO",
         "startDate": "2023.04",
         "endDate": null,
-        "descriptions": [],
+        "summary": "전자세금계산서에서 시작해 기업 간 거래에 필요한 금융 업무를 SaaS와 API로 제공하는 B2B 핀테크 회사입니다.",
+        "fold": false,
+        "techStacks": ["Kotlin", "Spring Boot", "MySQL", "AWS", "Terraform", "React", "Next.js"],
         "projects": [
           {
-            "name": "CTO",
-            "descriptions": ["테크리드 및 매니징 업무 진행"],
-            "startDate": "2023.04",
-            "endDate": null,
-            "which": [
-              { "title": "전자세금계산서 프로덕트 전반 설계/구축 및 운영" },
-              { "title": "여러 서비스를 공통적으로 관리할 수 있는 아키텍처 수립 및 개발" },
-              { "title": "TF 등 일정 내 효율적으로 협업할 수 있는 아키텍처 구축" }
+            "name": "제품",
+            "highlights": [
+              { "title": "전자세금계산서 발행과 관리 SaaS로 시장 진입. 랜딩 페이지로 수요를 먼저 검증한 뒤 MVP 출시" },
+              { "title": "입금 매칭(AI), 미수금 추적과 재안내, 지급 요청까지 재무 업무 흐름 전체로 확장" },
+              {
+                "title": "사업자 정보 조회 API 출시",
+                "items": ["여러 공공기관에 흩어진 원천 스무 개 안팎을 사업자등록번호 단위로 모아 하나의 프로필로 정리"]
+              },
+              { "title": "세금계산서 발행, 사업자 정보, 예금주 조회, 서류 발급을 Open API와 Bolta CLI로 제공" },
+              { "title": "국세청 표준인증 시스템사업자" },
+              {
+                "title": "누적 처리 세금계산서 2,258,885건, 누적 처리 금액 10조 1,901억원 (2026년 10월 기준)",
+                "url": "https://bolta.io"
+              },
+              {
+                "title": "정식 출시 1년 시점에 기업 고객 2,000곳 이상",
+                "items": ["Flexport, HD Hyundai, CJ ENM, Hyundai Vendys, Toss Place 등이 사용"]
+              }
             ]
           },
           {
-            "name": "Co-Founder",
-            "descriptions": ["사업 및 투자 관련 업무 기여"],
-            "startDate": "2023.04",
-            "endDate": null,
-            "which": [
-              { "title": "제품 전략을 제안하고 적기에 출시하여 비즈니스 기회 확장" },
-              { "title": "투자 유치" },
-              { "title": "TIPS 프로그램 선정" }
+            "name": "엔지니어링",
+            "highlights": [
+              { "title": "서비스 확장에 맞춘 계층형 백엔드 아키텍처 설계 (presentation, core, application, external)" },
+              { "title": "AWS 인프라 전체를 1주일 안에 Terraform으로 이관하고, EC2 수동 배포를 ECS로 전환" },
+              { "title": "TeamCity 기반 빌드, 배포, 배치 파이프라인 구축" },
+              { "title": "VPN, IdP, MFA를 겹친 Zero-trust 접근 통제와 전 구간 TLS 암호화" }
             ]
           },
           {
-            "name": "프로덕트 개발",
-            "startDate": "2023.04",
-            "endDate": null,
-            "descriptions": ["프로덕트 개발을 위한 아키텍처 설계 및 코딩"],
-            "which": [
-              { "title": "공통 인프라 형상 설계" },
-              { "title": "서비스 확장에 대응할 수 있는 서비스 아키텍처 레이어 설계" },
-              { "title": "비즈니스 로직을 쉽게 테스트하고 격리할 수 있는 객체지향 설계" },
-              { "title": "비즈니스, 인원에 따른 적합한 기술 선정 및 설계" }
+            "name": "회사와 팀",
+            "highlights": [
+              {
+                "title": "2023.05 Seed 투자 유치 (스프링캠프)",
+                "url": "https://platum.kr/archives/206678"
+              },
+              {
+                "title": "2023.08 중소벤처기업부 TIPS 선정",
+                "url": "https://www.venturesquare.net/893436"
+              },
+              {
+                "title": "2023.12 Pre-A 투자 유치 (스트롱벤처스 리드)",
+                "url": "https://platum.kr/archives/221703"
+              },
+              {
+                "title": "15명 미만의 제품 팀을 지향하고, 직무와 연차에 관계없이 기획부터 개발까지 함께 참여하는 팀 운영"
+              },
+              { "title": "스프링캠프 2024, 제1회 게으른 개발자 컨퍼런스 후원" }
             ]
           }
         ]
       },
       {
         "name": "카카오페이",
-        "department": "머니클랜",
-        "position": "Software Engineer",
+        "position": "Software Engineer, 머니클랜",
         "startDate": "2022.01",
         "endDate": "2023.06",
+        "summary": "카카오페이 머니의 금융 코어를 개발하고 운영했습니다. 펌뱅킹과 오픈뱅킹 연동, 은행정보 플랫폼, 탈퇴 회원 거래내역 분리보관 파이프라인을 맡았습니다.",
         "fold": true,
-        "descriptions": [],
+        "techStacks": ["Kotlin", "Spring Boot", "Kafka", "MongoDB", "MySQL"],
         "projects": [
           {
-            "name": "은행정보 플랫폼 구축 제안, 설계 및 개발",
-            "descriptions": ["은행정보를 통합하여 제공하는 전사 플랫폼을 설계 및 개발하였습니다."],
+            "name": "은행정보 플랫폼 제안, 설계, 개발",
             "startDate": "2023.01",
             "endDate": "2023.04",
-            "which": [
-              { "title": "조직의 플랫폼 특성을 강화하기 위한 수단으로 아이디어 제안" },
-              { "title": "MVP -> 1차 확장 -> 2차 확장까지의 로드맵 및 전략 수립" },
-              { "title": "전사 잠재고객 탐색, 현황 분석" },
-              { "title": "전사 확장을 위한 지속적인 홍보" },
-              { "title": "API 서버 및 서버용 Java/Kotlin SDK 개발" }
+            "highlights": [
+              { "title": "수십 개 조직이 각자 관리하던 은행 정보를 하나의 전사 플랫폼으로 통합하자고 제안" },
+              { "title": "MVP, 1차 확장, 2차 확장으로 이어지는 로드맵 수립과 전사 잠재 고객 탐색" },
+              { "title": "API 서버와 서버용 Java, Kotlin SDK 개발" }
             ]
           },
           {
-            "name": "탈퇴 회원 거래내역 분리보관 파이프라인 설계 및 개발",
-            "descriptions": [],
+            "name": "탈퇴 회원 거래내역 분리보관 파이프라인 설계와 개발",
             "startDate": "2022.09",
             "endDate": "2022.12",
-            "which": [
-              { "title": "탈퇴 회원 거래내역 분리보관 법적 요건 분석 및 정책 수립" },
-              { "title": "회원 거래내역 탈퇴 이벤트 구독/적재 컨슈머 설계 및 개발" },
-              { "title": "다수의 분리보관 대상 테이블에 대한 카프카 기반 비동기 복제/삭제 구조 설계 및 개발" },
-              { "title": "프로젝트 수행 중 mongo-java-driver 오픈소스 기여" }
-            ],
-            "techStacks": ["Kotlin", "SpringBoot", "Kafka", "MongoDB", "MySQL"]
+            "highlights": [
+              { "title": "분리보관 법적 요건 분석과 정책 수립" },
+              { "title": "탈퇴 이벤트를 구독해 적재하는 컨슈머 설계와 개발" },
+              { "title": "여러 대상 테이블을 Kafka 기반으로 비동기 복제하고 삭제하는 구조 설계" },
+              { "title": "프로젝트 중 mongo-java-driver 오픈소스 기여" }
+            ]
           },
           {
-            "name": "펌뱅킹/오픈뱅킹 연동 시스템(금융플랫폼) 운영 및 고도화",
-            "descriptions": [],
+            "name": "펌뱅킹, 오픈뱅킹 연동 시스템(금융플랫폼) 운영과 고도화",
             "startDate": "2022.05",
             "endDate": "2023.06",
-            "which": [
-              { "title": "신규 제휴 은행 연동: 출금이체, 입금이체, 예금주 조회 등" },
-              { "title": "VAN(헥토파이낸셜, 더즌), 금융결제원(오픈뱅킹)과의 업무 협업" },
+            "highlights": [
+              { "title": "신규 제휴 은행 연동: 출금이체, 입금이체, 예금주 조회" },
+              { "title": "VAN(헥토파이낸셜, 더즌), 금융결제원(오픈뱅킹)과 협업" },
               {
-                "title": "전사에 제공되는 금융플랫폼 연동 지원",
-                "items": ["페이봇, 자금반환중개(착오송금반환), 머니 송금/충전 등 서비스 지원"]
+                "title": "전사 서비스의 금융플랫폼 연동 지원",
+                "items": ["페이봇, 자금반환중개(착오송금반환), 머니 송금과 충전"]
               },
               {
                 "title": "2022년 10월 15일 카카오 판교 데이터센터 셧다운 대응",
                 "items": [
-                  "운영 관리 도구 및 모니터링 시스템 셧다운 상황 속 서버 헬스 체크 및 DB 커넥션 상태 점검",
-                  "담당 서비스 구성 요소 중 수동 Failover 필요 대상 식별 및 대응",
-                  "쿠버네티스 노드 리소스 부족에 따른 pod 리사이즈 대응",
-                  "외부 제휴사의 인바운드 요청 상태 점검 및 대응",
-                  "데이터센터 복구 후 주요 서비스 구성 요소 Replicaset 정상화 대응"
+                  "운영 도구와 모니터링이 멈춘 상황에서 서버 헬스 체크와 DB 커넥션 점검",
+                  "수동 Failover가 필요한 구성 요소 식별과 대응",
+                  "쿠버네티스 노드 리소스 부족에 따른 pod 리사이즈",
+                  "데이터센터 복구 후 주요 구성 요소 ReplicaSet 정상화"
                 ]
               }
             ]
           },
           {
             "name": "머니 어드민 Back-office 고도화",
-            "descriptions": [
-              "하나로 관리하고 있는 어드민을 조직별 R&R에 맞게 분리하여 업무 효율성 향상을 위한 프로젝트"
-            ],
             "startDate": "2022.02",
             "endDate": "2022.04",
-            "which": [
-              {
-                "title": "Angular/React 구버전 빌드 결과물을 SpringBoot로 서빙하던 구조 재설계 및 리팩토링",
-                "items": ["React 17 + Express.js 서빙 구조로 변경"]
-              },
-              { "title": "R&R이 명확하지 않아 발생했던 불필요한 커뮤니케이션 비용 절약" },
-              { "title": "전반적인 어드민 사용성 개선을 통한 개발자가 아닌 누구나 어드민 이용 가능한 시스템 확립" }
+            "highlights": [
+              { "title": "하나로 묶여 있던 어드민을 조직별 R&R에 맞게 분리" },
+              { "title": "Angular, React 구버전 빌드를 SpringBoot로 서빙하던 구조를 React 17과 Express.js로 재설계" },
+              { "title": "개발자가 아니어도 쓸 수 있도록 어드민 사용성 개선" }
             ]
           },
           {
-            "name": "레거시 청산 및 기존 비즈니스 유지보수 (a.k.a. 머니 운영 고도화)",
-            "descriptions": [],
+            "name": "레거시 정리와 운영 고도화",
             "startDate": "2022.01",
             "endDate": "2023.06",
-            "which": [
+            "highlights": [
               {
-                "title": "일시적 오픈뱅킹 사용 불가 고객의 거래를 펌뱅킹으로 처리하도록 개선",
-                "items": ["송금 성공률 기존 대비 10% 향상 및 그에 따른 수수료 절감"]
+                "title": "일시적으로 오픈뱅킹을 쓸 수 없는 고객의 거래를 펌뱅킹으로 처리",
+                "items": ["송금 성공률 10% 향상과 그에 따른 수수료 절감"]
               },
-              { "title": "2년 이상 방치된 Request/Response 로깅 로직 버그 식별 및 수정" },
-              {
-                "title": "과도하게 설정된 MySQL DB Connection Timeout 이슈 식별 및 수정",
-                "items": ["AS-IS: 30s(default value)", "TO-BE: 3s"]
-              },
-              { "title": "모니터링 누락되어 있는 일부 써킷브레이커 이슈 식별 및 수정" },
-              { "title": "어드민 FE, BFF AEM/APM 및 에러 로깅 적용" },
-              { "title": "조직내 Grafana & Kibana 운영 가이드 작성 및 세션 진행" }
+              { "title": "2년 넘게 방치된 Request, Response 로깅 버그 수정" },
+              { "title": "MySQL DB Connection Timeout을 기본값 30초에서 3초로 조정" },
+              { "title": "모니터링에서 빠져 있던 서킷 브레이커 이슈 식별과 수정" },
+              { "title": "조직 내 Grafana, Kibana 운영 가이드 작성과 세션 진행" }
             ]
           }
         ]
       },
       {
         "name": "핵클",
-        "department": "개발팀",
         "position": "Software Engineer",
         "startDate": "2021.06",
         "endDate": "2021.11",
+        "summary": "A/B 테스트 플랫폼의 분석 백엔드와 결제, 구독 BFF 서버를 개발했습니다. 엔터프라이즈 고객사 수 100% 증가에 기여했습니다.",
         "fold": true,
-        "descriptions": [
-          "A/B 테스트 플랫폼 백엔드 개발",
-          "결제 및 구독 백엔드 BFF 서버 개발",
-          "엔터프라이즈 고객사의 숫자 100% 증가"
-        ],
         "projects": [
           {
-            "name": "내부 플랫폼 및 시스템 안정성 관련 기능 개발",
-            "descriptions": [
-              "서비스 규모가 커짐에 따라 시스템 안정성/운영 효율성 향상을 위해 다양한 서브 프로젝트를 진행하였습니다."
-            ],
-            "startDate": "2021.10",
-            "endDate": "2021.11",
-            "which": [
-              { "title": "비정상 트래픽 자동 감지 & 트래픽 차단 시스템 개발" },
-              { "title": "고객 가입 시 웰컴 이메일 발송 기능 개발" },
-              { "title": "고객 원장 데이터 추출 기능 개발" },
-              { "title": "이메일 발송을 위한 내부 Sdk 개발" }
-            ]
-          },
-          {
-            "name": "레거시 청산 및 기존 비즈니스 유지보수",
-            "descriptions": [],
+            "name": "A/B 테스트 상세 분석 백엔드 개발과 운영",
             "startDate": "2021.06",
-            "endDate": "2021.11",
-            "which": [
-              {
-                "title": "최근 고객 데이터 조회 기능 속도 개선",
-                "items": [
-                  "AS-IS: 800ms ~ 1200ms",
-                  "TO-BE: 100ms ~ 200ms",
-                  "ElasticSearch에 모든 Data를 저장하던 시스템을 중복 데이터는 저장하지 않게끔 개선하여 데이터 조회 속도 향상"
-                ]
-              },
-              {
-                "title": "AWS Kinesis Produce 로직 이슈 식별",
-                "items": [
-                  "기존에 사용되던 Application -> Kinesis -> S3 파이프라인의 이슈 식별",
-                  "키네시스는 데이터를 어떤 샤드(Kafka의 파티션)에 적재할지 애플리케이션에서 직접 지정해주어야 함",
-                  "애플리케이션은 샤드에 쓰기 실패한 경우 재시도하는 로직을 지니고 있었는데, 재시도 시 기존 키를 재활용하여 문제 발생",
-                  "Why? 쓰기 실패가 발생하는 대부분의 케이스는 특정 샤드에 쓰기 요청이 몰렸기 때문이나 재시도할 때 키가 같다 보니 동일한 샤드에 쓰기를 시도하여 지속하여 실패"
-                ]
-              }
+            "endDate": "2021.09",
+            "highlights": [
+              { "title": "프로젝트 오너로서 고객의 Pain Point 분석과 인수 조건(AC) 정의" },
+              { "title": "지역, 플랫폼별 세그먼트 분석을 위한 데이터 모델링과 API 개발" },
+              { "title": "예비 엔터프라이즈 고객사를 실제 고객사로 전환" }
             ]
           },
           {
-            "name": "결제 및 구독 백엔드 BFF 서버 개발",
-            "descriptions": [],
+            "name": "결제와 구독 BFF 서버 개발",
             "startDate": "2021.09",
             "endDate": "2021.09",
-            "which": [
-              {
-                "title": "Stripe, TossPayments 연동 결제 시스템의 BFF(Backend For Front) 서버 개발"
-              },
-              {
-                "title": "결제 요청, 카드 등록, 결제 이력 조회, 구독 정보 조회 등 결제 및 구독 관련 기능 서빙"
-              }
+            "highlights": [
+              { "title": "Stripe, TossPayments 연동 결제 시스템의 BFF(Backend For Frontend) 서버 개발" },
+              { "title": "결제 요청, 카드 등록, 결제 이력, 구독 정보 조회 기능 제공" }
             ]
           },
           {
-            "name": "A/B 테스트 상세 분석 백엔드 개발 및 유지보수/운영",
-            "descriptions": [],
+            "name": "내부 플랫폼과 시스템 안정성",
+            "startDate": "2021.10",
+            "endDate": "2021.11",
+            "highlights": [
+              { "title": "비정상 트래픽 자동 감지와 차단 시스템 개발" },
+              { "title": "가입 웰컴 메일, 고객 원장 데이터 추출 기능과 메일 발송용 내부 SDK 개발" }
+            ]
+          },
+          {
+            "name": "레거시 정리와 유지보수",
             "startDate": "2021.06",
-            "endDate": "2021.09",
-            "which": [
+            "endDate": "2021.11",
+            "highlights": [
               {
-                "title": "프로젝트의 Owner를 맡아 고객의 Pain Point 분석 및 AC 정의"
+                "title": "최근 고객 데이터 조회 속도 개선: 800~1,200ms에서 100~200ms로",
+                "items": ["ElasticSearch에 중복 데이터를 저장하지 않도록 구조를 바꿔 조회 속도 향상"]
               },
               {
-                "title": "세그먼트 분석(지역, 플랫폼 별 분석 등)을 위한 데이터 모델링 및 API 개발"
-              },
-              {
-                "title": "예비 엔터프라이즈 고객사를 실제 고객사로 전환시켜 기존 대비 엔터프라이즈 고객사의 숫자 100% 증가"
+                "title": "AWS Kinesis 적재 실패 원인 식별",
+                "items": ["쓰기에 실패하면 같은 파티션 키로 재시도해 이미 몰린 샤드에 계속 요청하던 문제를 찾아냄"]
               }
             ]
           }
@@ -240,325 +215,286 @@
       },
       {
         "name": "코드포코리아",
-        "department": "운영팀",
-        "position": "Maintainer & Organizer",
+        "url": "https://codefor.kr",
+        "position": "Co-Founder, Maintainer",
         "startDate": "2020.03",
-        "endDate": null,
+        "endDate": "2024.02",
+        "summary": "시민 해커들이 공공 문제를 기술로 푸는 비영리 단체를 함께 세우고 운영했습니다.",
         "fold": true,
-        "descriptions": [],
         "projects": [
           {
-            "name": "코로나19 개인 안심번호",
-            "descriptions": ["MAU 4,000만 돌파 프로젝트"],
+            "name": "코로나19 개인안심번호",
             "startDate": "2020.12",
             "endDate": "2021.02",
-            "which": [
-              { "title": "개인 안심번호 생성 시스템 설계 및 개발" },
-              { "title": "실제 적용 방법 가이드 작성 & 데모 시스템 개발" },
-              { "title": "네이버, 카카오, PASS 시스템에 도입" },
-              { "title": "코로나19 수기출입명부를 통한 개인정보 유출 사례 감소" }
+            "summary": "MAU 4,000만 돌파 프로젝트",
+            "highlights": [
+              { "title": "개인안심번호 생성 시스템 설계와 개발" },
+              { "title": "적용 가이드 작성과 데모 시스템 개발" },
+              { "title": "네이버, 카카오, PASS에 도입" },
+              { "title": "수기 출입명부를 통한 개인정보 유출 사례 감소" }
             ]
           },
           {
-            "name": "코로나19 공공데이터 공동대응 및 애플리케이션 개발",
-            "descriptions": ["API 서비스 첫날 총 9천만회 API 호출, 시간당 최대 7백만회 호출"],
+            "name": "코로나19 공공데이터 공동대응과 공적 마스크 앱",
             "startDate": "2020.02",
             "endDate": "2020.04",
-            "which": [
-              { "title": "코로나19 관련 공공데이터 현황 분석" },
-              { "title": "코로나19 관련 공공데이터 개방 요청" },
-              { "title": "코로나19 공적마스크 재고 API 개발 기여(with 정부/네이버/KT)" },
-              { "title": "코로나19 공적마스크 재고 현황 애플리케이션 개발" },
-              { "title": "코로나19 공적마스크 재고 API & 서비스 시작" },
-              { "title": "공적 마스크 매진율 증가", "items": ["AS-IS: 67.9%", "TO-BE: 86.4%(1주일 후)"] }
+            "summary": "API 서비스 첫날 총 9천만 회 호출, 시간당 최대 7백만 회 호출",
+            "highlights": [
+              { "title": "코로나19 관련 공공데이터 현황 분석과 개방 요청" },
+              { "title": "공적 마스크 재고 API 개발 기여 (정부, 네이버, KT와 협업)" },
+              { "title": "공적 마스크 재고 현황 애플리케이션 개발" },
+              { "title": "공적 마스크 매진율 67.9%에서 86.4%로 증가 (1주일 후)" }
             ]
           }
         ]
       },
       {
-        "name": "Self Employed",
-        "position": "Freelancer & Individual Entrepreneurship/Business",
+        "name": "개인 사업과 프리랜서",
+        "position": "Founder, Freelancer",
         "startDate": "2016.07",
         "endDate": "2020.06",
+        "summary": "매장 관리 프로그램을 만들어 직접 팔았고, React, Node.js, Android 풀스택 프리랜서로 10개 이상의 프로젝트에 참여했습니다.",
         "fold": true,
-        "descriptions": [],
         "projects": [
           {
-            "name": "개인 사업/프리랜서",
-            "descriptions": [],
-            "startDate": "2016.07",
-            "endDate": "2020.06",
-            "which": [
+            "name": "개인 사업과 프리랜서",
+            "highlights": [
               {
-                "title": "개인 사업: 매장관리 프로그램 개발/운영",
-                "items": ["초기 개발 기간 1개월 소요", "ARR 1천만원~4천만원 규모의 소규모 부수입"]
+                "title": "매장 관리 프로그램 개발과 운영",
+                "items": ["초기 개발 1개월", "ARR 1천만~4천만원 규모의 부수입"]
               },
-              {
-                "title": "React, Node.js, Android Fullstack 프리랜서",
-                "items": ["10개 이상 프로젝트 참가"]
-              }
+              { "title": "React, Node.js, Android 풀스택 프리랜서로 10개 이상 프로젝트 참여" }
             ]
           }
         ]
       },
       {
-        "name": "Various Companies",
+        "name": "게임 개발사",
         "position": "Software Engineer",
         "startDate": "2013.01",
         "endDate": "2016.06",
+        "summary": "DirectX 9, C++ 기반 렌더링 엔진과 게임 클라이언트를 개발했습니다.",
         "fold": true,
-        "descriptions": ["DirectX 9, C++ based rendering engine & game client"],
         "projects": [
           {
-            "name": "게임 클라이언트 & 렌더링 엔진 개발",
-            "descriptions": [],
-            "startDate": "2013.01",
-            "endDate": "2016.06",
-            "which": [
-              { "title": "DirectX 9 기반 2D/3D 렌더링 파이프라인 구현" },
-              { "title": "HLSL 셰이더 작성 및 렌더링 효과(라이팅, 포스트 프로세싱 등) 개발" },
-              { "title": "게임 클라이언트 UI 프레임워크 및 인게임 시스템 구현" },
-              { "title": "에셋 로딩/메모리 관리 등 클라이언트 공통 인프라 개발" }
+            "name": "게임 클라이언트와 렌더링 엔진 개발",
+            "highlights": [
+              { "title": "DirectX 9 기반 2D, 3D 렌더링 파이프라인 구현" },
+              { "title": "HLSL 셰이더 작성과 라이팅, 포스트 프로세싱 효과 개발" },
+              { "title": "게임 클라이언트 UI 프레임워크와 인게임 시스템 구현" },
+              { "title": "에셋 로딩, 메모리 관리 등 클라이언트 공통 인프라 개발" }
             ]
           }
         ]
-      }
-    ]
-  },
-  "skills": {
-    "title": "기술",
-    "list": [
-      {
-        "title": "Kotlin/SpringBoot",
-        "descriptions": [
-          {
-            "title": "Kotlin을 이용한 SpringBoot 프로젝트 개발에 익숙합니다.",
-            "subTitle": ["다양한 프로젝트 경험으로 코드 리딩 및 작성이 가능합니다."]
-          },
-          {
-            "title": "문법을 잘 활용하며, 가독성 향상을 위해 노력합니다.",
-            "subTitle": ["객체지향 프로그래밍에 익숙하기 때문에 상속, 확장 등을 통한 추상화에도 강점을 지닙니다."]
-          },
-          {
-            "title": "크거나 작은 규모의 웹 애플리케이션 서버를 설계할 수 있습니다.",
-            "subTitle": ["모바일 웹앱, PC, 어드민 등 다양한 프로젝트를 리딩하고 개발한 경험이 있습니다."]
-          },
-          {
-            "title": "유지보수 용이하게 Package/Module Structure를 구성합니다.",
-            "subTitle": []
-          }
-        ]
-      },
-      {
-        "title": "React/Next.js",
-        "descriptions": [
-          {
-            "title": "크거나 작은 규모의 웹 애플리케이션 서버를 설계할 수 있습니다.",
-            "subTitle": ["모바일 웹앱, PC, 어드민 등 다양한 프로젝트를 리딩하고 개발한 경험이 있습니다."]
-          },
-          {
-            "title": "React hooks를 사용하여 적절하게 데이터를 분배합니다.",
-            "subTitle": [
-              "Custom hooks을 줄곧 잘 쓰며, Context API를 사용하여 맥락에 맞는 컴포넌트 상태 격리를 통한 구현이 가능합니다.",
-              "이러한 시스템을 이용하여 디자인 시스템을 구현한 경험이 있습니다."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "DevOps",
-        "descriptions": [
-          {
-            "title": "자동화 프로세스를 만들어서 팀 내 생산성을 높힙니다.",
-            "subTitle": [
-              "배포 자동화, JIRA Task 연계 자동화, 주간 비즈니스 지표 공유 자동화 프로세스 등을 만들어서 팀 내 생산성을 높힌 경험이 있습니다."
-            ]
-          },
-          {
-            "title": "IaC 기술을 활용하여 인프라 형상을 효율적으로 관리합니다.",
-            "subTitle": [
-              "Terraform을 이용하여 AWS VPC, ECS, AutosScalingGruoup, VPN 등 인프라 요소를 관리해본 경험이 있습니다."
-            ]
-          },
-          {
-            "title": "Jenkins, TeamCity, Docker를 사용하여 개발/배포 환경을 구축할 수 있습니다.",
-            "subTitle": []
-          }
-        ]
-      },
-      {
-        "title": "그 외",
-        "descriptions": [
-          {
-            "title": "Git을 능숙하게 다룰 수 있습니다.",
-            "subTitle": ["git flow, github flow를 회사에서 적용해본 경험이 있습니다."]
-          }
-        ]
-      }
-    ]
-  },
-  "hobby": {
-    "description": "취미",
-    "list": [
-      {
-        "title": "블로깅",
-        "url": "/posts",
-        "descriptions": [
-          "개발을 좋아해서 틈틈히 공부를 하고 글을 작성하여 블로그에 투고합니다.",
-          "위의 제목을 누르면 제 블로그를 가실 수 있어요!"
-        ]
-      },
-      {
-        "title": "사진 촬영",
-        "url": null,
-        "descriptions": [
-          "사진 찍는 것을 좋아해서 사진을 찍으러 맛집 탐방을 다니거나 여행을 다닙니다.",
-          "풍경화나 야생 동물 사진을 좋아하고, 상업 촬영을 해보기도 했어요."
-        ]
-      }
-    ]
-  },
-  "speaker": {
-    "description": "발표",
-    "list": [
-      {
-        "title": "C.O.D.E Conference 2022 - 더 나은 오픈 데이터 정책에 대한 토론",
-        "url": "https://codecon2022.notion.site"
-      },
-      {
-        "title": "Happy Civic Hacking - 공적마스크 정책 수립, 데이터 개방 API 논의, 서비스 개발 참여 사례 소개",
-        "url": "https://onoffmix.com/event/256507"
-      },
-      {
-        "title": "The 2nd AYARF Keynote Speaker - 대한민국 정부혁신 사례 소개 및 질의응답 진행",
-        "url": "https://www.youtube.com/watch?v=OiFS4azd9m8&t=6695s"
-      }
-    ]
-  },
-  "opensources": {
-    "description": "오픈소스 기여",
-    "list": [
-      {
-        "title": "[specmock] PR#7",
-        "url": "https://github.com/specmock/specmock/pull/7"
-      },
-      {
-        "title": "[mongo-java-driver] PR#996",
-        "url": "https://github.com/mongodb/mongo-java-driver/pull/996"
-      },
-      {
-        "title": "[mongo-java-driver] PR#997",
-        "url": "https://github.com/mongodb/mongo-java-driver/pull/997"
-      },
-      {
-        "title": "[mongo-java-driver] ISSUE#4719",
-        "url": "https://jira.mongodb.org/browse/JAVA-4719"
-      },
-      {
-        "title": "[mongo-java-driver] PR#999",
-        "url": "https://github.com/mongodb/mongo-java-driver/pull/999"
-      },
-      {
-        "title": "[google/ksp] PR#1088",
-        "url": "https://github.com/google/ksp/pull/1088"
-      },
-      {
-        "title": "[line/kotlin-jdsl] PR#68",
-        "url": "https://github.com/line/kotlin-jdsl/pull/68"
-      },
-      {
-        "title": "[JetBrains/Exposed] PR#1582",
-        "url": "https://github.com/JetBrains/Exposed/pull/1582"
-      },
-      {
-        "title": "위클리 아카데미: 800명 규모 기술 경험 공유 네트워크 개설/운영",
-        "url": "https://weekly.ac"
-      },
-      {
-        "title": "코드포코리아: 오픈소스 기반 기술 비영리 단체 설립/운영",
-        "url": "https://codefor.kr"
-      }
-    ]
-  },
-  "activities": {
-    "description": "활동",
-    "list": [
-      {
-        "title": "2023.02 ~ 2023.03 경북대학교 해커톤 멘토 활동",
-        "url": null
-      },
-      {
-        "title": "2023.01 ~ 2023.12 Pycon Korea 2023 Organizer",
-        "url": null
-      },
-      {
-        "title": "2022.11 ~ 2023.02 코드스테이츠 모의 기술 면접관 및 멘토(Java, Spring, Computer Science)",
-        "url": null
-      },
-      {
-        "title": "2022.07 ~ 2022.12 2022년 개인정보 국민점검단(개인정보보호위원회)",
-        "url": null
-      },
-      {
-        "title": "2021.12 행정안전부 위기대응 민관협력 디지털 지원체계 구축 자문위원",
-        "url": null
-      },
-      {
-        "title": "2021.11 2021 공공데이터 청년인턴(일경험 수련생) 해커톤 멘토",
-        "url": null
-      },
-      {
-        "title": "2021.11 복지사각지대 발굴시스템 개선 간담회 자문위원",
-        "url": null
-      },
-      {
-        "title": "2021.02 전자정부서비스 혁신을 위한 국민참여 기반의 비대면 경진대회 기획 자문위원",
-        "url": null
-      },
-      {
-        "title": "2020.11 제4회 정부혁신제안 끝장 개발대회 기술평가 평가위원",
-        "url": null
-      },
-      {
-        "title": "2020.04 ~ 202.07 제3회 정부혁신제안 해커톤 국민 기획단 & 멘토",
-        "url": null
-      }
-    ]
-  },
-  "lectures": {
-    "description": "강의/강연",
-    "list": [
-      {
-        "title": "제로베이스 백엔드 스쿨 Java/SpringBoot 기반 프로젝트 강의",
-        "url": null
-      },
-      {
-        "title": "2022.10 캐치(진학사) LIVE 클래스 #앵콜",
-        "url": "https://www.catch.co.kr/CatchClass/Live/View/5572"
-      },
-      {
-        "title": "2022.09 캐치(진학사) LIVE 클래스",
-        "url": "https://www.catch.co.kr/CatchClass/Live/View/5402"
       }
     ]
   },
   "awards": {
-    "description": "수상",
+    "title": "수상",
     "list": [
       {
-        "title": "2021.07 개인정보보호위원회 위원장 표창",
-        "description": "코로나 19 감염병 발생 상황에서 수기명부에 휴대전화번호 대신 기재할 수 있는 개인안심번호를 도입하여 개인정보보호 분야 발전에 이바지한 공로로 표창을 수여 받았습니다.",
-        "url": null
+        "title": "개인정보보호위원회 위원장 표창",
+        "date": "2021.07",
+        "org": "개인정보보호위원회",
+        "description": "코로나19 수기 출입명부에 휴대전화번호 대신 쓸 수 있는 개인안심번호를 도입해 개인정보보호 분야 발전에 기여한 공로"
       },
       {
-        "title": "2021.01 2020 COMMONS AWARD Engagement - 사단법인 코드",
-        "description": "코로나19 공공데이터 공동대응을 통해 시민참여와 거버넌스의 실현, 과제의 해결, 참여의 확산의 가치를 보여준 사례로 위와 같이 입상하였습니다.",
+        "title": "2020 COMMONS AWARD Engagement",
+        "date": "2021.01",
+        "org": "사단법인 코드",
+        "description": "코로나19 공공데이터 공동대응으로 시민참여와 거버넌스, 과제 해결, 참여 확산의 가치를 보여 준 사례",
         "url": "http://commonslab.cc/104/%EC%A0%9C1%ED%9A%8C-%EC%BB%A4%EB%A8%BC%EC%A6%88-%EC%96%B4%EC%9B%8C%EB%93%9C-%EC%8B%9C%EC%83%81%EC%8B%9D-2020-%EC%BB%A4%EB%A8%BC%EC%A6%88-%EC%96%B4%EC%9B%8C%EB%93%9C"
       },
       {
-        "title": "2020.10 제1회 소셜 D·N·A 혁신상 대상",
-        "description": "코로나19 공적 마스크 판매정보 공공데이터 개방에 핵심 역할을 한 공로로 위와 같이 입상하였습니다.",
+        "title": "제1회 소셜 D·N·A 혁신상 대상",
+        "date": "2020.10",
+        "org": "과학기술정보통신부 장관",
+        "description": "코로나19 공적 마스크 판매정보 공공데이터 개방에 핵심 역할을 한 공로",
         "url": "https://www.inews24.com/view/1307247"
+      }
+    ]
+  },
+  "talks": {
+    "title": "발표와 강연",
+    "list": [
+      {
+        "title": "캐치 LIVE 클래스 앵콜",
+        "date": "2022.10",
+        "org": "진학사 캐치",
+        "url": "https://www.catch.co.kr/CatchClass/Live/View/5572"
+      },
+      {
+        "title": "캐치 LIVE 클래스",
+        "date": "2022.09",
+        "org": "진학사 캐치",
+        "url": "https://www.catch.co.kr/CatchClass/Live/View/5402"
+      },
+      {
+        "title": "더 나은 오픈 데이터 정책에 대한 토론",
+        "date": "2022",
+        "org": "C.O.D.E Conference 2022",
+        "url": "https://codecon2022.notion.site"
+      },
+      {
+        "title": "공적 마스크 정책 수립, 데이터 개방 API 논의, 서비스 개발 참여 사례 소개",
+        "org": "Happy Civic Hacking",
+        "url": "https://onoffmix.com/event/256507"
+      },
+      {
+        "title": "기조연설: 대한민국 정부혁신 사례 소개와 질의응답",
+        "org": "The 2nd AYARF",
+        "url": "https://www.youtube.com/watch?v=OiFS4azd9m8&t=6695s"
+      },
+      {
+        "title": "Java, Spring Boot 기반 프로젝트 강의",
+        "org": "제로베이스 백엔드 스쿨"
+      }
+    ]
+  },
+  "community": {
+    "title": "커뮤니티와 자문",
+    "list": [
+      {
+        "title": "PyCon Korea 2023 Organizer",
+        "date": "2023.01 ~ 2023.12",
+        "description": "행사 기획과 홍보, 후원사 운영"
+      },
+      {
+        "title": "해커톤 멘토",
+        "date": "2023.02 ~ 2023.03",
+        "org": "경북대학교",
+        "description": "대구로 데이터 활용 해커톤"
+      },
+      {
+        "title": "모의 기술 면접관, 멘토",
+        "date": "2022.11 ~ 2023.02",
+        "org": "코드스테이츠",
+        "description": "Java, Spring, 컴퓨터 과학"
+      },
+      {
+        "title": "지식공유자",
+        "date": "2022.10 ~ 2023.03",
+        "org": "인프런",
+        "description": "6개월 동안 엔지니어 약 150명에게 커리어 상담, 코드 리뷰, 이력서 피드백"
+      },
+      {
+        "title": "2022년 개인정보 국민점검단",
+        "date": "2022.07 ~ 2022.12",
+        "org": "개인정보보호위원회"
+      },
+      {
+        "title": "위클리 아카데미 개설, 운영",
+        "date": "2022",
+        "description": "800명 규모의 기술 경험 공유 네트워크",
+        "url": "https://weekly.ac"
+      },
+      {
+        "title": "위기대응 민관협력 디지털 지원체계 구축 자문위원",
+        "date": "2021.12",
+        "org": "행정안전부"
+      },
+      {
+        "title": "2021 공공데이터 청년인턴(일경험 수련생) 해커톤 멘토",
+        "date": "2021.11"
+      },
+      {
+        "title": "복지사각지대 발굴시스템 개선 간담회 자문위원",
+        "date": "2021.11",
+        "org": "보건복지부"
+      },
+      {
+        "title": "전자정부서비스 혁신을 위한 국민참여 기반 비대면 경진대회 기획 자문위원",
+        "date": "2021.02"
+      },
+      {
+        "title": "제4회 정부혁신제안 끝장 개발대회 기술평가 위원",
+        "date": "2020.11"
+      },
+      {
+        "title": "제3회 정부혁신제안 해커톤 국민 기획단, 멘토",
+        "date": "2020.04 ~ 2020.07"
+      }
+    ]
+  },
+  "opensources": {
+    "title": "오픈소스 기여",
+    "list": [
+      {
+        "title": "mongodb/mongo-java-driver",
+        "description": "카카오페이 분리보관 파이프라인 작업 중 발견한 문제 수정",
+        "links": [
+          { "label": "PR #996", "url": "https://github.com/mongodb/mongo-java-driver/pull/996" },
+          { "label": "PR #997", "url": "https://github.com/mongodb/mongo-java-driver/pull/997" },
+          { "label": "PR #999", "url": "https://github.com/mongodb/mongo-java-driver/pull/999" },
+          { "label": "JAVA-4719", "url": "https://jira.mongodb.org/browse/JAVA-4719" }
+        ]
+      },
+      {
+        "title": "google/ksp",
+        "links": [{ "label": "PR #1088", "url": "https://github.com/google/ksp/pull/1088" }]
+      },
+      {
+        "title": "JetBrains/Exposed",
+        "links": [{ "label": "PR #1582", "url": "https://github.com/JetBrains/Exposed/pull/1582" }]
+      },
+      {
+        "title": "line/kotlin-jdsl",
+        "links": [{ "label": "PR #68", "url": "https://github.com/line/kotlin-jdsl/pull/68" }]
+      },
+      {
+        "title": "specmock/specmock",
+        "links": [{ "label": "PR #7", "url": "https://github.com/specmock/specmock/pull/7" }]
+      }
+    ]
+  },
+  "writing": {
+    "title": "글쓰기",
+    "list": [
+      {
+        "title": "테오 블로그",
+        "description": "제품 엔지니어링, 조직과 성장, Agentic AI 논문 읽기를 씁니다.",
+        "url": "/posts/"
+      },
+      {
+        "title": "작은 팀의 기술",
+        "org": "책",
+        "description": "개발자 출신 창업자의 조직 운영기",
+        "url": "/books/the-art-of-small-teams/"
+      },
+      {
+        "title": "회사의 모든 정보를 아는 사람은 없다",
+        "date": "2026.08",
+        "url": "/회사의-모든-정보를-아는-사람은-없다/"
+      },
+      {
+        "title": "금융 데이터, 하나의 API로: Headless Finance Platform을 공개합니다",
+        "date": "2026.04",
+        "url": "/금융-데이터-하나의-API로/"
+      },
+      {
+        "title": "[볼타 이야기] 볼타 팀은 이렇게 일합니다",
+        "date": "2025.08",
+        "url": "/볼타-팀은-이렇게-일합니다/"
+      },
+      {
+        "title": "[볼타 이야기] 채용 원칙",
+        "date": "2024.02",
+        "url": "/볼타-이야기-채용-원칙/"
+      },
+      {
+        "title": "2023년 회고: 프로젝트, 퇴사, 창업, 채용, 기술",
+        "date": "2024.01",
+        "url": "/2023년-회고-프로젝트-퇴사-창업-채용-기술/"
+      },
+      {
+        "title": "내가 개발 커뮤니티를 하는 이유 (a.k.a. 10년 회고)",
+        "date": "2022.12",
+        "url": "/내가-개발-커뮤니티를-하는-이유/"
+      },
+      {
+        "title": "오픈소스 활동 이야기",
+        "org": "카카오페이 기술 블로그",
+        "url": "https://tech.kakaopay.com/post/junior-opensource/"
       }
     ]
   }

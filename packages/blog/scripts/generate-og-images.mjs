@@ -48,7 +48,7 @@ const PAGES = [
     title: '소개',
     subtitle: '블로그가 무엇을 다루고 누가 쓰는지에 대한 소개.'
   },
-  { name: 'resume', title: '이력서', subtitle: '제품을 만들고 팀을 꾸려온 진태양(Theo)의 이력.' },
+  { name: 'resume', title: '이력서', subtitle: '볼타 공동창업자이자 CTO, 진태양(Theo)의 경력과 활동.' },
   { name: 'books', title: '책', subtitle: "'작은 팀의 기술': 개발자 출신 창업자의 조직 운영기." },
   { name: 'posts', title: '글 목록', subtitle: '지금까지 쓴 글을 연도별로 모아둔 곳.' },
   {
