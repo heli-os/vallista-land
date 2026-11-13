@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Container } from '@heli-os/vallista-core'
 import { HeadProps, Link } from 'gatsby'
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useEffect, useRef } from 'react'
 
 import { Seo } from '../components/Seo'
 import { ResumeCareer, ResumeEntrySection, ResumeProject, useConfig } from '../hooks/useConfig'
@@ -10,10 +10,41 @@ import { ResumeCareer, ResumeEntrySection, ResumeProject, useConfig } from '../h
 const ResumePage: FC = () => {
   const { resume } = useConfig()
   const { profile, careers } = resume
+  const resumeRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const closedDetails = new Set<HTMLDetailsElement>()
+
+    const expandProjects = () => {
+      resumeRef.current?.querySelectorAll('details').forEach((details) => {
+        if (!details.open) {
+          closedDetails.add(details)
+          // 인쇄 스냅샷에 즉시 반영하도록 DOM의 open 속성을 직접 변경한다.
+          details.open = true
+        }
+      })
+    }
+
+    const restoreProjects = () => {
+      closedDetails.forEach((details) => {
+        details.open = false
+      })
+      closedDetails.clear()
+    }
+
+    window.addEventListener('beforeprint', expandProjects)
+    window.addEventListener('afterprint', restoreProjects)
+
+    return () => {
+      window.removeEventListener('beforeprint', expandProjects)
+      window.removeEventListener('afterprint', restoreProjects)
+      restoreProjects()
+    }
+  }, [])
 
   return (
     <Container>
-      <Wrapper>
+      <Wrapper ref={resumeRef}>
         <Hero>
           <Name>
             {profile.name} <NameEn>{profile.nameEn}</NameEn>
@@ -399,6 +430,12 @@ const Fold = styled.details`
     & > summary:hover,
     & > summary:focus-visible {
       color: ${theme.colors.PRIMARY.FOREGROUND};
+    }
+
+    @media print {
+      & > summary {
+        display: none;
+      }
     }
   `}
 `
