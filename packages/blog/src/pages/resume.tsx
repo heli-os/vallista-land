@@ -1,498 +1,501 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Button, Container, Spacer, Text } from '@heli-os/vallista-core'
-import { HeadProps } from 'gatsby'
-import { FC } from 'react'
+import { Container } from '@heli-os/vallista-core'
+import { HeadProps, Link } from 'gatsby'
+import { FC, ReactNode } from 'react'
 
 import { Seo } from '../components/Seo'
-import { useConfig } from '../hooks/useConfig'
+import { ResumeCareer, ResumeEntrySection, ResumeProject, useConfig } from '../hooks/useConfig'
 
 const ResumePage: FC = () => {
-  const { profile, resume } = useConfig()
+  const { resume } = useConfig()
+  const { profile, careers } = resume
 
   return (
     <Container>
-      <Header>
-        <Wrapper>
-          <Container>
-            <Title>
-              <Container>
-                <Text as='h1' size={48} weight={800}>
-                  {resume.config.name}
-                </Text>
-                <Text as='h2' size={32} weight={800}>
-                  {resume.config.role}
-                </Text>
-              </Container>
-            </Title>
-            <Spacer y={1} />
-            <SubTitle>
-              {resume.config.bio.map((it) => (
-                <Text as='p' size={20} weight={400} lineHeight={40} key={it}>
-                  {/* Safety: bio 데이터는 로컬 resume.json에서만 제공되므로 XSS 위험 없음 */}
-                  <span dangerouslySetInnerHTML={{ __html: it }} />
-                </Text>
-              ))}
-              <Container>
-                <Spacer y={1.5} />
-              </Container>
-              <Container row>
-                <Button size='large' width={220} onClick={() => openNewPage(resume.config.github)}>
-                  <Container row center>
-                    <svg
-                      viewBox='0 0 24 24'
-                      width='30'
-                      height='30'
-                      stroke='currentColor'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      fill='none'
-                      shapeRendering='geometricPrecision'
-                    >
-                      <path d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22' />
-                    </svg>
-                    <Spacer x={0.3} />
-                    <Text size={16} weight={600}>
-                      GitHub 방문하기
-                    </Text>
-                  </Container>
-                </Button>
-                <Button size='large' width={220} onClick={() => openNewPage(profile.secondary)}>
-                  <Container row center>
-                    <svg
-                      viewBox='0 0 24 24'
-                      width='30'
-                      height='30'
-                      stroke='currentColor'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      fill='none'
-                      shapeRendering='geometricPrecision'
-                    >
-                      <path d='M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71' />
-                      <path d='M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71' />
-                    </svg>
-                    <Spacer x={0.3} />
-                    <Text size={16} weight={600}>
-                      볼타 채용 페이지
-                    </Text>
-                  </Container>
-                </Button>
-              </Container>
-            </SubTitle>
-          </Container>
-        </Wrapper>
-      </Header>
-      <Spacer />
-      <Box id='career'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.careers.title}
-            </Text>
-            <Spacer y={1.5} />
-            {resume.careers.list.map((it) => (
-              <TwoColumn key={it.name}>
-                <Container>
-                  <div>
-                    <Text as='h3' size={24} weight={500}>
-                      {it.name}
-                    </Text>
-                    <Spacer y={1} />
-                    <Text as='span' size={16}>
-                      {it.startDate} ~ {it.endDate}
-                    </Text>
-                    <Text as='span' size={16}>
-                      {it.position}
-                    </Text>
-                    <Text as='span' size={16}>
-                      {it.department}
-                    </Text>
-                    <Spacer y={1} />
-                    <div>
-                      {it.descriptions?.map((it_, idx) => (
-                        <Text key={idx}>{it_}</Text>
-                      ))}
-                    </div>
-                  </div>
-                </Container>
-                <Container>
-                  <div>
-                    {it.projects?.map((it_, idx) => (
-                      <Container key={idx}>
-                        <Text size={24} weight={600} as='h3'>
-                          {it_.name}
-                        </Text>
-                        <Spacer y={1} />
-                        <Text size={16}>
-                          {it_.startDate} ~ {it_.endDate}
-                        </Text>
-                        {it_.descriptions?.map((it__, idx) => (
-                          <Text size={16} key={idx}>
-                            {it__}
-                          </Text>
-                        ))}
-                        <Spacer y={1} />
-                        <ul>
-                          {it_.which?.map(({ title, items }, idx) => (
-                            <li key={idx}>
-                              <Text size={14}>{title}</Text>
-                              {items?.length > 0 && (
-                                <ul>
-                                  {items.map((item, idx) => (
-                                    <li key={idx}>
-                                      <Text size={14}>{item}</Text>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                        {idx < (it.projects?.length ?? 0) - 1 && <Spacer y={2} />}
-                      </Container>
-                    ))}
-                  </div>
-                </Container>
-              </TwoColumn>
+      <Wrapper>
+        <Hero>
+          <Name>
+            {profile.name} <NameEn>{profile.nameEn}</NameEn>
+          </Name>
+          <Role>{profile.role}</Role>
+          {profile.intro.map((paragraph) => (
+            <Intro key={paragraph}>{paragraph}</Intro>
+          ))}
+          <HeroLinks>
+            {profile.links.map((link) => (
+              <li key={link.url}>
+                <SmartLink href={link.url}>{link.label}</SmartLink>
+              </li>
             ))}
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='skills'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.skills.title}
-            </Text>
-            <Spacer y={1.5} />
-            {resume.skills.list.map((it, idx) => (
-              <Container key={idx}>
-                <Text as='h3' size={24} weight={600}>
-                  {it.title}
-                </Text>
-                <div>
-                  {it.descriptions?.map((it_, idx) => (
-                    <ul key={idx}>
-                      <li>
-                        <Container>
-                          <Text size={16}>{it_.title}</Text>
-                          <SubTitleText>
-                            {it_.subTitle.map((it__, idx) => (
-                              <Text size={14} key={idx}>
-                                {it__}
-                              </Text>
-                            ))}
-                          </SubTitleText>
-                        </Container>
-                      </li>
-                    </ul>
-                  ))}
-                </div>
-                <Spacer y={1} />
-              </Container>
+          </HeroLinks>
+        </Hero>
+
+        <Section aria-labelledby='careers'>
+          <h2 id='careers'>{careers.title}</h2>
+          <Timeline>
+            {careers.list.map((career) => (
+              <CareerItem key={career.name} career={career} />
             ))}
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='hobby'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.hobby.description}
-            </Text>
-            <Spacer y={1.5} />
-            {resume.hobby.list.map((it, idx) => (
-              <Container key={idx}>
-                <Text as='h3' size={24} weight={600}>
-                  {it.url !== null ? (
-                    <a href={it.url} target='_blank' rel='noopener noreferrer'>
-                      {it.title}
-                    </a>
-                  ) : (
-                    it.title
-                  )}
-                </Text>
-                <div>
-                  {it.descriptions?.map((it_, idx) => (
-                    <ul key={idx}>
-                      <li>
-                        <Container>
-                          <Text size={16}>
-                            {/* Safety: descriptions 데이터는 로컬 resume.json에서만 제공되므로 XSS 위험 없음 */}
-                            <span dangerouslySetInnerHTML={{ __html: it_ }} />
-                          </Text>
-                        </Container>
-                      </li>
-                    </ul>
-                  ))}
-                </div>
-                <Spacer y={1} />
-              </Container>
-            ))}
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='speaker'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.speaker.description}
-            </Text>
-            <Spacer y={1.5} />
-            <ul>
-              {resume.speaker.list.map((it, idx) => (
-                <li key={idx}>
-                  <Text size={16}>
-                    <a href={it.url} target='_blank' rel='noopener noreferrer'>
-                      {it.title}
-                    </a>
-                  </Text>
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='opensources'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.opensources.description}
-            </Text>
-            <Spacer y={1.5} />
-            <ul>
-              {resume.opensources.list.map((it, idx) =>
-                it.url !== null ? (
-                  <li key={idx}>
-                    <Text size={16}>
-                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
-                        {it.title}
-                      </a>
-                    </Text>
-                  </li>
-                ) : (
-                  <li key={idx}>
-                    <Text size={16}>{it.title}</Text>
-                  </li>
-                )
-              )}
-            </ul>
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='activities'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.activities.description}
-            </Text>
-            <Spacer y={1.5} />
-            <ul>
-              {resume.activities.list.map((it, idx) =>
-                it.url !== null ? (
-                  <li key={idx}>
-                    <Text size={16}>
-                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
-                        {it.title}
-                      </a>
-                    </Text>
-                  </li>
-                ) : (
-                  <li key={idx}>
-                    <Text size={16}>{it.title}</Text>
-                  </li>
-                )
-              )}
-            </ul>
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='lectures'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.lectures.description}
-            </Text>
-            <Spacer y={1.5} />
-            <ul>
-              {resume.lectures.list.map((it, idx) =>
-                it.url !== null ? (
-                  <li key={idx}>
-                    <Text size={16}>
-                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
-                        {it.title}
-                      </a>
-                    </Text>
-                  </li>
-                ) : (
-                  <li key={idx}>
-                    <Text size={16}>{it.title}</Text>
-                  </li>
-                )
-              )}
-            </ul>
-          </Container>
-        </Contents>
-      </Box>
-      <Box id='awards'>
-        <Contents>
-          <Container>
-            <Text size={40} weight={800}>
-              {resume.awards.description}
-            </Text>
-            <Spacer y={1.5} />
-            <ul>
-              {resume.awards.list.map((it, idx) =>
-                it.url !== null ? (
-                  <li key={idx}>
-                    <Text size={16}>
-                      <a href={it.url} target='_blank' rel='noopener noreferrer'>
-                        {it.title}
-                      </a>
-                    </Text>
-                    <SubTitleText>
-                      <Text size={14}>{it.description}</Text>
-                    </SubTitleText>
-                  </li>
-                ) : (
-                  <li key={idx}>
-                    <Text size={16}>{it.title}</Text>
-                    <SubTitleText>
-                      <Text size={14}>{it.description}</Text>
-                    </SubTitleText>
-                  </li>
-                )
-              )}
-            </ul>
-          </Container>
-        </Contents>
-      </Box>
+          </Timeline>
+        </Section>
+
+        <EntrySection id='awards' section={resume.awards} />
+        <EntrySection id='talks' section={resume.talks} />
+        <EntrySection id='community' section={resume.community} />
+        <EntrySection id='opensources' section={resume.opensources} />
+        <EntrySection id='writing' section={resume.writing} />
+      </Wrapper>
     </Container>
   )
-
-  function openNewPage(target: string): void {
-    window.open(target, '_blink')
-  }
 }
-
-const Wrapper = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 900px;
-  padding: 2rem;
-`
-
-const Box = styled.div``
-
-const Header = styled.header`
-  padding: 2rem 0;
-`
-
-const Title = styled.div`
-  max-width: 550px;
-`
-
-const SubTitle = styled.div`
-  max-width: 550px;
-
-  @media screen and (max-width: 1024px) {
-    & > div:last-of-type {
-      flex-direction: column !important;
-
-      & > * {
-        margin-left: 0;
-        margin-bottom: 1rem;
-      }
-    }
-  }
-`
-
-const Contents = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 900px;
-  padding: 2rem;
-
-  ul {
-    list-style: disc;
-    padding-left: 1.2rem;
-  }
-
-  li {
-    margin-bottom: 0.5rem;
-    padding: 0.2rem 0;
-    line-height: 1.4;
-
-    &::marker {
-      ${({ theme }) => css`
-        color: ${theme.colors.HIGHLIGHT.ORANGE};
-      `}
-    }
-
-    & li {
-      margin: 0;
-      padding: 0;
-    }
-  }
-`
-
-const TwoColumn = styled.div`
-  display: flex;
-  margin-bottom: 2rem;
-
-  & > div:first-of-type {
-    height: auto;
-    box-sizing: border-box;
-    flex: 3;
-    padding-right: 2rem;
-
-    & > div {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      position: sticky;
-      top: 85px;
-
-      & > div:last-of-type {
-        ${({ theme }) => css`
-          color: ${theme.colors.PRIMARY.ACCENT_5};
-
-          & > p {
-            margin-bottom: 0.5rem !important;
-          }
-        `}
-      }
-    }
-  }
-
-  & > div:last-of-type {
-    flex: 7;
-  }
-
-  @media screen and (max-width: 1024px) {
-    flex-direction: column;
-
-    & > div:last-of-type {
-      padding-left: 1rem;
-
-      ${({ theme }) => css`
-        border-left: 3px solid ${theme.colors.HIGHLIGHT.ORANGE};
-      `}
-    }
-  }
-`
-
-const SubTitleText = styled.div`
-  ${({ theme }) => css`
-    color: ${theme.colors.PRIMARY.ACCENT_5};
-  `}
-`
 
 export default ResumePage
 
-export const Head = ({ location }: HeadProps) => (
-  <Seo name='이력서' image='/og/resume.jpeg' pageType='profile' pathname={location.pathname} />
+export const Head = ({ location }: HeadProps) => {
+  const breadcrumbs = [
+    { name: '홈', url: '/' },
+    { name: '이력서', url: '/resume/' }
+  ]
+
+  return (
+    <Seo
+      name='이력서'
+      description='볼타 공동창업자이자 CTO인 진태양(Theo)의 경력과 활동. 전자세금계산서와 금융 API, 카카오페이 금융 플랫폼, 코드포코리아 공적 마스크 API와 개인안심번호.'
+      image='/og/resume.jpeg'
+      pageType='profile'
+      breadcrumbs={breadcrumbs}
+      pathname={location.pathname}
+    />
+  )
+}
+
+/** 주소가 없으면 텍스트만, 내부 경로는 Gatsby Link, 외부 주소는 새 창으로 연다 */
+const SmartLink: FC<{ href?: string; children: ReactNode }> = ({ href, children }) => {
+  if (!href) return <>{children}</>
+  if (href.startsWith('/')) return <Link to={href}>{children}</Link>
+  return (
+    <a href={href} target='_blank' rel='noopener noreferrer'>
+      {children}
+    </a>
+  )
+}
+
+const formatPeriod = (startDate?: string, endDate?: string | null): string | null => {
+  if (!startDate) return null
+  if (endDate === startDate) return startDate
+  return `${startDate} ~ ${endDate ?? '현재'}`
+}
+
+const CareerItem: FC<{ career: ResumeCareer }> = ({ career }) => {
+  const isCurrent = career.endDate === null
+
+  return (
+    <TimelineItem data-current={isCurrent}>
+      <ItemHeader>
+        <h3>
+          <SmartLink href={career.url}>{career.name}</SmartLink>
+        </h3>
+        <Period>{formatPeriod(career.startDate, career.endDate)}</Period>
+      </ItemHeader>
+      <Position>{career.position}</Position>
+      <Summary>{career.summary}</Summary>
+      {career.techStacks && career.techStacks.length > 0 && (
+        <Stacks aria-label='주요 기술'>
+          {career.techStacks.map((stack) => (
+            <li key={stack}>{stack}</li>
+          ))}
+        </Stacks>
+      )}
+      {career.fold ? (
+        <Fold>
+          <summary>주요 프로젝트 {career.projects.length}개</summary>
+          <ProjectList projects={career.projects} />
+        </Fold>
+      ) : (
+        <ProjectList projects={career.projects} />
+      )}
+    </TimelineItem>
+  )
+}
+
+const ProjectList: FC<{ projects: ResumeProject[] }> = ({ projects }) => (
+  <Projects>
+    {projects.map((project) => {
+      const period = formatPeriod(project.startDate, project.endDate)
+
+      return (
+        <Project key={project.name}>
+          <ItemHeader>
+            <h4>{project.name}</h4>
+            {period && <Period>{period}</Period>}
+          </ItemHeader>
+          {project.summary && <ProjectSummary>{project.summary}</ProjectSummary>}
+          <Highlights>
+            {project.highlights.map((highlight) => (
+              <li key={highlight.title}>
+                <SmartLink href={highlight.url}>{highlight.title}</SmartLink>
+                {highlight.items && highlight.items.length > 0 && (
+                  <ul>
+                    {highlight.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </Highlights>
+        </Project>
+      )
+    })}
+  </Projects>
 )
+
+const EntrySection: FC<{ id: string; section: ResumeEntrySection }> = ({ id, section }) => (
+  <Section aria-labelledby={id}>
+    <h2 id={id}>{section.title}</h2>
+    <Entries>
+      {section.list.map((entry) => (
+        <li key={`${entry.title}-${entry.date ?? ''}`}>
+          <ItemHeader>
+            <EntryTitle>
+              <SmartLink href={entry.url}>{entry.title}</SmartLink>
+            </EntryTitle>
+            {entry.date && <Period>{entry.date}</Period>}
+          </ItemHeader>
+          {entry.org && <EntryOrg>{entry.org}</EntryOrg>}
+          {entry.description && <EntryDescription>{entry.description}</EntryDescription>}
+          {entry.links && entry.links.length > 0 && (
+            <EntryLinks>
+              {entry.links.map((link) => (
+                <li key={link.url}>
+                  <SmartLink href={link.url}>{link.label}</SmartLink>
+                </li>
+              ))}
+            </EntryLinks>
+          )}
+        </li>
+      ))}
+    </Entries>
+  </Section>
+)
+
+const Wrapper = styled.div`
+  ${({ theme }) => css`
+    margin: 0 auto;
+    width: 100%;
+    max-width: 760px;
+    padding: 2rem;
+    box-sizing: border-box;
+    color: ${theme.colors.PRIMARY.ACCENT_6};
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+
+    a {
+      color: ${theme.colors.PRIMARY.FOREGROUND};
+      text-decoration: underline;
+      text-decoration-color: ${theme.colors.PRIMARY.ACCENT_3};
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
+    }
+
+    a:hover,
+    a:focus-visible {
+      text-decoration-color: ${theme.colors.HIGHLIGHT.ORANGE};
+    }
+
+    @media screen and (max-width: 600px) {
+      padding: 1.5rem 1.25rem;
+    }
+  `}
+`
+
+const Hero = styled.header`
+  margin-bottom: 3rem;
+`
+
+const Name = styled.h1`
+  ${({ theme }) => css`
+    font-size: 2.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: ${theme.colors.PRIMARY.FOREGROUND};
+    margin: 0 0 0.4rem;
+  `}
+`
+
+const NameEn = styled.span`
+  ${({ theme }) => css`
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: ${theme.colors.PRIMARY.ACCENT_4};
+  `}
+`
+
+const Role = styled.p`
+  ${({ theme }) => css`
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: ${theme.colors.PRIMARY.ACCENT_7};
+    margin: 0 0 1.5rem;
+  `}
+`
+
+const Intro = styled.p`
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin: 0 0 0.8rem;
+`
+
+const HeroLinks = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  font-weight: 600;
+`
+
+const Section = styled.section`
+  ${({ theme }) => css`
+    border-top: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+
+    & > h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: ${theme.colors.PRIMARY.FOREGROUND};
+      margin: 0 0 1.5rem;
+    }
+  `}
+`
+
+const Timeline = styled.ol`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`
+
+const TimelineItem = styled.li`
+  ${({ theme }) => css`
+    position: relative;
+    padding: 0 0 2.5rem 1.5rem;
+    border-left: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0.55rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      background: ${theme.colors.PRIMARY.BACKGROUND};
+      border: 2px solid ${theme.colors.PRIMARY.ACCENT_3};
+    }
+
+    &[data-current='true']::before {
+      background: ${theme.colors.HIGHLIGHT.ORANGE};
+      border-color: ${theme.colors.HIGHLIGHT.ORANGE};
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: ${theme.colors.PRIMARY.FOREGROUND};
+      margin: 0;
+    }
+  `}
+`
+
+const ItemHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+`
+
+const Period = styled.span`
+  ${({ theme }) => css`
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+    color: ${theme.colors.PRIMARY.ACCENT_4};
+  `}
+`
+
+const Position = styled.p`
+  ${({ theme }) => css`
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: ${theme.colors.PRIMARY.ACCENT_5};
+    margin: 0.25rem 0 0.6rem;
+  `}
+`
+
+const Summary = styled.p`
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0 0 0.8rem;
+`
+
+const Stacks = styled.ul`
+  ${({ theme }) => css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+
+    li {
+      font-size: 0.8rem;
+      line-height: 1;
+      padding: 0.3rem 0.5rem;
+      border: 1px solid ${theme.colors.PRIMARY.ACCENT_2};
+      border-radius: 4px;
+      color: ${theme.colors.PRIMARY.ACCENT_5};
+    }
+  `}
+`
+
+const Fold = styled.details`
+  ${({ theme }) => css`
+    & > summary {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: ${theme.colors.PRIMARY.ACCENT_5};
+      list-style: none;
+    }
+
+    & > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    & > summary::before {
+      content: '+';
+      display: inline-block;
+      width: 1rem;
+      color: ${theme.colors.HIGHLIGHT.ORANGE};
+    }
+
+    &[open] > summary::before {
+      content: '−';
+    }
+
+    & > summary:hover,
+    & > summary:focus-visible {
+      color: ${theme.colors.PRIMARY.FOREGROUND};
+    }
+  `}
+`
+
+const Projects = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+`
+
+const Project = styled.div`
+  ${({ theme }) => css`
+    h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: ${theme.colors.PRIMARY.ACCENT_7};
+      margin: 0;
+    }
+  `}
+`
+
+const ProjectSummary = styled.p`
+  ${({ theme }) => css`
+    font-size: 0.95rem;
+    color: ${theme.colors.PRIMARY.ACCENT_5};
+    margin: 0.25rem 0 0;
+  `}
+`
+
+const Highlights = styled.ul`
+  ${({ theme }) => css`
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+
+    li::marker {
+      color: ${theme.colors.HIGHLIGHT.ORANGE};
+    }
+
+    ul {
+      list-style: circle;
+      padding-left: 1.2rem;
+      margin: 0.2rem 0 0;
+      color: ${theme.colors.PRIMARY.ACCENT_5};
+    }
+
+    ul li::marker {
+      color: ${theme.colors.PRIMARY.ACCENT_3};
+    }
+  `}
+`
+
+const Entries = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+`
+
+const EntryTitle = styled.span`
+  ${({ theme }) => css`
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: ${theme.colors.PRIMARY.FOREGROUND};
+  `}
+`
+
+const EntryOrg = styled.p`
+  ${({ theme }) => css`
+    font-size: 0.9rem;
+    color: ${theme.colors.PRIMARY.ACCENT_5};
+    margin: 0.1rem 0 0;
+  `}
+`
+
+const EntryDescription = styled.p`
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0.2rem 0 0;
+`
+
+const EntryLinks = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+`
