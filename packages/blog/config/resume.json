@@ -54,7 +54,6 @@
             "highlights": [
               { "title": "서비스 확장에 맞춘 계층형 백엔드 아키텍처 설계 (presentation, core, application, external)" },
               { "title": "AWS 인프라 전체를 1주일 안에 Terraform으로 이관하고, EC2 수동 배포를 ECS로 전환" },
-              { "title": "TeamCity 기반 빌드, 배포, 배치 파이프라인 구축" },
               { "title": "VPN, IdP, MFA를 겹친 Zero-trust 접근 통제와 전 구간 TLS 암호화" }
             ]
           },
