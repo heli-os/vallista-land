@@ -29,11 +29,20 @@ export const _Contents = styled(_Wrapper)`
 
     a {
       color: ${theme.colors.PRIMARY.FOREGROUND};
-      text-decoration: none;
-      transition: color 0.15s ease;
+      text-decoration: underline;
+      text-decoration-color: ${theme.colors.PRIMARY.ACCENT_3};
+      /* 글자색의 55%로 섞어 라이트와 다크 테마 모두 같은 대비를 낸다. 미지원 브라우저는 위 값을 쓴다 */
+      text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition:
+        color 0.15s ease,
+        text-decoration-color 0.15s ease;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         color: ${theme.colors.HIGHLIGHT.ORANGE};
+        text-decoration-color: ${theme.colors.HIGHLIGHT.ORANGE};
       }
     }
 
@@ -120,6 +129,7 @@ export const _Contents = styled(_Wrapper)`
         color: ${theme.colors.PRIMARY.FOREGROUND};
         opacity: 0;
         border: none;
+        text-decoration: none;
         position: absolute;
         top: 50%;
         left: 0;
